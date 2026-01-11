@@ -13,15 +13,23 @@ export function getYear5Lessons(startLessonId, startQuizId) {
       yearId: 'year5',
       subjectId: 'maths',
       lessonNumber: 1,
-      title: 'Percentages',
+      title: "Percentages",
       emoji: '%',
       content: `# Percentages %
 
+
+
 Let's learn about percentages!
+
+
 
 ## What is a Percentage?
 
+
+
 A percentage is a way to show parts of 100.
+
+
 
 - 50% means 50 out of 100
 
@@ -29,7 +37,11 @@ A percentage is a way to show parts of 100.
 
 - 100% means all of it
 
+
+
 ## Common Percentages
+
+
 
 - 50% = ½ (half)
 
@@ -39,7 +51,11 @@ A percentage is a way to show parts of 100.
 
 - 10% = 1/10 (one tenth)
 
+
+
 ## Converting to Decimals
+
+
 
 - 50% = 0.5
 
@@ -49,7 +65,11 @@ A percentage is a way to show parts of 100.
 
 - 10% = 0.1
 
+
+
 ## Finding Percentages
+
+
 
 To find 50% of 100:
 
@@ -57,13 +77,19 @@ To find 50% of 100:
 
 - 0.5 × 100 = 50
 
+
+
 To find 25% of 80:
 
 - 25% = 25/100 = 0.25
 
 - 0.25 × 80 = 20
 
+
+
 ## Practice
+
+
 
 Find these percentages:
 
@@ -75,7 +101,11 @@ Find these percentages:
 
 - 75% of 80 = ?
 
+
+
 ## Fun Activities
+
+
 
 - Practice percentage problems
 
@@ -85,7 +115,11 @@ Find these percentages:
 
 - Solve percentage word problems
 
+
+
 ## Remember
+
+
 
 - Percentages are parts of 100
 
@@ -104,13 +138,19 @@ Find these percentages:
       yearId: 'year5',
       subjectId: 'maths',
       lessonNumber: 2,
-      title: 'Geometry: Shapes and Angles',
+      title: "Geometry: Shapes and Angles",
       emoji: '📐',
       content: `# Geometry: Shapes and Angles 📐
 
+
+
 Let's learn about shapes and angles!
 
+
+
 ## Types of Angles
+
+
 
 **Right Angle** - 90° (like a corner)
 
@@ -120,7 +160,11 @@ Let's learn about shapes and angles!
 
 **Straight Angle** - 180° (a straight line)
 
+
+
 ## Triangles
+
+
 
 **Equilateral Triangle**
 
@@ -128,11 +172,15 @@ Let's learn about shapes and angles!
 
 - All angles 60°
 
+
+
 **Isosceles Triangle**
 
 - Two sides equal
 
 - Two angles equal
+
+
 
 **Scalene Triangle**
 
@@ -140,7 +188,11 @@ Let's learn about shapes and angles!
 
 - All angles different
 
+
+
 ## Quadrilaterals
+
+
 
 **Square**
 
@@ -148,11 +200,15 @@ Let's learn about shapes and angles!
 
 - 4 right angles
 
+
+
 **Rectangle**
 
 - 4 sides (opposites equal)
 
 - 4 right angles
+
+
 
 **Parallelogram**
 
@@ -160,7 +216,11 @@ Let's learn about shapes and angles!
 
 - Opposite sides equal
 
+
+
 ## Circles
+
+
 
 - **Radius** - Distance from center to edge
 
@@ -168,7 +228,11 @@ Let's learn about shapes and angles!
 
 - **Circumference** - Distance around
 
+
+
 ## Practice
+
+
 
 Identify:
 
@@ -180,7 +244,11 @@ Identify:
 
 - Parts of circles
 
+
+
 ## Fun Activities
+
+
 
 - Draw different shapes
 
@@ -190,7 +258,11 @@ Identify:
 
 - Solve geometry problems
 
+
+
 ## Remember
+
+
 
 - Angles measure turns
 
@@ -209,13 +281,19 @@ Identify:
       yearId: 'year5',
       subjectId: 'maths',
       lessonNumber: 3,
-      title: 'Problem Solving',
+      title: "Problem Solving",
       emoji: '🧩',
       content: `# Problem Solving 🧩
 
+
+
 Let's learn to solve math problems!
 
+
+
 ## Problem-Solving Steps
+
+
 
 1. **Read carefully** - Understand the problem
 
@@ -227,7 +305,11 @@ Let's learn to solve math problems!
 
 5. **Check** - Does your answer make sense?
 
+
+
 ## Word Problems
+
+
 
 Read the problem carefully:
 
@@ -237,9 +319,15 @@ Read the problem carefully:
 
 - What operation do you need?
 
+
+
 ## Example Problem
 
+
+
 "Sarah has 24 stickers. She gives away 8 stickers. How many does she have left?"
+
+
 
 - Given: 24 stickers, gives away 8
 
@@ -251,7 +339,11 @@ Read the problem carefully:
 
 - Check: 16 + 8 = 24 ✓
 
+
+
 ## Strategies
+
+
 
 - Draw a picture
 
@@ -263,7 +355,11 @@ Read the problem carefully:
 
 - Try simpler numbers first
 
+
+
 ## Practice
+
+
 
 Solve these problems:
 
@@ -273,7 +369,11 @@ Solve these problems:
 
 - You save £5 each week for 8 weeks. How much total?
 
+
+
 ## Fun Activities
+
+
 
 - Solve word problems
 
@@ -283,7 +383,11 @@ Solve these problems:
 
 - Practice different strategies
 
+
+
 ## Remember
+
+
 
 - Read problems carefully
 
@@ -302,17 +406,27 @@ Solve these problems:
       yearId: 'year5',
       subjectId: 'english',
       lessonNumber: 1,
-      title: 'Writing Essays',
+      title: "Writing Essays",
       emoji: '📝',
       content: `# Writing Essays 📝
 
+
+
 Let's learn to write essays!
+
+
 
 ## What is an Essay?
 
+
+
 An essay is a piece of writing that gives your opinion or explains something.
 
+
+
 ## Essay Structure
+
+
 
 1. **Introduction** - Introduce your topic
 
@@ -320,7 +434,11 @@ An essay is a piece of writing that gives your opinion or explains something.
 
 3. **Conclusion** - Summarize your points
 
+
+
 ## Introduction
+
+
 
 - Hook the reader
 
@@ -328,7 +446,11 @@ An essay is a piece of writing that gives your opinion or explains something.
 
 - State your main idea (thesis)
 
+
+
 ## Body Paragraphs
+
+
 
 Each paragraph should have:
 
@@ -340,7 +462,11 @@ Each paragraph should have:
 
 - Explanation
 
+
+
 ## Conclusion
+
+
 
 - Restate main points
 
@@ -348,7 +474,11 @@ Each paragraph should have:
 
 - Leave reader thinking
 
+
+
 ## Types of Essays
+
+
 
 - **Opinion** - Your view on a topic
 
@@ -358,7 +488,11 @@ Each paragraph should have:
 
 - **Narrative** - Tell a story
 
+
+
 ## Practice
+
+
 
 Write an essay about:
 
@@ -370,7 +504,11 @@ Write an essay about:
 
 - How to be a good friend
 
+
+
 ## Fun Activities
+
+
 
 - Write essays on different topics
 
@@ -380,7 +518,11 @@ Write an essay about:
 
 - Share your essays
 
+
+
 ## Remember
+
+
 
 - Plan before writing
 
@@ -399,17 +541,27 @@ Write an essay about:
       yearId: 'year5',
       subjectId: 'english',
       lessonNumber: 2,
-      title: 'Literature Analysis',
+      title: "Literature Analysis",
       emoji: '📚',
       content: `# Literature Analysis 📚
 
+
+
 Let's learn to analyze stories and poems!
+
+
 
 ## What is Analysis?
 
+
+
 Analysis means looking closely at a text to understand it better.
 
+
+
 ## Elements to Analyze
+
+
 
 **Characters**
 
@@ -419,6 +571,8 @@ Analysis means looking closely at a text to understand it better.
 
 - How do they change?
 
+
+
 **Setting**
 
 - Where does it happen?
@@ -426,6 +580,8 @@ Analysis means looking closely at a text to understand it better.
 - When does it happen?
 
 - Why is the setting important?
+
+
 
 **Plot**
 
@@ -435,6 +591,8 @@ Analysis means looking closely at a text to understand it better.
 
 - How is it resolved?
 
+
+
 **Theme**
 
 - What is the main message?
@@ -443,7 +601,11 @@ Analysis means looking closely at a text to understand it better.
 
 - What is the author saying?
 
+
+
 ## Reading Strategies
+
+
 
 - Read carefully
 
@@ -455,7 +617,11 @@ Analysis means looking closely at a text to understand it better.
 
 - Think about meaning
 
+
+
 ## Writing Analysis
+
+
 
 - State your point
 
@@ -465,7 +631,11 @@ Analysis means looking closely at a text to understand it better.
 
 - Connect to the bigger picture
 
+
+
 ## Practice
+
+
 
 Analyze:
 
@@ -477,7 +647,11 @@ Analyze:
 
 - A character's journey
 
+
+
 ## Fun Activities
+
+
 
 - Read and discuss literature
 
@@ -487,7 +661,11 @@ Analyze:
 
 - Present your analysis
 
+
+
 ## Remember
+
+
 
 - Look for deeper meaning
 
@@ -506,19 +684,27 @@ Analyze:
       yearId: 'year5',
       subjectId: 'english',
       lessonNumber: 3,
-      title: 'Advanced Grammar',
+      title: "Advanced Grammar",
       emoji: '📖',
       content: `# Advanced Grammar 📖
 
+
+
 Let's learn more advanced grammar!
 
+
+
 ## Complex Sentences
+
+
 
 A complex sentence has:
 
 - One main clause (can stand alone)
 
 - One or more subordinate clauses (can't stand alone)
+
+
 
 Example:
 
@@ -528,7 +714,11 @@ Example:
 
 - Subordinate clause: "Although it was raining"
 
+
+
 ## Subordinating Conjunctions
+
+
 
 Words that connect clauses:
 
@@ -538,7 +728,11 @@ Words that connect clauses:
 
 - until, unless, as
 
+
+
 ## Active and Passive Voice
+
+
 
 **Active Voice**
 
@@ -546,13 +740,19 @@ Words that connect clauses:
 
 - "The cat chased the mouse."
 
+
+
 **Passive Voice**
 
 - Subject receives the action
 
 - "The mouse was chased by the cat."
 
+
+
 ## Modal Verbs
+
+
 
 Words that show possibility, necessity, or ability:
 
@@ -560,7 +760,11 @@ Words that show possibility, necessity, or ability:
 
 - must, should, would, will
 
+
+
 ## Practice
+
+
 
 Identify:
 
@@ -572,7 +776,11 @@ Identify:
 
 - Subordinate clauses
 
+
+
 ## Fun Activities
+
+
 
 - Write complex sentences
 
@@ -582,7 +790,11 @@ Identify:
 
 - Edit for grammar
 
+
+
 ## Remember
+
+
 
 - Grammar helps clarity
 
@@ -601,95 +813,111 @@ Identify:
       yearId: 'year5',
       subjectId: 'history',
       lessonNumber: 1,
-      title: 'World War I',
-      emoji: '🌍',
-      content: `# World War I 🌍
+      title: "The Tudors - Henry VIII and Elizabeth I",
+      emoji: '👑',
+      content: `# The Tudors - Henry VIII and Elizabeth I 👑
 
-Let's learn about World War I!
 
-## When Did It Happen?
 
-World War I lasted from 1914 to 1918.
+Let's learn about the Tudor period!
 
-## Why Did It Start?
 
-- Tensions between countries
 
-- Alliances between nations
+## When Were the Tudors?
 
-- Assassination of Archduke Franz Ferdinand
 
-- Many countries got involved
 
-## Who Fought?
+- The Tudors ruled England from 1485 to 1603
 
-**Allied Powers:**
+- It was an important time
 
-- Britain
+- Many things changed
 
-- France
+- England became stronger
 
-- Russia
 
-- United States (joined later)
 
-**Central Powers:**
+## Henry VIII
 
-- Germany
 
-- Austria-Hungary
 
-- Ottoman Empire
+- Henry VIII was a famous king
 
-## Life in the Trenches
+- He had six wives
 
-- Soldiers lived in trenches (ditches)
+- He created the Church of England
 
-- Very difficult conditions
+- He built many palaces
 
-- Mud, rats, and disease
 
-- Dangerous and scary
 
-## New Weapons
+## Elizabeth I
 
-- Machine guns
 
-- Tanks (first used)
 
-- Poison gas
+- Elizabeth I was a great queen
 
-- Airplanes (for war)
+- She ruled for 45 years
 
-## The End
+- England's "Golden Age"
 
-- War ended in 1918
+- She defeated the Spanish Armada
 
-- Many people died
 
-- Countries changed
 
-- Led to World War II
+## Tudor Life
+
+
+
+- Most people were farmers
+
+- Towns and cities grew
+
+- Trade increased
+
+- Exploration expanded
+
+
+
+## Tudor Achievements
+
+
+
+- England became powerful
+
+- Arts and literature flourished
+
+- Shakespeare wrote plays
+
+- It was a golden age
+
+
 
 ## Fun Activities
 
-- Research the war
+
+
+- Learn about the Tudors
+
+- Draw Tudor palaces
 
 - Make a timeline
 
-- Write about soldiers' experiences
+- Write about Tudor life
 
-- Learn about the impact
+
 
 ## Remember
 
-- War lasted 1914-1918
 
-- Many countries involved
 
-- Very difficult time
+- Tudors ruled 1485-1603
 
-- Important to remember!`,
+- Henry VIII and Elizabeth I were famous
+
+- It was a golden age
+
+- England became powerful!`,
       quizId: quizId++,
       assessmentType: 'quiz',
       categoryId: null,
@@ -700,107 +928,111 @@ World War I lasted from 1914 to 1918.
       yearId: 'year5',
       subjectId: 'history',
       lessonNumber: 2,
-      title: 'World War II',
-      emoji: '🌍',
-      content: `# World War II 🌍
+      title: "The Stuarts - James I to Charles II",
+      emoji: '👑',
+      content: `# The Stuarts - James I to Charles II 👑
 
-Let's learn about World War II!
 
-## When Did It Happen?
 
-World War II lasted from 1939 to 1945.
+Let's learn about the Stuart period!
 
-## Why Did It Start?
 
-- Germany wanted more land
 
-- Adolf Hitler and the Nazis
+## When Were the Stuarts?
 
-- Invasion of Poland
 
-- Many countries got involved
 
-## Who Fought?
+- The Stuarts ruled from 1603 to 1714
 
-**Allied Powers:**
+- They came after the Tudors
 
-- Britain
+- It was a time of conflict
 
-- United States
+- England had a civil war
 
-- Soviet Union
 
-- France
 
-- Many others
+## James I
 
-**Axis Powers:**
 
-- Germany
 
-- Italy
+- James I was the first Stuart king
 
-- Japan
+- He united England and Scotland
 
-## The Blitz
+- He believed in the divine right of kings
 
-- German bombing of British cities
+- He had conflicts with Parliament
 
-- People hid in air raid shelters
 
-- Many buildings destroyed
 
-- People showed great courage
+## Charles I and the Civil War
 
-## The Home Front
 
-- People worked hard to help
 
-- Rationing (limited food)
+- Charles I became king
 
-- Women did important jobs
+- He had conflicts with Parliament
 
-- Everyone helped the war effort
+- A civil war started
 
-## D-Day
+- Charles I was executed
 
-- June 6, 1944
 
-- Allied invasion of France
 
-- Very important battle
+## The Commonwealth
 
-- Helped end the war
 
-## The End
 
-- War ended in 1945
+- After the king was executed
 
-- Germany surrendered
+- England became a republic
 
-- Japan surrendered after atomic bombs
+- Oliver Cromwell ruled
 
-- Peace returned
+- It was called the Commonwealth
+
+
+
+## Charles II
+
+
+
+- Charles II became king
+
+- The monarchy was restored
+
+- He was called the "Merry Monarch"
+
+- He brought back fun and entertainment
+
+
 
 ## Fun Activities
 
-- Research the war
 
-- Learn about the Blitz
 
-- Write about the Home Front
+- Learn about the Stuarts
+
+- Learn about the civil war
 
 - Make a timeline
 
+- Write about this period
+
+
+
 ## Remember
 
-- War lasted 1939-1945
 
-- Affected everyone
 
-- People showed courage
+- Stuarts ruled 1603-1714
 
-- Important to remember!`,
+- There was a civil war
+
+- The monarchy was restored
+
+- It was a time of change!`,
       quizId: quizId++,
       assessmentType: 'quiz',
       categoryId: null,
@@ -811,17 +1043,372 @@ World War II lasted from 1939 to 1945.
       yearId: 'year5',
       subjectId: 'history',
       lessonNumber: 3,
-      title: 'The Industrial Revolution',
-      emoji: '🏭',
-      content: `# The Industrial Revolution 🏭
+      title: "The Enlightenment - New Ideas",
+      emoji: '💡',
+      content: `# The Enlightenment - New Ideas 💡
 
-Let's learn about the Industrial Revolution!
+
+
+Let's learn about the Enlightenment!
+
+
+
+## What Was the Enlightenment?
+
+
+
+- The Enlightenment was a time of new ideas
+
+- It started in the 1700s
+
+- People questioned old ways
+
+- They used reason and science
+
+
+
+## New Ways of Thinking
+
+
+
+- People used reason
+
+- They questioned authority
+
+- They believed in science
+
+- They wanted freedom
+
+
+
+## Famous Thinkers
+
+
+
+- John Locke - Believed in natural rights
+
+- Voltaire - Believed in freedom of speech
+
+- They had new ideas
+
+- They influenced the world
+
+
+
+## Science and Discovery
+
+
+
+- Science advanced
+
+- People made discoveries
+
+- They learned about nature
+
+- They used experiments
+
+
+
+## New Ideas About Government
+
+
+
+- People questioned kings
+
+- They wanted democracy
+
+- They believed in rights
+
+- These ideas spread
+
+
+
+## Fun Activities
+
+
+
+- Learn about Enlightenment thinkers
+
+- Study their ideas
+
+- Make a timeline
+
+- Write about the Enlightenment
+
+
+
+## Remember
+
+
+
+- Enlightenment was about new ideas
+
+- People used reason
+
+- Science advanced
+
+- It changed the world!`,
+      quizId: quizId++,
+      assessmentType: 'quiz',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year5',
+      subjectId: 'history',
+      lessonNumber: 4,
+      title: "The American Revolution",
+      emoji: '🇺🇸',
+      content: `# The American Revolution 🇺🇸
+
+
+
+Let's learn about the American Revolution!
+
+
 
 ## When Did It Happen?
 
+
+
+- The American Revolution happened from 1775 to 1783
+
+- The American colonies fought Britain
+
+- They wanted independence
+
+- They won their freedom
+
+
+
+## Why Did It Start?
+
+
+
+- The colonies were ruled by Britain
+
+- They had to pay taxes
+
+- They had no say in government
+
+- They wanted independence
+
+
+
+## The Declaration of Independence
+
+
+
+- The colonies declared independence
+
+- They wrote the Declaration
+
+- It said all men are created equal
+
+- It was very important
+
+
+
+## George Washington
+
+
+
+- George Washington led the army
+
+- He was a great leader
+
+- He became the first president
+
+- He is remembered today
+
+
+
+## The War
+
+
+
+- The war lasted 8 years
+
+- The Americans won
+
+- Britain recognized independence
+
+- The United States was born
+
+
+
+## Fun Activities
+
+
+
+- Learn about the revolution
+
+- Study the Declaration
+
+- Make a timeline
+
+- Write about the war
+
+
+
+## Remember
+
+
+
+- Revolution was 1775-1783
+
+- Americans won independence
+
+- United States was created
+
+- It was very important!`,
+      quizId: quizId++,
+      assessmentType: 'quiz',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year5',
+      subjectId: 'history',
+      lessonNumber: 5,
+      title: "The French Revolution",
+      emoji: '🇫🇷',
+      content: `# The French Revolution 🇫🇷
+
+
+
+Let's learn about the French Revolution!
+
+
+
+## When Did It Happen?
+
+
+
+- The French Revolution happened from 1789 to 1799
+
+- It was a time of great change
+
+- The people rebelled
+
+- They wanted freedom
+
+
+
+## Why Did It Start?
+
+
+
+- The king had all the power
+
+- The people were poor
+
+- They had no rights
+
+- They wanted change
+
+
+
+## The Storming of the Bastille
+
+
+
+- People stormed the Bastille
+
+- It was a prison
+
+- It was a symbol of power
+
+- This started the revolution
+
+
+
+## The Reign of Terror
+
+
+
+- A time of violence
+
+- Many people were executed
+
+- It was very scary
+
+- It was a difficult time
+
+
+
+## Napoleon
+
+
+
+- Napoleon became leader
+
+- He was a great general
+
+- He conquered many places
+
+- He changed Europe
+
+
+
+## Fun Activities
+
+
+
+- Learn about the revolution
+
+- Study Napoleon
+
+- Make a timeline
+
+- Write about the changes
+
+
+
+## Remember
+
+
+
+- Revolution was 1789-1799
+
+- People wanted freedom
+
+- It was a time of change
+
+- It changed France!`,
+      quizId: quizId++,
+      assessmentType: 'quiz',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year5',
+      subjectId: 'history',
+      lessonNumber: 6,
+      title: "The Industrial Revolution",
+      emoji: '🏭',
+      content: `# The Industrial Revolution 🏭
+
+
+
+Let's learn about the Industrial Revolution!
+
+
+
+## When Did It Happen?
+
+
+
 The Industrial Revolution happened from about 1760 to 1840.
 
+
+
 ## What Changed?
+
+
 
 - Machines replaced hand work
 
@@ -831,7 +1418,11 @@ The Industrial Revolution happened from about 1760 to 1840.
 
 - Life changed dramatically
 
+
+
 ## Inventions
+
+
 
 **Steam Engine**
 
@@ -841,6 +1432,8 @@ The Industrial Revolution happened from about 1760 to 1840.
 
 - Changed transportation
 
+
+
 **Spinning Jenny**
 
 - Made cloth faster
@@ -848,6 +1441,8 @@ The Industrial Revolution happened from about 1760 to 1840.
 - Textile industry grew
 
 - Changed clothing production
+
+
 
 **Railways**
 
@@ -857,7 +1452,11 @@ The Industrial Revolution happened from about 1760 to 1840.
 
 - Changed travel
 
+
+
 ## Life Changes
+
+
 
 **Before:**
 
@@ -869,6 +1468,8 @@ The Industrial Revolution happened from about 1760 to 1840.
 
 - Life was slower
 
+
+
 **After:**
 
 - Many moved to cities
@@ -879,7 +1480,11 @@ The Industrial Revolution happened from about 1760 to 1840.
 
 - Life was faster
 
+
+
 ## Problems
+
+
 
 - Cities were crowded
 
@@ -889,7 +1494,11 @@ The Industrial Revolution happened from about 1760 to 1840.
 
 - Children worked in factories
 
+
+
 ## Fun Activities
+
+
 
 - Research inventions
 
@@ -899,7 +1508,11 @@ The Industrial Revolution happened from about 1760 to 1840.
 
 - Write about the changes
 
+
+
 ## Remember
+
+
 
 - Revolution changed everything
 
@@ -916,17 +1529,255 @@ The Industrial Revolution happened from about 1760 to 1840.
     new Lesson({
       id: lessonId++,
       yearId: 'year5',
+      subjectId: 'history',
+      lessonNumber: 7,
+      title: "The Victorian Era - Queen Victoria",
+      emoji: '👑',
+      content: `# The Victorian Era - Queen Victoria 👑
+
+
+
+Let's learn about the Victorian era!
+
+
+
+## When Was the Victorian Era?
+
+
+
+- The Victorian era was from 1837 to 1901
+
+- Queen Victoria ruled
+
+- It was a long time
+
+- Many things changed
+
+
+
+## Queen Victoria
+
+
+
+- Victoria became queen at 18
+
+- She ruled for 63 years
+
+- She was very popular
+
+- The era is named after her
+
+
+
+## The British Empire
+
+
+
+- Britain had a huge empire
+
+- It covered many countries
+
+- It was very powerful
+
+- "The sun never sets on the British Empire"
+
+
+
+## Victorian Achievements
+
+
+
+- Many inventions
+
+- Railways expanded
+
+- Science advanced
+
+- Literature flourished
+
+
+
+## Victorian Values
+
+
+
+- Hard work
+
+- Family values
+
+- Morality
+
+- Respectability
+
+
+
+## Fun Activities
+
+
+
+- Learn about Queen Victoria
+
+- Study the empire
+
+- Make a timeline
+
+- Write about the era
+
+
+
+## Remember
+
+
+
+- Victorian era was 1837-1901
+
+- Queen Victoria ruled
+
+- Britain had a huge empire
+
+- It was a time of change!`,
+      quizId: quizId++,
+      assessmentType: 'quiz',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year5',
+      subjectId: 'history',
+      lessonNumber: 8,
+      title: "The Victorian Era - Daily Life",
+      emoji: '🏘️',
+      content: `# The Victorian Era - Daily Life 🏘️
+
+
+
+Let's learn about how people lived in Victorian times!
+
+
+
+## Rich and Poor
+
+
+
+- There was a big difference
+
+- Rich people: Large houses, servants
+
+- Poor people: Small houses, hard work
+
+- Life was very different
+
+
+
+## Victorian Homes
+
+
+
+- Rich: Large houses with many rooms
+
+- Poor: Small, crowded houses
+
+- No running water for poor
+
+- No electricity
+
+
+
+## Victorian Work
+
+
+
+- Many worked in factories
+
+- Long hours
+
+- Hard work
+
+- Low pay
+
+
+
+## Victorian Children
+
+
+
+- Rich children: Educated, played
+
+- Poor children: Worked, no school
+
+- Many worked in factories
+
+- Life was hard for poor children
+
+
+
+## Victorian Inventions
+
+
+
+- Railways
+
+- Telegraph
+
+- Photography
+
+- Many new things
+
+
+
+## Fun Activities
+
+
+
+- Compare rich and poor
+
+- Draw Victorian homes
+
+- Learn about work
+
+- Write about daily life
+
+
+
+## Remember
+
+
+
+- Life was very different
+
+- Rich and poor lived differently
+
+- Many worked hard
+
+- It was a time of change!`,
+      quizId: quizId++,
+      assessmentType: 'quiz',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year5',
       subjectId: 'technology',
       lessonNumber: 1,
-      title: 'Advanced Scratch Programming',
+      title: "Advanced Scratch Programming",
       emoji: '🎮',
       content: `# Advanced Scratch Programming 🎮
 
+
+
 Let's learn more advanced Scratch!
+
+
 
 ## Variables
 
+
+
 Variables store information that can change.
+
+
 
 **Creating Variables:**
 
@@ -936,6 +1787,8 @@ Variables store information that can change.
 
 - Give it a name (like "score")
 
+
+
 **Using Variables:**
 
 - Set score to 0
@@ -944,9 +1797,15 @@ Variables store information that can change.
 
 - Show score on screen
 
+
+
 ## Loops
 
+
+
 Loops repeat code.
+
+
 
 **Forever Loop:**
 
@@ -954,15 +1813,23 @@ Loops repeat code.
 
 - Good for continuous actions
 
+
+
 **Repeat Loop:**
 
 - Repeats a set number of times
 
 - Good for specific actions
 
+
+
 ## Conditionals
 
+
+
 Conditionals make decisions.
+
+
 
 **If-Then:**
 
@@ -970,15 +1837,23 @@ Conditionals make decisions.
 
 - Example: If touching edge, bounce
 
+
+
 **If-Then-Else:**
 
 - If true, do this; else do that
 
 - Example: If score > 10, say "Great!", else say "Keep trying"
 
+
+
 ## Broadcasting
 
+
+
 Send messages between sprites.
+
+
 
 - Broadcast "message"
 
@@ -986,7 +1861,11 @@ Send messages between sprites.
 
 - Sprites can communicate
 
+
+
 ## Practice
+
+
 
 Create programs with:
 
@@ -998,7 +1877,11 @@ Create programs with:
 
 - Broadcasting for communication
 
+
+
 ## Fun Activities
+
+
 
 - Build interactive games
 
@@ -1008,7 +1891,11 @@ Create programs with:
 
 - Share your projects
 
+
+
 ## Remember
+
+
 
 - Variables store data
 
@@ -1027,17 +1914,27 @@ Create programs with:
       yearId: 'year5',
       subjectId: 'technology',
       lessonNumber: 2,
-      title: 'Web Development Basics',
+      title: "Web Development Basics",
       emoji: '🌐',
       content: `# Web Development Basics 🌐
 
+
+
 Let's learn to make websites!
+
+
 
 ## What is HTML?
 
+
+
 HTML (HyperText Markup Language) is the code that makes web pages.
 
+
+
 ## Basic HTML Structure
+
+
 
 \`\`\`html
 
@@ -1061,7 +1958,11 @@ HTML (HyperText Markup Language) is the code that makes web pages.
 
 \`\`\`
 
+
+
 ## HTML Tags
+
+
 
 - \`<h1>\` - Big heading
 
@@ -1073,11 +1974,19 @@ HTML (HyperText Markup Language) is the code that makes web pages.
 
 - \`<div>\` - Container
 
+
+
 ## What is CSS?
+
+
 
 CSS (Cascading Style Sheets) makes web pages look nice.
 
+
+
 ## Basic CSS
+
+
 
 \`\`\`css
 
@@ -1086,6 +1995,8 @@ body {
 background-color: lightblue;
 
 }
+
+
 
 h1 {
 
@@ -1097,7 +2008,11 @@ font-size: 24px;
 
 \`\`\`
 
+
+
 ## Creating a Web Page
+
+
 
 1. Write HTML code
 
@@ -1107,7 +2022,11 @@ font-size: 24px;
 
 4. Open in browser
 
+
+
 ## Practice
+
+
 
 Create web pages with:
 
@@ -1119,7 +2038,11 @@ Create web pages with:
 
 - Colors and styling
 
+
+
 ## Fun Activities
+
+
 
 - Build simple websites
 
@@ -1129,7 +2052,11 @@ Create web pages with:
 
 - Share your pages
 
+
+
 ## Remember
+
+
 
 - HTML structures content
 
@@ -1148,17 +2075,27 @@ Create web pages with:
       yearId: 'year5',
       subjectId: 'technology',
       lessonNumber: 3,
-      title: 'Digital Citizenship',
+      title: "Digital Citizenship",
       emoji: '🌐',
       content: `# Digital Citizenship 🌐
 
+
+
 Let's learn to be good digital citizens!
+
+
 
 ## What is Digital Citizenship?
 
+
+
 Digital citizenship means using technology responsibly, safely, and respectfully.
 
+
+
 ## Being Respectful Online
+
+
 
 - Be kind to others
 
@@ -1168,7 +2105,11 @@ Digital citizenship means using technology responsibly, safely, and respectfully
 
 - Help others when you can
 
+
+
 ## Protecting Privacy
+
+
 
 - Don't share personal information
 
@@ -1178,7 +2119,11 @@ Digital citizenship means using technology responsibly, safely, and respectfully
 
 - Be careful what you post
 
+
+
 ## Being Safe
+
+
 
 - Don't talk to strangers
 
@@ -1188,7 +2133,11 @@ Digital citizenship means using technology responsibly, safely, and respectfully
 
 - Use trusted websites
 
+
+
 ## Creating Good Content
+
+
 
 - Share helpful information
 
@@ -1198,7 +2147,11 @@ Digital citizenship means using technology responsibly, safely, and respectfully
 
 - Make positive contributions
 
+
+
 ## Dealing with Problems
+
+
 
 - Cyberbullying - Tell a grown-up
 
@@ -1208,7 +2161,11 @@ Digital citizenship means using technology responsibly, safely, and respectfully
 
 - Something scary - Get help
 
+
+
 ## Being a Good Digital Citizen
+
+
 
 - Use technology for good
 
@@ -1218,7 +2175,11 @@ Digital citizenship means using technology responsibly, safely, and respectfully
 
 - Make the internet better
 
+
+
 ## Fun Activities
+
+
 
 - Discuss online scenarios
 
@@ -1228,7 +2189,11 @@ Digital citizenship means using technology responsibly, safely, and respectfully
 
 - Learn about internet safety
 
+
+
 ## Remember
+
+
 
 - Be respectful online
 

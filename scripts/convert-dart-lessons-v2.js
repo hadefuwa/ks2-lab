@@ -57,8 +57,11 @@ function convertDartToJS(dartContent, yearName, functionName) {
         if (match) lessonData.lessonNumber = parseInt(match[1]);
       }
       if (dartContent.substring(pos, pos + 6) === 'title:') {
-        const match = dartContent.substring(pos).match(/title:\s*'([^']+)'/);
-        if (match) lessonData.title = match[1];
+        // Handle both single and double quotes, and escaped quotes
+        const singleQuoteMatch = dartContent.substring(pos).match(/title:\s*'((?:[^'\\]|\\.)*)'/);
+        const doubleQuoteMatch = dartContent.substring(pos).match(/title:\s*"((?:[^"\\]|\\.)*)"/);
+        if (singleQuoteMatch) lessonData.title = singleQuoteMatch[1].replace(/\\'/g, "'");
+        else if (doubleQuoteMatch) lessonData.title = doubleQuoteMatch[1].replace(/\\"/g, '"');
       }
       if (dartContent.substring(pos, pos + 6) === 'emoji:') {
         const match = dartContent.substring(pos).match(/emoji:\s*'([^']*)'/);
@@ -71,6 +74,10 @@ function convertDartToJS(dartContent, yearName, functionName) {
       if (dartContent.substring(pos, pos + 15) === 'assessmentType:') {
         const match = dartContent.substring(pos).match(/assessmentType:\s*('([^']+)'|null)/);
         if (match) lessonData.assessmentType = match[2] || null;
+      }
+      if (dartContent.substring(pos, pos + 11) === 'categoryId:') {
+        const match = dartContent.substring(pos).match(/categoryId:\s*('([^']+)'|null)/);
+        if (match) lessonData.categoryId = match[2] || null;
       }
       
       pos++;
@@ -111,7 +118,7 @@ function convertDartToJS(dartContent, yearName, functionName) {
     jsCode += `      content: \`${content}\`,\n`;
     jsCode += `      quizId: ${lesson.hasQuiz ? 'quizId++' : 'null'},\n`;
     jsCode += `      assessmentType: ${lesson.assessmentType ? `'${lesson.assessmentType}'` : 'null'},\n`;
-    jsCode += `      categoryId: null,\n`;
+    jsCode += `      categoryId: ${lesson.categoryId ? `'${lesson.categoryId}'` : 'null'},\n`;
     jsCode += `    })${index < lessons.length - 1 ? ',' : ''}\n\n`;
   });
   
@@ -121,7 +128,14 @@ function convertDartToJS(dartContent, yearName, functionName) {
 
 // Convert each year
 const years = [
+  { dart: 'nursery_lessons.dart', js: 'nurseryLessons.js', name: 'Nursery', func: 'getNurseryLessons' },
+  { dart: 'reception_lessons.dart', js: 'receptionLessons.js', name: 'Reception', func: 'getReceptionLessons' },
+  { dart: 'year1_lessons.dart', js: 'year1Lessons.js', name: 'Year 1', func: 'getYear1Lessons' },
   { dart: 'year2_lessons.dart', js: 'year2Lessons.js', name: 'Year 2', func: 'getYear2Lessons' },
+  { dart: 'year3_lessons.dart', js: 'year3Lessons.js', name: 'Year 3', func: 'getYear3Lessons' },
+  { dart: 'year4_lessons.dart', js: 'year4Lessons.js', name: 'Year 4', func: 'getYear4Lessons' },
+  { dart: 'year5_lessons.dart', js: 'year5Lessons.js', name: 'Year 5', func: 'getYear5Lessons' },
+  { dart: 'year6_lessons.dart', js: 'year6Lessons.js', name: 'Year 6', func: 'getYear6Lessons' },
 ];
 
 years.forEach(({ dart, js, name, func }) => {
@@ -140,4 +154,5 @@ years.forEach(({ dart, js, name, func }) => {
 });
 
 console.log('\nConversion complete!');
+
 

@@ -363,3 +363,4 @@ Since Electron uses Chromium, compatibility is excellent.
 - [SpeechSynthesis API Reference](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis)
 - [SpeechSynthesisUtterance API Reference](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance)
 
+

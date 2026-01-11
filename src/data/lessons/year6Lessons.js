@@ -13,17 +13,27 @@ export function getYear6Lessons(startLessonId, startQuizId) {
       yearId: 'year6',
       subjectId: 'maths',
       lessonNumber: 1,
-      title: 'Algebra Introduction',
+      title: "Algebra Introduction",
       emoji: '🔢',
       content: `# Algebra Introduction 🔢
 
+
+
 Let's learn about algebra!
+
+
 
 ## What is Algebra?
 
+
+
 Algebra uses letters (like x, y) to represent unknown numbers.
 
+
+
 ## Simple Equations
+
+
 
 **Example:**
 
@@ -33,6 +43,8 @@ x + 5 = 10
 
 - x = 5
 
+
+
 **Example:**
 
 y - 3 = 7
@@ -41,9 +53,15 @@ y - 3 = 7
 
 - y = 10
 
+
+
 ## Solving Equations
 
+
+
 To solve an equation, find the value of the letter.
+
+
 
 **Steps:**
 
@@ -52,6 +70,8 @@ To solve an equation, find the value of the letter.
 2. Do the opposite operation
 
 3. Check your answer
+
+
 
 **Example:**
 
@@ -65,9 +85,15 @@ x + 4 = 9
 
 - Check: 5 + 4 = 9 ✓
 
+
+
 ## Using Variables
 
+
+
 Variables can represent any number.
+
+
 
 - If x = 3, then x + 2 = 5
 
@@ -75,7 +101,11 @@ Variables can represent any number.
 
 - If a = 5, then a × 2 = 10
 
+
+
 ## Practice
+
+
 
 Solve these:
 
@@ -87,7 +117,11 @@ Solve these:
 
 - b - 2 = 9
 
+
+
 ## Fun Activities
+
+
 
 - Practice solving equations
 
@@ -97,7 +131,11 @@ Solve these:
 
 - Play algebra games
 
+
+
 ## Remember
+
+
 
 - Letters represent numbers
 
@@ -116,17 +154,27 @@ Solve these:
       yearId: 'year6',
       subjectId: 'maths',
       lessonNumber: 2,
-      title: 'Statistics and Data',
+      title: "Statistics and Data",
       emoji: '📊',
       content: `# Statistics and Data 📊
 
+
+
 Let's learn about statistics!
+
+
 
 ## What is Statistics?
 
+
+
 Statistics is collecting, organizing, and analyzing data.
 
+
+
 ## Types of Data
+
+
 
 **Categorical Data**
 
@@ -136,6 +184,8 @@ Statistics is collecting, organizing, and analyzing data.
 
 - Categories
 
+
+
 **Numerical Data**
 
 - Numbers: 5, 10, 15, 20
@@ -144,7 +194,11 @@ Statistics is collecting, organizing, and analyzing data.
 
 - Counts
 
+
+
 ## Ways to Show Data
+
+
 
 **Bar Chart**
 
@@ -154,6 +208,8 @@ Statistics is collecting, organizing, and analyzing data.
 
 - Good for counting
 
+
+
 **Line Graph**
 
 - Shows changes over time
@@ -161,6 +217,8 @@ Statistics is collecting, organizing, and analyzing data.
 - Good for trends
 
 - Shows patterns
+
+
 
 **Pie Chart**
 
@@ -170,7 +228,11 @@ Statistics is collecting, organizing, and analyzing data.
 
 - Shows proportions
 
+
+
 ## Mean, Median, Mode
+
+
 
 **Mean (Average)**
 
@@ -178,11 +240,15 @@ Statistics is collecting, organizing, and analyzing data.
 
 - Example: 2, 4, 6 → (2+4+6)÷3 = 4
 
+
+
 **Median**
 
 - Middle number when ordered
 
 - Example: 2, 4, 6, 8, 10 → median = 6
+
+
 
 **Mode**
 
@@ -190,7 +256,11 @@ Statistics is collecting, organizing, and analyzing data.
 
 - Example: 2, 3, 3, 4, 5 → mode = 3
 
+
+
 ## Practice
+
+
 
 Find mean, median, mode:
 
@@ -200,7 +270,11 @@ Find mean, median, mode:
 
 - 1, 3, 3, 5, 5, 7
 
+
+
 ## Fun Activities
+
+
 
 - Collect data
 
@@ -210,7 +284,11 @@ Find mean, median, mode:
 
 - Analyze data
 
+
+
 ## Remember
+
+
 
 - Data tells us information
 
@@ -229,19 +307,29 @@ Find mean, median, mode:
       yearId: 'year6',
       subjectId: 'maths',
       lessonNumber: 3,
-      title: 'Advanced Problem Solving',
+      title: "Advanced Problem Solving",
       emoji: '🧩',
       content: `# Advanced Problem Solving 🧩
 
+
+
 Let's solve more complex problems!
+
+
 
 ## Multi-Step Problems
 
+
+
 Problems that need more than one step.
+
+
 
 **Example:**
 
 "Sarah has £20. She buys 3 books at £4 each. How much money does she have left?"
+
+
 
 Steps:
 
@@ -249,7 +337,11 @@ Steps:
 
 2. Find remaining: £20 - £12 = £8
 
+
+
 ## Problem-Solving Strategies
+
+
 
 **Draw a Diagram**
 
@@ -259,6 +351,8 @@ Steps:
 
 - Understand better
 
+
+
 **Make a Table**
 
 - Organize information
@@ -266,6 +360,8 @@ Steps:
 - See patterns
 
 - Find answers
+
+
 
 **Work Backwards**
 
@@ -275,6 +371,8 @@ Steps:
 
 - Find the beginning
 
+
+
 **Try Different Approaches**
 
 - If one way doesn't work, try another
@@ -283,7 +381,11 @@ Steps:
 
 - Keep trying
 
+
+
 ## Word Problems
+
+
 
 Read carefully:
 
@@ -295,7 +397,11 @@ Read carefully:
 
 - Does the answer make sense?
 
+
+
 ## Practice
+
+
 
 Solve these:
 
@@ -305,7 +411,11 @@ Solve these:
 
 - You have 24 sweets. You share them equally among 4 friends. How many each?
 
+
+
 ## Fun Activities
+
+
 
 - Solve complex problems
 
@@ -315,7 +425,11 @@ Solve these:
 
 - Try different strategies
 
+
+
 ## Remember
+
+
 
 - Break problems into steps
 
@@ -334,13 +448,19 @@ Solve these:
       yearId: 'year6',
       subjectId: 'english',
       lessonNumber: 1,
-      title: 'Advanced Creative Writing',
+      title: "Advanced Creative Writing",
       emoji: '✍️',
       content: `# Advanced Creative Writing ✍️
 
+
+
 Let's write more advanced stories!
 
+
+
 ## Story Elements
+
+
 
 **Character Development**
 
@@ -351,6 +471,8 @@ Let's write more advanced stories!
 - Make them grow and change
 
 - Give them motivations
+
+
 
 **Plot Structure**
 
@@ -364,6 +486,8 @@ Let's write more advanced stories!
 
 - Denouement (ending)
 
+
+
 **Setting**
 
 - Create vivid settings
@@ -374,7 +498,11 @@ Let's write more advanced stories!
 
 - Show, don't just tell
 
+
+
 ## Writing Techniques
+
+
 
 **Dialogue**
 
@@ -386,6 +514,8 @@ Let's write more advanced stories!
 
 - Vary speech tags
 
+
+
 **Descriptive Language**
 
 - Use vivid adjectives
@@ -396,6 +526,8 @@ Let's write more advanced stories!
 
 - Paint pictures with words
 
+
+
 **Show, Don't Tell**
 
 - Instead of "She was sad"
@@ -404,7 +536,11 @@ Let's write more advanced stories!
 
 - Let readers see and feel
 
+
+
 ## Practice
+
+
 
 Write stories with:
 
@@ -416,7 +552,11 @@ Write stories with:
 
 - Good dialogue
 
+
+
 ## Fun Activities
+
+
 
 - Write longer stories
 
@@ -426,7 +566,11 @@ Write stories with:
 
 - Share and get feedback
 
+
+
 ## Remember
+
+
 
 - Develop your characters
 
@@ -445,17 +589,27 @@ Write stories with:
       yearId: 'year6',
       subjectId: 'english',
       lessonNumber: 2,
-      title: 'Literary Analysis and Criticism',
+      title: "Literary Analysis and Criticism",
       emoji: '📚',
       content: `# Literary Analysis and Criticism 📚
 
+
+
 Let's analyze literature in depth!
+
+
 
 ## What is Literary Criticism?
 
+
+
 Literary criticism is analyzing and evaluating literature.
 
+
+
 ## Elements to Analyze
+
+
 
 **Theme**
 
@@ -467,6 +621,8 @@ Literary criticism is analyzing and evaluating literature.
 
 - Life lessons
 
+
+
 **Symbolism**
 
 - Objects that represent ideas
@@ -476,6 +632,8 @@ Literary criticism is analyzing and evaluating literature.
 - Actions that stand for something
 
 - Deeper meanings
+
+
 
 **Character Analysis**
 
@@ -487,6 +645,8 @@ Literary criticism is analyzing and evaluating literature.
 
 - Relationships
 
+
+
 **Narrative Techniques**
 
 - Point of view
@@ -497,7 +657,11 @@ Literary criticism is analyzing and evaluating literature.
 
 - Pacing
 
+
+
 ## Writing Analysis
+
+
 
 **Structure:**
 
@@ -506,6 +670,8 @@ Literary criticism is analyzing and evaluating literature.
 2. Body paragraphs with evidence
 
 3. Conclusion summarizing points
+
+
 
 **Using Evidence:**
 
@@ -517,7 +683,11 @@ Literary criticism is analyzing and evaluating literature.
 
 - Analyze the meaning
 
+
+
 ## Practice
+
+
 
 Analyze:
 
@@ -529,7 +699,11 @@ Analyze:
 
 - Author's techniques
 
+
+
 ## Fun Activities
+
+
 
 - Read and analyze literature
 
@@ -539,7 +713,11 @@ Analyze:
 
 - Compare different works
 
+
+
 ## Remember
+
+
 
 - Look for deeper meaning
 
@@ -558,23 +736,35 @@ Analyze:
       yearId: 'year6',
       subjectId: 'english',
       lessonNumber: 3,
-      title: 'Persuasive Writing',
+      title: "Persuasive Writing",
       emoji: '💬',
       content: `# Persuasive Writing 💬
 
+
+
 Let's learn to write persuasively!
+
+
 
 ## What is Persuasive Writing?
 
+
+
 Persuasive writing tries to convince the reader to agree with your opinion.
 
+
+
 ## Structure
+
+
 
 1. **Introduction**
 
  - Hook the reader
 
  - State your position (thesis)
+
+
 
 2. **Body Paragraphs**
 
@@ -584,6 +774,8 @@ Persuasive writing tries to convince the reader to agree with your opinion.
 
  - Explain your reasoning
 
+
+
 3. **Conclusion**
 
  - Restate your position
@@ -592,7 +784,11 @@ Persuasive writing tries to convince the reader to agree with your opinion.
 
  - Call to action
 
+
+
 ## Persuasive Techniques
+
+
 
 **Appeal to Emotion**
 
@@ -602,6 +798,8 @@ Persuasive writing tries to convince the reader to agree with your opinion.
 
 - Connect to feelings
 
+
+
 **Appeal to Logic**
 
 - Use facts and statistics
@@ -609,6 +807,8 @@ Persuasive writing tries to convince the reader to agree with your opinion.
 - Give logical reasons
 
 - Show cause and effect
+
+
 
 **Appeal to Authority**
 
@@ -618,7 +818,11 @@ Persuasive writing tries to convince the reader to agree with your opinion.
 
 - Show credibility
 
+
+
 ## Language for Persuasion
+
+
 
 - "Clearly..."
 
@@ -630,7 +834,11 @@ Persuasive writing tries to convince the reader to agree with your opinion.
 
 - "We must..."
 
+
+
 ## Practice
+
+
 
 Write persuasively about:
 
@@ -642,7 +850,11 @@ Write persuasively about:
 
 - Why we should protect nature
 
+
+
 ## Fun Activities
+
+
 
 - Write persuasive essays
 
@@ -652,7 +864,11 @@ Write persuasively about:
 
 - Get feedback
 
+
+
 ## Remember
+
+
 
 - State your position clearly
 
@@ -671,105 +887,139 @@ Write persuasively about:
       yearId: 'year6',
       subjectId: 'history',
       lessonNumber: 1,
-      title: 'Ancient Civilizations',
-      emoji: '🏛️',
-      content: `# Ancient Civilizations 🏛️
+      title: "World War I - The Great War",
+      emoji: '🌍',
+      content: `# World War I - The Great War 🌍
 
-Let's learn about ancient civilizations!
 
-## What is a Civilization?
 
-A civilization is an advanced society with:
+Let's learn about World War I!
 
-- Cities
 
-- Writing
 
-- Government
+## When Did It Happen?
 
-- Specialized jobs
 
-- Culture and art
 
-## Ancient Mesopotamia
+World War I lasted from 1914 to 1918.
 
-- Between Tigris and Euphrates rivers
 
-- First writing system (cuneiform)
 
-- First cities
+## Why Did It Start?
 
-- Advanced mathematics
 
-- Code of Hammurabi (laws)
 
-## Ancient Egypt
+- Tensions between countries
 
-- Along the Nile River
+- Alliances between nations
 
-- Pyramids and temples
+- Assassination of Archduke Franz Ferdinand
 
-- Hieroglyphic writing
+- Many countries got involved
 
-- Advanced engineering
 
-- Rich culture
 
-## Ancient China
+## Who Fought?
 
-- Along Yellow and Yangtze rivers
 
-- Great Wall of China
 
-- Paper and printing
+**Allied Powers:**
 
-- Silk production
+- Britain
 
-- Philosophy (Confucius)
+- France
 
-## Ancient India
+- Russia
 
-- Along Indus River
+- United States (joined later)
 
-- Planned cities
+- Many others
 
-- Advanced drainage
 
-- Mathematics (zero, decimals)
 
-- Rich culture
+**Central Powers:**
 
-## Comparing Civilizations
+- Germany
 
-- All had rivers
+- Austria-Hungary
 
-- All developed writing
+- Ottoman Empire
 
-- All had cities
 
-- All had governments
 
-- All created art
+## Life in the Trenches
+
+
+
+- Soldiers lived in trenches (ditches)
+
+- Very difficult conditions
+
+- Mud, rats, and disease
+
+- Dangerous and scary
+
+- They fought for years
+
+
+
+## New Weapons
+
+
+
+- Machine guns
+
+- Tanks (first used)
+
+- Poison gas
+
+- Airplanes (for war)
+
+- Submarines
+
+
+
+## The End
+
+
+
+- War ended in 1918
+
+- Many people died
+
+- Countries changed
+
+- Led to World War II
+
+- Peace treaties were signed
+
+
 
 ## Fun Activities
 
-- Research each civilization
 
-- Compare and contrast
 
-- Make timelines
+- Research the war
 
-- Write about achievements
+- Make a timeline
+
+- Write about soldiers' experiences
+
+- Learn about the impact
+
+
 
 ## Remember
 
-- Civilizations were advanced
 
-- They developed many things
 
-- They influenced the world
+- War lasted 1914-1918
 
-- We learn from them today!`,
+- Many countries involved
+
+- Very difficult time
+
+- Important to remember!`,
       quizId: quizId++,
       assessmentType: 'quiz',
       categoryId: null,
@@ -780,105 +1030,121 @@ A civilization is an advanced society with:
       yearId: 'year6',
       subjectId: 'history',
       lessonNumber: 2,
-      title: 'The Renaissance',
-      emoji: '🎨',
-      content: `# The Renaissance 🎨
+      title: "Between the Wars - 1920s and 1930s",
+      emoji: '📅',
+      content: `# Between the Wars - 1920s and 1930s 📅
 
-Let's learn about the Renaissance!
 
-## When Was It?
 
-The Renaissance happened from about 1300 to 1600.
+Let's learn about the time between the world wars!
 
-## What Does "Renaissance" Mean?
 
-"Renaissance" means "rebirth" - a rebirth of learning and art.
 
-## Where Did It Start?
+## The 1920s - The Roaring Twenties
 
-- Started in Italy
 
-- Spread across Europe
 
-- Cities like Florence, Venice, Rome
+- After World War I ended
 
-## Key Changes
+- People wanted to have fun
 
-**Art**
+- New music and dancing
 
-- More realistic paintings
+- Women got more rights
 
-- Perspective (depth)
+- Economic boom in some places
 
-- Famous artists: Leonardo da Vinci, Michelangelo
 
-**Science**
 
-- New discoveries
+## The Great Depression
 
-- Observation and experimentation
 
-- Questioning old ideas
 
-**Learning**
+- Started in 1929
 
-- Study of ancient texts
+- Stock market crashed
 
-- New ideas about the world
+- Many people lost jobs
 
-- Humanism (focus on humans)
+- Very hard times
 
-## Famous People
+- Poverty increased
 
-**Leonardo da Vinci**
 
-- Artist, scientist, inventor
 
-- Painted the Mona Lisa
+## Rise of Dictators
 
-- Studied anatomy
 
-- Designed inventions
 
-**Michelangelo**
+- Some countries got dictators
 
-- Sculptor and painter
+- They had all the power
 
-- Painted the Sistine Chapel
+- People lost freedoms
 
-- Created David statue
+- This led to problems
 
-- Great artist
+- It caused World War II
 
-## Impact
 
-- Changed art forever
 
-- Led to scientific revolution
+## New Technologies
 
-- Influenced thinking
 
-- Still affects us today
+
+- Cars became common
+
+- Radio became popular
+
+- Movies became big
+
+- Technology advanced
+
+- Life changed
+
+
+
+## Art and Culture
+
+
+
+- New art styles
+
+- Jazz music
+
+- Literature flourished
+
+- Culture changed
+
+- New ideas
+
+
 
 ## Fun Activities
 
-- Study Renaissance art
 
-- Learn about famous people
+
+- Learn about the 1920s
+
+- Study the Great Depression
 
 - Make a timeline
 
-- Write about the impact
+- Write about this period
+
+
 
 ## Remember
 
-- Renaissance was a rebirth
 
-- Art and science flourished
 
-- Many famous people
+- 1920s were exciting
 
-- Changed the world!`,
+- Great Depression was hard
+
+- Dictators rose to power
+
+- It led to World War II!`,
       quizId: quizId++,
       assessmentType: 'quiz',
       categoryId: null,
@@ -889,17 +1155,730 @@ The Renaissance happened from about 1300 to 1600.
       yearId: 'year6',
       subjectId: 'history',
       lessonNumber: 3,
-      title: 'Historical Sources and Evidence',
+      title: "World War II - Global Conflict",
+      emoji: '🌍',
+      content: `# World War II - Global Conflict 🌍
+
+
+
+Let's learn about World War II!
+
+
+
+## When Did It Happen?
+
+
+
+World War II lasted from 1939 to 1945.
+
+
+
+## Why Did It Start?
+
+
+
+- Germany wanted more land
+
+- Adolf Hitler and the Nazis
+
+- Invasion of Poland
+
+- Many countries got involved
+
+- It became a world war
+
+
+
+## Who Fought?
+
+
+
+**Allied Powers:**
+
+- Britain
+
+- United States
+
+- Soviet Union
+
+- France
+
+- Many others
+
+
+
+**Axis Powers:**
+
+- Germany
+
+- Italy
+
+- Japan
+
+
+
+## The Holocaust
+
+
+
+- A terrible time
+
+- Millions of people were killed
+
+- It was a genocide
+
+- We must never forget
+
+- We must learn from it
+
+
+
+## The Blitz
+
+
+
+- German bombing of British cities
+
+- People hid in air raid shelters
+
+- Many buildings destroyed
+
+- People showed great courage
+
+- Britain stood strong
+
+
+
+## D-Day and Victory
+
+
+
+- June 6, 1944 - D-Day
+
+- Allied invasion of France
+
+- Very important battle
+
+- Helped end the war
+
+- War ended in 1945
+
+
+
+## Fun Activities
+
+
+
+- Research the war
+
+- Learn about the Blitz
+
+- Write about the Home Front
+
+- Make a timeline
+
+
+
+## Remember
+
+
+
+- War lasted 1939-1945
+
+- Affected everyone
+
+- People showed courage
+
+- Important to remember!`,
+      quizId: quizId++,
+      assessmentType: 'quiz',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'history',
+      lessonNumber: 4,
+      title: "The Cold War",
+      emoji: '❄️',
+      content: `# The Cold War ❄️
+
+
+
+Let's learn about the Cold War!
+
+
+
+## What Was the Cold War?
+
+
+
+- A conflict between the USA and Soviet Union
+
+- It lasted from 1945 to 1991
+
+- It was called "cold" because they didn't fight directly
+
+- But there was tension
+
+
+
+## The Two Sides
+
+
+
+**United States and Allies**
+
+- Believed in democracy
+
+- Believed in capitalism
+
+- Wanted freedom
+
+- Western countries
+
+
+
+**Soviet Union and Allies**
+
+- Believed in communism
+
+- Controlled by government
+
+- Eastern countries
+
+- Different system
+
+
+
+## The Iron Curtain
+
+
+
+- A division in Europe
+
+- East and West separated
+
+- Berlin Wall was built
+
+- People couldn't travel freely
+
+- It was a symbol of division
+
+
+
+## The Space Race
+
+
+
+- Both sides raced to space
+
+- First satellite (Sputnik)
+
+- First man in space
+
+- First moon landing
+
+- It was a competition
+
+
+
+## Nuclear Weapons
+
+
+
+- Both sides had nuclear weapons
+
+- Very dangerous
+
+- Could destroy the world
+
+- People were afraid
+
+- It was called "mutual destruction"
+
+
+
+## The End
+
+
+
+- The Cold War ended in 1991
+
+- Soviet Union broke apart
+
+- Berlin Wall came down
+
+- People were free
+
+- It was a time of change
+
+
+
+## Fun Activities
+
+
+
+- Learn about the Cold War
+
+- Study the Space Race
+
+- Make a timeline
+
+- Write about the effects
+
+
+
+## Remember
+
+
+
+- Cold War was 1945-1991
+
+- USA vs Soviet Union
+
+- It was tense
+
+- It ended peacefully!`,
+      quizId: quizId++,
+      assessmentType: 'quiz',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'history',
+      lessonNumber: 5,
+      title: "Civil Rights Movement",
+      emoji: '✊',
+      content: `# Civil Rights Movement ✊
+
+
+
+Let's learn about the fight for civil rights!
+
+
+
+## What Were Civil Rights?
+
+
+
+- Rights for all people
+
+- Equal treatment
+
+- No discrimination
+
+- Fairness for everyone
+
+- Important freedoms
+
+
+
+## Segregation
+
+
+
+- People were separated by race
+
+- Different schools
+
+- Different places
+
+- It was unfair
+
+- It was wrong
+
+
+
+## Martin Luther King Jr.
+
+
+
+- A great leader
+
+- Fought for civil rights
+
+- Gave famous speeches
+
+- Led peaceful protests
+
+- He was assassinated
+
+
+
+## Rosa Parks
+
+
+
+- Refused to give up her seat
+
+- Started a bus boycott
+
+- She was brave
+
+- She inspired others
+
+- She made a difference
+
+
+
+## The Fight for Rights
+
+
+
+- People protested
+
+- They marched
+
+- They boycotted
+
+- They fought peacefully
+
+- They won rights
+
+
+
+## Changes
+
+
+
+- Laws changed
+
+- Segregation ended
+
+- People got equal rights
+
+- It was progress
+
+- But there's still work to do
+
+
+
+## Fun Activities
+
+
+
+- Learn about civil rights leaders
+
+- Study the movement
+
+- Make a timeline
+
+- Write about the impact
+
+
+
+## Remember
+
+
+
+- Civil rights are important
+
+- People fought for equality
+
+- They made progress
+
+- We must continue the fight!`,
+      quizId: quizId++,
+      assessmentType: 'quiz',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'history',
+      lessonNumber: 6,
+      title: "Modern World - 1960s to 1990s",
+      emoji: '🌐',
+      content: `# Modern World - 1960s to 1990s 🌐
+
+
+
+Let's learn about the modern world!
+
+
+
+## The 1960s
+
+
+
+- A time of change
+
+- Young people protested
+
+- Music changed
+
+- Fashion changed
+
+- Society changed
+
+
+
+## The 1970s
+
+
+
+- More changes
+
+- Technology advanced
+
+- Computers started
+
+- Space exploration continued
+
+- World events happened
+
+
+
+## The 1980s
+
+
+
+- Computers became common
+
+- Technology grew
+
+- Music and culture changed
+
+- World events
+
+- Life was different
+
+
+
+## The 1990s
+
+
+
+- Internet became popular
+
+- Computers everywhere
+
+- Communication changed
+
+- World became connected
+
+- Technology advanced
+
+
+
+## Important Events
+
+
+
+- Fall of Berlin Wall (1989)
+
+- End of Cold War (1991)
+
+- Internet revolution
+
+- Globalization
+
+- Many changes
+
+
+
+## Fun Activities
+
+
+
+- Learn about each decade
+
+- Study important events
+
+- Make a timeline
+
+- Write about changes
+
+
+
+## Remember
+
+
+
+- 1960s-1990s had many changes
+
+- Technology advanced
+
+- World became connected
+
+- Life changed a lot!`,
+      quizId: quizId++,
+      assessmentType: 'quiz',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'history',
+      lessonNumber: 7,
+      title: "Modern World - 2000s to Today",
+      emoji: '📱',
+      content: `# Modern World - 2000s to Today 📱
+
+
+
+Let's learn about recent history!
+
+
+
+## The 2000s
+
+
+
+- New millennium
+
+- Technology advanced
+
+- Internet grew
+
+- Social media started
+
+- World changed
+
+
+
+## The 2010s
+
+
+
+- Smartphones became common
+
+- Social media grew
+
+- Technology everywhere
+
+- World became more connected
+
+- Many changes
+
+
+
+## Today (2020s)
+
+
+
+- We live in this time!
+
+- Technology is everywhere
+
+- Internet connects us all
+
+- We're making history now
+
+- Future is ahead
+
+
+
+## Recent Events
+
+
+
+- COVID-19 pandemic
+
+- Climate change awareness
+
+- Technology advances
+
+- Social movements
+
+- World events
+
+
+
+## Technology Today
+
+
+
+- Smartphones
+
+- Internet
+
+- Social media
+
+- Artificial Intelligence
+
+- Many new things
+
+
+
+## Making History
+
+
+
+- We're living in history
+
+- Our actions matter
+
+- We can make a difference
+
+- We're part of the story
+
+- History continues
+
+
+
+## Fun Activities
+
+
+
+- Learn about recent events
+
+- Study current issues
+
+- Think about the future
+
+- Write about today
+
+
+
+## Remember
+
+
+
+- We're living in history
+
+- Technology changed everything
+
+- We're making history now
+
+- The future is ahead!`,
+      quizId: quizId++,
+      assessmentType: 'quiz',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'history',
+      lessonNumber: 8,
+      title: "Historical Sources and Evidence",
       emoji: '📜',
       content: `# Historical Sources and Evidence 📜
 
+
+
 Let's learn about historical sources!
+
+
 
 ## What are Historical Sources?
 
+
+
 Historical sources are evidence from the past that help us understand history.
 
+
+
 ## Types of Sources
+
+
 
 **Primary Sources**
 
@@ -911,6 +1890,10 @@ Historical sources are evidence from the past that help us understand history.
 
 - Artifacts
 
+- First-hand accounts
+
+
+
 **Secondary Sources**
 
 - Created later
@@ -921,7 +1904,13 @@ Historical sources are evidence from the past that help us understand history.
 
 - Articles
 
+- Interpretations
+
+
+
 ## Primary Sources
+
+
 
 **Written Sources**
 
@@ -933,6 +1922,10 @@ Historical sources are evidence from the past that help us understand history.
 
 - Books from the time
 
+- Speeches
+
+
+
 **Visual Sources**
 
 - Paintings
@@ -942,6 +1935,10 @@ Historical sources are evidence from the past that help us understand history.
 - Maps
 
 - Drawings
+
+- Videos
+
+
 
 **Artifacts**
 
@@ -953,7 +1950,13 @@ Historical sources are evidence from the past that help us understand history.
 
 - Coins
 
+- Technology
+
+
+
 ## Using Sources
+
+
 
 **Questions to Ask:**
 
@@ -967,7 +1970,13 @@ Historical sources are evidence from the past that help us understand history.
 
 - What does it tell us?
 
+- What perspective does it show?
+
+
+
 ## Evaluating Sources
+
+
 
 - Is it primary or secondary?
 
@@ -979,7 +1988,13 @@ Historical sources are evidence from the past that help us understand history.
 
 - How does it compare to other sources?
 
+- What biases might exist?
+
+
+
 ## Fun Activities
+
+
 
 - Examine primary sources
 
@@ -989,7 +2004,13 @@ Historical sources are evidence from the past that help us understand history.
 
 - Create your own sources
 
+- Evaluate sources critically
+
+
+
 ## Remember
+
+
 
 - Sources are evidence
 
@@ -1006,19 +2027,299 @@ Historical sources are evidence from the past that help us understand history.
     new Lesson({
       id: lessonId++,
       yearId: 'year6',
+      subjectId: 'history',
+      lessonNumber: 9,
+      title: "Making History - How We Study the Past",
+      emoji: '🔍',
+      content: `# Making History - How We Study the Past 🔍
+
+
+
+Let's learn how historians study the past!
+
+
+
+## What Do Historians Do?
+
+
+
+- Historians study the past
+
+- They research events
+
+- They analyze sources
+
+- They write about history
+
+- They help us understand
+
+
+
+## Research Methods
+
+
+
+- Read primary sources
+
+- Study artifacts
+
+- Visit historical places
+
+- Talk to experts
+
+- Compare different sources
+
+
+
+## Historical Thinking
+
+
+
+- Ask questions
+
+- Look for evidence
+
+- Consider different perspectives
+
+- Think critically
+
+- Make connections
+
+
+
+## Writing History
+
+
+
+- Organize information
+
+- Tell a story
+
+- Use evidence
+
+- Explain events
+
+- Help others understand
+
+
+
+## Why History Matters
+
+
+
+- Learn from the past
+
+- Understand the present
+
+- Prepare for the future
+
+- Learn about people
+
+- Understand change
+
+
+
+## Fun Activities
+
+
+
+- Do historical research
+
+- Write about history
+
+- Visit museums
+
+- Interview people
+
+- Create timelines
+
+
+
+## Remember
+
+
+
+- Historians study the past
+
+- They use evidence
+
+- They think critically
+
+- History helps us understand!`,
+      quizId: quizId++,
+      assessmentType: 'quiz',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'history',
+      lessonNumber: 10,
+      title: "Understanding Historical Change",
+      emoji: '🔄',
+      content: `# Understanding Historical Change 🔄
+
+
+
+Let's learn about how history changes!
+
+
+
+## How Things Change
+
+
+
+- History shows change
+
+- Things change over time
+
+- People change
+
+- Societies change
+
+- The world changes
+
+
+
+## Causes of Change
+
+
+
+- New ideas
+
+- New inventions
+
+- Wars and conflicts
+
+- People's actions
+
+- Natural events
+
+
+
+## Patterns in History
+
+
+
+- Some things repeat
+
+- We can see patterns
+
+- We can learn from them
+
+- History helps us understand
+
+- We can predict some things
+
+
+
+## Continuity and Change
+
+
+
+- Some things stay the same
+
+- Some things change
+
+- We see both
+
+- History shows both
+
+- It's interesting to study
+
+
+
+## Learning from History
+
+
+
+- We can learn from mistakes
+
+- We can learn from successes
+
+- We can understand people
+
+- We can make better choices
+
+- History teaches us
+
+
+
+## Your Place in History
+
+
+
+- You're part of history
+
+- Your actions matter
+
+- You can make a difference
+
+- You're making history now
+
+- The future is yours
+
+
+
+## Fun Activities
+
+
+
+- Study how things changed
+
+- Compare different times
+
+- Think about causes
+
+- Write about change
+
+- Consider the future
+
+
+
+## Remember
+
+
+
+- History shows change
+
+- We can learn from it
+
+- You're part of history
+
+- You can make a difference!`,
+      quizId: quizId++,
+      assessmentType: 'quiz',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
       subjectId: 'technology',
       lessonNumber: 1,
-      title: 'Python Programming Introduction',
+      title: "Python Programming Introduction",
       emoji: '🐍',
       content: `# Python Programming Introduction 🐍
 
+
+
 Let's learn Python programming!
+
+
 
 ## What is Python?
 
+
+
 Python is a programming language that's great for beginners.
 
+
+
 ## Your First Program
+
+
 
 \`\`\`python
 
@@ -1026,11 +2327,19 @@ print("Hello, World!")
 
 \`\`\`
 
+
+
 This prints "Hello, World!" to the screen.
+
+
 
 ## Variables
 
+
+
 Store information:
+
+
 
 \`\`\`python
 
@@ -1044,9 +2353,15 @@ print(age)
 
 \`\`\`
 
+
+
 ## Input and Output
 
+
+
 Get input from user:
+
+
 
 \`\`\`python
 
@@ -1056,7 +2371,11 @@ print("Hello, " + name + "!")
 
 \`\`\`
 
+
+
 ## Simple Calculations
+
+
 
 \`\`\`python
 
@@ -1070,9 +2389,15 @@ print(sum)
 
 \`\`\`
 
+
+
 ## Conditionals
 
+
+
 Make decisions:
+
+
 
 \`\`\`python
 
@@ -1088,9 +2413,15 @@ else:
 
 \`\`\`
 
+
+
 ## Loops
 
+
+
 Repeat code:
+
+
 
 \`\`\`python
 
@@ -1100,7 +2431,11 @@ for i in range(5):
 
 \`\`\`
 
+
+
 ## Practice
+
+
 
 Write programs that:
 
@@ -1116,7 +2451,11 @@ Write programs that:
 
 - Use loops
 
+
+
 ## Fun Activities
+
+
 
 - Write simple programs
 
@@ -1126,7 +2465,11 @@ Write programs that:
 
 - Share your programs
 
+
+
 ## Remember
+
+
 
 - Python is beginner-friendly
 
@@ -1145,13 +2488,19 @@ Write programs that:
       yearId: 'year6',
       subjectId: 'technology',
       lessonNumber: 2,
-      title: 'Advanced Web Development',
+      title: "Advanced Web Development",
       emoji: '🌐',
       content: `# Advanced Web Development 🌐
 
+
+
 Let's build more advanced websites!
 
+
+
 ## HTML Structure
+
+
 
 \`\`\`html
 
@@ -1207,7 +2556,11 @@ Let's build more advanced websites!
 
 \`\`\`
 
+
+
 ## Advanced CSS
+
+
 
 **Flexbox Layout:**
 
@@ -1225,6 +2578,8 @@ Let's build more advanced websites!
 
 \`\`\`
 
+
+
 **Responsive Design:**
 
 \`\`\`css
@@ -1241,9 +2596,15 @@ Let's build more advanced websites!
 
 \`\`\`
 
+
+
 ## JavaScript Basics
 
+
+
 Add interactivity:
+
+
 
 \`\`\`javascript
 
@@ -1257,7 +2618,11 @@ function greetUser() {
 
 \`\`\`
 
+
+
 ## Building a Website
+
+
 
 1. Plan your site
 
@@ -1269,7 +2634,11 @@ function greetUser() {
 
 5. Test and improve
 
+
+
 ## Practice
+
+
 
 Build websites with:
 
@@ -1281,7 +2650,11 @@ Build websites with:
 
 - Interactivity
 
+
+
 ## Fun Activities
+
+
 
 - Build personal websites
 
@@ -1291,7 +2664,11 @@ Build websites with:
 
 - Share your websites
 
+
+
 ## Remember
+
+
 
 - HTML structures
 
@@ -1310,13 +2687,19 @@ Build websites with:
       yearId: 'year6',
       subjectId: 'technology',
       lessonNumber: 3,
-      title: 'Technology and Society',
+      title: "Technology and Society",
       emoji: '🌐',
       content: `# Technology and Society 🌐
 
+
+
 Let's learn how technology affects society!
 
+
+
 ## How Technology Changes Things
+
+
 
 Technology changes how we:
 
@@ -1330,7 +2713,11 @@ Technology changes how we:
 
 - Live
 
+
+
 ## Positive Impacts
+
+
 
 **Communication**
 
@@ -1340,6 +2727,8 @@ Technology changes how we:
 
 - Learn from others
 
+
+
 **Education**
 
 - Access to information
@@ -1347,6 +2736,8 @@ Technology changes how we:
 - Online learning
 
 - Interactive tools
+
+
 
 **Healthcare**
 
@@ -1356,7 +2747,11 @@ Technology changes how we:
 
 - Research tools
 
+
+
 ## Challenges
+
+
 
 **Privacy**
 
@@ -1366,6 +2761,8 @@ Technology changes how we:
 
 - Be careful what you share
 
+
+
 **Digital Divide**
 
 - Not everyone has access
@@ -1373,6 +2770,8 @@ Technology changes how we:
 - Need to help others
 
 - Make technology available
+
+
 
 **Screen Time**
 
@@ -1382,7 +2781,11 @@ Technology changes how we:
 
 - Do other activities too
 
+
+
 ## Responsible Use
+
+
 
 - Use technology wisely
 
@@ -1392,7 +2795,11 @@ Technology changes how we:
 
 - Help others learn
 
+
+
 ## Future of Technology
+
+
 
 - Artificial Intelligence
 
@@ -1402,7 +2809,11 @@ Technology changes how we:
 
 - New inventions coming
 
+
+
 ## Thinking Critically
+
+
 
 - How does technology help?
 
@@ -1412,7 +2823,11 @@ Technology changes how we:
 
 - What should we be careful about?
 
+
+
 ## Fun Activities
+
+
 
 - Discuss technology impacts
 
@@ -1422,7 +2837,11 @@ Technology changes how we:
 
 - Create responsible use guidelines
 
+
+
 ## Remember
+
+
 
 - Technology changes society
 

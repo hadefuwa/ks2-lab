@@ -19,7 +19,26 @@ function TopNavigation() {
   
   // Determine if we're on a lesson page
   const isLessonPage = location.pathname.startsWith('/lesson/');
-  const lessonId = isLessonPage ? parseInt(params.lessonId) : null;
+  
+  // Extract lessonId from params or pathname
+  let lessonId = null;
+  if (isLessonPage) {
+    // Try params first
+    if (params.lessonId) {
+      const parsed = parseInt(params.lessonId);
+      lessonId = isNaN(parsed) ? null : parsed;
+    }
+    
+    // If params didn't work, try extracting from pathname
+    if (!lessonId) {
+      const match = location.pathname.match(/\/lesson\/(\d+)/);
+      if (match && match[1]) {
+        const parsed = parseInt(match[1]);
+        lessonId = isNaN(parsed) ? null : parsed;
+      }
+    }
+  }
+  
   const lesson = lessonId ? getLesson(lessonId) : null;
   
   const handleSkipLesson = async () => {
@@ -34,9 +53,34 @@ function TopNavigation() {
     
     if (!currentLesson) {
       console.error('No lesson found to skip. LessonId:', lessonId);
+      console.error('Pathname:', location.pathname);
+      console.error('Params:', params);
       console.error('Available lessons:', data?.lessons?.length || 0);
-      // Navigate to home if we can't find the lesson
-      navigate('/');
+      
+      // Try to find the lesson by ID from all lessons
+      const allLessons = data?.lessons || [];
+      let foundLesson = lessonId ? allLessons.find(l => l.id === lessonId) : null;
+      
+      // If still not found, try to get lesson from location state
+      if (!foundLesson && location.state && location.state.lesson) {
+        foundLesson = location.state.lesson;
+      }
+      
+      // If still not found and we're on a lesson page, try to find clicking game lesson
+      if (!foundLesson && isLessonPage) {
+        // Try to find any clicking game lesson in technology subject
+        foundLesson = allLessons.find(l => 
+          l.title === 'Clicking Game' && l.subjectId === 'technology'
+        );
+      }
+      
+      if (foundLesson && foundLesson.subjectId) {
+        // Navigate to subject's lessons list if we can find the subject
+        navigate(`/lessons?subjectId=${foundLesson.subjectId}`);
+      } else {
+        // Only navigate to home as last resort
+        navigate('/');
+      }
       return;
     }
     
@@ -77,16 +121,22 @@ function TopNavigation() {
       if (nextLesson && nextLesson.id) {
         navigate(`/lesson/${nextLesson.id}`);
       } else {
-        // If no next lesson, go back to lessons list
+        // If no next lesson, go back to lessons list for the subject
         console.log('No next lesson, navigating to lessons list for subject:', currentLesson.subjectId);
-        navigate(`/lessons?subjectId=${currentLesson.subjectId}`);
+        if (currentLesson && currentLesson.subjectId) {
+          navigate(`/lessons?subjectId=${currentLesson.subjectId}`);
+        } else {
+          // Fallback to home only if we don't have subject info
+          navigate('/');
+        }
       }
     } catch (error) {
       console.error('Error skipping lesson:', error);
-      // On error, at least navigate to the subject's lessons list
+      // On error, navigate to the subject's lessons list if we have the subject
       if (currentLesson && currentLesson.subjectId) {
         navigate(`/lessons?subjectId=${currentLesson.subjectId}`);
       } else {
+        // Only navigate to home as absolute last resort
         navigate('/');
       }
     }

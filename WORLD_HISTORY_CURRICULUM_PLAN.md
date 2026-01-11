@@ -518,3 +518,4 @@ This comprehensive curriculum plan covers world history from prehistoric times (
 
 This curriculum provides a comprehensive journey through world history from the age of dinosaurs through biblical times, ancient civilizations, medieval periods, and modern history, all tailored to be age-appropriate and engaging for primary school students.
 
+

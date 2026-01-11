@@ -256,7 +256,7 @@ class _LessonViewScreenState extends State<LessonViewScreen> {
         );
 
     // Check if this is a game lesson
-    final isClickingGameLesson = lesson.yearId == 'nursery' &&
+    final isClickingGameLesson = (lesson.yearId == 'nursery' || lesson.yearId == 'year2') &&
         lesson.subjectId == 'technology' &&
         lesson.title.toLowerCase().contains('clicking game');
     final isKeyboardGameLesson = lesson.yearId == 'nursery' &&

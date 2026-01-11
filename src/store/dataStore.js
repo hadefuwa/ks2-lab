@@ -1,91 +1,162 @@
 import { create } from 'zustand';
 import { AppData } from '../models/AppData.js';
-import { Student } from '../models/Student.js';
 import { Lesson } from '../models/Lesson.js';
 import { Quiz } from '../models/Quiz.js';
 import { Progress } from '../models/Progress.js';
+import { Student } from '../models/Student.js';
 import { Year } from '../models/Year.js';
-import { Subject } from '../models/Subject.js';
 import { getDefaultData } from '../data/defaultData.js';
-
-// IPC communication with Electron main process
-const ipcRenderer = window.electronAPI || null;
 
 const useDataStore = create((set, get) => ({
   // State
-  data: AppData.defaultData(),
+  data: null,
   initialized: false,
-  adminMode: false,
   loading: false,
-  error: null,
+  adminMode: false,
 
-  // Initialize store
+  // Initialize the store
   initialize: async () => {
-    if (get().initialized) return;
-    
-    set({ loading: true, error: null });
+    const state = get();
+    if (state.initialized || state.loading) return;
+
+    set({ loading: true });
+
     try {
+      // Load data from Electron
       let loadedData;
-      
-      if (ipcRenderer && window.electronAPI) {
-        // Electron environment - use IPC
-        try {
-          loadedData = await window.electronAPI.loadData();
-          // If no data exists, use default data
-          if (!loadedData || !loadedData.lessons || loadedData.lessons.length === 0) {
-            loadedData = getDefaultData();
-          }
-        } catch (error) {
-          console.warn('Failed to load from Electron, using default data:', error);
-          loadedData = getDefaultData();
-        }
+      if (window.electronAPI) {
+        loadedData = await window.electronAPI.loadData();
       } else {
-        // Browser environment - use localStorage as fallback
-        const stored = localStorage.getItem('homeschool-hub-data');
-        if (stored) {
-          loadedData = JSON.parse(stored);
-          // Ensure lessons exist
-          if (!loadedData.lessons || loadedData.lessons.length === 0) {
-            loadedData = getDefaultData();
-            localStorage.setItem('homeschool-hub-data', JSON.stringify(loadedData));
-          }
-        } else {
-          loadedData = getDefaultData();
-          localStorage.setItem('homeschool-hub-data', JSON.stringify(loadedData));
-        }
+        // Fallback for web mode (development)
+        console.warn('Electron API not available, using default data');
+        loadedData = getDefaultData();
       }
-      
+
+      // Convert to AppData instance
       const appData = AppData.fromJSON(loadedData);
-      
-      // Merge default lessons to ensure new lessons are added
-      await get().mergeDefaultLessons(appData);
-      
+
+      // Merge default lessons (add any missing lessons)
+      await state._mergeDefaultLessons(appData);
+
       set({ 
         data: appData, 
         initialized: true, 
         loading: false 
       });
     } catch (error) {
-      console.error('Error initializing DataStore:', error);
+      console.error('Error initializing data store:', error);
+      const defaultData = AppData.fromJSON(getDefaultData());
       set({ 
-        data: AppData.fromJSON(getDefaultData()), 
+        data: defaultData, 
         initialized: true, 
-        loading: false,
-        error: error.message 
+        loading: false 
       });
     }
   },
 
-  // Save data
-  saveData: async () => {
-    try {
-      const data = get().data;
-      const jsonData = data.toJSON();
+  // Merge default lessons into existing data
+  _mergeDefaultLessons: async (appData) => {
+    const defaultData = AppData.fromJSON(getDefaultData());
+    const existingLessonIds = new Set(appData.lessons.map(l => l.id));
+    const existingQuizIds = new Set(appData.quizzes.map(q => q.id));
+    
+    // Create a map of existing lessons by year/subject/lessonNumber for better matching
+    const existingLessonsMap = new Map();
+    appData.lessons.forEach(lesson => {
+      const key = `${lesson.yearId}|${lesson.subjectId}|${lesson.lessonNumber}`;
+      existingLessonsMap.set(key, lesson);
+    });
+
+    let hasChanges = false;
+
+    // Add missing lessons - check both by ID and by year/subject/lessonNumber
+    for (const defaultLesson of defaultData.lessons) {
+      const key = `${defaultLesson.yearId}|${defaultLesson.subjectId}|${defaultLesson.lessonNumber}`;
+      const existingByKey = existingLessonsMap.get(key);
       
-      if (ipcRenderer) {
-        await ipcRenderer.saveData(jsonData);
+      // Add if not found by ID AND not found by year/subject/lessonNumber
+      if (!existingLessonIds.has(defaultLesson.id) && !existingByKey) {
+        appData.lessons.push(defaultLesson);
+        hasChanges = true;
+      } else if (existingByKey && existingByKey.title !== defaultLesson.title) {
+        // Update existing lesson if title changed (e.g., clicking game was added)
+        const index = appData.lessons.findIndex(l => l.id === existingByKey.id);
+        if (index !== -1) {
+          appData.lessons[index] = defaultLesson;
+          hasChanges = true;
+        }
+      }
+    }
+    
+    // Deduplicate lessons - remove any duplicates based on year/subject/lessonNumber/categoryId
+    // Keep the first occurrence, but prefer default lessons if they exist
+    const seenKeys = new Set();
+    const deduplicatedLessons = [];
+    const defaultLessonsMap = new Map();
+    defaultData.lessons.forEach(dl => {
+      const key = `${dl.yearId}|${dl.subjectId}|${dl.lessonNumber}|${dl.categoryId || ''}`;
+      defaultLessonsMap.set(key, dl);
+    });
+    
+    for (const lesson of appData.lessons) {
+      const key = `${lesson.yearId}|${lesson.subjectId}|${lesson.lessonNumber}|${lesson.categoryId || ''}`;
+      if (!seenKeys.has(key)) {
+        seenKeys.add(key);
+        // Prefer default lesson if it exists for this key
+        const defaultLesson = defaultLessonsMap.get(key);
+        if (defaultLesson) {
+          deduplicatedLessons.push(defaultLesson);
+        } else {
+          deduplicatedLessons.push(lesson);
+        }
+      }
+    }
+    
+    if (deduplicatedLessons.length !== appData.lessons.length) {
+      appData.lessons = deduplicatedLessons;
+      hasChanges = true;
+    }
+
+    // Add missing quizzes
+    for (const defaultQuiz of defaultData.quizzes) {
+      if (!existingQuizIds.has(defaultQuiz.id)) {
+        appData.quizzes.push(defaultQuiz);
+        hasChanges = true;
+      }
+    }
+
+    // Save if changes were made
+    if (hasChanges && window.electronAPI) {
+      try {
+        const jsonData = appData.toJSON();
+        await window.electronAPI.saveData(jsonData);
+      } catch (error) {
+        console.error('Error saving merged data:', error);
+      }
+    }
+  },
+
+  // Save data to file
+  saveData: async () => {
+    const state = get();
+    if (!state.data) return;
+
+    try {
+      // Ensure data is an AppData instance, convert if needed
+      let appData = state.data;
+      if (!(appData instanceof AppData)) {
+        console.warn('Data is not an AppData instance, converting...');
+        appData = AppData.fromJSON(state.data);
+        // Update state with the proper instance
+        set({ data: appData });
+      }
+      
+      const jsonData = appData.toJSON();
+      
+      if (window.electronAPI) {
+        await window.electronAPI.saveData(jsonData);
       } else {
-        localStorage.setItem('homeschool-hub-data', JSON.stringify(jsonData));
+        console.warn('Electron API not available, cannot save data');
       }
     } catch (error) {
       console.error('Error saving data:', error);
@@ -93,115 +164,42 @@ const useDataStore = create((set, get) => ({
     }
   },
 
-  // Merge default lessons
-  mergeDefaultLessons: async (appData) => {
-    const defaultData = getDefaultData();
-    const defaultLessonIds = new Set(defaultData.lessons.map(l => l.id));
-    const existingLessonIds = new Set(appData.lessons.map(l => l.id));
-    const defaultQuizIds = new Set(defaultData.quizzes.map(q => q.id));
-    const existingQuizIds = new Set(appData.quizzes.map(q => q.id));
-    
-    let hasChanges = false;
-    let removedLessons = 0;
-    
-    // Remove lessons that no longer exist in default data
-    const lessonsToRemove = appData.lessons.filter(l => !defaultLessonIds.has(l.id));
-    for (const lesson of lessonsToRemove) {
-      const index = appData.lessons.findIndex(l => l.id === lesson.id);
-      if (index !== -1) {
-        appData.lessons.splice(index, 1);
-        // Also remove progress for removed lessons
-        appData.progress = appData.progress.filter(p => p.lessonId !== lesson.id);
-        hasChanges = true;
-        removedLessons++;
-        console.log('Removing lesson:', lesson.id, lesson.title);
-      }
-    }
-    
-    // If no lessons exist, add all default lessons
-    if (appData.lessons.length === 0 && defaultData.lessons.length > 0) {
-      appData.lessons = defaultData.lessons.map(l => Lesson.fromJSON(l));
-      hasChanges = true;
-    } else {
-      // Add new lessons that don't exist yet
-      for (const defaultLesson of defaultData.lessons) {
-        if (!existingLessonIds.has(defaultLesson.id)) {
-          appData.lessons.push(Lesson.fromJSON(defaultLesson));
-          hasChanges = true;
-        }
-      }
-    }
-    
-    // Remove quizzes that no longer exist in default data
-    const quizzesToRemove = appData.quizzes.filter(q => !defaultQuizIds.has(q.id));
-    for (const quiz of quizzesToRemove) {
-      const index = appData.quizzes.findIndex(q => q.id === quiz.id);
-      if (index !== -1) {
-        appData.quizzes.splice(index, 1);
-        hasChanges = true;
-        console.log('Removing quiz:', quiz.id, quiz.title);
-      }
-    }
-    
-    // Add new quizzes
-    if (appData.quizzes.length === 0 && defaultData.quizzes.length > 0) {
-      appData.quizzes = defaultData.quizzes.map(q => Quiz.fromJSON(q));
-      hasChanges = true;
-    } else {
-      for (const defaultQuiz of defaultData.quizzes) {
-        if (!existingQuizIds.has(defaultQuiz.id)) {
-          appData.quizzes.push(Quiz.fromJSON(defaultQuiz));
-          hasChanges = true;
-        }
-      }
-    }
-    
-    if (hasChanges) {
-      console.log(`Merge complete: Removed ${removedLessons} lessons`);
-      set({ data: appData });
-      await get().saveData();
-    }
-  },
-
-  // Admin mode
-  toggleAdminMode: () => set(state => ({ adminMode: !state.adminMode })),
-  setAdminMode: (enabled) => set({ adminMode: enabled }),
-
   // Student operations
-  addStudent: async (student) => {
-    const data = get().data;
-    data.students.push(student instanceof Student ? student : Student.fromJSON(student));
-    set({ data }); // Keep the AppData instance
-    await get().saveData();
-  },
-
-  updateStudent: async (student) => {
-    const data = get().data;
-    const index = data.students.findIndex(s => s.id === student.id);
-    if (index !== -1) {
-      data.students[index] = student instanceof Student ? student : Student.fromJSON(student);
-      set({ data }); // Keep the AppData instance
-      await get().saveData();
+  getUserId: () => {
+    const state = get();
+    if (!state.data) {
+      // Data not initialized yet, return default ID
+      return 1;
     }
+    
+    if (state.data.students.length === 0) {
+      // Create default student if none exists
+      const defaultStudent = new Student({
+        id: 1,
+        name: 'Student',
+        age: 5,
+        createdAt: new Date(),
+      });
+      state.data.students.push(defaultStudent);
+      // Save asynchronously without blocking
+      state.saveData().catch(err => console.error('Error saving default student:', err));
+      return 1;
+    }
+    return state.data.students[0].id; // Return first student's ID
   },
-
-  deleteStudent: async (studentId) => {
-    const data = get().data;
-    data.students = data.students.filter(s => s.id !== studentId);
-    data.progress = data.progress.filter(p => p.studentId !== studentId);
-    set({ data }); // Keep the AppData instance
-    await get().saveData();
-  },
-
-  getStudent: (id) => {
-    return get().data.students.find(s => s.id === id) || null;
-  },
-
-  getStudents: () => get().data.students,
 
   // Lesson operations
+  getLesson: (id) => {
+    const state = get();
+    if (!state.data) return null;
+    return state.data.lessons.find(l => l.id === id) || null;
+  },
+
   getLessons: ({ yearId, subjectId, category, ageGroup } = {}) => {
-    let lessons = [...get().data.lessons];
+    const state = get();
+    if (!state.data) return [];
+    
+    let lessons = [...state.data.lessons];
     
     if (yearId) {
       lessons = lessons.filter(l => l.yearId === yearId);
@@ -214,10 +212,20 @@ const useDataStore = create((set, get) => ({
     }
     if (ageGroup) {
       const yearMap = {
-        3: 'nursery', 4: 'reception', 5: 'year1', 6: 'year1',
-        7: 'year2', 8: 'year2', 9: 'year3', 10: 'year3',
-        11: 'year4', 12: 'year4', 13: 'year5', 14: 'year5',
-        15: 'year6', 16: 'year6',
+        3: 'nursery',
+        4: 'reception',
+        5: 'year1',
+        6: 'year1',
+        7: 'year2',
+        8: 'year2',
+        9: 'year3',
+        10: 'year3',
+        11: 'year4',
+        12: 'year4',
+        13: 'year5',
+        14: 'year5',
+        15: 'year6',
+        16: 'year6',
       };
       const mappedYear = yearMap[ageGroup];
       if (mappedYear) {
@@ -228,14 +236,15 @@ const useDataStore = create((set, get) => ({
     return lessons.sort((a, b) => a.lessonNumber - b.lessonNumber);
   },
 
-  getLesson: (id) => {
-    return get().data.lessons.find(l => l.id === id) || null;
-  },
-
   getAllLessonsForSubject: (subjectId) => {
-    const allLessons = get().data.lessons
-      .filter(l => l.subjectId === subjectId);
+    const state = get();
+    if (!state.data) return [];
     
+    const allLessons = state.data.lessons
+      .filter(l => l.subjectId === subjectId)
+      .map(l => l);
+    
+    // Sort by year order, then by lesson number
     allLessons.sort((a, b) => {
       const yearA = Year.getById(a.yearId);
       const yearB = Year.getById(b.yearId);
@@ -245,218 +254,162 @@ const useDataStore = create((set, get) => ({
       if (yearOrderA !== yearOrderB) {
         return yearOrderA - yearOrderB;
       }
+      
       return a.lessonNumber - b.lessonNumber;
     });
     
     return allLessons;
   },
 
-  // Single user ID constant (no student profiles needed)
-  getUserId: () => 1,
-
-  getNextLessonForSubject: (subjectId) => {
-    const userId = get().getUserId();
-    const allLessons = get().getAllLessonsForSubject(subjectId);
+  getNextLessonForSubject: (subjectId, studentId = null) => {
+    const state = get();
+    if (!state.data) return null;
     
-    if (allLessons.length === 0) return null;
+    const userId = studentId || state.getUserId();
     
-    // Find the last accessed lesson for this subject
-    const lastAccessed = get().getLastAccessedLesson(subjectId);
-    if (lastAccessed) {
-      // Find the lesson in the sorted list
-      const lastIndex = allLessons.findIndex(l => 
-        l.id === lastAccessed.id ||
-        (l.yearId === lastAccessed.yearId && 
-         l.subjectId === lastAccessed.subjectId && 
-         l.lessonNumber === lastAccessed.lessonNumber)
-      );
-      
-      if (lastIndex !== -1) {
-        // Return the last accessed lesson
-        return allLessons[lastIndex];
+    if (state.adminMode) {
+      const allLessons = state.getAllLessonsForSubject(subjectId);
+      return allLessons.length > 0 ? allLessons[0] : null;
+    }
+    
+    const allLessons = state.getAllLessonsForSubject(subjectId);
+    
+    for (const lesson of allLessons) {
+      if (!state.hasCompletedLesson(userId, lesson.yearId, lesson.subjectId, lesson.lessonNumber)) {
+        return lesson;
       }
     }
     
-    // If no last accessed lesson, return the first lesson
-    return allLessons[0];
+    return null; // All lessons completed
   },
 
-  getLastAccessedLesson: (subjectId) => {
-    const userId = get().getUserId();
-    const allLessons = get().getAllLessonsForSubject(subjectId);
-    
-    // Find the most recently accessed lesson for this subject (any access, not just completed)
-    const subjectProgress = get().data.progress
-      .filter(p => 
-        p.studentId === userId && 
-        p.subjectId === subjectId &&
-        p.activityType === 'Lesson' &&
-        p.completedAt !== null
-      )
-      .sort((a, b) => {
-        const dateA = a.completedAt ? new Date(a.completedAt) : new Date(0);
-        const dateB = b.completedAt ? new Date(b.completedAt) : new Date(0);
-        return dateB - dateA; // Most recent first
-      });
-    
-    if (subjectProgress.length === 0) return null;
-    
-    // Find the lesson from the most recent progress entry
-    const mostRecent = subjectProgress[0];
-    const lesson = allLessons.find(l => 
-      l.yearId === mostRecent.yearId &&
-      l.subjectId === mostRecent.subjectId &&
-      l.lessonNumber === mostRecent.lessonNumber
-    );
-    
-    return lesson || null;
-  },
-
-  // Get the next lesson in sequence after a specific lesson
   getNextLessonAfter: (currentLesson) => {
-    if (!currentLesson) {
-      console.log('getNextLessonAfter: No current lesson provided');
-      return null;
-    }
+    const state = get();
+    if (!state.data || !currentLesson) return null;
     
-    if (!currentLesson.subjectId) {
-      console.log('getNextLessonAfter: Current lesson has no subjectId:', currentLesson);
-      return null;
-    }
-    
-    const allLessons = get().getAllLessonsForSubject(currentLesson.subjectId);
-    console.log('getNextLessonAfter: All lessons for subject', currentLesson.subjectId, ':', allLessons.length);
-    console.log('getNextLessonAfter: Current lesson:', currentLesson.id, currentLesson.lessonNumber, currentLesson.title);
-    
-    if (allLessons.length === 0) {
-      console.log('getNextLessonAfter: No lessons found for subject', currentLesson.subjectId);
-      console.log('getNextLessonAfter: Total lessons in store:', get().data.lessons.length);
-      console.log('getNextLessonAfter: Lessons with subjectId', currentLesson.subjectId, ':', 
-        get().data.lessons.filter(l => l.subjectId === currentLesson.subjectId).length);
-      return null;
-    }
-    
-    // Find the current lesson's index - try multiple matching strategies
-    let currentIndex = allLessons.findIndex(l => l.id === currentLesson.id);
-    
-    if (currentIndex === -1) {
-      // Try matching by year, subject, and lesson number
-      currentIndex = allLessons.findIndex(l => 
-        l.yearId === currentLesson.yearId &&
-        l.subjectId === currentLesson.subjectId &&
-        l.lessonNumber === currentLesson.lessonNumber
-      );
-    }
-    
-    if (currentIndex === -1) {
-      // Try matching by title as last resort
-      currentIndex = allLessons.findIndex(l => l.title === currentLesson.title);
-    }
-    
-    console.log('getNextLessonAfter: Current index:', currentIndex);
-    
-    if (currentIndex === -1) {
-      console.log('getNextLessonAfter: Current lesson not found in list');
-      console.log('getNextLessonAfter: Current lesson details:', {
-        id: currentLesson.id,
-        yearId: currentLesson.yearId,
-        subjectId: currentLesson.subjectId,
-        lessonNumber: currentLesson.lessonNumber,
-        title: currentLesson.title
-      });
-      console.log('getNextLessonAfter: First few lessons in list:', allLessons.slice(0, 3).map(l => ({
-        id: l.id,
-        yearId: l.yearId,
-        subjectId: l.subjectId,
-        lessonNumber: l.lessonNumber,
-        title: l.title
-      })));
-      return null;
-    }
-    
-    // Return the next lesson in the sequence
-    if (currentIndex + 1 < allLessons.length) {
-      const nextLesson = allLessons[currentIndex + 1];
-      console.log('getNextLessonAfter: Found next lesson:', nextLesson.id, nextLesson.lessonNumber, nextLesson.title);
-      return nextLesson;
-    }
-    
-    // No more lessons in this subject
-    console.log('getNextLessonAfter: No more lessons in subject');
-    return null;
-  },
-
-  canAccessLesson: (lesson) => {
-    // Allow access to all lessons - no sequential restriction
-    return true;
-  },
-
-  // Track lesson access (when user views a lesson)
-  trackLessonAccess: async (lesson) => {
-    const userId = get().getUserId();
-    
-    // Check if we already have progress for this lesson
-    const existingIndex = get().data.progress.findIndex(p =>
-      p.studentId === userId &&
-      p.activityType === 'Lesson' &&
-      p.yearId === lesson.yearId &&
-      p.subjectId === lesson.subjectId &&
-      p.lessonNumber === lesson.lessonNumber
+    const allLessons = state.getAllLessonsForSubject(currentLesson.subjectId);
+    const currentIndex = allLessons.findIndex(l => 
+      l.id === currentLesson.id ||
+      (l.yearId === currentLesson.yearId && 
+       l.subjectId === currentLesson.subjectId && 
+       l.lessonNumber === currentLesson.lessonNumber &&
+       (l.categoryId === currentLesson.categoryId || (!l.categoryId && !currentLesson.categoryId)))
     );
     
-    if (existingIndex === -1) {
-      // Create a new progress entry to track access (not completed yet)
-      const progressId = get().getNextProgressId();
-      const progress = new Progress({
-        id: progressId,
-        studentId: userId,
-        activityType: 'Lesson',
-        activityId: lesson.id,
-        yearId: lesson.yearId,
-        subjectId: lesson.subjectId,
-        lessonNumber: lesson.lessonNumber,
-        isCompleted: false,
-        completedAt: new Date(), // Track when accessed
-        score: null,
-      });
-      
-      await get().addProgress(progress);
-    } else {
-      // Update the existing progress to mark as accessed (update timestamp)
-      const data = get().data;
-      // Ensure completedAt is a Date object, not a string
-      const existingProgress = data.progress[existingIndex];
-      if (existingProgress instanceof Progress) {
-        existingProgress.completedAt = new Date();
-      } else {
-        // If it's a plain object, convert it to a Progress instance
-        const progressObj = Progress.fromJSON(existingProgress);
-        progressObj.completedAt = new Date();
-        data.progress[existingIndex] = progressObj;
-      }
-      set({ data }); // Keep the AppData instance
-      await get().saveData();
+    if (currentIndex === -1 || currentIndex === allLessons.length - 1) {
+      return null; // Current lesson not found or it's the last one
     }
+    
+    return allLessons[currentIndex + 1];
   },
 
-  getSubjectProgress: (subjectId) => {
-    const userId = get().getUserId();
-    const allLessons = get().getAllLessonsForSubject(subjectId);
+  // Quiz operations
+  getQuiz: (id) => {
+    const state = get();
+    if (!state.data) return null;
+    return state.data.quizzes.find(q => q.id === id) || null;
+  },
+
+  // Progress operations
+  addProgress: async (progress) => {
+    const state = get();
+    if (!state.data) return;
+    
+    // Check if progress already exists
+    const existingIndex = state.data.progress.findIndex(
+      p => p.studentId === progress.studentId &&
+           p.activityType === progress.activityType &&
+           p.activityId === progress.activityId
+    );
+    
+    if (existingIndex !== -1) {
+      // Update existing progress
+      state.data.progress[existingIndex] = progress;
+    } else {
+      // Add new progress
+      state.data.progress.push(progress);
+    }
+    
+    // Create a new AppData instance to maintain the toJSON method
+    // This ensures the instance is preserved when state updates
+    const updatedData = new AppData({
+      students: state.data.students,
+      lessons: state.data.lessons,
+      quizzes: state.data.quizzes,
+      progress: state.data.progress,
+      videoResources: state.data.videoResources,
+    });
+    
+    // Update state with the new AppData instance
+    set({ data: updatedData });
+    
+    // Save the updated data using the saveData function
+    await state.saveData();
+  },
+
+  getNextProgressId: () => {
+    const state = get();
+    if (!state.data || state.data.progress.length === 0) return 1;
+    return Math.max(...state.data.progress.map(p => p.id)) + 1;
+  },
+
+  hasCompletedLesson: (studentId, yearId, subjectId, lessonNumber) => {
+    const state = get();
+    if (!state.data) return false;
+    
+    return state.data.progress.some(p =>
+      p.studentId === studentId &&
+      p.activityType === 'Lesson' &&
+      p.yearId === yearId &&
+      p.subjectId === subjectId &&
+      p.lessonNumber === lessonNumber &&
+      p.isCompleted
+    );
+  },
+
+  hasCompletedActivity: (studentId, activityType, activityId) => {
+    const state = get();
+    if (!state.data) return false;
+    
+    return state.data.progress.some(p =>
+      p.studentId === studentId &&
+      p.activityType === activityType &&
+      p.activityId === activityId &&
+      p.isCompleted
+    );
+  },
+
+  getSubjectProgress: (subjectId, studentId = null) => {
+    const state = get();
+    if (!state.data) {
+      return {
+        totalLessons: 0,
+        completedCount: 0,
+        currentYearId: null,
+        currentLessonNumber: null,
+        nextLesson: null,
+        progressPercentage: 0,
+      };
+    }
+    
+    const userId = studentId || state.getUserId();
+    const allLessons = state.getAllLessonsForSubject(subjectId);
+    
     let completedCount = 0;
     let currentYearId = null;
     let currentLessonNumber = null;
     
     for (const lesson of allLessons) {
-      if (get().hasCompletedLesson(userId, lesson.yearId, lesson.subjectId, lesson.lessonNumber)) {
+      if (state.hasCompletedLesson(userId, lesson.yearId, lesson.subjectId, lesson.lessonNumber)) {
         completedCount++;
         currentYearId = lesson.yearId;
         currentLessonNumber = lesson.lessonNumber;
       } else {
-        break;
+        break; // Found first uncompleted lesson
       }
     }
     
-    const nextLesson = get().getNextLessonForSubject(subjectId);
+    const nextLesson = state.getNextLessonForSubject(subjectId, userId);
     
     return {
       totalLessons: allLessons.length,
@@ -468,108 +421,83 @@ const useDataStore = create((set, get) => ({
     };
   },
 
-  // Quiz operations
-  getQuizzes: ({ category, ageGroup } = {}) => {
-    let quizzes = [...get().data.quizzes];
-    if (category) {
-      quizzes = quizzes.filter(q => q.category === category);
-    }
-    if (ageGroup) {
-      quizzes = quizzes.filter(q => q.ageGroup === ageGroup);
-    }
-    return quizzes;
-  },
-
-  getQuiz: (id) => {
-    return get().data.quizzes.find(q => q.id === id) || null;
-  },
-
-  // Progress operations
-  addProgress: async (progress) => {
-    const data = get().data;
-    const userId = get().getUserId();
+  trackLessonAccess: async (lesson) => {
+    const state = get();
+    if (!state.data || !lesson) return;
     
-    // Ensure progress uses the current user ID
-    const progressData = progress instanceof Progress ? progress : Progress.fromJSON(progress);
-    progressData.studentId = userId;
+    const userId = state.getUserId();
     
-    const existingIndex = data.progress.findIndex(
-      p => p.studentId === progressData.studentId &&
-           p.activityType === progressData.activityType &&
-           p.activityId === progressData.activityId
+    // Check if already accessed
+    const existingProgress = state.data.progress.find(
+      p => p.studentId === userId &&
+           p.activityType === 'Lesson' &&
+           p.activityId === lesson.id
     );
     
-    if (existingIndex !== -1) {
-      data.progress[existingIndex] = progressData;
-    } else {
-      data.progress.push(progressData);
+    if (!existingProgress) {
+      // Create new progress entry for accessing the lesson
+      const progressId = state.getNextProgressId();
+      const progress = new Progress({
+        id: progressId,
+        studentId: userId,
+        activityType: 'Lesson',
+        activityId: lesson.id,
+        yearId: lesson.yearId,
+        subjectId: lesson.subjectId,
+        lessonNumber: lesson.lessonNumber,
+        isCompleted: false,
+        completedAt: null,
+        score: null,
+      });
+      
+      await state.addProgress(progress);
+    }
+  },
+
+  getStatistics: (studentId = null) => {
+    const state = get();
+    if (!state.data) {
+      return {
+        totalCompleted: 0,
+        totalQuizzes: 0,
+        averageScore: 0,
+        byYear: {},
+        bySubject: {},
+      };
     }
     
-    set({ data }); // Keep the AppData instance
-    await get().saveData();
-  },
-
-  getProgress: ({ yearId, subjectId } = {}) => {
-    const userId = get().getUserId();
-    let progress = get().data.progress.filter(p => p.studentId === userId);
-    if (yearId) {
-      progress = progress.filter(p => p.yearId === yearId);
-    }
-    if (subjectId) {
-      progress = progress.filter(p => p.subjectId === subjectId);
-    }
-    return progress.sort((a, b) => {
-      if (!a.completedAt && !b.completedAt) return 0;
-      if (!a.completedAt) return 1;
-      if (!b.completedAt) return -1;
-      return b.completedAt - a.completedAt;
-    });
-  },
-
-  hasCompletedActivity: (activityType, activityId) => {
-    const userId = get().getUserId();
-    return get().data.progress.some(p =>
-      p.studentId === userId &&
-      p.activityType === activityType &&
-      p.activityId === activityId &&
-      p.isCompleted
-    );
-  },
-
-  hasCompletedLesson: (userId, yearId, subjectId, lessonNumber) => {
-    return get().data.progress.some(p =>
-      p.studentId === userId &&
-      p.activityType === 'Lesson' &&
-      p.yearId === yearId &&
-      p.subjectId === subjectId &&
-      p.lessonNumber === lessonNumber &&
-      p.isCompleted
-    );
-  },
-
-  getStatistics: () => {
-    const userId = get().getUserId();
-    const allProgress = get().data.progress.filter(p => p.studentId === userId);
+    const userId = studentId || state.getUserId();
+    const allProgress = state.data.progress.filter(p => p.studentId === userId);
     const completed = allProgress.filter(p => p.isCompleted);
     const quizzes = completed.filter(p => 
-      p.activityType === 'Quiz' || p.activityType === 'Test' || p.activityType === 'Challenge'
+      p.activityType === 'Quiz' || 
+      p.activityType === 'Test' || 
+      p.activityType === 'Challenge'
     );
     
     const totalQuizzes = quizzes.length;
     const averageScore = totalQuizzes > 0
-      ? quizzes.reduce((sum, p) => sum + (p.score ?? 0), 0) / totalQuizzes
+      ? quizzes.reduce((sum, p) => sum + (p.score || 0), 0) / totalQuizzes
       : 0;
     
+    // Group by year
     const byYear = {};
-    const bySubject = {};
-    
     for (const p of completed) {
       if (p.yearId) {
-        if (!byYear[p.yearId]) byYear[p.yearId] = [];
+        if (!byYear[p.yearId]) {
+          byYear[p.yearId] = [];
+        }
         byYear[p.yearId].push(p);
       }
+    }
+    
+    // Group by subject
+    const bySubject = {};
+    for (const p of completed) {
       if (p.subjectId) {
-        if (!bySubject[p.subjectId]) bySubject[p.subjectId] = [];
+        if (!bySubject[p.subjectId]) {
+          bySubject[p.subjectId] = [];
+        }
         bySubject[p.subjectId].push(p);
       }
     }
@@ -583,41 +511,14 @@ const useDataStore = create((set, get) => ({
     };
   },
 
-  getAppWideStatistics: () => {
-    // Alias for getStatistics - same thing for single user
-    return get().getStatistics();
+  // Admin mode
+  toggleAdminMode: () => {
+    set(state => ({ adminMode: !state.adminMode }));
   },
 
-  getAllProgress: ({ yearId, subjectId } = {}) => {
-    // Get progress for the current user
-    return get().getProgress({ yearId, subjectId });
-  },
-
-  // Helper methods for IDs
-  getNextStudentId: () => {
-    const students = get().data.students;
-    if (students.length === 0) return 1;
-    return Math.max(...students.map(s => s.id)) + 1;
-  },
-
-  getNextLessonId: () => {
-    const lessons = get().data.lessons;
-    if (lessons.length === 0) return 1;
-    return Math.max(...lessons.map(l => l.id)) + 1;
-  },
-
-  getNextQuizId: () => {
-    const quizzes = get().data.quizzes;
-    if (quizzes.length === 0) return 1;
-    return Math.max(...quizzes.map(q => q.id)) + 1;
-  },
-
-  getNextProgressId: () => {
-    const progress = get().data.progress;
-    if (progress.length === 0) return 1;
-    return Math.max(...progress.map(p => p.id)) + 1;
+  setAdminMode: (enabled) => {
+    set({ adminMode: enabled });
   },
 }));
 
 export default useDataStore;
-

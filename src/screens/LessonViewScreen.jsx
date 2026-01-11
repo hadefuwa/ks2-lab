@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import useDataStore from '../store/dataStore';
 import MarkdownWithYouTube from '../components/MarkdownWithYouTube';
 import ClickingGame from '../components/ClickingGame';
+import KeyboardGame from '../components/KeyboardGame';
 
 function LessonViewScreen() {
   const { lessonId } = useParams();
@@ -130,6 +131,15 @@ function LessonViewScreen() {
           boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
         }}>
           <ClickingGame lesson={lesson} />
+        </div>
+      ) : lesson.title === 'Keyboard Game' ? (
+        <div style={{
+          backgroundColor: 'white',
+          padding: '30px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <KeyboardGame lesson={lesson} />
         </div>
       ) : (
         <div style={{

@@ -46,22 +46,7 @@ function LessonsListScreen() {
     }}>
       <div style={{
         marginBottom: '30px',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '15px',
       }}>
-        <button
-          onClick={() => navigate('/')}
-          style={{
-            padding: '8px 16px',
-            backgroundColor: '#f5f5f5',
-            border: '1px solid #ddd',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
-        >
-          ← Back
-        </button>
         <h1 style={{ margin: 0 }}>
           {subject.name} Lessons
         </h1>
@@ -216,7 +201,7 @@ function LessonsListScreen() {
               gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
               gap: '20px',
             }}>
-              {allLessons.map(lesson => {
+              {allLessons.map((lesson, index) => {
                 const isCompleted = hasCompletedLesson(
                   userId,
                   lesson.yearId,
@@ -225,9 +210,12 @@ function LessonsListScreen() {
                 );
                 const isNextLesson = nextLesson && nextLesson.id === lesson.id;
                 
+                // Create a unique key using lesson properties and index to handle duplicates
+                const uniqueKey = `${lesson.yearId}-${lesson.subjectId}-${lesson.lessonNumber}-${lesson.categoryId || 'none'}-${lesson.id}-${index}`;
+                
                 return (
                   <div
-                    key={lesson.id}
+                    key={uniqueKey}
                     onClick={() => navigate(`/lesson/${lesson.id}`)}
                     style={{
                       padding: '20px',
