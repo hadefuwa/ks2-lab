@@ -1,270 +1,277 @@
-# Homeschool Hub - Electron
+# Homeschool Hub
 
-A cross-platform homeschool learning management application built with Electron. This app allows students to access lessons, take quizzes, watch educational videos, and track their progress.
+A cross-platform homeschool learning management application built with **React** and **Electron**. This desktop app allows students to access lessons, take quizzes, watch educational videos, and track their progress across multiple subjects and year levels.
 
-## Migration to Electron
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Electron](https://img.shields.io/badge/Electron-28.0.0-47848F?logo=electron)
+![React](https://img.shields.io/badge/React-18.2.0-61DAFB?logo=react)
 
-**This application has been converted to Electron** for easy desktop distribution. The app uses Electron to wrap a web-based interface, providing native desktop experience on Windows, macOS, and Linux.
+## 🚀 Features
 
-### Key Features:
-- **Framework**: Electron (Node.js + Chromium)
-- **UI Framework**: Web-based interface
-- **Navigation**: Client-side routing
-- **State Management**: Provider pattern
-- **Platform Support**: Cross-platform desktop (Windows, macOS, Linux)
-- **Data Storage**: JSON file (local storage)
-- **Video Embedding**: Web-based video players
+### Core Features
+- **📚 Subject Management**: Organize lessons by subject (Maths, English, Science, History, etc.)
+- **📖 Interactive Lessons**: Browse and complete lessons with markdown content and embedded YouTube videos
+- **✅ Quizzes**: Take interactive quizzes with automatic scoring and progress tracking
+- **🎥 Video Resources**: Watch educational videos integrated into lessons
+- **📊 Progress Tracking**: View completion history, quiz scores, and overall progress
+- **🎮 Interactive Games**: Educational games like clicking and keyboard games
+- **👥 Student Management**: Track progress for multiple students
+- **📱 Cross-Platform**: Runs on Windows, macOS, and Linux
 
-All features have been preserved and enhanced in the Electron version.
+### Upcoming Features
+- **🔊 Text-to-Speech (TTS)**: Read quiz questions and answers aloud (see [TTS_IMPLEMENTATION_PLAN.md](./TTS_IMPLEMENTATION_PLAN.md))
+- Enhanced accessibility features
+- More interactive learning games
 
-## Features
+## 🛠️ Tech Stack
 
-- **Student Management**: Create and manage multiple student profiles
-- **Lessons**: Browse and complete lessons in various subjects (Maths, Arduino, etc.)
-- **Quizzes**: Take interactive quizzes with automatic scoring
-- **Video Resources**: Watch educational videos (Fusion 360 tutorials, etc.)
-- **Progress Tracking**: View completion history and quiz scores
-- **Cross-Platform Desktop**: Runs on Windows, macOS, and Linux
+- **Frontend Framework**: React 18.2.0
+- **Desktop Framework**: Electron 28.0.0
+- **Build Tool**: Vite 5.0.8
+- **State Management**: Zustand 4.4.7
+- **Routing**: React Router DOM 6.20.0
+- **Content Rendering**: React Markdown 9.0.1
+- **Data Storage**: Local JSON files (via Electron IPC)
 
-## Prerequisites
+## 📋 Prerequisites
 
-### For Electron (Recommended)
 - **Node.js** (v16 or higher) and npm
-- **Flutter SDK** (latest stable version)
-- **Dart SDK** (comes with Flutter)
+- **Git** (for cloning the repository)
 
-### For Flutter Native Desktop
-- Flutter SDK (latest stable version)
-- Dart SDK (comes with Flutter)
-- Platform-specific SDKs:
-  - **Windows**: Windows SDK
-  - **macOS**: Xcode
-  - **Linux**: Development tools
-  - **iOS**: Xcode (macOS only)
-  - **Android**: Android Studio
+## 🚀 Installation
 
-## Installation
-
-1. **Clone or navigate to the project directory:**
+1. **Clone the repository:**
    ```bash
-   cd homeschool-hub-electron
+   git clone https://github.com/hadefuwa/homeschool-hub.git
+   cd homeschool-hub
    ```
 
-2. **Install Flutter dependencies:**
-   ```bash
-   flutter pub get
-   ```
-
-3. **Install Electron dependencies:**
+2. **Install dependencies:**
    ```bash
    npm install
    ```
 
-4. **Verify Flutter setup:**
+3. **Verify installation:**
    ```bash
-   flutter doctor
+   npm run electron
    ```
 
-5. **Build Flutter web app (required for Electron):**
-   ```bash
-   flutter build web
-   ```
+## 🎮 Running the App
 
-## Running the App
+### Development Mode
 
-### Electron (Recommended for Desktop)
-The app has been converted to Electron for easy desktop distribution:
+Run the app in development mode with hot reload:
 
-1. **Install Node.js dependencies:**
-   ```bash
-   npm install
-   ```
-
-2. **Build Flutter web app:**
-   ```bash
-   flutter build web
-   ```
-
-3. **Run Electron app:**
-   ```bash
-   npm start
-   ```
-
-4. **Package for distribution:**
-   ```bash
-   npm run dist
-   ```
-
-### Flutter Native Desktop
-
-#### Windows
 ```bash
-flutter run -d windows
+npm start
 ```
 
-#### macOS
+This will:
+- Start the Vite dev server on `http://localhost:3000`
+- Launch the Electron app
+- Enable hot module replacement for React components
+
+### Development (Separate Commands)
+
+You can also run the dev server and Electron separately:
+
 ```bash
-flutter run -d macos
+# Terminal 1: Start Vite dev server
+npm run dev
+
+# Terminal 2: Start Electron (after dev server is running)
+npm run electron
 ```
 
-#### Linux
+### Production Build
+
+Build the app for production:
+
 ```bash
-flutter run -d linux
+npm run build
 ```
 
-### Mobile Platforms
+This creates optimized production files in the `dist/` directory.
 
-#### iOS (macOS only)
-```bash
-flutter run -d ios
-```
+## 📦 Building for Distribution
 
-#### Android
-```bash
-flutter run -d android
-```
+Package the app for distribution on Windows, macOS, and Linux:
 
-## Building for Release
-
-### Electron (Recommended)
-Build and package the Electron app for distribution:
 ```bash
 npm run dist
 ```
 
 This will:
-1. Build the Flutter web app
+1. Build the React app for production
 2. Package it into an Electron app
-3. Create installers for Windows (NSIS), macOS (DMG), and Linux (AppImage)
+3. Create installers:
+   - **Windows**: NSIS installer (`.exe`)
+   - **macOS**: DMG file
+   - **Linux**: AppImage
 
-Output will be in the `dist/` directory.
+Output files will be in the `dist/` directory.
 
-### Flutter Native
+### Build Configuration
 
-#### Windows
-```bash
-flutter build windows --release
-```
+The build configuration is in `package.json`. Icons and app metadata can be customized there.
 
-#### macOS
-```bash
-flutter build macos --release
-```
-
-#### Linux
-```bash
-flutter build linux --release
-```
-
-#### iOS
-```bash
-flutter build ios --release
-```
-
-#### Android
-```bash
-flutter build apk --release
-# or for app bundle:
-flutter build appbundle --release
-```
-
-## Project Structure
+## 📁 Project Structure
 
 ```
-lib/
-├── main.dart                 # App entry point
-├── models/                  # Data models
-│   ├── student.dart
-│   ├── lesson.dart
-│   ├── quiz.dart
-│   ├── question.dart
-│   ├── progress.dart
-│   └── video_resource.dart
-├── data/                    # Data layer
-│   ├── app_data.dart
-│   ├── data_store.dart
-│   └── default_data.dart
-├── screens/                 # UI screens
-│   ├── main_screen.dart
-│   ├── student_selection_screen.dart
-│   ├── lesson_list_screen.dart
-│   ├── lesson_view_screen.dart
-│   ├── quiz_list_screen.dart
-│   ├── quiz_screen.dart
-│   ├── video_list_screen.dart
-│   ├── video_screen.dart
-│   └── progress_screen.dart
-├── widgets/                 # Reusable widgets
-│   ├── category_card.dart
-│   ├── lesson_card.dart
-│   ├── quiz_card.dart
-│   ├── video_card.dart
-│   └── progress_item.dart
-├── utils/                   # Utilities
-│   ├── constants.dart
-│   └── paths.dart
-├── providers/               # State management
-│   └── data_store_provider.dart
-└── router/                 # Navigation
-    └── app_router.dart
+homeschool-hub-electron/
+├── electron/              # Electron main process files
+│   ├── main.js           # Main Electron process
+│   ├── preload.js        # Preload script (IPC bridge)
+│   └── persistence.js    # Data persistence utilities
+├── src/                   # React application source
+│   ├── components/       # Reusable React components
+│   │   ├── ClickingGame.jsx
+│   │   ├── MarkdownWithYouTube.jsx
+│   │   ├── TopNavigation.jsx
+│   │   └── YouTubeEmbed.jsx
+│   ├── screens/          # Main application screens
+│   │   ├── SubjectSelectionScreen.jsx
+│   │   ├── LessonsListScreen.jsx
+│   │   ├── LessonViewScreen.jsx
+│   │   └── QuizScreen.jsx
+│   ├── models/           # Data models
+│   │   ├── AppData.js
+│   │   ├── Lesson.js
+│   │   ├── Quiz.js
+│   │   ├── Question.js
+│   │   └── ...
+│   ├── store/            # State management (Zustand)
+│   │   └── dataStore.js
+│   ├── data/             # Default data and lessons
+│   │   ├── defaultData.js
+│   │   └── lessons/      # Lesson data by year
+│   ├── utils/            # Utility functions
+│   │   └── youtube.js
+│   ├── App.jsx           # Main React component
+│   └── main.jsx          # React entry point
+├── assets/               # Static assets
+│   ├── quizzes.json
+│   └── videos/          # Local video files
+├── scripts/              # Utility scripts
+│   └── convert-*.js     # Data conversion scripts
+├── lib/                  # Flutter/Dart code (legacy/alternative version)
+├── package.json          # Node.js dependencies and scripts
+├── vite.config.js       # Vite configuration
+└── TTS_IMPLEMENTATION_PLAN.md  # Text-to-Speech implementation plan
 ```
 
-## Data Storage
+## 💾 Data Storage
 
-The app stores data locally in JSON format. Data is saved to:
+The app stores all data locally in JSON format. Data is automatically saved to:
+
 - **Windows**: `%LOCALAPPDATA%\HomeschoolHub\data.json`
 - **macOS**: `~/Library/Application Support/HomeschoolHub/data.json`
 - **Linux**: `~/.local/share/HomeschoolHub/data.json`
 
-## Default Data
+### Data Structure
 
-The app comes with sample data:
-- **Maths Lessons**: Introduction to Numbers, Basic Addition
-- **Arduino Lessons**: Introduction to Arduino, Programming Basics
-- **Vikings Quiz**: History quiz with 5 questions
-- **Fusion 360 Videos**: Tutorial videos (YouTube video IDs need to be updated)
+The app stores:
+- Student profiles
+- Lesson progress and completion
+- Quiz scores and results
+- Custom lessons and quizzes (if added)
 
-## Dependencies
+All data persists between app sessions automatically.
 
-- `path_provider`: Local file storage paths
-- `go_router`: Navigation
-- `provider`: State management
-- `youtube_player_flutter`: YouTube video playback
-- `flutter_markdown`: Markdown rendering for lesson content
-- `intl`: Date formatting
+## 📚 Default Content
 
-## Development
+The app comes with sample educational content:
+
+- **Subjects**: Maths, English, Science, History, Geography, Art, Design & Technology
+- **Year Levels**: Nursery, Reception, Year 1-6
+- **Lessons**: Pre-configured lessons for each subject and year
+- **Quizzes**: Interactive quizzes with automatic scoring
+- **Videos**: YouTube video integration for lessons
+
+## 🎯 Usage
+
+1. **Select a Subject**: Choose a subject from the home screen
+2. **Browse Lessons**: View available lessons for the selected subject
+3. **Complete Lessons**: Read lesson content and watch embedded videos
+4. **Take Quizzes**: Complete quizzes to test understanding
+5. **Track Progress**: View your progress and scores
+
+## 🔧 Development
+
+### Available Scripts
+
+- `npm run dev` - Start Vite dev server
+- `npm run electron` - Launch Electron app
+- `npm start` - Run dev server and Electron concurrently
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run dist` - Build and package for distribution
 
 ### Hot Reload
-While the app is running, press `r` in the terminal to hot reload, or `R` for a full restart.
+
+The app supports hot module replacement in development mode. Changes to React components will automatically reload in the Electron window.
 
 ### Debugging
-Use Electron DevTools (press F12 or Cmd+Option+I) or your IDE's debugger.
 
-## Troubleshooting
+- **DevTools**: Press `F12` or `Ctrl+Shift+I` (Windows/Linux) / `Cmd+Option+I` (macOS) to open DevTools
+- **Console Logs**: Check the Electron console for main process logs
+- **React DevTools**: Install the React DevTools browser extension for component inspection
 
-### Node.js/Electron not found
-Make sure Node.js is installed and added to your PATH.
+## 🗺️ Roadmap
 
-### Dependencies not installing
-Run `flutter pub get` again. If issues persist, try:
-```bash
-flutter clean
-flutter pub get
-```
+### Planned Features
+- [x] Basic lesson and quiz functionality
+- [x] Progress tracking
+- [x] Video integration
+- [ ] **Text-to-Speech (TTS)** - See [TTS_IMPLEMENTATION_PLAN.md](./TTS_IMPLEMENTATION_PLAN.md)
+- [ ] Enhanced accessibility features
+- [ ] More interactive games
+- [ ] Export/import progress
+- [ ] Custom lesson creation UI
 
-### Platform-specific issues
-- **Windows**: Ensure Windows desktop development is enabled: `flutter config --enable-windows-desktop`
-- **macOS**: Ensure macOS desktop development is enabled: `flutter config --enable-macos-desktop`
-- **Linux**: Ensure Linux desktop development is enabled: `flutter config --enable-linux-desktop`
+## 📖 Documentation
 
-## License
+- [TTS Implementation Plan](./TTS_IMPLEMENTATION_PLAN.md) - Detailed plan for adding text-to-speech functionality
+- [Electron Setup Guide](./ELECTRON_SETUP.md) - Electron-specific setup instructions
+- [Conversion Plan](./CONVERSION_PLAN.md) - Migration and conversion documentation
 
-This project is an Electron-based desktop application for cross-platform homeschool management.
+## 🐛 Troubleshooting
 
-## Notes
+### App won't start
+- Ensure Node.js (v16+) is installed: `node --version`
+- Reinstall dependencies: `rm -rf node_modules && npm install`
 
-- YouTube video IDs in `default_data.dart` are placeholders and should be replaced with actual video IDs
-- The app uses Material Design 3 for the UI
-- Data persists between app sessions automatically
+### Build errors
+- Clear build cache: `rm -rf dist`
+- Rebuild: `npm run build`
 
+### Data not persisting
+- Check file permissions in the data directory
+- Verify Electron IPC is working (check console for errors)
+
+### Video playback issues
+- Ensure internet connection for YouTube videos
+- Check browser console for CORS or network errors
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📝 License
+
+This project is licensed under the MIT License.
+
+## 🙏 Acknowledgments
+
+- Built with [Electron](https://www.electronjs.org/)
+- UI powered by [React](https://react.dev/)
+- State management with [Zustand](https://zustand-demo.pmnd.rs/)
+- Build tool: [Vite](https://vitejs.dev/)
+
+## 📧 Contact
+
+For questions or issues, please open an issue on GitHub.
+
+---
+
+**Note**: This app also includes Flutter/Dart code in the `lib/` directory, which represents an alternative implementation. The current active version uses React with Electron.
