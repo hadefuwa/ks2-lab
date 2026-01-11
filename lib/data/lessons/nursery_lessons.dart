@@ -627,51 +627,81 @@ Toy 🧸 - T-O-Y
 
       lessonNumber: 1,
 
-      title: 'My Family History',
+      title: 'Toys from Long Ago',
 
-      emoji: '👨‍👩‍👧‍👦',
+      emoji: '🧸',
 
       content: '''
 
-# My Family History 👨‍👩‍👧‍👦
+# Toys from Long Ago 🧸
 
 
 
-Everyone has a family! Let's learn about yours!
+Let's learn about toys from the past!
 
 
 
-## What is a Family?
+## What is History?
 
 
 
-A family is people who love and care for each other!
+History is learning about things that happened long ago!
+
+- Long ago means a very long time before now
+
+- People did things differently then
+
+- We can learn from the past!
 
 
 
-- Mummy and Daddy 👨‍👩‍👧‍👦
-
-- Brothers and Sisters 👫
-
-- Grandparents 👴👵
-
-- Aunts and Uncles 👨‍👨‍👧
-
-- Cousins 👨‍👩‍👦
+## Old Toys
 
 
 
-## Family Photos
+Toys from long ago were different:
+
+- Wooden dolls 🪵
+
+- Simple spinning tops 🎡
+
+- Hoops and sticks 🎪
+
+- Handmade toys 🧵
+
+- No batteries needed!
 
 
 
-Look at old family photos together!
+## New Toys
 
-- Who is in the picture?
 
-- What were they doing?
 
-- How old were they?
+Toys today are different:
+
+- Electronic toys 🎮
+
+- Remote control cars 🚗
+
+- Video games 💻
+
+- Many use batteries 🔋
+
+- Made in factories 🏭
+
+
+
+## Comparing Old and New
+
+
+
+- Old toys were simpler
+
+- New toys have more features
+
+- Both are fun to play with!
+
+- People enjoyed toys long ago, just like we do today!
 
 
 
@@ -679,13 +709,13 @@ Look at old family photos together!
 
 
 
-- Draw a picture of your family
+- Draw an old toy and a new toy
 
-- Ask grown-ups about when they were little
+- Talk about your favourite toys
 
-- Look at baby photos
+- Ask grown-ups about toys they had when they were little
 
-- Make a family tree with pictures
+- Make a simple toy like a paper plane!
 
 
 
@@ -693,17 +723,17 @@ Look at old family photos together!
 
 
 
-- Families are special
+- Toys have changed over time
 
-- Everyone has a family history
+- Old toys were simpler but still fun
 
-- Stories from the past are important!
+- History helps us understand how things change!
 
       ''',
 
-      quizId: quizId++,
+      quizId: null,
 
-      assessmentType: 'quiz',
+      assessmentType: null,
 
     ),
 
@@ -717,45 +747,71 @@ Look at old family photos together!
 
       lessonNumber: 2,
 
-      title: 'Growing Up',
+      title: 'Homes from Long Ago',
 
-      emoji: '📸',
+      emoji: '🏠',
 
       content: '''
 
-# Growing Up 📸
+# Homes from Long Ago 🏠
 
 
 
-You are growing bigger every day!
+Let's learn about how people lived long ago!
 
 
 
-## When You Were a Baby
+## Homes Long Ago
 
 
 
-- You were very small 👶
+Houses from long ago were different:
 
-- You couldn't walk yet
+- Made of wood and stone 🪵
 
-- You needed help with everything
+- No electricity - used candles 🕯️
 
-- You learned to crawl, then walk!
+- No running water - used wells 💧
+
+- Fireplaces for cooking and warmth 🔥
+
+- Smaller and simpler
 
 
 
-## Now You Are Bigger
+## Homes Today
 
 
 
-- You can walk and run! 🏃
+Houses today have:
 
-- You can talk and sing! 🎵
+- Electricity for lights 💡
 
-- You can play and learn! 🎮
+- Running water from taps 🚿
 
-- You are getting smarter every day!
+- Central heating 🌡️
+
+- Modern kitchens 🍳
+
+- Many rooms and comforts
+
+
+
+## How Life Was Different
+
+
+
+Long ago:
+
+- People cooked on fires
+
+- No television or computers
+
+- Traveled by walking or horses 🐴
+
+- Made things by hand ✋
+
+- Life was harder but simpler
 
 
 
@@ -763,13 +819,13 @@ You are growing bigger every day!
 
 
 
-- Look at your baby photos
+- Draw an old house and a new house
 
-- See how much you've grown!
+- Talk about what your home has
 
-- Draw a picture of yourself as a baby
+- Imagine living without electricity
 
-- Draw a picture of yourself now
+- Draw what you think a home from long ago looked like
 
 
 
@@ -777,17 +833,17 @@ You are growing bigger every day!
 
 
 
-- Everyone grows and changes
+- Homes have changed a lot over time
 
-- You learn new things every day
+- People lived differently long ago
 
-- Growing up is exciting!
+- We have many comforts today that people didn't have then!
 
       ''',
 
-      quizId: quizId++,
+      quizId: null,
 
-      assessmentType: 'quiz',
+      assessmentType: null,
 
     ),
 
@@ -801,57 +857,79 @@ You are growing bigger every day!
 
       lessonNumber: 3,
 
-      title: 'Days of the Week',
+      title: 'Kings and Queens from Long Ago',
 
-      emoji: '📅',
+      emoji: '👑',
 
       content: '''
 
-# Days of the Week 📅
+# Kings and Queens from Long Ago 👑
 
 
 
-There are seven days in a week!
+Let's learn about rulers from history!
 
 
 
-## The Seven Days
+## What is a King or Queen?
 
 
 
-1. Monday - Start of the week! 🌟
+- A king is a man who ruled a country 👑
 
-2. Tuesday - Keep going! 💪
+- A queen is a woman who ruled a country 👸
 
-3. Wednesday - Middle of the week! 🎯
+- They lived in big castles 🏰
 
-4. Thursday - Almost there! ⏰
+- They had special crowns to wear
 
-5. Friday - Fun day! 🎉
-
-6. Saturday - Weekend! 🎊
-
-7. Sunday - Rest day! 😴
+- People listened to them
 
 
 
-## What We Do Each Day
+## Famous Kings and Queens
 
 
 
-- Monday: School starts! 📚
+**King Henry VIII** 👑
 
-- Tuesday: Learning new things! 🎓
+- Lived in England long ago
 
-- Wednesday: Mid-week fun! 🎨
+- Had six wives
 
-- Thursday: More learning! ✏️
+- Built many castles
 
-- Friday: End of school week! 🎈
+- Was very powerful
 
-- Saturday: Play time! 🧸
 
-- Sunday: Family time! 👨‍👩‍👧‍👦
+
+**Queen Elizabeth I** 👸
+
+- Was a famous queen
+
+- Ruled England for a long time
+
+- Was very clever and strong
+
+- People loved her
+
+
+
+## Life in a Castle
+
+
+
+Kings and queens lived in castles:
+
+- Big stone buildings 🏰
+
+- High walls for protection
+
+- Many rooms inside
+
+- Servants to help them
+
+- Knights to protect them ⚔️
 
 
 
@@ -859,13 +937,13 @@ There are seven days in a week!
 
 
 
-- Sing the days of the week song
+- Draw a king or queen with a crown
 
-- Point to today on a calendar
+- Draw a castle
 
-- Draw what you do each day
+- Pretend to be a king or queen
 
-- Count the days until the weekend!
+- Talk about what you think castle life was like
 
 
 
@@ -873,17 +951,17 @@ There are seven days in a week!
 
 
 
-- There are 7 days in a week
+- Kings and queens ruled countries long ago
 
-- Each day has a name
+- They lived in castles
 
-- Days help us know what to do!
+- They were important people in history!
 
       ''',
 
-      quizId: quizId++,
+      quizId: null,
 
-      assessmentType: 'quiz',
+      assessmentType: null,
 
     ),
 

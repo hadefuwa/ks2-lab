@@ -365,47 +365,85 @@ Your name is unique - it belongs to you!
 
       lessonNumber: 1,
 
-      title: 'My Timeline',
+      title: 'Castles and Knights',
 
-      emoji: '📅',
+      emoji: '🏰',
 
       content: '''
 
-# My Timeline 📅
+# Castles and Knights 🏰
 
 
 
-Let's make a timeline of your life!
+Let's learn about castles and the brave knights who lived in them!
 
 
 
-## Important Events
+## What is a Castle?
 
 
 
-- When you were born 👶
+A castle is a big, strong building from long ago:
 
-- Your first birthday 🎂
+- Made of stone and wood 🪨
 
-- Learning to walk 🚶
+- Had high walls and towers
 
-- Starting school 🏫
+- A moat (water) around it sometimes 💧
 
-- Special days and holidays 🎉
+- Drawbridge to get inside 🌉
 
-
-
-## Making a Timeline
+- Protected people from enemies
 
 
 
-1. Draw a line
+## Who Lived in Castles?
 
-2. Mark important dates
 
-3. Add pictures or drawings
 
-4. Write what happened
+- Kings and queens 👑
+
+- Knights in shining armour ⚔️
+
+- Lords and ladies
+
+- Servants and workers
+
+- Many people lived together!
+
+
+
+## What Were Knights?
+
+
+
+Knights were brave warriors:
+
+- Protected the castle ⚔️
+
+- Wore armour made of metal 🛡️
+
+- Rode horses into battle 🐴
+
+- Followed a code of honour
+
+- Were very brave and strong!
+
+
+
+## Life in a Castle
+
+
+
+- Big feasts in the great hall 🍖
+
+- Knights practiced fighting
+
+- Servants cooked and cleaned
+
+- Everyone had jobs to do
+
+- Life was busy but exciting!
 
 
 
@@ -413,13 +451,15 @@ Let's make a timeline of your life!
 
 
 
-- Create your own timeline
+- Draw your own castle
 
-- Ask grown-ups about your milestones
+- Draw a knight in armour
 
-- Look at photos from different times
+- Pretend to be a knight
 
-- Draw pictures for each event
+- Build a castle with blocks
+
+- Talk about what you think castle life was like
 
 
 
@@ -427,17 +467,17 @@ Let's make a timeline of your life!
 
 
 
-- Timelines show events in order
+- Castles were strong buildings from long ago
 
-- Your life has many important moments
+- Knights were brave warriors who protected them
 
-- History is your story!
+- Many people lived and worked in castles!
 
       ''',
 
-      quizId: quizId++,
+      quizId: null,
 
-      assessmentType: 'quiz',
+      assessmentType: null,
 
     ),
 
@@ -451,69 +491,83 @@ Let's make a timeline of your life!
 
       lessonNumber: 2,
 
-      title: 'Seasons and Time',
+      title: 'Transportation Long Ago',
 
-      emoji: '🍂',
+      emoji: '🐴',
 
       content: '''
 
-# Seasons and Time 🍂
+# Transportation Long Ago 🐴
 
 
 
-The year has four seasons!
+Let's learn about how people traveled in the past!
 
 
 
-## The Four Seasons
+## How People Traveled Long Ago
 
 
 
-**Spring** 🌸
+**By Foot** 🚶
 
-- Flowers bloom
+- People walked everywhere
 
-- Baby animals are born
+- It took a long time
 
-- Weather gets warmer
+- They carried things on their backs
 
-- Days get longer
-
-
-
-**Summer** ☀️
-
-- Hot and sunny
-
-- Time for playing outside
-
-- Longest days
-
-- Holidays and fun!
+- Walking was the main way to travel
 
 
 
-**Autumn** 🍂
+**By Horse** 🐴
 
-- Leaves change color
+- Horses were very important
 
-- Weather gets cooler
+- People rode horses
 
-- Harvest time
+- Horses pulled carts and carriages 🚗
 
-- Back to school
+- Much faster than walking!
 
 
 
-**Winter** ❄️
+**By Boat** ⛵
 
-- Cold weather
+- People sailed on ships
 
-- Shortest days
+- Used wind to move
 
-- Sometimes snow
+- Traveled across water
 
-- Cozy inside time
+- Could carry lots of things
+
+
+
+**By Carriage** 🚛
+
+- Horses pulled carriages
+
+- Rich people used them
+
+- Bumpy rides on dirt roads
+
+- No engines - just horses!
+
+
+
+## Transportation Today
+
+
+
+- Cars with engines 🚗
+
+- Trains on tracks 🚂
+
+- Planes in the sky ✈️
+
+- Much faster than long ago!
 
 
 
@@ -521,13 +575,13 @@ The year has four seasons!
 
 
 
-- Draw pictures of each season
+- Draw how people traveled long ago
 
-- Talk about what you do in each season
+- Draw how we travel today
 
-- Look at the weather today
+- Compare old and new transportation
 
-- Make a seasons calendar
+- Talk about your favourite way to travel
 
 
 
@@ -535,17 +589,17 @@ The year has four seasons!
 
 
 
-- There are 4 seasons in a year
+- People traveled much slower long ago
 
-- Each season is different
+- Horses were very important
 
-- Seasons happen in order!
+- Transportation has changed a lot over time!
 
       ''',
 
-      quizId: quizId++,
+      quizId: null,
 
-      assessmentType: 'quiz',
+      assessmentType: null,
 
     ),
 
@@ -559,59 +613,91 @@ The year has four seasons!
 
       lessonNumber: 3,
 
-      title: 'Old and New',
+      title: 'Famous Explorers',
 
-      emoji: '⏰',
+      emoji: '🗺️',
 
       content: '''
 
-# Old and New ⏰
+# Famous Explorers 🗺️
 
 
 
-Some things are old, some are new!
+Let's learn about brave people who explored the world long ago!
 
 
 
-## Old Things
+## What is an Explorer?
 
 
 
-- Old toys from the past 🧸
+An explorer is someone who:
 
-- Old photos 📷
+- Travels to new places 🗺️
 
-- Old books 📚
+- Discovers things no one knew about
 
-- Old clothes 👗
+- Is brave and curious
 
-
-
-## New Things
+- Goes on adventures!
 
 
 
-- New toys 🎮
-
-- New photos on phones 📱
-
-- New books 📖
-
-- New clothes 👕
+## Famous Explorers
 
 
 
-## Comparing Old and New
+**Christopher Columbus** ⛵
+
+- Sailed across the ocean
+
+- Discovered new lands
+
+- Was very brave
+
+- Traveled in ships
 
 
 
-- Old cars vs new cars 🚗
+**Marco Polo** 🐫
 
-- Old phones vs new phones 📱
+- Traveled to faraway places
 
-- Old games vs new games 🎮
+- Went to China
 
-- Old houses vs new houses 🏠
+- Wrote about his adventures
+
+- Saw many new things
+
+
+
+## How Explorers Traveled
+
+
+
+- In ships across oceans ⛵
+
+- On horses across land 🐴
+
+- Walking through forests 🚶
+
+- Facing many dangers!
+
+
+
+## What Explorers Discovered
+
+
+
+- New countries and lands 🌍
+
+- Different animals 🦁
+
+- New foods and spices 🍎
+
+- Different ways of living
+
+- Made maps of new places 🗺️
 
 
 
@@ -619,13 +705,15 @@ Some things are old, some are new!
 
 
 
-- Look at old family photos
+- Draw an explorer on a ship
 
-- Compare old and new objects
+- Draw a map of your journey to school
 
-- Draw old and new things
+- Pretend to be an explorer
 
-- Talk about how things change
+- Talk about places you'd like to explore
+
+- Draw what you think explorers saw
 
 
 
@@ -633,17 +721,17 @@ Some things are old, some are new!
 
 
 
-- Things change over time
+- Explorers were brave people who discovered new places
 
-- Old things tell us about the past
+- They traveled long distances
 
-- New things are being made now!
+- They helped us learn about the world!
 
       ''',
 
-      quizId: quizId++,
+      quizId: null,
 
-      assessmentType: 'quiz',
+      assessmentType: null,
 
     ),
 
