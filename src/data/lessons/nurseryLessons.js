@@ -707,7 +707,7 @@ Dinosaurs were huge animals that lived a very, very long time ago!
 - They don't live anymore
 
 - We learn about them from fossils!`,
-      quizId: null,
+      quizId: 31,
       assessmentType: 'quiz',
       categoryId: null,
     }),
@@ -794,7 +794,7 @@ Let's learn about the first people in the world!
 - They were the first family
 
 - This is a special story!`,
-      quizId: null,
+      quizId: 37,
       assessmentType: 'quiz',
       categoryId: null,
     }),

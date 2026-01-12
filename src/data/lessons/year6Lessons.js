@@ -1145,7 +1145,7 @@ Let's learn about the time between the world wars!
 - Dictators rose to power
 
 - It led to World War II!`,
-      quizId: null,
+      quizId: 84,
       assessmentType: 'quiz',
       categoryId: null,
     }),
@@ -1441,7 +1441,7 @@ Let's learn about the Cold War!
 - It was tense
 
 - It ended peacefully!`,
-      quizId: null,
+      quizId: 84,
       assessmentType: 'quiz',
       categoryId: null,
     }),
@@ -1582,7 +1582,7 @@ Let's learn about the fight for civil rights!
 - They made progress
 
 - We must continue the fight!`,
-      quizId: null,
+      quizId: 84,
       assessmentType: 'quiz',
       categoryId: null,
     }),
@@ -1707,7 +1707,7 @@ Let's learn about the modern world!
 - World became connected
 
 - Life changed a lot!`,
-      quizId: null,
+      quizId: 84,
       assessmentType: 'quiz',
       categoryId: null,
     }),
@@ -1848,7 +1848,7 @@ Let's learn about recent history!
 - We're making history now
 
 - The future is ahead!`,
-      quizId: null,
+      quizId: 84,
       assessmentType: 'quiz',
       categoryId: null,
     }),
@@ -2146,7 +2146,7 @@ Let's learn how historians study the past!
 - They think critically
 
 - History helps us understand!`,
-      quizId: null,
+      quizId: 96,
       assessmentType: 'quiz',
       categoryId: null,
     }),
@@ -2289,7 +2289,7 @@ Let's learn about how history changes!
 - You're part of history
 
 - You can make a difference!`,
-      quizId: null,
+      quizId: 96,
       assessmentType: 'quiz',
       categoryId: null,
     })

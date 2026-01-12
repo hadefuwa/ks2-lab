@@ -864,7 +864,7 @@ Let's learn about life after the Roman Empire!
 - Monasteries kept learning alive
 
 - It was a time of change!`,
-      quizId: null,
+      quizId: 62,
       assessmentType: 'quiz',
       categoryId: null,
     }),
@@ -979,7 +979,7 @@ Let's learn about Jesus and the early Christians!
 - Christianity grew
 
 - It influenced history!`,
-      quizId: null,
+      quizId: 70,
       assessmentType: 'quiz',
       categoryId: null,
     }),
@@ -1094,7 +1094,7 @@ Let's learn about medieval times!
 - Knights were warriors
 
 - Feudalism was the system!`,
-      quizId: null,
+      quizId: 63,
       assessmentType: 'quiz',
       categoryId: null,
     }),
@@ -1209,7 +1209,7 @@ Let's learn about how people lived in medieval times!
 - People worked together
 
 - Villages were important!`,
-      quizId: null,
+      quizId: 62,
       assessmentType: 'quiz',
       categoryId: null,
     }),
@@ -1310,7 +1310,7 @@ Let's learn about the Crusades!
 - They had big effects
 
 - They changed history!`,
-      quizId: null,
+      quizId: 71,
       assessmentType: 'quiz',
       categoryId: null,
     }),
@@ -1526,7 +1526,7 @@ Let's learn about explorers and their journeys!
 - They changed trade
 
 - They changed the world!`,
-      quizId: null,
+      quizId: 72,
       assessmentType: 'quiz',
       categoryId: null,
     }),
@@ -1641,7 +1641,7 @@ Let's learn about the Reformation!
 - Printing press helped
 
 - It was a time of change!`,
-      quizId: null,
+      quizId: 84,
       assessmentType: 'quiz',
       categoryId: null,
     }),

@@ -3165,7 +3165,7 @@ Let's learn about the time before people could write!
 - They were hunters and gatherers
 
 - We learn from their artifacts!`,
-      quizId: null,
+      quizId: 61,
       assessmentType: 'quiz',
       categoryId: null,
     }),
@@ -3282,7 +3282,7 @@ Let's learn about important people from the Bible!
 - They teach us lessons
 
 - History includes these events!`,
-      quizId: null,
+      quizId: 52,
       assessmentType: 'quiz',
       categoryId: null,
     }),
@@ -3512,7 +3512,7 @@ Let's learn about the very first civilization!
 - They built the first cities
 
 - They were very important!`,
-      quizId: null,
+      quizId: 94,
       assessmentType: 'quiz',
       categoryId: null,
     }),
@@ -3627,7 +3627,7 @@ Let's learn about ancient China!
 - They invented many things
 
 - China was a great civilization!`,
-      quizId: null,
+      quizId: 94,
       assessmentType: 'quiz',
       categoryId: null,
     }),

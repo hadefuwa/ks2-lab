@@ -245,7 +245,7 @@ Let's learn about when dinosaurs lived!
 - Fossils tell us about them
 
 - We can learn from the past!`,
-      quizId: null,
+      quizId: 43,
       assessmentType: 'quiz',
       categoryId: null,
     }),
@@ -362,7 +362,7 @@ Let's learn about stories from the Bible!
 - They teach us lessons
 
 - History includes these stories!`,
-      quizId: null,
+      quizId: 43,
       assessmentType: 'quiz',
       categoryId: null,
     }),

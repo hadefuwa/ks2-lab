@@ -921,7 +921,7 @@ Let's learn about the kings and prophets from the Bible!
 - Prophets were messengers
 
 - These are important stories!`,
-      quizId: null,
+      quizId: 61,
       assessmentType: 'quiz',
       categoryId: null,
     }),
@@ -1294,7 +1294,7 @@ Let's learn about the Roman Empire!
 - They built amazing things
 
 - Rome was very powerful!`,
-      quizId: null,
+      quizId: 54,
       assessmentType: 'quiz',
       categoryId: null,
     }),
@@ -1409,7 +1409,7 @@ Let's learn about how people lived in ancient Rome!
 - They enjoyed entertainment
 
 - Life was different then!`,
-      quizId: null,
+      quizId: 54,
       assessmentType: 'quiz',
       categoryId: null,
     }),
@@ -1524,7 +1524,7 @@ Let's learn about why the Roman Empire fell!
 - Barbarians attacked
 
 - It was the end of an era!`,
-      quizId: null,
+      quizId: 61,
       assessmentType: 'quiz',
       categoryId: null,
     })
