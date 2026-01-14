@@ -636,6 +636,22 @@ const useDataStore = create((set, get) => ({
           else if (score >= 100) medal = 'Gold';
           else if (score >= 80) medal = 'Silver';
         }
+      } else if (lesson.title === 'Flappy Bird Game') {
+        if (score >= 15) medal = 'Platinum';
+        else if (score >= 10) medal = 'Gold';
+        else if (score >= 5) medal = 'Silver';
+      } else if (lesson.title === 'Bubble Pop Game') {
+        if (score >= 200) medal = 'Platinum';
+        else if (score >= 150) medal = 'Gold';
+        else if (score >= 100) medal = 'Silver';
+      } else if (lesson.title === 'Snake Game') {
+        if (score >= 100) medal = 'Platinum';
+        else if (score >= 70) medal = 'Gold';
+        else if (score >= 40) medal = 'Silver';
+      } else if (lesson.title === 'Target Practice Game') {
+        if (score >= 150) medal = 'Platinum';
+        else if (score >= 100) medal = 'Gold';
+        else if (score >= 50) medal = 'Silver';
       }
       
       // Count medals

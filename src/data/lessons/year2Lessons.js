@@ -31,13 +31,49 @@ Let's learn numbers from 11 to 20!
 
 
 
+<!-- QUESTION_START -->
+What number comes after 15?
+<!-- OPTIONS -->
+14|15|16|17
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+After 15 comes 16! We count: 11, 12, 13, 14, 15, 16, 17, 18, 19, 20.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What number comes before 18?
+<!-- OPTIONS -->
+16|17|18|19
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Before 18 comes 17! We count backwards: 20, 19, 18, 17, 16, and so on.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Which number is in the middle of 11 and 20?
+<!-- OPTIONS -->
+14|15|16|17
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+15 is in the middle! The numbers go: 11, 12, 13, 14, 15, 16, 17, 18, 19, 20. 15 is right in the middle.
+<!-- QUESTION_END -->
+
+
+
 ## Practice
 
 
 
 Count from 1 to 20!`,
       quizId: quizId++,
-      assessmentType: 'quiz',
+      assessmentType: 'interactive',
       categoryId: null,
     }),
 
@@ -187,6 +223,14 @@ Setting pin modes with pinMode() should be done in setup() because it only needs
 - If setup is missing, your code will not compile
 
 - You can only have one setup function per sketch
+
+
+
+## Exercise
+
+<!-- EXERCISE_START -->
+{"instruction": "Write a complete Arduino sketch with a setup() function that sets pin 13 as OUTPUT. Include both setup() and loop() functions.", "codePattern": "void\\s+setup\\s*\\(\\s*\\)", "requiredFunctions": ["setup"], "requiredStatements": ["pinMode"]}
+<!-- EXERCISE_END -->
 
 
 
@@ -416,6 +460,14 @@ On line 10|On line 9 (the previous line)|In the setup() function|In the loop() f
 <!-- EXPLANATION -->
 When the compiler reports an error on a specific line saying "expected ';' before...", the actual problem is usually on the previous line (line 9 in this case) where a semicolon is missing. The compiler only detects the error when it reaches the next line.
 <!-- QUESTION_END -->
+
+
+
+## Exercise
+
+<!-- EXERCISE_START -->
+{"instruction": "Write Arduino code with proper semicolons. Include at least one variable declaration (like int x = 5;) and one function call (like pinMode(13, OUTPUT);), both with semicolons.", "codePattern": ";", "requiredStatements": ["pinMode", "digitalWrite"]}
+<!-- EXERCISE_END -->
 
 
 
@@ -700,6 +752,14 @@ If you declare a variable inside setup(), it is local to that function and canno
 
 
 
+## Exercise
+
+<!-- EXERCISE_START -->
+{"instruction": "Declare a variable of type int and assign it a value. Example: int ledPin = 13; Then use it in your code.", "codePattern": "int\\s+\\w+\\s*=", "requiredStatements": null}
+<!-- EXERCISE_END -->
+
+
+
 ## Important Notes
 
 
@@ -944,6 +1004,14 @@ HIGH|LOW|1|Both HIGH and 1 are correct
 <!-- EXPLANATION -->
 With INPUT_PULLUP, the pin is normally HIGH. When the button is pressed, it connects the pin to ground (LOW), so LOW indicates the button is pressed. This is the opposite of what you might expect!
 <!-- QUESTION_END -->
+
+
+
+## Exercise
+
+<!-- EXERCISE_START -->
+{"instruction": "Write code to set a pin as OUTPUT using pinMode() in setup(), and use digitalWrite() in loop() to turn it HIGH.", "requiredFunctions": ["setup"], "requiredStatements": ["pinMode", "digitalWrite"]}
+<!-- EXERCISE_END -->
 
 
 
@@ -3766,148 +3834,179 @@ Let's compare the ancient civilizations we've learned about!
       emoji: '🎨',
       content: `# HTML Programming: SVG Graphics 🎨
 
-Learn how to create beautiful graphics using HTML and SVG!
+Create beautiful graphics using SVG code!
 
 ## What is SVG?
 
-SVG stands for **Scalable Vector Graphics**. It's a way to create images using code instead of drawing them. SVG images can be made bigger or smaller without losing quality!
-
-## Why Use SVG?
-
-- **Scalable**: Can be resized without losing quality
-- **Code-based**: Written in HTML/XML
-- **Interactive**: Can be animated and styled with CSS
-- **Lightweight**: Often smaller file sizes than images
-
-## Embedding SVG in HTML
-
-You can embed SVG elements directly into your HTML pages. Let's start with a simple example!
-
-## Example 1: Drawing a Circle
-
-Here's how to create a simple circle using SVG:
-
-\`\`\`html
-<!DOCTYPE html>
-<html>
-<body>
-
-<h1>My first SVG</h1>
-
-<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
-</svg>
-
-</body>
-</html>
-\`\`\`
-
-### SVG Code Explanation
-
-Let's break down each part:
-
-1. **\`<svg>\` element**: This is the root element that contains all SVG graphics
-   - \`width="100"\`: Sets the width to 100 pixels
-   - \`height="100"\`: Sets the height to 100 pixels
-   - \`xmlns="http://www.w3.org/2000/svg"\`: This is required! It tells the browser this is SVG code
-
-2. **\`<circle>\` element**: Used to draw a circle
-   - \`cx="50"\`: The x-coordinate of the circle's center (50 pixels from the left)
-   - \`cy="50"\`: The y-coordinate of the circle's center (50 pixels from the top)
-   - \`r="40"\`: The radius of the circle (40 pixels)
-   - \`stroke="green"\`: The color of the circle's outline (green)
-   - \`stroke-width="4"\`: The thickness of the outline (4 pixels)
-   - \`fill="yellow"\`: The color inside the circle (yellow)
-
-## Example 2: Multiple Shapes
-
-You can combine multiple shapes to create more complex graphics:
-
-\`\`\`html
-<!DOCTYPE html>
-<html>
-<body>
-
-<svg width="150" height="100" xmlns="http://www.w3.org/2000/svg">
-  <rect width="100%" height="100%" fill="green" />
-  <circle cx="75" cy="50" r="40" fill="yellow" />
-  <text x="75" y="60" font-size="30" text-anchor="middle" fill="red">SVG</text>
-</svg>
-
-</body>
-</html>
-\`\`\`
-
-### Breaking Down This Example
-
-1. **\`<rect>\` element**: Draws a rectangle
-   - \`width="100%"\`: Makes the rectangle as wide as the SVG container
-   - \`height="100%"\`: Makes the rectangle as tall as the SVG container
-   - \`fill="green"\`: Fills the rectangle with green color
-
-2. **\`<circle>\` element**: Draws a circle (same as before)
-   - This circle is drawn on top of the rectangle
-
-3. **\`<text>\` element**: Adds text to your SVG
-   - \`x="75"\`: Horizontal position of the text
-   - \`y="60"\`: Vertical position of the text
-   - \`font-size="30"\`: Size of the text (30 pixels)
-   - \`text-anchor="middle"\`: Centers the text at the x position
-   - \`fill="red"\`: Color of the text (red)
-
-## Important SVG Rules
-
-Since SVG is written in XML, remember these important rules:
-
-1. **All elements must be properly closed**
-   - Use \`<circle />\` or \`<circle></circle>\`
-   - Self-closing tags need the \`/\` before the \`>\`
-
-2. **XML is case-sensitive**
-   - Write all SVG elements in lowercase: \`<svg>\`, not \`<SVG>\`
-   - Attributes are also case-sensitive
-
-3. **Always use quotes for attributes**
-   - Good: \`width="100"\`
-   - Bad: \`width=100\`
+SVG stands for **Scalable Vector Graphics** - images created with code that can be resized without losing quality.
 
 ## Common SVG Elements
 
-Here are some basic SVG elements you can use:
+- **\`<circle>\`**: Draws a circle - use \`cx\`, \`cy\` for center, \`r\` for radius
+- **\`<rect>\`**: Draws a rectangle - use \`x\`, \`y\`, \`width\`, \`height\`
+- **\`<line>\`**: Draws a line - use \`x1\`, \`y1\`, \`x2\`, \`y2\`
+- **\`<text>\`**: Adds text - use \`x\`, \`y\` for position
+- **\`<ellipse>\`**: Draws an oval - use \`cx\`, \`cy\`, \`rx\`, \`ry\`
+- **\`<polygon>\`**: Draws shapes with multiple sides - use \`points\`
 
-- **\`<circle>\`**: Draws a circle
-- **\`<rect>\`**: Draws a rectangle
-- **\`<line>\`**: Draws a line
-- **\`<text>\`**: Adds text
-- **\`<ellipse>\`**: Draws an ellipse (oval)
-- **\`<polygon>\`**: Draws a polygon (shape with multiple sides)
+## Colors & Styling
 
-## Try It Yourself!
+- \`fill="color"\` - fills the shape with a color
+- \`stroke="color"\` - color of the outline
+- \`stroke-width="number"\` - thickness of the outline
 
-1. Create a new HTML file
-2. Copy one of the examples above
-3. Save it with a \`.html\` extension
-4. Open it in a web browser
-5. Try changing the colors, sizes, and positions!
+## Example
 
-## Practice Exercise
+\`\`\`html
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="100" cy="100" r="50" fill="blue" />
+</svg>
+\`\`\`
 
-Create an SVG that shows:
-- A blue rectangle as the background
-- A red circle in the center
-- White text that says "Hello SVG!"
-
-## What's Next?
-
-Once you master basic SVG shapes, you can learn about:
-- More complex shapes (polygons, paths)
-- Colors and gradients
-- Animations
-- Interactive SVG elements
-
-Have fun creating graphics with code! 🎨`,
+**Edit the code in the editor below and create your own graphics!**`,
       quizId: quizId++,
       assessmentType: 'quiz',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'technology',
+      lessonNumber: 14,
+      title: "HTML Programming: SVG Graphics - Rectangles",
+      emoji: '⬜',
+      content: `# HTML Programming: SVG Graphics - Rectangles ⬜
+
+Learn to create rectangles and squares with SVG!
+
+## Rectangle Basics
+
+- **\`<rect>\`**: Draws a rectangle
+- **\`x\`, \`y\`**: Position of the top-left corner
+- **\`width\`, \`height\`**: Size of the rectangle
+- **\`stroke\`**: Color of the outline
+- **\`stroke-width\`**: Thickness of the outline
+
+## Example
+
+\`\`\`html
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect x="50" y="50" width="100" height="100" fill="blue" />
+</svg>
+\`\`\`
+
+**Edit the code in the editor below and practice with rectangles!**`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'technology',
+      lessonNumber: 15,
+      title: "HTML Programming: SVG Graphics - Lines",
+      emoji: '📏',
+      content: `# HTML Programming: SVG Graphics - Lines 📏
+
+Learn to draw lines and create patterns with SVG!
+
+## Line Basics
+
+- **\`<line>\`**: Draws a straight line
+- **\`x1\`, \`y1\`**: Starting point coordinates
+- **\`x2\`, \`y2\`**: Ending point coordinates
+- **\`stroke\`**: Required! Lines need a stroke color to be visible
+- **\`stroke-width\`**: Thickness of the line
+
+## Example
+
+\`\`\`html
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <line x1="50" y1="50" x2="150" y2="150" stroke="black" stroke-width="2" />
+</svg>
+\`\`\`
+
+**Edit the code in the editor below and create line art!**`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'technology',
+      lessonNumber: 16,
+      title: "HTML Programming: SVG Graphics - Ellipses & Text",
+      emoji: '🔵',
+      content: `# HTML Programming: SVG Graphics - Ellipses & Text 🔵
+
+Learn to create ovals and add text to your SVG graphics!
+
+## Ellipse Basics
+
+- **\`<ellipse>\`**: Draws an oval (like a stretched circle)
+- **\`cx\`, \`cy\`**: Center point of the ellipse
+- **\`rx\`**: Horizontal radius (half the width)
+- **\`ry\`**: Vertical radius (half the height)
+- When rx = ry, you get a circle!
+
+## Text Basics
+
+- **\`<text>\`**: Adds text to your SVG
+- **\`x\`, \`y\`**: Position of the text
+- **\`font-size\`**: Size of the text
+- **\`text-anchor\`**: Alignment (middle, start, end)
+
+## Example
+
+\`\`\`html
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="100" cy="100" rx="60" ry="40" fill="purple" />
+  <text x="100" y="110" font-size="20" text-anchor="middle" fill="white">Hello</text>
+</svg>
+\`\`\`
+
+**Edit the code in the editor below and combine shapes with text!**`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'technology',
+      lessonNumber: 17,
+      title: "HTML Programming: SVG Graphics - Polygons",
+      emoji: '🔺',
+      content: `# HTML Programming: SVG Graphics - Polygons 🔺
+
+Learn to create triangles, stars, and custom shapes with polygons!
+
+## Polygon Basics
+
+- **\`<polygon>\`**: Draws a shape with multiple connected points
+- **\`points\`**: List of x,y coordinates separated by spaces
+- Each point connects to the next, and the last connects back to the first
+- Great for triangles, stars, diamonds, and custom shapes!
+
+## Example
+
+\`\`\`html
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="100,20 180,80 100,140 20,80" fill="green" />
+</svg>
+\`\`\`
+
+This creates a diamond shape by connecting 4 points!
+
+**Edit the code in the editor below and create your own polygon shapes!**`,
+      quizId: null,
+      assessmentType: null,
       categoryId: null,
     })
 

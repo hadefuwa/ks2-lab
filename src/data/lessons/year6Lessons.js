@@ -143,9 +143,45 @@ Solve these:
 
 - Check your answers
 
-- Algebra is useful!`,
+- Algebra is useful!
+
+
+
+<!-- QUESTION_START -->
+If x + 3 = 8, what is x?
+<!-- OPTIONS -->
+3|4|5|6
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+x = 5! To solve, do the opposite: 8 - 3 = 5. Check: 5 + 3 = 8 ✓
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+If y - 5 = 10, what is y?
+<!-- OPTIONS -->
+12|13|14|15
+<!-- CORRECT -->
+3
+<!-- EXPLANATION -->
+y = 15! To solve, do the opposite: 10 + 5 = 15. Check: 15 - 5 = 10 ✓
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What does a letter like x or y represent in algebra?
+<!-- OPTIONS -->
+A known number|An unknown number|A word|A symbol
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A letter represents an unknown number! We use letters like x, y, or a to stand for numbers we need to find.
+<!-- QUESTION_END -->`,
       quizId: quizId++,
-      assessmentType: 'quiz',
+      assessmentType: 'interactive',
       categoryId: null,
     }),
 
@@ -296,9 +332,45 @@ Find mean, median, mode:
 
 - Statistics help us decide
 
-- Data is everywhere!`,
+- Data is everywhere!
+
+
+
+<!-- QUESTION_START -->
+What is the mean (average) of 5, 7, 7, 9, 10?
+<!-- OPTIONS -->
+6|7|7.6|8
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+The mean is 7.6! Add all numbers: 5 + 7 + 7 + 9 + 10 = 38, then divide by 5: 38 ÷ 5 = 7.6.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What is the mode of 5, 7, 7, 9, 10?
+<!-- OPTIONS -->
+5|7|9|10
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The mode is 7! The mode is the most common number, and 7 appears twice in the list.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Which type of chart is best for showing changes over time?
+<!-- OPTIONS -->
+Bar chart|Line graph|Pie chart|Table
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A line graph is best for showing changes over time! It shows trends and patterns as time passes.
+<!-- QUESTION_END -->`,
       quizId: quizId++,
-      assessmentType: 'quiz',
+      assessmentType: 'interactive',
       categoryId: null,
     }),
 
@@ -437,9 +509,45 @@ Solve these:
 
 - Check your work
 
-- Practice makes perfect!`,
+- Practice makes perfect!
+
+
+
+<!-- QUESTION_START -->
+Sarah has £20. She buys 3 books at £4 each. How much money does she have left?
+<!-- OPTIONS -->
+£6|£7|£8|£9
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+Sarah has £8 left! First find the cost: 3 × £4 = £12. Then find remaining: £20 - £12 = £8.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Which strategy is helpful when solving word problems?
+<!-- OPTIONS -->
+Skip reading the problem|Draw a diagram|Guess the answer|Ignore the numbers
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Drawing a diagram is very helpful! It helps you visualize the problem and understand what you need to find.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What should you do after solving a problem?
+<!-- OPTIONS -->
+Forget about it|Check if your answer makes sense|Change the numbers|Start over
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+You should check if your answer makes sense! Always review your work to make sure the answer is reasonable.
+<!-- QUESTION_END -->`,
       quizId: quizId++,
-      assessmentType: 'quiz',
+      assessmentType: 'interactive',
       categoryId: null,
     }),
 

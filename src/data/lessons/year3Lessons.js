@@ -103,6 +103,42 @@ Try these:
 
 
 
+<!-- QUESTION_START -->
+What is 2 × 6?
+<!-- OPTIONS -->
+10|11|12|13
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+2 × 6 = 12! This means 2 + 2 + 2 + 2 + 2 + 2 = 12, or 6 + 6 = 12.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What is 5 × 4?
+<!-- OPTIONS -->
+18|19|20|21
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+5 × 4 = 20! This means 5 + 5 + 5 + 5 = 20, or 4 + 4 + 4 + 4 + 4 = 20.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What is 2 × 9?
+<!-- OPTIONS -->
+16|17|18|19
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+2 × 9 = 18! This means 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 18, or 9 + 9 = 18.
+<!-- QUESTION_END -->
+
+
+
 ## Fun Activities
 
 
@@ -129,7 +165,7 @@ Try these:
 
 - You can do it!`,
       quizId: quizId++,
-      assessmentType: 'quiz',
+      assessmentType: 'interactive',
       categoryId: null,
     }),
 
@@ -214,6 +250,42 @@ Try these:
 
 
 
+<!-- QUESTION_START -->
+What is 8 ÷ 2?
+<!-- OPTIONS -->
+2|3|4|5
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+8 ÷ 2 = 4! If you have 8 sweets and share them equally between 2 friends, each friend gets 4 sweets.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What is 15 ÷ 5?
+<!-- OPTIONS -->
+2|3|4|5
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+15 ÷ 5 = 3! If you have 15 pencils and put 5 in each box, you need 3 boxes.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What is 20 ÷ 4?
+<!-- OPTIONS -->
+3|4|5|6
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+20 ÷ 4 = 5! If you have 20 items and share them into 4 equal groups, each group has 5 items.
+<!-- QUESTION_END -->
+
+
+
 ## Fun Activities
 
 
@@ -240,7 +312,7 @@ Try these:
 
 - You're learning well!`,
       quizId: quizId++,
-      assessmentType: 'quiz',
+      assessmentType: 'interactive',
       categoryId: null,
     }),
 
@@ -355,9 +427,45 @@ A fraction shows part of a whole.
 
 - The bottom number is total parts
 
-- Fractions are everywhere!`,
+- Fractions are everywhere!
+
+
+
+<!-- QUESTION_START -->
+If you cut a pizza into 2 equal pieces and eat 1 piece, what fraction did you eat?
+<!-- OPTIONS -->
+1/3|1/2|1/4|2/3
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+You ate 1/2 (half) of the pizza! When you cut something into 2 equal parts and take 1 part, that's half.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+If you cut a cake into 4 equal pieces and eat 1 piece, what fraction did you eat?
+<!-- OPTIONS -->
+1/2|1/3|1/4|1/5
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+You ate 1/4 (one quarter) of the cake! When you cut something into 4 equal parts and take 1 part, that's a quarter.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What is the top number of a fraction called?
+<!-- OPTIONS -->
+Denominator|Numerator|Fraction|Whole
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The top number is called the numerator! It tells us how many parts we have. The bottom number is the denominator.
+<!-- QUESTION_END -->`,
       quizId: quizId++,
-      assessmentType: 'quiz',
+      assessmentType: 'interactive',
       categoryId: null,
     }),
 

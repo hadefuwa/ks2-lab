@@ -15,7 +15,7 @@ export function getNurseryLessons(startLessonId, startQuizId) {
       lessonNumber: 1,
       title: "Counting to 10",
       emoji: '🔢',
-      content: `# Counting to 10
+      content: `# Counting to 10 🔢
 
 
 
@@ -49,13 +49,11 @@ Let's learn to count from 1 to 10!
 
 
 
-## Practice Counting
+## How to Play
 
 
 
-Count along with me:
-
-- 1, 2, 3, 4, 5, 6, 7, 8, 9, 10!
+Tap the numbers to hear them! Then play the game to test what you learned! 🎮
 
 
 
@@ -81,7 +79,7 @@ Count along with me:
 
 - 10 is the biggest number we're learning today`,
       quizId: quizId++,
-      assessmentType: 'quiz',
+      assessmentType: 'maths-game',
       categoryId: null,
     }),
 
@@ -92,7 +90,7 @@ Count along with me:
       lessonNumber: 2,
       title: "Counting to 20",
       emoji: '🔢',
-      content: `# Counting to 20
+      content: `# Counting to 20 🔢
 
 
 
@@ -146,13 +144,11 @@ Now let's learn to count even higher - from 1 to 20!
 
 
 
-## Practice Counting
+## How to Play
 
 
 
-Count along with me:
-
-- 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20!
+Tap the numbers to hear them! Then play the game to test what you learned! 🎮
 
 
 
@@ -180,7 +176,7 @@ Count along with me:
 
 - Practice counting every day to get better`,
       quizId: quizId++,
-      assessmentType: 'quiz',
+      assessmentType: 'maths-game',
       categoryId: null,
     }),
 
@@ -384,77 +380,22 @@ Type the symbols using Shift + number keys:
       categoryId: null,
     }),
 
+    // Phonics Lessons for 2-3 year olds - Lessons 1-8
     new Lesson({
       id: lessonId++,
       yearId: 'nursery',
       subjectId: 'english',
       lessonNumber: 1,
-      title: "Learning the Alphabet",
-      emoji: '🔤',
-      content: `# Learning the Alphabet 🔤
+      title: "Phonics: Vowel Sound Recognition",
+      emoji: '🔊',
+      content: `# Phonics: Vowel Sound Recognition 🔊
 
+Learn to recognize vowel sounds!
 
-
-Let's learn our ABCs!
-
-
-
-## The Alphabet Song
-
-
-
-A, B, C, D, E, F, G
-
-H, I, J, K, L, M, N, O, P
-
-Q, R, S, T, U, V
-
-W, X, Y, and Z
-
-
-
-## Letters A-E
-
-
-
-A is for Apple 🍎
-
-B is for Ball ⚽
-
-C is for Cat 🐱
-
-D is for Dog 🐶
-
-E is for Elephant 🐘
-
-
-
-## Fun Activities
-
-
-
-- Sing the alphabet song together!
-
-- Point to letters in books
-
-- Find letters around the house
-
-- Trace letters with your finger
-
-
-
-## Remember
-
-
-
-- There are 26 letters in the alphabet
-
-- Each letter has a name and a sound
-
-- We use letters to make words!`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
-      categoryId: null,
+Tap the letters to hear their sounds!`,
+      quizId: null,
+      assessmentType: 'phonics',
+      categoryId: 'phonics',
     }),
 
     new Lesson({
@@ -462,72 +403,16 @@ E is for Elephant 🐘
       yearId: 'nursery',
       subjectId: 'english',
       lessonNumber: 2,
-      title: "Learning Letter Sounds",
+      title: "Phonics: Consonant Sound Recognition",
       emoji: '🔊',
-      content: `# Learning Letter Sounds 🔊
+      content: `# Phonics: Consonant Sound Recognition 🔊
 
+Learn to recognize consonant sounds!
 
-
-Letters make sounds! Let's learn some!
-
-
-
-## Letter Sounds
-
-
-
-A says "ah" like in Apple 🍎
-
-B says "buh" like in Ball ⚽
-
-C says "cuh" like in Cat 🐱
-
-D says "duh" like in Dog 🐶
-
-E says "eh" like in Elephant 🐘
-
-
-
-## More Sounds
-
-
-
-F says "fuh" like in Fish 🐟
-
-G says "guh" like in Goat 🐐
-
-H says "huh" like in Hat 🎩
-
-I says "ih" like in Igloo 🧊
-
-J says "juh" like in Jam 🍓
-
-
-
-## Practice
-
-
-
-- Make the sound for each letter
-
-- Find things that start with each sound
-
-- Play "I spy" with letter sounds!
-
-
-
-## Remember
-
-
-
-- Every letter has a sound
-
-- Sounds help us read words
-
-- Practice makes perfect!`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
-      categoryId: null,
+Tap the letters to hear their sounds!`,
+      quizId: null,
+      assessmentType: 'phonics',
+      categoryId: 'phonics',
     }),
 
     new Lesson({
@@ -535,76 +420,16 @@ J says "juh" like in Jam 🍓
       yearId: 'nursery',
       subjectId: 'english',
       lessonNumber: 3,
-      title: "Simple Words",
-      emoji: '📖',
-      content: `# Simple Words 📖
+      title: "Phonics: Consonant-Vowel Blending",
+      emoji: '🔊',
+      content: `# Phonics: Consonant-Vowel Blending 🔊
 
+Learn to blend consonant and vowel sounds together!
 
-
-Let's learn some simple words!
-
-
-
-## Three-Letter Words
-
-
-
-Cat 🐱 - C-A-T
-
-Dog 🐶 - D-O-G
-
-Hat 🎩 - H-A-T
-
-Sun ☀️ - S-U-N
-
-Car 🚗 - C-A-R
-
-
-
-## More Words
-
-
-
-Ball ⚽ - B-A-L-L
-
-Book 📚 - B-O-O-K
-
-Cup ☕ - C-U-P
-
-Pen ✏️ - P-E-N
-
-Toy 🧸 - T-O-Y
-
-
-
-## Fun Activities
-
-
-
-- Read simple words together
-
-- Point to words in picture books
-
-- Make words with letter blocks
-
-- Draw pictures of words
-
-
-
-## Remember
-
-
-
-- Words are made of letters
-
-- Letters make sounds
-
-- Sounds make words!
-
-- Reading is fun!`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
-      categoryId: null,
+Tap the blends to hear them spoken slowly then blended.`,
+      quizId: null,
+      assessmentType: 'phonics',
+      categoryId: 'phonics',
     }),
 
     new Lesson({
@@ -1028,6 +853,91 @@ You are growing bigger every day!
       quizId: 32,
       assessmentType: 'quiz',
       categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 4,
+      title: "Phonics: Vowel-Consonant Blending",
+      emoji: '🔊',
+      content: `# Phonics: Vowel-Consonant Blending 🔊
+
+Learn to blend vowel and consonant sounds together!
+
+Watch the letters slide together as you hear the sounds!`,
+      quizId: null,
+      assessmentType: 'phonics',
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 5,
+      title: "Phonics: Sound-to-Letter Matching",
+      emoji: '🔊',
+      content: `# Phonics: Sound-to-Letter Matching 🔊
+
+Match sounds to letters!
+
+Look at the pictures and listen to the starting sounds.`,
+      quizId: null,
+      assessmentType: 'phonics',
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 6,
+      title: "Phonics: Initial Sound Identification",
+      emoji: '🔊',
+      content: `# Phonics: Initial Sound Identification 🔊
+
+Identify the starting sound of words!
+
+Watch the animated scenes and listen carefully.`,
+      quizId: null,
+      assessmentType: 'phonics',
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 7,
+      title: "Phonics: CVC Word Construction",
+      emoji: '🔊',
+      content: `# Phonics: CVC Word Construction 🔊
+
+Build simple words by dragging letters!
+
+Listen to the word, then drag letters to build it.`,
+      quizId: null,
+      assessmentType: 'phonics',
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 8,
+      title: "Phonics: Review and Consolidation",
+      emoji: '🔊',
+      content: `# Phonics: Review and Consolidation 🔊
+
+Review everything you've learned!
+
+Complete mixed activities from all previous lessons.`,
+      quizId: null,
+      assessmentType: 'phonics',
+      categoryId: 'phonics',
     })
 
   ];

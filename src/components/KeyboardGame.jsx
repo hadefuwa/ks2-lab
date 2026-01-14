@@ -64,6 +64,7 @@ function KeyboardGame({ lesson }) {
   // Numbers array (0-9)
   const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
   const [currentNumberIndex, setCurrentNumberIndex] = useState(0);
+  const [shuffledNumbers, setShuffledNumbers] = useState([]);
   
   // Symbols that require shift
   const symbols = ['!', '"', '£', '$', '%', '^', '&', '*', '(', ')'];
@@ -80,6 +81,17 @@ function KeyboardGame({ lesson }) {
     ')': '0',
   };
   const [currentSymbolIndex, setCurrentSymbolIndex] = useState(0);
+  const [shuffledSymbols, setShuffledSymbols] = useState([]);
+  
+  // Shuffle function (Fisher-Yates algorithm)
+  const shuffleArray = (array) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
   
   const [score, setScore] = useState(0);
   const [correctKeys, setCorrectKeys] = useState(0);
@@ -127,6 +139,8 @@ function KeyboardGame({ lesson }) {
     setCurrentNumberIndex(0);
     setCurrentSymbolIndex(0);
     setArrowId(null);
+    setShuffledNumbers([]);
+    setShuffledSymbols([]);
     
     // Reset refs
     isPlayingRef.current = false;
@@ -189,7 +203,8 @@ function KeyboardGame({ lesson }) {
           }
           
           // Move to next number
-          if (currentNumberIndex < numbers.length - 1) {
+          const numbersToUse = shuffledNumbers.length > 0 ? shuffledNumbers : numbers;
+          if (currentNumberIndex < numbersToUse.length - 1) {
             spawnNextNumber();
           } else {
             // Completed all numbers
@@ -230,7 +245,8 @@ function KeyboardGame({ lesson }) {
           }
           
           // Move to next symbol
-          if (currentSymbolIndex < symbols.length - 1) {
+          const symbolsToUse = shuffledSymbols.length > 0 ? shuffledSymbols : symbols;
+          if (currentSymbolIndex < symbolsToUse.length - 1) {
             spawnNextSymbol();
           } else {
             // Completed all symbols
@@ -246,8 +262,14 @@ function KeyboardGame({ lesson }) {
           } else if (/[0-9]/.test(key) && !isShiftPressed) {
             // Wrong number pressed (only count if shift is not pressed)
             setWrongKeys(prev => prev + 1);
+          } else if (isShiftPressed && code && code.startsWith('Digit')) {
+            // Shift + number key was pressed
+            const pressedNumber = code.replace('Digit', '');
+            if (pressedNumber !== expectedKey) {
+              // Shift + wrong number pressed
+              setWrongKeys(prev => prev + 1);
+            }
           }
-          // Other keys (including Shift+wrong numbers) are ignored (not counted as wrong)
         }
         return;
       }
@@ -298,7 +320,7 @@ function KeyboardGame({ lesson }) {
       window.removeEventListener('keydown', handleKeyPress);
       if (arrowTimerRef.current) clearTimeout(arrowTimerRef.current);
     };
-  }, [currentArrow, currentLetter, currentNumber, currentSymbol, currentLetterIndex, currentNumberIndex, currentSymbolIndex, isAZMode, isNumbersMode, isSymbolsMode, isWASDMode]);
+  }, [currentArrow, currentLetter, currentNumber, currentSymbol, currentLetterIndex, currentNumberIndex, currentSymbolIndex, isAZMode, isNumbersMode, isSymbolsMode, isWASDMode, shuffledNumbers, shuffledSymbols]);
 
   const startGame = () => {
     // Clear any existing timers
@@ -309,6 +331,16 @@ function KeyboardGame({ lesson }) {
     isGameOverRef.current = false;
     arrowIntervalRef.current = initialArrowInterval;
     arrowLifetimeRef.current = initialArrowLifetime;
+    
+    // Shuffle numbers for numbers mode
+    if (isNumbersMode) {
+      setShuffledNumbers(shuffleArray(numbers));
+    }
+    
+    // Shuffle symbols for symbols mode
+    if (isSymbolsMode) {
+      setShuffledSymbols(shuffleArray(symbols));
+    }
     
     // Use a single state update batch
     setIsPlaying(true);
@@ -359,14 +391,17 @@ function KeyboardGame({ lesson }) {
   const spawnNextNumber = () => {
     if (!isPlayingRef.current || isGameOverRef.current) return;
     
-    if (currentNumberIndex >= numbers.length) {
+    // Use shuffled numbers if available, otherwise fall back to original order
+    const numbersToUse = shuffledNumbers.length > 0 ? shuffledNumbers : numbers;
+    
+    if (currentNumberIndex >= numbersToUse.length) {
       setTimeout(() => {
         endGame();
       }, 0);
       return;
     }
     
-    const number = numbers[currentNumberIndex];
+    const number = numbersToUse[currentNumberIndex];
     setCurrentNumber(number);
     setCurrentNumberIndex(prev => prev + 1);
   };
@@ -374,14 +409,17 @@ function KeyboardGame({ lesson }) {
   const spawnNextSymbol = () => {
     if (!isPlayingRef.current || isGameOverRef.current) return;
     
-    if (currentSymbolIndex >= symbols.length) {
+    // Use shuffled symbols if available, otherwise fall back to original order
+    const symbolsToUse = shuffledSymbols.length > 0 ? shuffledSymbols : symbols;
+    
+    if (currentSymbolIndex >= symbolsToUse.length) {
       setTimeout(() => {
         endGame();
       }, 0);
       return;
     }
     
-    const symbol = symbols[currentSymbolIndex];
+    const symbol = symbolsToUse[currentSymbolIndex];
     setCurrentSymbol(symbol);
     setCurrentSymbolIndex(prev => prev + 1);
   };

@@ -39,13 +39,49 @@ Let's learn to recognise numbers!
 
 
 
+<!-- QUESTION_START -->
+Which number is shown by the emoji 3️⃣?
+<!-- OPTIONS -->
+One|Two|Three|Four
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+3️⃣ represents the number Three! It's the third number when we count.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+How many fingers do you show when you hold up one hand with all fingers up?
+<!-- OPTIONS -->
+3|4|5|6
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+When you hold up one hand with all fingers up, you show 5 fingers!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What number comes between 2 and 4?
+<!-- OPTIONS -->
+1|2|3|5
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+The number 3 comes between 2 and 4! We count: 1, 2, 3, 4, 5.
+<!-- QUESTION_END -->
+
+
+
 ## Practice
 
 
 
 Point to the number 3!`,
       quizId: quizId++,
-      assessmentType: 'challenge',
+      assessmentType: 'interactive',
       categoryId: null,
     }),
 
@@ -1037,6 +1073,126 @@ Draw a hexagon on the canvas!`,
       content: `# Digital Drawing 🎨
 
 Draw an octagon on the canvas!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'technology',
+      lessonNumber: 7,
+      title: "Flappy Bird Game",
+      emoji: '🐦',
+      content: `# Flappy Bird Game 🐦
+
+Learn to use the keyboard with this fun game!
+
+## How to Play
+
+- Press **SPACE** to make the bird jump
+- Navigate through the pipes
+- Try to get as far as possible!
+
+## Scoring System
+
+- **Bronze**: 1-4 points
+- **Silver**: 5-9 points
+- **Gold**: 10-14 points
+- **Platinum**: 15+ points
+
+You need at least **Bronze** (1 point) to progress to the next lesson!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'technology',
+      lessonNumber: 8,
+      title: "Bubble Pop Game",
+      emoji: '🫧',
+      content: `# Bubble Pop Game 🫧
+
+Practice your mouse clicking skills!
+
+## How to Play
+
+- **Click** on the colorful bubbles to pop them
+- You have 30 seconds to pop as many as you can
+- Each bubble is worth 10 points
+
+## Scoring System
+
+- **Bronze**: 10-99 points
+- **Silver**: 100-149 points
+- **Gold**: 150-199 points
+- **Platinum**: 200+ points
+
+You need at least **Bronze** (10 points) to progress to the next lesson!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'technology',
+      lessonNumber: 9,
+      title: "Snake Game",
+      emoji: '🐍',
+      content: `# Snake Game 🐍
+
+Learn to use arrow keys with this classic game!
+
+## How to Play
+
+- Use **Arrow Keys** (↑ ↓ ← →) to move the snake
+- Eat the red food to grow and score points
+- Avoid hitting the walls or yourself!
+
+## Scoring System
+
+- **Bronze**: 10-39 points
+- **Silver**: 40-69 points
+- **Gold**: 70-99 points
+- **Platinum**: 100+ points
+
+You need at least **Bronze** (10 points) to progress to the next lesson!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'technology',
+      lessonNumber: 10,
+      title: "Target Practice Game",
+      emoji: '🎯',
+      content: `# Target Practice Game 🎯
+
+Improve your mouse precision and accuracy!
+
+## How to Play
+
+- **Click** on the targets that appear on screen
+- Smaller targets are worth more points!
+- You have 30 seconds to score as many points as possible
+
+## Scoring System
+
+- **Bronze**: 10-49 points
+- **Silver**: 50-99 points
+- **Gold**: 100-149 points
+- **Platinum**: 150+ points
+
+You need at least **Bronze** (10 points) to progress to the next lesson!`,
       quizId: null,
       assessmentType: null,
       categoryId: null,

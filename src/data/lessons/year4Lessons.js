@@ -123,9 +123,45 @@ Try these:
 
 - Add carried numbers
 
-- Check your work!`,
+- Check your work!
+
+
+
+<!-- QUESTION_START -->
+What is 23 × 4?
+<!-- OPTIONS -->
+88|90|92|94
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+23 × 4 = 92! Multiply 4 × 3 = 12 (write 2, carry 1), then 4 × 2 = 8, add the carried 1 = 9. Answer: 92.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What is 45 × 6?
+<!-- OPTIONS -->
+260|268|270|272
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+45 × 6 = 270! Multiply 6 × 5 = 30 (write 0, carry 3), then 6 × 4 = 24, add the carried 3 = 27. Answer: 270.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+In long multiplication, what do you do when a multiplication gives you a number greater than 9?
+<!-- OPTIONS -->
+Write it all down|Carry the tens digit|Skip it|Start over
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+You carry the tens digit! For example, if you get 12, you write 2 and carry 1 to add to the next multiplication.
+<!-- QUESTION_END -->`,
       quizId: quizId++,
-      assessmentType: 'quiz',
+      assessmentType: 'interactive',
       categoryId: null,
     }),
 
@@ -246,9 +282,45 @@ Convert these:
 
 - Practice helps you understand
 
-- You're doing great!`,
+- You're doing great!
+
+
+
+<!-- QUESTION_START -->
+What decimal is the same as 1/2?
+<!-- OPTIONS -->
+0.1|0.25|0.5|0.75
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+1/2 = 0.5! To convert, divide 1 by 2: 1 ÷ 2 = 0.5. Half is the same as 0.5.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What decimal is the same as 1/4?
+<!-- OPTIONS -->
+0.1|0.25|0.5|0.75
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+1/4 = 0.25! To convert, divide 1 by 4: 1 ÷ 4 = 0.25. One quarter is the same as 0.25.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What fraction is the same as 0.5?
+<!-- OPTIONS -->
+1/3|1/2|1/4|3/4
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+0.5 = 1/2! The decimal 0.5 represents half, which is the same as the fraction 1/2.
+<!-- QUESTION_END -->`,
       quizId: quizId++,
-      assessmentType: 'quiz',
+      assessmentType: 'interactive',
       categoryId: null,
     }),
 
@@ -363,9 +435,45 @@ Convert these:
 
 - Practice measuring
 
-- Measurement is useful!`,
+- Measurement is useful!
+
+
+
+<!-- QUESTION_START -->
+How many millimeters are in 1 centimeter?
+<!-- OPTIONS -->
+5|10|15|20
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+There are 10 millimeters in 1 centimeter! 10 mm = 1 cm. Millimeters are very small units.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+How many centimeters are in 1 meter?
+<!-- OPTIONS -->
+50|100|150|200
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+There are 100 centimeters in 1 meter! 100 cm = 1 m. Meters are used for medium-sized things.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+How many grams are in 1 kilogram?
+<!-- OPTIONS -->
+100|500|1000|2000
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+There are 1000 grams in 1 kilogram! 1000 g = 1 kg. Kilograms are used for heavier things.
+<!-- QUESTION_END -->`,
       quizId: quizId++,
-      assessmentType: 'quiz',
+      assessmentType: 'interactive',
       categoryId: null,
     }),
 
@@ -1715,6 +1823,15 @@ print("Hello, World!")
 3. Run it
 4. Change the message to say hello to yourself!
 
+<!-- EXERCISE_START -->
+{
+  "instruction": "Write a program that prints 'Hello, World!'",
+  "expectedOutput": "Hello, World!",
+  "expectedContains": "Hello, World!",
+  "codePattern": null
+}
+<!-- EXERCISE_END -->
+
 ## Important Notes
 
 - Python is case-sensitive (capital letters matter)
@@ -1803,10 +1920,10 @@ I am 8 years old
 
 ### New Line
 
-Use \`\\\\n\` to start a new line:
+Use \`\\n\` to start a new line:
 
 \`\`\`python
-print("Line 1\\\\nLine 2\\\\nLine 3")
+print("Line 1\\nLine 2\\nLine 3")
 \`\`\`
 
 **Output:**
@@ -1818,11 +1935,11 @@ Line 3
 
 ### Tabs
 
-Use \`\\\\t\` to add a tab (spacing):
+Use \`\\t\` to add a tab (spacing):
 
 \`\`\`python
-print("Name:\\\\tAlice")
-print("Age:\\\\t8")
+print("Name:\\tAlice")
+print("Age:\\t8")
 \`\`\`
 
 **Output:**
@@ -2114,6 +2231,8 @@ next_year = age + 1
 print("Next year you will be", next_year)
 \`\`\`
 
+**Important:** Make sure the user enters a number! If they type text instead of a number, the program will show an error. For now, just remember to enter numbers when asked.
+
 ## Converting Input Types
 
 ### String to Integer
@@ -2193,7 +2312,7 @@ name = input("What is your name? ")
 age = int(input("How old are you? "))
 favorite_subject = input("What is your favorite subject? ")
 
-print("\\\\nHere's what I learned:")
+print("\\nHere's what I learned:")
 print("Name:", name)
 print("Age:", age)
 print("Favorite subject:", favorite_subject)
@@ -2313,11 +2432,13 @@ Both conditions must be true:
 
 \`\`\`python
 age = 10
-has_ticket = True
+has_ticket = True  # True means yes, False means no
 
 if age >= 8 and has_ticket:
     print("You can enter!")
 \`\`\`
+
+**Note:** \`True\` and \`False\` are special values in Python. They represent yes/no or on/off states.
 
 ### Using \`or\`
 
@@ -2605,7 +2726,7 @@ print("You got it!")
 - \`for\` loops repeat a specific number of times
 - \`while\` loops repeat while a condition is true
 - Always indent code inside loops
-- Be careful with \`while\` loops - make sure they can end!
+- Be careful with \`while\` loops - make sure they can end! (Otherwise you'll get an infinite loop that never stops)
 - Use \`range()\` to control how many times a loop runs`,
       quizId: quizId++,
       assessmentType: 'quiz',
@@ -3043,6 +3164,8 @@ Now that you've learned the basics, let's combine everything to build fun projec
 
 ## Project 1: Number Guessing Game
 
+**Note:** We use \`import random\` to get access to Python's random number functions. This lets us generate random numbers for our game!
+
 \`\`\`python
 import random
 
@@ -3120,6 +3243,7 @@ else:
 
 # Question 2
 answer2 = input("What is the capital of France? ")
+# .lower() converts the answer to lowercase so "Paris", "PARIS", and "paris" all work
 if answer2.lower() == "paris":
     print("Correct!")
     score = score + 1
@@ -3134,7 +3258,7 @@ if answer3 == "20":
 else:
     print("Wrong! The answer is 20")
 
-print("\\\\nYour score:", score, "out of 3")
+print("\\nYour score:", score, "out of 3")
 \`\`\`
 
 ## Project 4: Drawing a Pattern
@@ -3154,7 +3278,7 @@ for i in range(36):
         t.left(90)
     t.left(10)
 
-turtle.done()
+turtle.done()  # Keeps the window open so you can see your drawing
 \`\`\`
 
 ## Project 5: Story Generator
@@ -3167,7 +3291,7 @@ place = input("Enter a place: ")
 animal = input("Enter an animal: ")
 verb = input("Enter an action (like 'run'): ")
 
-print("\\\\nHere's your story:")
+print("\\nHere's your story:")
 print("Once upon a time,", name)
 print("went to", place)
 print("and saw a", animal)
@@ -3413,17 +3537,145 @@ This lesson introduces you to the Fusion 360 interface and navigation.
 
 
 
+## The Canvas
+
+The Canvas is the main central area where your model is displayed and where you will do most of your work. You can right-click in this space to access a menu of frequently used tools or context-sensitive functions.
+
+
+
+## The View Cube
+
+Located within the canvas area, the View Cube allows you to rotate your model to view it from different angles. Clicking the "home" icon on the cube returns the model to the standard view. Right-clicking the cube offers additional options like changing perspective.
+
+
+
+<!-- QUESTION_START -->
+What is the main purpose of the View Cube in Fusion 360?
+<!-- OPTIONS -->
+To save your designs|To rotate your model and view it from different angles|To access file operations|To organize your projects
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The View Cube is located within the canvas area and allows you to rotate your model to view it from different angles. Clicking the "home" icon returns the model to the standard view.
+<!-- QUESTION_END -->
+
+
+
+## The Data Panel
+
+Accessed via a button in the top left, the Data Panel is used to organize files and create new projects. Since Fusion is cloud-based, all files saved here are stored in the cloud. It includes refresh and search functions.
+
+
+
+<!-- QUESTION_START -->
+Where are files stored when you save them in Fusion 360's Data Panel?
+<!-- OPTIONS -->
+On your local computer only|In the cloud|On an external hard drive|In a separate application
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Since Fusion 360 is cloud-based, all files saved in the Data Panel are stored in the cloud, allowing you to access your designs from anywhere.
+<!-- QUESTION_END -->
+
+
+
+## The Application Bar
+
+The Application Bar is the top bar that contains standard file operations like save, export, undo, and redo. It functions similarly to a web browser, allowing you to open multiple designs in different tabs. On the far right, you can access your Autodesk profile to change preferences or sign out.
+
+
+
+<!-- QUESTION_START -->
+What can you do with the Application Bar in Fusion 360?
+<!-- OPTIONS -->
+Only view your model|Save, export, undo, and redo operations|Only create new projects|Only access the toolbar
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Application Bar contains standard file operations like save, export, undo, and redo. It functions similarly to a web browser, allowing you to open multiple designs in different tabs.
+<!-- QUESTION_END -->
+
+
+
+## The Toolbar
+
+The Toolbar is the primary location for accessing tools. It features various tabs for different workflows, such as Solid modeling, Surface modeling, Mesh, Sheet Metal, and Utilities. The toolbar is dynamic; for example, entering "sketch mode" will display additional, relevant options.
+
+
+
+<!-- QUESTION_START -->
+What happens to the Toolbar when you enter sketch mode in Fusion 360?
+<!-- OPTIONS -->
+It disappears|It displays additional, relevant options|It becomes locked|It changes color
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The toolbar is dynamic and context-sensitive. When you enter sketch mode, it will display additional, relevant options for sketching.
+<!-- QUESTION_END -->
+
+
+
+## The Navigation Bar
+
+Located below the canvas, the Navigation Bar provides options for viewing the model (like panning or zooming). While useful for trackpad users, mouse users often prefer using the scroll wheel for these actions. The right side of this bar contains display settings to change visual styles.
+
+
+
+<!-- QUESTION_START -->
+Where is the Navigation Bar located in Fusion 360?
+<!-- OPTIONS -->
+At the top of the screen|Below the canvas|On the left side|On the right side
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Navigation Bar is located below the canvas and provides options for viewing the model, such as panning or zooming.
+<!-- QUESTION_END -->
+
+
+
+## The Browser
+
+Found on the left side of the screen, the Browser displays the hierarchy of your assembly, including all components, bodies, and sketches. You can toggle the visibility of any item here by clicking the "eye" icon.
+
+
+
+<!-- QUESTION_START -->
+How can you toggle the visibility of items in the Browser?
+<!-- OPTIONS -->
+By double-clicking them|By clicking the "eye" icon|By right-clicking them|By dragging them
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Browser displays the hierarchy of your assembly. You can toggle the visibility of any item by clicking the "eye" icon next to it.
+<!-- QUESTION_END -->
+
+
+
+## The Timeline
+
+Located at the bottom, the Timeline tracks the history of your design. You can play back the creation process or step backward and forward to modify specific elements or features created earlier in the workflow.
+
+
+
+<!-- QUESTION_START -->
+What does the Timeline in Fusion 360 allow you to do?
+<!-- OPTIONS -->
+Only view your current design|Track the history of your design and modify previous features|Only save your work|Only export your files
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Timeline tracks the history of your design. You can play back the creation process or step backward and forward to modify specific elements or features created earlier in the workflow.
+<!-- QUESTION_END -->
+
+
+
 ## What is Fusion 360?
-
-
 
 Fusion 360 is a cloud-based 3D CAD (Computer-Aided Design), CAM (Computer-Aided Manufacturing), and CAE (Computer-Aided Engineering) software platform. It's used to design, test, and manufacture products.
 
 
 
 ## Key Features
-
-
 
 - **3D Modeling**: Create complex 3D models and assemblies
 
@@ -3437,37 +3689,9 @@ Fusion 360 is a cloud-based 3D CAD (Computer-Aided Design), CAM (Computer-Aided 
 
 
 
-## Getting Started
-
-
-
-### Interface Overview
-
-
-
-The Fusion 360 interface consists of:
-
-
-
-1. **Application Bar**: Top menu with File, Tools, and Help
-
-2. **Toolbar**: Context-sensitive tools for your current workspace
-
-3. **Browser**: Shows your design history and components
-
-4. **ViewCube**: Navigate and orient your view
-
-5. **Timeline**: Shows your design history and allows you to edit past actions
-
-
-
 ## Workspaces
 
-
-
 Fusion 360 has different workspaces for different tasks:
-
-
 
 - **Design**: Create 3D models
 
@@ -3483,8 +3707,6 @@ Fusion 360 has different workspaces for different tasks:
 
 ## Basic Navigation
 
-
-
 - **Orbit**: Middle mouse button (or Shift + Right-click)
 
 - **Pan**: Shift + Middle mouse button (or Middle mouse button)
@@ -3497,8 +3719,6 @@ Fusion 360 has different workspaces for different tasks:
 
 ## Creating Your First Project
 
-
-
 1. Click "New Project" in the Data Panel
 
 2. Name your project
@@ -3509,8 +3729,6 @@ Fusion 360 has different workspaces for different tasks:
 
 ## Important Notes
 
-
-
 - Fusion 360 is free for students and hobbyists
 
 - Your designs are saved to the cloud automatically
@@ -3519,7 +3737,7 @@ Fusion 360 has different workspaces for different tasks:
 
 - The interface adapts to your current task`,
       quizId: quizId++,
-      assessmentType: 'quiz',
+      assessmentType: 'interactive',
       categoryId: 'fusion360',
     }),
 
@@ -3528,163 +3746,217 @@ Fusion 360 has different workspaces for different tasks:
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 12,
-      title: "Fusion 360 Step 2: Sketching",
+      title: "Fusion 360 Step 1: Sketching",
       emoji: '✏️',
-      content: `# Fusion 360 Step 2: Sketching
+      content: `# Fusion 360 Step 1: Sketching
 
-## Fusion Sketching Explained: How to Build Clean, Accurate Designs (Step 2)
+## Learn Autodesk Fusion in 10 Easy Steps - Step 1 (2025/2026)
 
-**Topic**: 2D sketching basics, constraints, and dimensions.
+**Topic**: Creating a simple smartphone model using 2D sketches, extrusion, and fillets.
 
 **YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=YVSURhX8Qu0&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=2&pp=iAQB)
 
+This tutorial guides beginners through creating a simple smartphone model using 2D sketches, extrusion, and fillets.
 
 
-## What is a Sketch?
 
+## Initial Setup
 
+Before starting, restore default settings via the user profile icon (top right) > Preferences > Restore Defaults. The unit of measurement is set to millimeters using the Document Settings in the browser.
 
-A sketch is a 2D drawing that forms the foundation of 3D models. In Fusion 360, you create 3D objects by starting with 2D sketches and then extruding, revolving, or sweeping them.
 
 
+<!-- QUESTION_START -->
+How do you restore default settings in Fusion 360?
+<!-- OPTIONS -->
+Through the Data Panel|Through the user profile icon (top right) > Preferences > Restore Defaults|Through the Timeline|Through the Browser
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+You restore default settings via the user profile icon in the top right, then go to Preferences > Restore Defaults.
+<!-- QUESTION_END -->
 
-## Creating a Sketch
 
 
+## Saving and Project Management
 
-1. Click "Create Sketch" in the toolbar
+Fusion is cloud-based. You start by opening the Data Panel, creating a new project named "smartphone," and entering that folder.
 
-2. Select a plane (XY, XZ, or YZ) or a face on an existing object
 
-3. The sketch environment activates
 
+### Components
 
+A new component named "smartphone" is created to contain the design. Components help organize your work and keep related parts together.
 
-## Sketch Tools
 
 
+### Saving
 
-### Line Tool
+The file is explicitly saved as "smartphone" to ensure progress is stored in the cloud.
 
-Creates straight lines between two points.
 
 
+<!-- QUESTION_START -->
+Where are Fusion 360 files stored?
+<!-- OPTIONS -->
+Only on your local computer|In the cloud|On an external drive|In a separate folder on your desktop
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Fusion 360 is cloud-based, so all files are stored in the cloud, allowing you to access your designs from anywhere.
+<!-- QUESTION_END -->
 
-- Click to set start point
 
-- Click again to set end point
 
-- Press Escape to finish
+## Creating the Base Shape (Sketching)
 
+A sketch is created on the XY plane (blue plane). A Center Rectangle is used, starting from the origin to constrain the model. Dimensions are typed in directly: 145 mm length and 70 mm width (using the Tab key to switch between dimensions).
 
 
-### Rectangle Tool
 
-Creates rectangles quickly.
+<!-- QUESTION_START -->
+What tool is used to create the base rectangle for the smartphone?
+<!-- OPTIONS -->
+2-Point Rectangle|Center Rectangle|3-Point Rectangle|Line Tool
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A Center Rectangle is used, starting from the origin to constrain the model. This helps keep the design centered and properly positioned.
+<!-- QUESTION_END -->
 
 
 
-- **2-Point Rectangle**: Click two opposite corners
+<!-- QUESTION_START -->
+How do you switch between dimension fields when entering values?
+<!-- OPTIONS -->
+Click with the mouse|Use the Tab key|Use the Enter key|Use the Space key
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+You use the Tab key to switch between dimension fields when entering values directly.
+<!-- QUESTION_END -->
 
-- **3-Point Rectangle**: Define width, then height
 
-- **Center Rectangle**: Click center, then corner
 
+## 3D Extrusion
 
+The Extrude tool turns the 2D rectangle into a 3D body. A thickness of 7 mm is applied. This action creates "Body 1" in the browser and hides the original sketch. The timeline at the bottom records this history.
 
-### Circle Tool
 
-Creates circles.
 
+<!-- QUESTION_START -->
+What happens to the original sketch when you extrude it?
+<!-- OPTIONS -->
+It is deleted|It is hidden|It remains visible|It is moved to a different location
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+When you extrude a sketch, the original sketch is hidden. The timeline records this action, and "Body 1" is created in the browser.
+<!-- QUESTION_END -->
 
 
-- **Center Diameter**: Click center, drag to set radius
 
-- **2-Point Circle**: Click two points on the circle
+## Adding Fillets (Rounding Edges)
 
-- **3-Point Circle**: Click three points
+The Fillet tool creates curved edges. All side edges of the smartphone body are selected. A radius of 2 mm is applied to round off the phone's corners.
 
 
 
-### Arc Tool
+<!-- QUESTION_START -->
+What radius is used for the fillets on the smartphone edges?
+<!-- OPTIONS -->
+1 mm|2 mm|3 mm|5 mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A radius of 2 mm is applied to round off the phone's corners, creating smooth, curved edges.
+<!-- QUESTION_END -->
 
-Creates curved segments.
 
 
+## Creating the Camera Bump
 
-- **3-Point Arc**: Start, end, and point on arc
+A new sketch is added to the back face of the phone body. A Center Diameter Circle of 10 mm is drawn. Sketch Dimensions are used to position the circle 10 mm from the top edge and 10 mm from the side edge. The circle is extruded outwards by 2 mm to create the bump.
 
-- **Center Point Arc**: Center, start, end
 
 
+<!-- QUESTION_START -->
+How far from the edges is the camera circle positioned?
+<!-- OPTIONS -->
+5 mm|10 mm|15 mm|20 mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The camera circle is positioned 10 mm from the top edge and 10 mm from the side edge using Sketch Dimensions.
+<!-- QUESTION_END -->
 
-## Constraints
 
-Constraints define relationships between sketch elements:
 
+## Creating Patterns
 
+Instead of drawing multiple cameras manually, the Rectangular Pattern tool is used. The Object Type is changed to "Features" to select just the camera bump extrusion. The X-axis (red) is selected for direction. A spacing of 25 mm creates a row of three camera bumps.
 
-- **Horizontal/Vertical**: Aligns lines to axes
 
-- **Coincident**: Makes points touch
 
-- **Parallel/Perpendicular**: Sets line relationships
+<!-- QUESTION_START -->
+What tool is used to create multiple camera bumps instead of drawing them manually?
+<!-- OPTIONS -->
+Circular Pattern|Rectangular Pattern|Mirror Tool|Copy Tool
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Rectangular Pattern tool is used to create multiple camera bumps efficiently. The Object Type is changed to "Features" to select just the camera bump extrusion.
+<!-- QUESTION_END -->
 
-- **Tangent**: Makes curves touch smoothly
 
-- **Equal**: Makes dimensions the same
 
-- **Dimension**: Sets exact measurements
+<!-- QUESTION_START -->
+What spacing is used between the camera bumps in the pattern?
+<!-- OPTIONS -->
+20 mm|25 mm|30 mm|35 mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A spacing of 25 mm creates a row of three camera bumps using the Rectangular Pattern tool.
+<!-- QUESTION_END -->
 
 
 
-## Dimensioning
+## Finishing Touches
 
+Small fillets of 0.3 mm are applied to the edges of the camera bumps to smooth them out. The design is saved to complete the tutorial.
 
 
-Add dimensions to control sizes:
 
+<!-- QUESTION_START -->
+What size fillets are applied to the camera bump edges?
+<!-- OPTIONS -->
+0.1 mm|0.3 mm|0.5 mm|1 mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Small fillets of 0.3 mm are applied to the edges of the camera bumps to smooth them out as a finishing touch.
+<!-- QUESTION_END -->
 
 
-1. Click "Dimension" tool
 
-2. Select the element to dimension
+## Key Concepts Learned
 
-3. Click where to place the dimension
-
-4. Enter the value
-
-
-
-## Example: Drawing a Square
-
-
-
-1. Create a new sketch on the XY plane
-
-2. Use Rectangle tool to draw a rectangle
-
-3. Add Equal constraint to make it square
-
-4. Add Dimension to set size (e.g., 50mm)
-
-5. Click "Finish Sketch"
-
-
+- **Sketching**: Creating 2D shapes on planes
+- **Extrusion**: Turning 2D sketches into 3D bodies
+- **Fillets**: Rounding edges for a smoother appearance
+- **Patterns**: Creating multiple copies of features efficiently
+- **Dimensions**: Precise measurements for accurate modeling
 
 ## Important Notes
 
-
-
-- Sketches must be fully constrained (black) before extruding
-
-- Blue elements are under-constrained
-
-- Red elements have conflicts
-
-- Always finish your sketch before creating 3D features`,
+- Always save your work regularly
+- Use the Tab key to switch between dimension fields
+- The Timeline records all your design history
+- Patterns save time compared to manual copying
+- Small fillets add professional finishing touches`,
       quizId: quizId++,
-      assessmentType: 'quiz',
+      assessmentType: 'interactive',
       categoryId: 'fusion360',
     }),
 
@@ -3693,177 +3965,239 @@ Add dimensions to control sizes:
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 13,
-      title: "Fusion 360 Step 3: Extrude & Fillets",
-      emoji: '📦',
-      content: `# Fusion 360 Step 3: Extrude & Fillets
+      title: "Fusion 360 Step 2: Coat Hanger (Sweeps)",
+      emoji: '👔',
+      content: `# Fusion 360 Step 2: Coat Hanger (Sweeps)
 
-## Learn Autodesk Fusion - Extrude & Fillets (Step 3)
+## Learn Autodesk Fusion in 10 Easy Steps - Step 2 (2025/2026)
 
-**Topic**: Turning sketches into 3D shapes.
+**Topic**: Creating a coat hanger using sketching, curves, construction lines, and sweeping.
 
-**YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=jk4UbpjCPVI&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=3&pp=iAQB)
+**YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=YVSURhX8Qu0&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=2&pp=iAQB)
 
+This tutorial guides you through creating a coat hanger using the Sweep tool, which extrudes a profile along a path.
 
 
-## What is Extrude?
 
+## Project Setup and Saving
 
+The video starts by saving the new file. A new project folder named "coat hanger" is created via the drop-down menu, or by selecting "New Project" in the Data Panel. A new component named "coat hanger" is also created to contain the design.
 
-Extrude is the most fundamental 3D operation. It takes a 2D sketch and extends it into the third dimension, creating a 3D solid.
 
 
+<!-- QUESTION_START -->
+How do you create a new project in Fusion 360?
+<!-- OPTIONS -->
+Through the Timeline|Through the Data Panel by selecting "New Project"|Through the Browser|Through the Toolbar
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A new project folder can be created via the drop-down menu in the Data Panel, or by selecting "New Project" in the Data Panel. This helps organize your designs.
+<!-- QUESTION_END -->
 
-## Extrude Tool
 
-Located in the Create menu, Extrude converts sketches into 3D objects.
 
+## Sketching the Path
 
+A new sketch is started on the ZX plane. The Line Tool is used to draw the profile of the coat hanger.
 
-## Types of Extrusion
 
 
+### Creating the Path Lines
 
-### New Body
+- A vertical line is drawn up from the center point, constrained to 90 degrees, and set to 60 mm in length. The line turns black, indicating it is fully defined/constrained.
 
-Creates a new separate solid body.
+- A horizontal line is drawn at a right angle, 50 mm long.
 
+- A vertical line is drawn downwards, 140 mm long.
 
+- Another horizontal line is drawn outwards, 50 mm long.
 
-### Join
+- A final vertical line is drawn upwards, 20 mm long.
 
-Adds material to an existing body.
 
 
+<!-- QUESTION_START -->
+What does it mean when a line turns black in a Fusion 360 sketch?
+<!-- OPTIONS -->
+The line is selected|The line is fully defined/constrained|The line is locked|The line is hidden
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+When a line turns black in Fusion 360, it means the line is fully defined/constrained. This indicates that all dimensions and constraints have been applied, and the line cannot move.
+<!-- QUESTION_END -->
 
-### Cut
 
-Removes material from an existing body.
 
+<!-- QUESTION_START -->
+What is the length of the first vertical line in the coat hanger path?
+<!-- OPTIONS -->
+50 mm|60 mm|140 mm|20 mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The first vertical line is drawn up from the center point and set to 60 mm in length. This forms the top part of the coat hanger.
+<!-- QUESTION_END -->
 
 
-### Intersect
 
-Keeps only the overlapping volume.
+<!-- QUESTION_START -->
+What is the length of the longest vertical line in the coat hanger path?
+<!-- OPTIONS -->
+60 mm|50 mm|140 mm|20 mm
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+The longest vertical line in the path is 140 mm long, drawn downwards to form the main body of the coat hanger.
+<!-- QUESTION_END -->
 
 
 
-## Extrusion Options
+## Sketch Fillets
 
+The Sketch Fillet tool is used to round the sharp corners of the path. A 10 mm radius is applied to each corner. The presenter notes that while modeling fillets are generally preferred, sketch fillets are used here for the path.
 
 
-### Distance
 
-Extrudes a specific distance in one direction.
+<!-- QUESTION_START -->
+What radius is used for the sketch fillets on the coat hanger path?
+<!-- OPTIONS -->
+5 mm|10 mm|15 mm|20 mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A 10 mm radius is applied to each corner using the Sketch Fillet tool. This rounds the sharp corners of the path to create smoother transitions.
+<!-- QUESTION_END -->
 
 
 
-- **One Side**: Extrudes in one direction only
+<!-- QUESTION_START -->
+Why are sketch fillets used instead of modeling fillets for the path?
+<!-- OPTIONS -->
+Sketch fillets are faster|Sketch fillets are used here for the path, though modeling fillets are generally preferred|Sketch fillets are more accurate|Sketch fillets are required
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+While modeling fillets are generally preferred, sketch fillets are used here for the path. This is a design choice for this particular tutorial.
+<!-- QUESTION_END -->
 
-- **Two Sides**: Extrudes equally in both directions
 
-- **Symmetric**: Same as two sides
 
+## Sketching the Profile
 
+A second sketch is created, this time on the XY plane. A Center Rectangle is drawn starting from the center point. The dimensions are set to 60 mm width and 5 mm height (using Tab to switch between fields).
 
-### To Object
 
-Extrudes until it reaches another object or face.
 
+The sketches are renamed in the browser for clarity: "Path" for the first sketch and "Profile" for the second.
 
 
-### All
 
-Extrudes through all objects in the path.
+<!-- QUESTION_START -->
+What plane is used for the profile sketch?
+<!-- OPTIONS -->
+ZX plane|XY plane|YZ plane|Any plane
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The profile sketch is created on the XY plane, while the path sketch was created on the ZX plane. This allows the profile to be swept along the path.
+<!-- QUESTION_END -->
 
 
 
-## Example: Creating a Box
+<!-- QUESTION_START -->
+What tool is used to create the profile rectangle?
+<!-- OPTIONS -->
+2-Point Rectangle|Center Rectangle|3-Point Rectangle|Line Tool
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A Center Rectangle is drawn starting from the center point. This ensures the profile is centered and properly positioned for the sweep operation.
+<!-- QUESTION_END -->
 
 
 
-1. Create a sketch with a rectangle (50mm x 30mm)
+<!-- QUESTION_START -->
+What are the dimensions of the profile rectangle?
+<!-- OPTIONS -->
+50 mm width and 5 mm height|60 mm width and 5 mm height|60 mm width and 10 mm height|50 mm width and 10 mm height
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The profile rectangle dimensions are set to 60 mm width and 5 mm height. The Tab key is used to switch between dimension fields when entering values.
+<!-- QUESTION_END -->
 
-2. Finish the sketch
 
-3. Click "Extrude"
 
-4. Select the rectangle
+## Sweeping the Profile
 
-5. Set distance to 20mm
+The Sweep tool is selected from the Create menu. The rectangle (Profile sketch) is selected as the profile, and the line drawing (Path sketch) is selected as the path. This action extrudes the rectangle shape along the line path to create the 3D hanger shape.
 
-6. Click OK
 
 
+<!-- QUESTION_START -->
+What tool is used to create the 3D coat hanger shape?
+<!-- OPTIONS -->
+Extrude|Revolve|Sweep|Loft
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+The Sweep tool is used to extrude the rectangle profile along the line path, creating the 3D coat hanger shape. This is the key operation that turns the 2D sketches into a 3D object.
+<!-- QUESTION_END -->
 
-Result: A 50mm x 30mm x 20mm box!
 
 
+<!-- QUESTION_START -->
+What is selected first when using the Sweep tool?
+<!-- OPTIONS -->
+The path|The profile|Either one|The plane
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+When using the Sweep tool, the profile (the rectangle) is selected first, then the path (the line drawing) is selected. This tells Fusion 360 to move the profile along the path.
+<!-- QUESTION_END -->
 
-## Other Basic 3D Features
 
 
+## Finishing Touches
 
-### Revolve
+The resulting body is renamed to "hanger" in the browser. Fillets of 0.5 mm are added to the end faces of the hanger to round off the sharp edges. The project is saved to complete the tutorial.
 
-Rotates a sketch around an axis to create cylindrical objects.
 
 
+<!-- QUESTION_START -->
+What size fillets are added to the end faces of the hanger?
+<!-- OPTIONS -->
+0.3 mm|0.5 mm|1 mm|2 mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Fillets of 0.5 mm are added to the end faces of the hanger to round off the sharp edges, giving it a more finished appearance.
+<!-- QUESTION_END -->
 
-### Sweep
 
-Moves a profile along a path.
 
+## Key Concepts Learned
 
-
-### Loft
-
-Creates a smooth transition between multiple profiles.
-
-
-
-## Modifying Extrusions
-
-
-
-After creating an extrude, you can:
-
-
-
-- Edit it from the timeline
-
-- Change the distance
-
-- Switch between Join, Cut, and New Body
-
-- Adjust the direction
-
-
-
-## Best Practices
-
-
-
-- Always fully constrain sketches before extruding
-
-- Use descriptive names for your features
-
-- Keep sketches simple - one feature per sketch when possible
-
-- Use the timeline to edit past operations
+- **Sketching on Different Planes**: Creating sketches on ZX and XY planes for different purposes
+- **Line Tool**: Drawing connected lines to create a path
+- **Constraints**: Fully constraining sketches so lines turn black
+- **Sketch Fillets**: Rounding corners in 2D sketches
+- **Center Rectangle**: Creating centered profiles for sweeping
+- **Sweep Tool**: Extruding a profile along a path to create 3D shapes
+- **Modeling Fillets**: Adding finishing touches to 3D bodies
+- **Naming Sketches**: Organizing your work by renaming sketches in the browser
 
 
 
 ## Important Notes
 
-
-
-- Extrude only works on closed profiles (no gaps)
-
-- Open profiles can be used for surfaces
-
-- The direction arrow shows extrusion direction
-
-- Negative distances extrude in opposite direction`,
+- Always save your work regularly
+- Use the Tab key to switch between dimension fields
+- Fully constrain your sketches (lines should turn black)
+- Rename sketches and bodies for better organization
+- Sketch fillets can be used, but modeling fillets are generally preferred
+- The Sweep tool requires both a profile and a path`,
       quizId: quizId++,
       assessmentType: 'quiz',
       categoryId: 'fusion360',
@@ -3874,203 +4208,300 @@ After creating an extrude, you can:
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 14,
-      title: "Fusion 360 Step 4: Sweeps & Construction Lines",
-      emoji: '📐',
-      content: `# Fusion 360 Step 4: Sweeps & Construction Lines
+      title: "Fusion 360 Step 3: Greek Vase (Revolve & Splines)",
+      emoji: '🏺',
+      content: `# Fusion 360 Step 3: Greek Vase (Revolve & Splines)
 
-## Learn Autodesk Fusion - Sweeps & Construction Lines (Step 4)
+## Learn Autodesk Fusion in 10 Easy Steps - Step 3 (2025/2026)
 
-**Topic**: Creating complex pipes or rails using the Sweep command.
+**Topic**: Creating a 3D model of a Greek vase using reference images, splines, and the revolve tool.
 
 **YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=RN41OedpMJ4&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=4&pp=iAQB)
 
+This tutorial guides you through creating a Greek vase using reference images, splines for smooth curves, and the Revolve tool to create the 3D shape.
 
 
-## Understanding Constraints
 
+## Setup and Saving
 
+The project is saved as "Greek vase" and a new component with the same name is created to house the design.
 
-Constraints are rules that control how sketch elements relate to each other. They ensure your sketch behaves predictably when you make changes.
 
 
+<!-- QUESTION_START -->
+What is the project name for this tutorial?
+<!-- OPTIONS -->
+Vase|Greek vase|Ancient vase|Ceramic vase
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The project is saved as "Greek vase" and a new component with the same name is created to house the design. This helps organize your work.
+<!-- QUESTION_END -->
 
-## Geometric Constraints
 
 
+## Inserting and Calibrating a Canvas
 
-These control the shape and relationships:
+An image of a Greek vase is inserted from the computer onto the ZX plane. This reference image helps guide the modeling process.
 
 
 
-### Horizontal/Vertical
+### Calibration
 
-Forces lines to be perfectly horizontal or vertical.
+To ensure the model is the correct size, the canvas is calibrated. By right-clicking the canvas in the browser and selecting "Calibrate," two points (top and bottom of the vase) are clicked, and the distance is set to 300 mm.
 
 
 
-### Parallel
+### Positioning
 
-Makes two or more lines parallel to each other.
+The canvas is edited to align the center of the vase image with the vertical axis. This ensures the model will be centered correctly when revolved.
 
 
 
-### Perpendicular
+<!-- QUESTION_START -->
+What plane is the canvas image inserted onto?
+<!-- OPTIONS -->
+XY plane|ZX plane|YZ plane|Any plane
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The image of the Greek vase is inserted onto the ZX plane. This plane is used because the vase profile will be revolved around a vertical axis.
+<!-- QUESTION_END -->
 
-Makes two lines meet at a 90-degree angle.
 
 
+<!-- QUESTION_START -->
+How do you calibrate a canvas in Fusion 360?
+<!-- OPTIONS -->
+Through the Toolbar|By right-clicking the canvas in the browser and selecting "Calibrate"|Through the Timeline|Through the Data Panel
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+To calibrate a canvas, you right-click the canvas in the browser and select "Calibrate." Then you click two points (top and bottom of the vase) and set the distance.
+<!-- QUESTION_END -->
 
-### Tangent
 
-Makes a line or arc touch a curve smoothly.
 
+<!-- QUESTION_START -->
+What distance is set when calibrating the vase canvas?
+<!-- OPTIONS -->
+200 mm|250 mm|300 mm|350 mm
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+When calibrating the canvas, the distance between the top and bottom of the vase is set to 300 mm. This ensures the model will be the correct size.
+<!-- QUESTION_END -->
 
 
-### Coincident
 
-Makes points or endpoints touch.
+## Sketching the Profile
 
+A new sketch is started on the same plane as the canvas. The profile of the vase is traced using different tools.
 
 
-### Midpoint
 
-Places a point at the middle of a line.
+### Line Tool
 
+Used for the straight sections at the base and top of the vase. These straight lines help create the flat surfaces.
 
 
-### Concentric
 
-Makes circles or arcs share the same center point.
+### Fit Point Spline
 
+Used to trace the curved outer edge of the vase. This tool creates smooth curves using control points, which can be adjusted with "handles" to match the reference image closely. Splines are perfect for creating organic, flowing curves.
 
 
-### Equal
 
-Makes selected elements the same size.
+<!-- QUESTION_START -->
+What tool is used to trace the curved outer edge of the vase?
+<!-- OPTIONS -->
+Line Tool|Arc Tool|Fit Point Spline|Circle Tool
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+The Fit Point Spline tool is used to trace the curved outer edge of the vase. This tool creates smooth curves using control points that can be adjusted with "handles" to match the reference image.
+<!-- QUESTION_END -->
 
 
 
-### Symmetric
+<!-- QUESTION_START -->
+What are the control points on a spline called?
+<!-- OPTIONS -->
+Nodes|Handles|Points|Vertices
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The control points on a spline can be adjusted with "handles" to match the reference image closely. These handles allow you to fine-tune the curve shape.
+<!-- QUESTION_END -->
 
-Makes elements mirror each other across a line.
 
 
+### Closing the Sketch
 
-## Dimensional Constraints
+Straight lines are drawn up the center axis (300 mm) and across the top and bottom to connect the profile. The shape turns blue, indicating it is a closed profile. A closed profile is required for the Revolve tool to work.
 
 
 
-These control the size:
+<!-- QUESTION_START -->
+What does it mean when a sketch shape turns blue?
+<!-- OPTIONS -->
+The shape is selected|The shape is a closed profile|The shape is locked|The shape is hidden
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+When a sketch shape turns blue, it indicates it is a closed profile. A closed profile is required for operations like Revolve to create a solid 3D body.
+<!-- QUESTION_END -->
 
 
 
-### Dimension Tool
+<!-- QUESTION_START -->
+What is the length of the center axis line?
+<!-- OPTIONS -->
+250 mm|300 mm|350 mm|400 mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The center axis line is drawn 300 mm long, matching the calibrated height of the vase. This line will serve as the axis of revolution.
+<!-- QUESTION_END -->
 
-Sets exact measurements.
 
 
+## Revolving the Profile
 
-- **Linear Dimension**: Distance between two points
+The Revolve tool is selected from the Create menu. This tool rotates a 2D profile around an axis to create a 3D object.
 
-- **Angular Dimension**: Angle between two lines
 
-- **Radial Dimension**: Radius of circles/arcs
 
-- **Diameter Dimension**: Diameter of circles
+### Profile Selection
 
+The closed sketch region is selected as the profile to be revolved.
 
 
-## Constraint Colors
 
+### Axis Selection
 
+The vertical center line is selected as the axis of revolution. This is the line that was drawn up the center (300 mm long).
 
-- **Black**: Fully constrained (locked in place)
 
-- **Blue**: Under-constrained (can still move)
 
-- **Red**: Over-constrained (conflicts exist)
+### Revolution
 
-- **Orange**: Driven dimension (calculated, not set)
+The profile is rotated 360 degrees to create the full 3D body of the vase. This creates a symmetrical, round object from the 2D profile.
 
 
 
-## Fully Constraining Sketches
+<!-- QUESTION_START -->
+What tool is used to create the 3D vase shape from the 2D profile?
+<!-- OPTIONS -->
+Extrude|Revolve|Sweep|Loft
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Revolve tool is used to rotate the 2D profile around an axis to create the 3D vase shape. This is perfect for creating symmetrical, round objects.
+<!-- QUESTION_END -->
 
 
 
-A fully constrained sketch is black and cannot move. This is ideal because:
+<!-- QUESTION_START -->
+What is selected as the axis of revolution?
+<!-- OPTIONS -->
+A horizontal line|The vertical center line|Any line|The top edge
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The vertical center line (the 300 mm line drawn up the center) is selected as the axis of revolution. This line determines how the profile will be rotated.
+<!-- QUESTION_END -->
 
 
 
-- Prevents accidental changes
+<!-- QUESTION_START -->
+How many degrees is the profile rotated?
+<!-- OPTIONS -->
+180 degrees|270 degrees|360 degrees|90 degrees
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+The profile is rotated 360 degrees to create the full 3D body of the vase. This creates a complete, symmetrical object.
+<!-- QUESTION_END -->
 
-- Makes your design predictable
 
-- Required for parametric modeling
 
+## Hollowing and Finishing
 
+After creating the solid vase, it needs to be hollowed out and finished with fillets.
 
-## Example: Constraining a Rectangle
 
 
+### Shell Tool
 
-1. Draw a rectangle (currently blue - under-constrained)
+The Shell tool is selected to hollow out the solid body. The top face of the vase is clicked, and a thickness of 3 mm is applied. This creates a hollow interior while maintaining the outer shape.
 
-2. Add Horizontal constraint to top and bottom lines
 
-3. Add Vertical constraint to side lines
 
-4. Add Equal constraint to make it square
+<!-- QUESTION_START -->
+What tool is used to hollow out the vase?
+<!-- OPTIONS -->
+Extrude|Revolve|Shell|Cut
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+The Shell tool is used to hollow out the solid body. The top face is selected, and a thickness of 3 mm is applied to create the hollow interior.
+<!-- QUESTION_END -->
 
-5. Add Dimension to set size (50mm)
 
-6. Sketch turns black - fully constrained!
 
+<!-- QUESTION_START -->
+What thickness is applied when using the Shell tool?
+<!-- OPTIONS -->
+2 mm|3 mm|4 mm|5 mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A thickness of 3 mm is applied when using the Shell tool. This creates the wall thickness of the hollow vase.
+<!-- QUESTION_END -->
 
 
-## Over-Constraining
 
+### Fillets
 
+Small fillets (e.g., 0.3 mm) are added to the edges to smooth them out. This gives the vase a more polished, finished appearance.
 
-Too many constraints create conflicts:
 
 
+<!-- QUESTION_START -->
+What size fillets are typically added to the edges?
+<!-- OPTIONS -->
+0.1 mm|0.3 mm|0.5 mm|1 mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Small fillets of 0.3 mm are added to the edges to smooth them out. This gives the vase a more polished, finished appearance.
+<!-- QUESTION_END -->
 
-- Fusion 360 shows red elements
 
-- You must remove conflicting constraints
 
-- Check the warning message for guidance
+## Key Concepts Learned
 
-
-
-## Best Practices
-
-
-
-1. Add geometric constraints first
-
-2. Then add dimensions
-
-3. Constrain in logical order
-
-4. Use constraints instead of dimensions when possible
-
-5. Keep sketches simple and organized
+- **Canvas/Reference Images**: Using images as guides for modeling
+- **Canvas Calibration**: Setting the correct scale for reference images
+- **Line Tool**: Creating straight sections of a profile
+- **Fit Point Spline**: Creating smooth, organic curves
+- **Closed Profiles**: Ensuring sketches are closed for 3D operations
+- **Revolve Tool**: Rotating a 2D profile around an axis to create 3D objects
+- **Shell Tool**: Hollowing out solid bodies
+- **Fillets**: Adding finishing touches to smooth edges
 
 
 
 ## Important Notes
 
-
-
-- Constraints are essential for parametric design
-
-- Fully constrained sketches are more reliable
-
-- You can delete constraints from the browser
-
-- Use "Show Constraints" to see all active constraints`,
+- Always calibrate reference images to ensure correct scale
+- Splines are perfect for creating organic, flowing curves
+- A closed profile is required for the Revolve tool
+- The axis of revolution determines how the profile rotates
+- Shell tool creates hollow objects with specified wall thickness
+- Small fillets add professional finishing touches
+- The Revolve tool is ideal for creating symmetrical, round objects`,
       quizId: quizId++,
       assessmentType: 'quiz',
       categoryId: 'fusion360',
@@ -4081,193 +4512,294 @@ Too many constraints create conflicts:
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 15,
-      title: "Fusion 360 Step 5: Revolve & Splines",
-      emoji: '🔄',
-      content: `# Fusion 360 Step 5: Revolve & Splines
+      title: "Fusion 360 Step 4: Engine Block (Extruded Cuts & Patterns)",
+      emoji: '🔧',
+      content: `# Fusion 360 Step 4: Engine Block (Extruded Cuts & Patterns)
 
-## Learn Autodesk Fusion - Revolve & Splines (Step 5)
+## Learn Autodesk Fusion in 10 Easy Steps - Step 4 (2025/2026)
 
-**Topic**: Creating rounded/cylindrical objects and using reference images.
+**Topic**: Creating an engine block shape using extruded cuts and pattern tools.
 
 **YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=jlJNlLaslrk&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=5&pp=iAQB)
 
+This tutorial demonstrates how to "sculpt" by removing material, creating an engine block using extruded cuts and pattern tools.
 
 
-## What is Revolve?
 
+## Setup and Base Shape
 
+The file is saved as "block" and a new component named "block" is created to house the design.
 
-Revolve rotates a 2D profile around an axis to create cylindrical, spherical, or toroidal (donut-shaped) objects.
 
 
+### Sketch
 
-## When to Use Revolve
+A Center Rectangle is drawn on the XY plane with dimensions 430mm x 600mm. This creates the base shape for the engine block.
 
 
 
-Perfect for creating:
+### Extrude
 
-- Cylinders and tubes
+The rectangle is extruded by 300mm to create a 3D block. This solid block will serve as the base material that will be "sculpted" by removing material.
 
-- Bowls and cups
 
-- Wheels and pulleys
 
-- Bottles and containers
+<!-- QUESTION_START -->
+What are the dimensions of the base rectangle?
+<!-- OPTIONS -->
+400mm x 600mm|430mm x 600mm|430mm x 650mm|450mm x 600mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A Center Rectangle is drawn on the XY plane with dimensions 430mm x 600mm. This creates the base shape for the engine block.
+<!-- QUESTION_END -->
 
-- Any rotationally symmetric object
 
 
+<!-- QUESTION_START -->
+How much is the rectangle extruded to create the 3D block?
+<!-- OPTIONS -->
+250mm|300mm|350mm|400mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The rectangle is extruded by 300mm to create a 3D block. This solid block will serve as the base material for the engine block.
+<!-- QUESTION_END -->
 
-## Revolve Tool
 
-Located in the Create menu, similar to Extrude but creates rotational geometry.
 
+## Creating the First Cut (Extruded Cut)
 
+A sketch is created on the top surface of the block to begin removing material.
 
-## Creating a Revolve
 
 
+### Construction Line
 
-1. Create a sketch with a profile (half the cross-section)
+A line is drawn from the center point to the top edge (90 degrees). Pressing 'X' toggles it to a dotted construction line, meaning it aids drawing but isn't part of the final geometry. Construction lines help position other sketch elements but don't create features.
 
-2. Draw an axis line (centerline) for rotation
 
-3. Finish the sketch
 
-4. Click "Revolve"
+<!-- QUESTION_START -->
+How do you toggle a line to a construction line in Fusion 360?
+<!-- OPTIONS -->
+Press 'X'|Press 'C'|Press 'L'|Right-click and select "Construction"
+<!-- CORRECT -->
+0
+<!-- EXPLANATION -->
+Pressing 'X' toggles a line to a dotted construction line. Construction lines aid drawing but aren't part of the final geometry - they help position other elements.
+<!-- QUESTION_END -->
 
-5. Select the profile
 
-6. Select the axis
 
-7. Set the angle (usually 360°)
+<!-- QUESTION_START -->
+What is the purpose of a construction line?
+<!-- OPTIONS -->
+It creates a feature|It aids drawing but isn't part of the final geometry|It cuts material|It adds material
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Construction lines aid drawing but aren't part of the final geometry. They help position other sketch elements but don't create features when you finish the sketch.
+<!-- QUESTION_END -->
 
-8. Click OK
 
 
+### Circle
 
-## Revolve Options
+A 120mm circle is drawn at the center point of the construction line. This circle will be used to cut a hole in the block.
 
 
 
-### Angle
+<!-- QUESTION_START -->
+What is the diameter of the circle drawn for the first cut?
+<!-- OPTIONS -->
+100mm|120mm|140mm|160mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A 120mm circle is drawn at the center point of the construction line. This circle will be used to create the first cut in the engine block.
+<!-- QUESTION_END -->
 
-- **360°**: Full rotation (most common)
 
-- **Custom Angle**: Partial rotation (e.g., 90°, 180°)
 
-- **To Object**: Revolve until reaching another object
+### Extrude Cut
 
+The Extrude tool is used on the circle profile. Dragging the handle downwards into the block turns the operation red, indicating a "Cut" operation. The cut is confirmed by clicking OK. This removes material from the block, creating the first hole.
 
 
-### Operation Types
 
-- **New Body**: Creates new solid
+<!-- QUESTION_START -->
+What color does the extrude operation turn when it becomes a Cut operation?
+<!-- OPTIONS -->
+Blue|Red|Green|Yellow
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+When you drag the extrude handle downwards into the block, the operation turns red, indicating a "Cut" operation. This removes material instead of adding it.
+<!-- QUESTION_END -->
 
-- **Join**: Adds to existing body
 
-- **Cut**: Removes material
 
-- **Intersect**: Keeps overlapping volume
+## Rectangular Pattern
 
+To create multiple holes efficiently, the Rectangular Pattern tool is used instead of manually creating each hole.
 
 
-## Example: Creating a Cylinder
 
+### Object Type
 
+Set to "Features" to select the cut extrusion from the timeline. This tells Fusion 360 to pattern the cut feature, not just the sketch.
 
-1. Create sketch on XZ plane
 
-2. Draw a rectangle (width = radius, height = cylinder height)
 
-3. Draw a vertical line on the left as the axis
+### Directions
 
-4. Finish sketch
+The axis is selected (edge of the block). The direction type is set to Symmetrical to pattern in both directions from the center. This creates a balanced pattern.
 
-5. Revolve the rectangle around the axis
 
-6. Set angle to 360°
 
-7. Result: Perfect cylinder!
+### Configuration
 
+- **Axis 1**: Quantity 3 (total 3 in this row)
 
+- **Axis 2**: Quantity 2 (creates a second row)
 
-## Example: Creating a Bowl
+- **Distance**: Adjusted (e.g., 200mm) to space the holes evenly
 
+This creates a 3x2 grid of holes (3 columns, 2 rows).
 
 
-1. Create sketch on XZ plane
 
-2. Draw the bowl profile (curved line)
+<!-- QUESTION_START -->
+What is the Object Type set to when using Rectangular Pattern?
+<!-- OPTIONS -->
+Bodies|Features|Sketches|Components
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Object Type is set to "Features" to select the cut extrusion from the timeline. This patterns the cut feature, creating multiple holes efficiently.
+<!-- QUESTION_END -->
 
-3. Draw horizontal axis line at the top
 
-4. Finish sketch
 
-5. Revolve around the axis
+<!-- QUESTION_START -->
+What direction type is used for the Rectangular Pattern?
+<!-- OPTIONS -->
+One Direction|Symmetrical|Asymmetric|Circular
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The direction type is set to Symmetrical to pattern in both directions from the center. This creates a balanced pattern of holes.
+<!-- QUESTION_END -->
 
-6. Set angle to 360°
 
-7. Result: Bowl shape!
 
+<!-- QUESTION_START -->
+How many holes are created in the rectangular pattern?
+<!-- OPTIONS -->
+4 holes (2x2)|6 holes (3x2)|8 holes (4x2)|9 holes (3x3)
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The pattern creates a 3x2 grid of holes - 3 columns (Axis 1: Quantity 3) and 2 rows (Axis 2: Quantity 2), resulting in 6 total holes.
+<!-- QUESTION_END -->
 
 
-## Important Rules
 
+## Circular Pattern
 
+A new sketch is started on the surface to create a circular pattern of smaller holes around the larger ones.
 
-- The profile must not cross the axis
 
-- Only one side of the axis should have the profile
 
-- The axis can be a line in the sketch or an edge of the model
+### Setup
 
-- Profile must be closed for solid bodies
+A construction line is drawn 90mm from the center, and a small 25mm circle is drawn at its end. This creates one small hole that will be patterned.
 
 
 
-## Combining Revolve with Other Features
+<!-- QUESTION_START -->
+How far from the center is the construction line drawn for the circular pattern?
+<!-- OPTIONS -->
+80mm|90mm|100mm|110mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A construction line is drawn 90mm from the center, and a small 25mm circle is drawn at its end. This positions the first small hole for the circular pattern.
+<!-- QUESTION_END -->
 
 
 
-You can:
+<!-- QUESTION_START -->
+What is the diameter of the small circles in the circular pattern?
+<!-- OPTIONS -->
+20mm|25mm|30mm|35mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A small 25mm circle is drawn at the end of the construction line. This circle will be patterned around the larger hole.
+<!-- QUESTION_END -->
 
-- Revolve to create base shape
 
-- Then extrude to add features
 
-- Use Cut operation to remove material
+### Circular Pattern Tool
 
-- Create complex rotational parts
+- **Object**: The small 25mm circle is selected
 
+- **Center Point**: The center of the previous large circle is selected
 
+- **Quantity**: Set to 7 to create a ring of 7 small circles around the larger one
 
-## Best Practices
+This creates a decorative pattern of small holes around each large hole.
 
 
 
-- Always include the axis in your sketch
+<!-- QUESTION_START -->
+How many small circles are created in the circular pattern?
+<!-- OPTIONS -->
+5|6|7|8
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+The quantity is set to 7 to create a ring of 7 small circles around the larger hole. This creates a decorative pattern.
+<!-- QUESTION_END -->
 
-- Use construction lines for the axis
 
-- Keep profiles simple
 
-- Consider the final orientation of your part
+### Extrude Cut
+
+The new pattern of circles is selected and extruded downwards to cut them into the block. This creates the final pattern of holes in the engine block.
+
+
+
+## Finishing
+
+The model represents a rough engine block concept, demonstrating how to "sculpt" by removing material. The project is saved to finish the tutorial.
+
+
+
+## Key Concepts Learned
+
+- **Extruded Cuts**: Removing material from a solid body
+- **Construction Lines**: Helper lines that aid positioning but don't create features
+- **Rectangular Pattern**: Creating multiple copies in a grid pattern
+- **Circular Pattern**: Creating multiple copies arranged in a circle
+- **Sculpting by Subtraction**: Building complex shapes by removing material
+- **Feature Patterning**: Repeating features efficiently instead of manual copying
+- **Symmetrical Patterns**: Creating balanced designs
 
 
 
 ## Important Notes
 
-
-
-- Revolve creates rotationally symmetric objects
-
-- The axis determines the center of rotation
-
-- 360° creates complete objects
-
-- Partial angles create segments`,
+- Press 'X' to toggle lines to construction lines
+- Red color indicates a Cut operation when extruding
+- Rectangular Pattern can create grids of features
+- Circular Pattern arranges features in a circle
+- Patterns save time compared to manual copying
+- The Object Type must be set to "Features" to pattern cuts
+- Symmetrical patterns create balanced designs
+- Construction lines help position elements but don't create features`,
       quizId: quizId++,
       assessmentType: 'quiz',
       categoryId: 'fusion360',
@@ -4278,219 +4810,344 @@ You can:
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 16,
-      title: "Fusion 360 Step 6: Extruded Cuts & Circular Patterns",
-      emoji: '🔧',
-      content: `# Fusion 360 Step 6: Extruded Cuts & Circular Patterns
+      title: "Fusion 360 Step 5: Bottle (Lofts & Offset Planes)",
+      emoji: '🍾',
+      content: `# Fusion 360 Step 5: Bottle (Lofts & Offset Planes)
 
-## Learn Autodesk Fusion - Extruded Cuts & Circular Patterns (Step 6)
+## Learn Autodesk Fusion in 10 Easy Steps - Step 5 (2025/2026)
 
-**Topic**: Removing material and repeating features in a circle.
+**Topic**: Creating a bottle shape using offset planes, lofts, and guide rails.
 
 **YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=E-fs6jrdct0&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=6&pp=iAQB)
 
+This tutorial demonstrates creating a complex bottle shape by blending multiple profiles together using the Loft tool with guide rails.
 
 
-## What are Fillets and Chamfers?
 
+## Setup and Saving
 
+The file is saved as "bottle" and a new component named "bottle" is created to contain the design.
 
-Fillets and chamfers are edge modifications that make parts safer, stronger, and easier to manufacture.
 
 
+<!-- QUESTION_START -->
+What is the project name for this tutorial?
+<!-- OPTIONS -->
+Container|Bottle|bottle|Vessel
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+The file is saved as "bottle" and a new component named "bottle" is created to contain the design. This helps organize your work.
+<!-- QUESTION_END -->
 
-## Fillet
 
 
+## Creating the Base Profiles (Offset Planes)
 
-A fillet creates a rounded corner or edge by adding material in a curved shape.
+The bottle is created using multiple profiles at different heights, connected by a loft. Offset planes are used to create these profiles at different levels.
 
 
 
-### Uses:
+### Bottom Profile
 
-- Remove sharp edges (safety)
+A Center Rectangle (60mm x 75mm) is drawn on the base plane. Sketch Fillets of 10mm are added to the corners to create rounded edges. This forms the base of the bottle.
 
-- Strengthen corners (reduce stress)
 
-- Improve appearance
 
-- Make parts easier to handle
+<!-- QUESTION_START -->
+What are the dimensions of the bottom rectangle?
+<!-- OPTIONS -->
+50mm x 75mm|60mm x 75mm|60mm x 80mm|70mm x 75mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A Center Rectangle (60mm x 75mm) is drawn on the base plane. This forms the base profile of the bottle.
+<!-- QUESTION_END -->
 
 
 
-## Chamfer
+<!-- QUESTION_START -->
+What size sketch fillets are added to the bottom rectangle corners?
+<!-- OPTIONS -->
+5mm|10mm|15mm|20mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Sketch Fillets of 10mm are added to the corners of the bottom rectangle. This creates rounded edges at the base of the bottle.
+<!-- QUESTION_END -->
 
 
 
-A chamfer creates a beveled (angled) edge by cutting material at an angle.
+### Middle Profile (Offset Plane)
 
+An Offset Plane is created 75mm above the base plane. On this new plane, a smaller Center Rectangle (40mm x 60mm) is drawn, also with fillets. This creates the middle section of the bottle, which is narrower than the base.
 
 
-### Uses:
 
-- Remove sharp edges
+<!-- QUESTION_START -->
+How high is the middle offset plane created?
+<!-- OPTIONS -->
+60mm|75mm|90mm|100mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+An Offset Plane is created 75mm above the base plane. This positions the middle profile at the correct height for the bottle shape.
+<!-- QUESTION_END -->
 
-- Help with assembly (easier insertion)
 
-- Reduce stress concentrations
 
-- Create decorative edges
+<!-- QUESTION_START -->
+What are the dimensions of the middle rectangle?
+<!-- OPTIONS -->
+35mm x 60mm|40mm x 60mm|40mm x 65mm|45mm x 60mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A smaller Center Rectangle (40mm x 60mm) is drawn on the middle offset plane. This creates a narrower middle section compared to the base.
+<!-- QUESTION_END -->
 
 
 
-## Fillet Tool
+### Top Profile (Offset Plane)
 
-Located in the Modify menu.
+Another Offset Plane is created at 140mm height. A Circle with a diameter of 35mm is drawn on this plane. This creates the top opening of the bottle, which transitions from rectangular to circular.
 
 
 
-### Types:
+<!-- QUESTION_START -->
+How high is the top offset plane created?
+<!-- OPTIONS -->
+120mm|140mm|160mm|180mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Another Offset Plane is created at 140mm height. This positions the top profile at the correct height for the bottle neck.
+<!-- QUESTION_END -->
 
-- **Constant Radius**: Same radius along entire edge
 
-- **Variable Radius**: Different radii at different points
 
-- **Face Fillet**: Fillets between two faces
+<!-- QUESTION_START -->
+What is the diameter of the top circle?
+<!-- OPTIONS -->
+30mm|35mm|40mm|45mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A Circle with a diameter of 35mm is drawn on the top offset plane. This creates the circular opening at the top of the bottle.
+<!-- QUESTION_END -->
 
 
 
-### Selecting Edges:
+## Creating Guide Rails
 
-- Click individual edges
+A new sketch is started on a vertical plane (perpendicular to the profiles) to draw the side shape of the bottle. Guide rails control how the loft transitions between profiles.
 
-- Or select a face to fillet all its edges
 
-- Hold Shift to add more edges
 
+### Project Intersect
 
+The Project > Intersect tool is used to create reference points (purple dots) where the previous sketches (rectangles and circle) intersect with the current sketch plane. This ensures the rails connect perfectly to the profiles at the correct points.
 
-## Chamfer Tool
 
-Also in the Modify menu.
 
+<!-- QUESTION_START -->
+What tool is used to create reference points where sketches intersect with the current plane?
+<!-- OPTIONS -->
+Project > Project|Project > Intersect|Project > Include|Project > Offset
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Project > Intersect tool is used to create reference points (purple dots) where the previous sketches intersect with the current sketch plane. This ensures perfect alignment.
+<!-- QUESTION_END -->
 
 
-### Types:
 
-- **Distance**: Cuts equal distance on both sides
+<!-- QUESTION_START -->
+What color are the reference points created by Project Intersect?
+<!-- OPTIONS -->
+Blue|Purple|Red|Green
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Project > Intersect tool creates reference points shown as purple dots. These points mark where the previous sketches intersect with the current sketch plane.
+<!-- QUESTION_END -->
 
-- **Distance and Angle**: Sets distance and angle
 
-- **Two Distances**: Different distances on each side
 
+### Fit Point Spline
 
+A spline is drawn connecting these points to define the curved side of the bottle. Handles are adjusted to shape it like a shampoo bottle, creating a smooth, organic curve.
 
-## Example: Adding Fillets
 
 
+<!-- QUESTION_START -->
+What tool is used to create the curved side shape of the bottle?
+<!-- OPTIONS -->
+Line Tool|Arc Tool|Fit Point Spline|Circle Tool
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+A Fit Point Spline is drawn connecting the reference points to define the curved side of the bottle. Handles are adjusted to create a smooth, organic curve.
+<!-- QUESTION_END -->
 
-1. Create a box (50mm x 30mm x 20mm)
 
-2. Click "Fillet" tool
 
-3. Select the edges you want to round
+### Mirroring
 
-4. Set radius (e.g., 5mm)
+A vertical construction line is drawn. The spline is then mirrored across this line to create an identical rail on the opposite side. This ensures the bottle is symmetrical.
 
-5. Click OK
 
 
+<!-- QUESTION_START -->
+Why is the spline mirrored?
+<!-- OPTIONS -->
+To create a different shape|To create an identical rail on the opposite side|To delete the original|To rotate it
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The spline is mirrored across a vertical construction line to create an identical rail on the opposite side. This ensures the bottle is symmetrical.
+<!-- QUESTION_END -->
 
-Sharp edges become smooth and rounded!
 
 
+## Lofting the Shape
 
-## Example: Adding Chamfers
+The Loft tool is selected to blend the profiles together. The loft creates a smooth transition between the different shapes.
 
 
 
-1. Create a box
+### Profiles
 
-2. Click "Chamfer" tool
+The bottom rectangle, middle rectangle, and top circle are selected in order from bottom to top. These are the cross-sections that will be blended together.
 
-3. Select the edges
 
-4. Set distance (e.g., 3mm)
 
-5. Click OK
+### Rails
 
+The two mirrored spline curves are selected as rails. This forces the loft to follow the specific side curvature defined by the splines, rather than just connecting straight between profiles. The rails control the shape of the transition.
 
 
-Sharp edges become beveled!
 
+<!-- QUESTION_START -->
+What tool is used to blend the profiles together?
+<!-- OPTIONS -->
+Extrude|Revolve|Sweep|Loft
+<!-- CORRECT -->
+3
+<!-- EXPLANATION -->
+The Loft tool is used to blend the bottom rectangle, middle rectangle, and top circle together. This creates a smooth transition between the different shapes.
+<!-- QUESTION_END -->
 
 
-## Best Practices
 
+<!-- QUESTION_START -->
+In what order are the profiles selected for the loft?
+<!-- OPTIONS -->
+Top to bottom|Bottom to top|Any order|Random order
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The bottom rectangle, middle rectangle, and top circle are selected in order from bottom to top. This ensures the loft transitions correctly.
+<!-- QUESTION_END -->
 
 
-### Fillets:
 
-- Use larger radii for strength
+<!-- QUESTION_START -->
+What is the purpose of guide rails in a loft?
+<!-- OPTIONS -->
+To add material|To force the loft to follow specific curvature|To delete features|To create patterns
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The guide rails (the two mirrored splines) force the loft to follow the specific side curvature defined by the splines, rather than just connecting straight between profiles.
+<!-- QUESTION_END -->
 
-- Smaller radii for appearance
 
-- Apply to all sharp edges for safety
 
-- Consider manufacturing constraints
+## Finishing Touches
 
+After creating the basic bottle shape, finishing touches are added to complete the design.
 
 
-### Chamfers:
 
-- Use for assembly features
+### Fillet
 
-- Smaller chamfers for appearance
+A 5mm fillet is added to the bottom edge. This rounds the bottom corner for a more finished appearance.
 
-- Larger chamfers for functional purposes
 
-- Consider the angle (usually 45°)
 
+<!-- QUESTION_START -->
+What size fillet is added to the bottom edge?
+<!-- OPTIONS -->
+3mm|5mm|7mm|10mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A 5mm fillet is added to the bottom edge. This rounds the bottom corner for a more finished appearance.
+<!-- QUESTION_END -->
 
 
-## Common Mistakes
 
+### Shell
 
+The Shell tool is used on the top face with a 2mm thickness to hollow out the bottle. This creates the interior cavity of the bottle.
 
-- Making fillets/chamfers too large (weakens part)
 
-- Forgetting to fillet internal corners
 
-- Applying to wrong edges
+<!-- QUESTION_START -->
+What thickness is used when shelling the bottle?
+<!-- OPTIONS -->
+1mm|2mm|3mm|4mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Shell tool is used on the top face with a 2mm thickness to hollow out the bottle. This creates the interior cavity.
+<!-- QUESTION_END -->
 
-- Not considering manufacturing limits
 
 
+### Top Fillets
 
-## Order of Operations
+Small 0.5mm fillets are added to the top edges for a smooth finish. This gives the bottle opening a polished appearance.
 
 
 
-Apply fillets and chamfers:
+<!-- QUESTION_START -->
+What size fillets are added to the top edges?
+<!-- OPTIONS -->
+0.3mm|0.5mm|0.7mm|1mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Small 0.5mm fillets are added to the top edges for a smooth finish. This gives the bottle opening a polished appearance.
+<!-- QUESTION_END -->
 
-- After main features are created
 
-- Before final details
 
-- In logical order (largest to smallest)
+## Key Concepts Learned
 
-- Consider how they interact
+- **Offset Planes**: Creating work planes at different heights
+- **Multiple Profiles**: Using different shapes at different levels
+- **Project Intersect**: Creating reference points from other sketches
+- **Fit Point Spline**: Creating smooth, organic curves
+- **Mirroring**: Creating symmetrical shapes
+- **Loft Tool**: Blending multiple profiles together
+- **Guide Rails**: Controlling the shape of loft transitions
+- **Shell Tool**: Hollowing out solid bodies
+- **Fillets**: Adding finishing touches to edges
 
 
 
 ## Important Notes
 
-
-
-- Fillets add material, chamfers remove material
-
-- Both improve part safety and manufacturability
-
-- Can be applied to edges or faces
-
-- Can be edited from the timeline
-
-- Radius/distance can be changed later`,
+- Offset planes allow you to create profiles at different heights
+- Project Intersect creates reference points for alignment
+- Guide rails control how lofts transition between profiles
+- Profiles must be selected in order (bottom to top)
+- Lofts create smooth transitions between different shapes
+- Shell tool creates hollow objects with specified wall thickness
+- Multiple fillets can be applied for different finishing effects
+- The Loft tool is ideal for creating complex, organic shapes`,
       quizId: quizId++,
       assessmentType: 'quiz',
       categoryId: 'fusion360',
@@ -4501,245 +5158,371 @@ Apply fillets and chamfers:
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 17,
-      title: "Fusion 360 Step 7: Lofts & Offset Planes",
-      emoji: '📊',
-      content: `# Fusion 360 Step 7: Lofts & Offset Planes
+      title: "Fusion 360 Step 6: Emboss & Deboss",
+      emoji: '📝',
+      content: `# Fusion 360 Step 6: Emboss & Deboss
 
-## Learn Autodesk Fusion - Lofts & Offset Planes (Step 7)
+## Learn Autodesk Fusion in 10 Easy Steps - Step 6 (2025/2026)
 
-**Topic**: Blending shapes together using Lofts.
+**Topic**: Using the emboss and deboss features, including on curved surfaces.
 
 **YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=qKZBlH22-gY&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=7&pp=iAQB0gcJCU0KAYcqIYzv)
 
+This tutorial demonstrates how to add text and designs to both flat and curved surfaces using the Emboss and Deboss tools.
 
 
-## What are Patterns?
 
+## Setup and Base Shape (Shape 1)
 
+The file is saved as "emboss". A new component named "shape 1" is created to contain the design.
 
-Patterns create multiple copies of features, bodies, or components in an organized way. This saves time and ensures consistency.
 
 
+### Sketch
 
-## Types of Patterns
+A Two Point Rectangle (instead of center) is drawn on the XY plane. This gives more control over the rectangle's position.
 
 
 
-### Rectangular Pattern
+### Dimensions
 
-Creates copies in rows and columns.
+The rectangle dimensions are set to 80mm width and 100mm height (using Tab to switch between fields). This creates the base block for the emboss examples.
 
 
 
-### Circular Pattern
+### Extrude
 
-Creates copies arranged in a circle.
+The rectangle is extruded by 10mm to create a 3D block.
 
 
 
-### Path Pattern
+### Taper Angle
 
-Creates copies along a curve or edge.
+The presenter demonstrates tapering. A value of -5 degrees is used to taper the extrusion inwards. This creates a slightly narrower top than bottom, useful for certain manufacturing processes.
 
 
 
-## Rectangular Pattern
+<!-- QUESTION_START -->
+What type of rectangle is used for the base shape?
+<!-- OPTIONS -->
+Center Rectangle|Two Point Rectangle|3-Point Rectangle|Square
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A Two Point Rectangle (instead of center) is drawn on the XY plane. This gives more control over the rectangle's position.
+<!-- QUESTION_END -->
 
-Creates a grid of copies.
 
 
+<!-- QUESTION_START -->
+What are the dimensions of the base rectangle?
+<!-- OPTIONS -->
+70mm x 100mm|80mm x 100mm|80mm x 110mm|90mm x 100mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The rectangle dimensions are set to 80mm width and 100mm height. The Tab key is used to switch between dimension fields.
+<!-- QUESTION_END -->
 
-### Steps:
 
-1. Select the feature or body to pattern
 
-2. Click "Rectangular Pattern"
+<!-- QUESTION_START -->
+How much is the rectangle extruded?
+<!-- OPTIONS -->
+8mm|10mm|12mm|15mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The rectangle is extruded by 10mm to create a 3D block. This provides a flat surface for embossing text.
+<!-- QUESTION_END -->
 
-3. Choose direction 1 (first direction)
 
-4. Set number of instances
 
-5. Set spacing
+<!-- QUESTION_START -->
+What taper angle is used for the extrusion?
+<!-- OPTIONS -->
+-3 degrees|-5 degrees|-7 degrees|-10 degrees
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A value of -5 degrees is used to taper the extrusion inwards. This creates a slightly narrower top than bottom.
+<!-- QUESTION_END -->
 
-6. Choose direction 2 (optional, for 2D grid)
 
-7. Click OK
 
+## Embossing Text on a Flat Surface
 
+Text can be added to flat surfaces using the Emboss tool, which raises the text above the surface.
 
-### Example: Creating a Grid of Holes
 
-1. Create one hole
 
-2. Rectangular pattern
+### Text Sketch
 
-3. Direction 1: 5 instances, 20mm spacing
+A sketch is created on the top surface. The Text tool is used to create a text box, and "HELLO" is typed in capitals. Alignment tools center the text, and the height is set to 10mm.
 
-4. Direction 2: 3 instances, 15mm spacing
 
-5. Result: 15 holes in a grid!
 
+<!-- QUESTION_START -->
+What text is used in the tutorial?
+<!-- OPTIONS -->
+HELLO|FUSION|DESIGN|TEXT
+<!-- CORRECT -->
+0
+<!-- EXPLANATION -->
+"HELLO" is typed in capitals using the Text tool. Alignment tools are used to center the text on the surface.
+<!-- QUESTION_END -->
 
 
-## Circular Pattern
 
-Creates copies arranged around a center point.
+<!-- QUESTION_START -->
+What is the height of the text?
+<!-- OPTIONS -->
+8mm|10mm|12mm|15mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The text height is set to 10mm. This determines the size of the letters when embossed.
+<!-- QUESTION_END -->
 
 
 
-### Steps:
+### Emboss Tool
 
-1. Select feature or body
+The Emboss tool is found under the "Create" menu. It can raise (emboss) or cut (deboss) text or shapes into surfaces.
 
-2. Click "Circular Pattern"
 
-3. Select axis (center of rotation)
 
-4. Set number of instances
+### Emboss Settings
 
-5. Set angle (usually 360°)
+- **Profile**: The "HELLO" text is selected
 
-6. Click OK
+- **Face**: The top surface of the block is selected
 
+- **Depth**: 2mm is set to raise the text (Emboss). This creates raised letters on the surface.
 
 
-### Example: Creating Wheel Spokes
 
-1. Create one spoke
+<!-- QUESTION_START -->
+Where is the Emboss tool located?
+<!-- OPTIONS -->
+Modify menu|Create menu|Sketch menu|Assemble menu
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Emboss tool is found under the "Create" menu. It can raise (emboss) or cut (deboss) text or shapes into surfaces.
+<!-- QUESTION_END -->
 
-2. Circular pattern
 
-3. Select center axis
 
-4. 8 instances
+<!-- QUESTION_START -->
+What depth is used for embossing the text?
+<!-- OPTIONS -->
+1mm|2mm|3mm|4mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A depth of 2mm is set to raise the text (Emboss). This creates raised letters that stand out from the surface.
+<!-- QUESTION_END -->
 
-5. 360° angle
 
-6. Result: 8 evenly spaced spokes!
 
+### Fillet
 
+A 0.5mm fillet is added to the top face of the letters and the base face to smooth the connection. This gives the embossed text a more polished appearance.
 
-## Path Pattern
 
-Creates copies along a curve.
 
+<!-- QUESTION_START -->
+What size fillet is added to the embossed text?
+<!-- OPTIONS -->
+0.3mm|0.5mm|0.7mm|1mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A 0.5mm fillet is added to the top face of the letters and the base face to smooth the connection. This gives the text a more polished appearance.
+<!-- QUESTION_END -->
 
 
-### Steps:
 
-1. Select feature or body
+## Embossing Text on a Curved Path
 
-2. Click "Path Pattern"
+Text can also follow a curved path, wrapping around curves instead of staying flat.
 
-3. Select the path (curve or edge)
 
-4. Set spacing or number of instances
 
-5. Click OK
+### Path Sketch
 
+The previous features are deleted from the timeline to reset the block. A construction line (20mm) is drawn 90 degrees from the center. A Fit Point Spline connects the sides through the top of this construction line to create a curve. This curve will serve as the path for the text.
 
 
-## Mirror Tool
 
-Creates a mirror copy across a plane.
+<!-- QUESTION_START -->
+How long is the construction line for the curved path?
+<!-- OPTIONS -->
+15mm|20mm|25mm|30mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A construction line (20mm) is drawn 90 degrees from the center. A Fit Point Spline connects the sides through the top of this construction line to create a curve.
+<!-- QUESTION_END -->
 
 
 
-### When to Use:
+<!-- QUESTION_START -->
+What tool is used to create the curved path?
+<!-- OPTIONS -->
+Line Tool|Arc Tool|Fit Point Spline|Circle Tool
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+A Fit Point Spline connects the sides through the top of the construction line to create a curve. This curve will serve as the path for the text.
+<!-- QUESTION_END -->
 
-- Symmetric parts
 
-- Duplicating features
 
-- Creating left/right versions
+### Text on Path
 
+The Text tool is used with "Text on Path" selected. The text wraps around the spline curve, following its shape instead of staying straight.
 
 
-### Steps:
 
-1. Select feature, body, or component
+<!-- QUESTION_START -->
+What option is selected to make text follow a curve?
+<!-- OPTIONS -->
+Text on Line|Text on Path|Text on Curve|Text on Spline
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Text tool is used with "Text on Path" selected. This makes the text wrap around the spline curve, following its shape.
+<!-- QUESTION_END -->
 
-2. Click "Mirror"
 
-3. Select mirror plane
 
-4. Click OK
+### Deboss
 
+The Emboss tool is used again, but this time "Deboss" is selected to cut the text 2mm into the model. Deboss creates recessed text instead of raised text.
 
 
-## Pattern Options
 
+<!-- QUESTION_START -->
+What is the difference between Emboss and Deboss?
+<!-- OPTIONS -->
+Emboss raises text, Deboss cuts text|Emboss cuts text, Deboss raises text|They are the same|Emboss is for flat surfaces only
+<!-- CORRECT -->
+0
+<!-- EXPLANATION -->
+Emboss raises text above the surface, while Deboss cuts text into the surface. Both use the same tool, just with different settings.
+<!-- QUESTION_END -->
 
 
-### Instance Count
 
-Number of copies to create (includes original).
+## Embossing on a Curved Surface (Shape 2)
 
+A new component "shape 2" is created, and "shape 1" is hidden. This demonstrates embossing on a curved surface like a cylinder.
 
 
-### Spacing
 
-Distance between instances.
+### Cylinder
 
+A 60mm diameter circle is drawn and extruded by 100mm to create a cylinder. This provides a curved surface for embossing.
 
 
-### Suppress
 
-Temporarily hide instances without deleting.
+<!-- QUESTION_START -->
+What is the diameter of the cylinder?
+<!-- OPTIONS -->
+50mm|60mm|70mm|80mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A 60mm diameter circle is drawn and extruded by 100mm to create a cylinder. This provides a curved surface for embossing.
+<!-- QUESTION_END -->
 
 
 
-### Adjust
+<!-- QUESTION_START -->
+How tall is the cylinder?
+<!-- OPTIONS -->
+80mm|100mm|120mm|150mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The circle is extruded by 100mm to create the cylinder. This provides enough height for the text to wrap around.
+<!-- QUESTION_END -->
 
-Modify spacing or count after creation.
 
 
+### Tangent Text
 
-## Best Practices
+A sketch is created on a plane tangent/perpendicular to the cylinder (likely the origin plane slicing through it). This ensures the text is properly oriented for wrapping around the curved surface.
 
 
 
-- Use patterns instead of manually copying
+### Text
 
-- Ensure pattern direction is correct
+"HELLO" is typed. The presenter notes that sometimes text must be mirrored/flipped in the sketch to appear correctly when wrapped around a curved surface.
 
-- Check spacing for manufacturing
 
-- Use suppress to test different counts
 
-- Patterns can be edited from timeline
+<!-- QUESTION_START -->
+Why might text need to be mirrored when embossing on a curved surface?
+<!-- OPTIONS -->
+To make it larger|To make it appear correctly when wrapped|To change the font|To add effects
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Sometimes text must be mirrored/flipped in the sketch to appear correctly when wrapped around a curved surface. This ensures the letters face the right direction.
+<!-- QUESTION_END -->
 
 
 
-## Common Uses
+### Emboss on Cylinder
 
+- **Profile**: The text is selected
 
+- **Face**: The curved surface of the cylinder is selected
 
-- **Holes**: Pattern of mounting holes
+The text wraps around the curvature of the cylinder, embossed by 2mm. This demonstrates how emboss works on non-flat surfaces.
 
-- **Ribs**: Structural supports
 
-- **Teeth**: Gears and sprockets
 
-- **Decorative**: Repeated features
+<!-- QUESTION_START -->
+What depth is used when embossing on the cylinder?
+<!-- OPTIONS -->
+1mm|2mm|3mm|4mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The text is embossed by 2mm on the curved surface of the cylinder. The text wraps around the curvature, following the surface shape.
+<!-- QUESTION_END -->
 
-- **Fasteners**: Multiple screw locations
+
+
+## Key Concepts Learned
+
+- **Emboss Tool**: Raising text or shapes above a surface
+- **Deboss Tool**: Cutting text or shapes into a surface
+- **Text Tool**: Creating text in sketches
+- **Text on Path**: Making text follow a curved path
+- **Fit Point Spline**: Creating curved paths for text
+- **Taper Angle**: Angling extrusions for manufacturing
+- **Curved Surface Embossing**: Applying text to non-flat surfaces
+- **Fillets on Text**: Smoothing the edges of embossed text
+- **Mirroring Text**: Flipping text for correct orientation on curves
 
 
 
 ## Important Notes
 
-
-
-- Patterns maintain relationships to original
-
-- Editing original updates all instances
-
-- Can pattern patterns (nested patterns)
-
-- Mirror creates independent copy
-
-- Patterns improve design efficiency`,
+- Emboss raises material, Deboss cuts material
+- Text can follow curved paths using "Text on Path"
+- The Emboss tool works on both flat and curved surfaces
+- Text may need to be mirrored when wrapping around curves
+- Fillets can be added to embossed text for a polished look
+- The depth setting controls how much the text is raised or cut
+- Construction lines help position curved paths
+- Splines create smooth curves for text to follow
+- The Emboss tool is found in the Create menu`,
       quizId: quizId++,
       assessmentType: 'quiz',
       categoryId: 'fusion360',
@@ -4750,219 +5533,313 @@ Modify spacing or count after creation.
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 18,
-      title: "Fusion 360 Step 8: Emboss & Text",
-      emoji: '📝',
-      content: `# Fusion 360 Step 8: Emboss & Text
+      title: "Fusion 360 Step 7: Import/Export, Holes & Fasteners",
+      emoji: '📎',
+      content: `# Fusion 360 Step 7: Import/Export, Holes & Fasteners
 
-## Learn Autodesk Fusion - Emboss & Text (Step 8)
+## Learn Autodesk Fusion in 10 Easy Steps - Step 7 (2025/2026)
 
-**Topic**: Adding text or logos onto curved surfaces.
+**Topic**: Using import/export, the hole tool, and inserting fasteners.
 
 **YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=SG8GD8De6xA&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=8&pp=iAQB)
 
+This tutorial demonstrates how to export and import files, create holes for fasteners, and insert screws and bolts from the fastener library.
 
 
-## What is an Assembly?
 
+## Create Base Box
 
+The user creates a new component called "box" and sketches a center rectangle on a plane, setting dimensions to 50mm x 50mm. This rectangle is extruded by 50mm to create a cube. This cube will be used to demonstrate holes and fasteners.
 
-An assembly is a collection of components (parts) that work together. Each component can move and interact with others.
 
 
+<!-- QUESTION_START -->
+What are the dimensions of the base rectangle?
+<!-- OPTIONS -->
+40mm x 40mm|50mm x 50mm|60mm x 60mm|50mm x 60mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A center rectangle is sketched on a plane with dimensions set to 50mm x 50mm. This creates a square base for the box.
+<!-- QUESTION_END -->
 
-## Components vs Bodies
 
 
+<!-- QUESTION_START -->
+How much is the rectangle extruded to create the cube?
+<!-- OPTIONS -->
+40mm|50mm|60mm|70mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The rectangle is extruded by 50mm to create a cube. This provides a solid block for demonstrating holes and fasteners.
+<!-- QUESTION_END -->
 
-- **Body**: A single solid object within a component
 
-- **Component**: A container that can hold bodies and move independently
 
-- **Assembly**: Multiple components working together
+## Exporting Files
 
+The video explains how to export the design by going to File > Export. Different file types are used for different purposes.
 
 
-## Creating Components
 
+### File Types
 
+- **.f3d**: Best for reopening in Fusion to keep design history. This is Fusion 360's native format.
 
-1. Design your part
+- **.fbx / .obj**: Best for rendering or animation (e.g., Blender). These formats preserve geometry for 3D graphics software.
 
-2. Right-click in browser
+- **.step**: Best for other CAD programs (e.g., SolidWorks). This is a standard CAD exchange format.
 
-3. Select "Create Component"
+- **.stl**: Best for 3D printing. This format is used by most 3D printers and slicing software.
 
-4. Name your component
+The user demonstrates exporting as an STL file to the desktop.
 
-5. Move bodies into the component
 
 
+<!-- QUESTION_START -->
+Which file format is best for reopening in Fusion 360 to keep design history?
+<!-- OPTIONS -->
+.f3d|.stl|.step|.obj
+<!-- CORRECT -->
+0
+<!-- EXPLANATION -->
+The .f3d format is Fusion 360's native format and is best for reopening in Fusion to keep design history. Other formats may lose parametric features.
+<!-- QUESTION_END -->
 
-## Joints
 
-Joints define how components move relative to each other.
 
+<!-- QUESTION_START -->
+Which file format is best for 3D printing?
+<!-- OPTIONS -->
+.f3d|.stl|.step|.fbx
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The .stl format is best for 3D printing. This format is used by most 3D printers and slicing software to create the layers for printing.
+<!-- QUESTION_END -->
 
 
-## Types of Joints
 
+<!-- QUESTION_START -->
+Which file format is best for other CAD programs like SolidWorks?
+<!-- OPTIONS -->
+.f3d|.stl|.step|.obj
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+The .step format is best for other CAD programs (e.g., SolidWorks). This is a standard CAD exchange format that preserves geometry between different CAD systems.
+<!-- QUESTION_END -->
 
 
-### Rigid Joint
 
-Components are fixed together (no movement).
+<!-- QUESTION_START -->
+Which file formats are best for rendering or animation (e.g., Blender)?
+<!-- OPTIONS -->
+.f3d and .stl|.fbx and .obj|.step and .stl|.f3d and .step
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The .fbx and .obj formats are best for rendering or animation (e.g., Blender). These formats preserve geometry for 3D graphics software.
+<!-- QUESTION_END -->
 
 
 
-### Revolute Joint
+## Importing Files
 
-Rotation around one axis (like a hinge).
+To import, go to Insert > Insert Mesh and select the STL file. The imported mesh is moved to the side to compare with the original solid body.
 
 
 
-### Slider Joint
+### Difference Between Solid and Mesh
 
-Linear movement along one axis.
+The solid body is filled (solid geometry), while the mesh is hollow (surface only). This is verified using Section Analysis, which cuts through the model to show the interior. The mesh is then deleted.
 
 
 
-### Cylindrical Joint
+<!-- QUESTION_START -->
+How do you import a mesh file in Fusion 360?
+<!-- OPTIONS -->
+File > Import|Insert > Insert Mesh|Create > Import|Tools > Import
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+To import a mesh file, go to Insert > Insert Mesh and select the file. This allows you to bring in STL or other mesh formats.
+<!-- QUESTION_END -->
 
-Rotation and sliding along one axis.
 
 
+<!-- QUESTION_START -->
+What is the difference between a solid body and a mesh?
+<!-- OPTIONS -->
+Solid is hollow, mesh is filled|Solid is filled, mesh is surface only|They are the same|Solid is 2D, mesh is 3D
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The solid body is filled (solid geometry), while the mesh is hollow (surface only). A mesh is just the outer surface, while a solid has volume.
+<!-- QUESTION_END -->
 
-### Pin-Slot Joint
 
-Rotation around one axis, sliding along another.
 
+## Using the Hole Tool
 
+The Hole tool is selected from the Create menu and placed on the top surface of the box. The Hole tool creates precise holes for fasteners with various options.
 
-### Planar Joint
 
-Movement in a plane (2D movement).
 
+### Hole Settings
 
+- **Hole Type**: Options include Simple, Counterbore, and Countersink (allows screw heads to sit flush). Counterbore creates a larger diameter at the top for the screw head, while countersink creates an angled recess.
 
-### Ball Joint
+- **Tap Type**: Options include Simple, Clearance, and Tapped (adds threads). Tapped holes have internal threads for screws.
 
-Rotation in all directions (like a ball and socket).
+- **Drill Point**: Flat or Angled. Flat creates a flat bottom, while angled creates a pointed bottom like a drill bit.
 
+- **Modeled checkbox**: Must be selected for 3D printing threads; otherwise, they are just visual textures. This is important for 3D printing threaded parts.
 
 
-## Creating a Joint
 
+<!-- QUESTION_START -->
+Where is the Hole tool located?
+<!-- OPTIONS -->
+Modify menu|Create menu|Sketch menu|Assemble menu
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Hole tool is selected from the Create menu. It creates precise holes for fasteners with various options for different hole types.
+<!-- QUESTION_END -->
 
 
-1. Click "Assemble" → "Joint"
 
-2. Select first component (moving part)
+<!-- QUESTION_START -->
+Which hole type allows screw heads to sit flush?
+<!-- OPTIONS -->
+Simple|Counterbore|Countersink|Both Counterbore and Countersink
+<!-- CORRECT -->
+3
+<!-- EXPLANATION -->
+Both Counterbore and Countersink allow screw heads to sit flush. Counterbore creates a larger diameter at the top, while countersink creates an angled recess.
+<!-- QUESTION_END -->
 
-3. Select second component (fixed part)
 
-4. Choose joint type
 
-5. Select geometry (faces, edges, points)
+<!-- QUESTION_START -->
+What does the "Tapped" tap type do?
+<!-- OPTIONS -->
+Creates a larger hole|Adds threads to the hole|Creates a flat bottom|Creates an angled bottom
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Tapped option adds threads to the hole. This creates internal threads that match standard screw sizes.
+<!-- QUESTION_END -->
 
-6. Set motion limits (optional)
 
-7. Click OK
 
+<!-- QUESTION_START -->
+What must be selected for 3D printing threads?
+<!-- OPTIONS -->
+The "threaded" checkbox|The "modeled" checkbox|The "printed" checkbox|The "solid" checkbox
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The "modeled" checkbox must be selected for 3D printing threads; otherwise, they are just visual textures. This ensures the threads are actually created in the geometry.
+<!-- QUESTION_END -->
 
 
-## Example: Hinge Assembly
 
+## Inserting Fasteners
 
+Go to Insert > Fastener to access a library of bolts, screws, nuts, etc. This provides standard fasteners that can be inserted into your design.
 
-1. Create two components (door and frame)
 
-2. Create Revolute joint
 
-3. Select door edge as rotation axis
+### Selecting a Fastener
 
-4. Select frame edge as fixed axis
+The user selects a countersunk screw with size M3 and length 6mm. M3 refers to a metric screw with a 3mm diameter. The Hole Tool is adjusted to match: M3 size, countersunk type. This ensures the hole matches the fastener.
 
-5. Door can now rotate!
 
 
+<!-- QUESTION_START -->
+Where do you find the fastener library?
+<!-- OPTIONS -->
+File > Fastener|Insert > Fastener|Create > Fastener|Tools > Fastener
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Go to Insert > Fastener to access a library of bolts, screws, nuts, etc. This provides standard fasteners that can be inserted into your design.
+<!-- QUESTION_END -->
 
-## Motion Study
 
-Test your assembly:
 
+<!-- QUESTION_START -->
+What does M3 refer to in fastener sizing?
+<!-- OPTIONS -->
+3mm length|3mm diameter|3mm thread pitch|3mm head size
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+M3 refers to a metric screw with a 3mm diameter. The "M" stands for metric, and the number indicates the diameter in millimeters.
+<!-- QUESTION_END -->
 
 
-1. Click "Motion Study" workspace
 
-2. Add motion to joints
+### Placing the Fastener
 
-3. Play animation
+The screw is inserted into the hole. Even if it doesn't fit perfectly (indicated by red highlighting), it can still be placed. A Joint is automatically created to position the screw within the assembly. This joint helps align and position the fastener correctly.
 
-4. Check for collisions
 
-5. Verify movement is correct
 
+<!-- QUESTION_START -->
+What color indicates that a fastener doesn't fit perfectly?
+<!-- OPTIONS -->
+Blue|Red|Green|Yellow
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Red highlighting indicates that a fastener doesn't fit perfectly. However, it can still be placed even with this warning.
+<!-- QUESTION_END -->
 
 
-## As-Built Joints
 
-For components already positioned:
+<!-- QUESTION_START -->
+What is automatically created when inserting a fastener?
+<!-- OPTIONS -->
+A hole|A joint|A pattern|A sketch
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A Joint is automatically created to position the screw within the assembly. This joint helps align and position the fastener correctly.
+<!-- QUESTION_END -->
 
 
 
-1. Select components
+## Key Concepts Learned
 
-2. Click "As-Built Joint"
-
-3. Choose joint type
-
-4. Fusion 360 maintains current position
-
-
-
-## Best Practices
-
-
-
-- Create components early in design
-
-- Use appropriate joint types
-
-- Test motion before finalizing
-
-- Name components clearly
-
-- Organize in browser
-
-
-
-## Common Assembly Issues
-
-
-
-- **Over-constrained**: Too many joints
-
-- **Under-constrained**: Parts can move unexpectedly
-
-- **Collisions**: Parts interfere with each other
-
-- **Wrong joint type**: Movement doesn't match intent
+- **File Export**: Saving designs in different formats for different purposes
+- **File Import**: Bringing mesh files into Fusion 360
+- **Solid vs Mesh**: Understanding the difference between filled and surface-only geometry
+- **Hole Tool**: Creating precise holes with various types and options
+- **Hole Types**: Simple, Counterbore, and Countersink
+- **Tap Types**: Simple, Clearance, and Tapped (threaded)
+- **Fastener Library**: Accessing standard screws, bolts, and nuts
+- **Metric Sizing**: Understanding M3, M4, etc. fastener sizes
+- **Automatic Joints**: Fasteners automatically create joints for positioning
+- **3D Printing Threads**: Using the "modeled" checkbox for printable threads
 
 
 
 ## Important Notes
 
-
-
-- Joints define relationships, not just position
-
-- Components can have multiple joints
-
-- Motion limits prevent unwanted movement
-
-- Assemblies can be animated
-
-- Joints can be edited from timeline`,
+- Different file formats serve different purposes (.f3d for Fusion, .stl for 3D printing, .step for CAD exchange)
+- Meshes are surface-only, while solids have volume
+- The Hole tool offers many options for different fastener types
+- Counterbore and Countersink allow screw heads to sit flush
+- Tapped holes have internal threads for screws
+- The "modeled" checkbox is essential for 3D printing threads
+- Fasteners can be inserted even if they don't fit perfectly (red highlighting)
+- Joints are automatically created when inserting fasteners
+- Metric sizing (M3, M4, etc.) refers to the diameter in millimeters
+- The fastener library provides standard sizes for common fasteners`,
       quizId: quizId++,
       assessmentType: 'quiz',
       categoryId: 'fusion360',
@@ -4973,239 +5850,395 @@ For components already positioned:
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 19,
-      title: "Fusion 360 Step 9: Primitives and Appearances",
-      emoji: '🎨',
-      content: `# Fusion 360 Step 9: Primitives and Appearances
+      title: "Fusion 360 Step 8: Hinged Box (Components & Joints)",
+      emoji: '📦',
+      content: `# Fusion 360 Step 8: Hinged Box (Components & Joints)
 
-## Learn Autodesk Fusion in 10 Easy Steps - Step 9 (2025)
+## Learn Autodesk Fusion in 10 Easy Steps - Step 8 (2025/2026)
 
-**Topic**: Primitives and Appearances – Using basic shapes and changing colors/materials (e.g., Plastic, Metal).
+**Topic**: Creating a box with a hinged lid using components and joints.
 
-**YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=AbC3d1x0R48&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=9&pp=iAQB)
+**YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=AbC3d1x0R48&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=8&pp=iAQB)
 
+This tutorial demonstrates how to create an assembly with moving parts by building a box with a hinged lid using components and joints.
 
 
-## What is Rendering?
 
+## Setting Up Components
 
+The file is saved as "fixings box". A new component named "box" is created to hold the base geometry. Later, the main assembly ("fixings box") is reactivated to create a separate "lid" component. This ensures the lid is not inside the box component, allowing them to move independently.
 
-Rendering creates photorealistic images of your 3D models. It simulates how light interacts with materials to produce realistic visuals.
 
 
+<!-- QUESTION_START -->
+What is the project name for this tutorial?
+<!-- OPTIONS -->
+Box|fixings box|Hinged Box|Storage Box
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The file is saved as "fixings box". This helps organize the project and identify the design.
+<!-- QUESTION_END -->
 
-## Rendering Workspace
 
-Switch to the Render workspace to access rendering tools.
 
+<!-- QUESTION_START -->
+Why is the lid created as a separate component?
+<!-- OPTIONS -->
+To make it larger|To allow it to move independently|To change its color|To delete it easily
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The lid is created as a separate component to ensure it is not inside the box component, allowing them to move independently. This is essential for creating joints.
+<!-- QUESTION_END -->
 
 
-## Setting Up a Render
 
+## Creating the Box Base
 
+The box base is created first, including the main body and hinge extension.
 
-### 1. Scene Settings
 
-- Choose environment (lighting setup)
 
-- Set background
+### Sketch
 
-- Adjust camera angle
+A center rectangle (90mm x 140mm) is drawn on the base plane. This creates the footprint of the box.
 
 
 
-### 2. Apply Materials
+### Extrude
 
-- Select faces or bodies
+The rectangle is extruded by 50mm to create the main box body.
 
-- Choose material (metal, plastic, wood, etc.)
 
-- Adjust properties (color, roughness, etc.)
 
+### Shell
 
+The top surface is selected and shelled by 3mm to hollow out the box. This creates the interior cavity while maintaining the outer walls.
 
-### 3. Add Decals
 
-- Apply images or logos
 
-- Position and scale
+<!-- QUESTION_START -->
+What are the dimensions of the base rectangle?
+<!-- OPTIONS -->
+80mm x 130mm|90mm x 140mm|100mm x 150mm|90mm x 150mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A center rectangle (90mm x 140mm) is drawn on the base plane. This creates the footprint of the box.
+<!-- QUESTION_END -->
 
-- Adjust transparency
 
 
+<!-- QUESTION_START -->
+How much is the rectangle extruded?
+<!-- OPTIONS -->
+40mm|50mm|60mm|70mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The rectangle is extruded by 50mm to create the main box body. This provides the height of the box.
+<!-- QUESTION_END -->
 
-### 4. Set Up Lighting
 
-- Use environment lighting
 
-- Add additional lights if needed
+<!-- QUESTION_START -->
+What thickness is used when shelling the box?
+<!-- OPTIONS -->
+2mm|3mm|4mm|5mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The top surface is selected and shelled by 3mm to hollow out the box. This creates the interior cavity while maintaining the outer walls.
+<!-- QUESTION_END -->
 
-- Adjust intensity and color
 
 
+### Hinge Extension
 
-## Materials Library
+A sketch is created on the back face. A 5mm line is drawn down from the top edge, converted to a construction line, and used to create a profile that is extruded out by 5mm (Join operation) to form the hinge base. This creates the attachment point for the hinge.
 
-Fusion 360 includes many materials:
 
 
+<!-- QUESTION_START -->
+How long is the line drawn for the hinge extension?
+<!-- OPTIONS -->
+3mm|5mm|7mm|10mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A 5mm line is drawn down from the top edge, converted to a construction line, and used to create a profile that is extruded out by 5mm to form the hinge base.
+<!-- QUESTION_END -->
 
-- **Metals**: Steel, aluminum, brass, copper
 
-- **Plastics**: ABS, polycarbonate, rubber
 
-- **Wood**: Oak, pine, mahogany
+<!-- QUESTION_START -->
+What operation is used to create the hinge extension?
+<!-- OPTIONS -->
+New Body|Join|Cut|Intersect
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The profile is extruded out by 5mm using the Join operation. This adds the hinge base to the existing box body.
+<!-- QUESTION_END -->
 
-- **Glass**: Clear, frosted, colored
 
-- **Fabrics**: Canvas, leather, cloth
 
+## Creating the Lid
 
+With the "lid" component active, the lid is created separately from the box.
 
-## Material Properties
 
 
+### Sketch
 
-### Base Color
+A Two Point Rectangle is sketched on top of the box. This creates the lid profile that will cover the box opening.
 
-The main color of the material.
 
 
+### Extrude
 
-### Roughness
+The lid profile is extruded by 3mm as a "New Body". This creates a separate body for the lid component.
 
-How smooth or rough the surface is (affects reflections).
 
 
+<!-- QUESTION_START -->
+What type of rectangle is used for the lid?
+<!-- OPTIONS -->
+Center Rectangle|Two Point Rectangle|3-Point Rectangle|Square
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A Two Point Rectangle is sketched on top of the box. This gives more control over the lid's position.
+<!-- QUESTION_END -->
 
-### Metallic
 
-Whether the material is metallic (affects how light reflects).
 
+<!-- QUESTION_START -->
+How thick is the lid?
+<!-- OPTIONS -->
+2mm|3mm|4mm|5mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The lid profile is extruded by 3mm as a "New Body". This creates a separate body for the lid component.
+<!-- QUESTION_END -->
 
 
-### Specular
 
-Controls the shininess and highlights.
+### Hinge Part
 
+A sketch on the side of the lid draws a rectangle connecting the lid to the hinge base. This is extruded by 3mm (Join) to create the lid's part of the hinge mechanism.
 
 
-## Rendering Settings
 
+<!-- QUESTION_START -->
+How thick is the lid's hinge part?
+<!-- OPTIONS -->
+2mm|3mm|4mm|5mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The rectangle connecting the lid to the hinge base is extruded by 3mm (Join) to create the lid's part of the hinge mechanism.
+<!-- QUESTION_END -->
 
 
-### Quality
 
-- **Draft**: Fast, lower quality
+## Creating the Hinge Pin/Hole
 
-- **Final**: Slower, high quality
+A sketch is created on the side of the hinge area to create the hole for the hinge pin.
 
-- **Maximum**: Best quality, very slow
 
 
+### Positioning
 
-### Resolution
+Construction lines are used to find the center (2.5mm in, 2.5mm up). This positions the hole precisely in the center of the hinge.
 
-- Higher resolution = better quality but slower
 
-- Common: 1920x1080 (Full HD)
 
-- Higher: 3840x2160 (4K)
+### Hole
 
+A 1mm circle is drawn at this center point. This will be the hole for the hinge pin.
 
 
-## Creating a Render
 
+### Extrude Cut
 
+This circle is extruded (cut) by -4mm through both the lid and box hinge parts. The negative value cuts through the material, creating the pin hole.
 
-1. Switch to Render workspace
 
-2. Apply materials to your model
 
-3. Set up scene and lighting
+<!-- QUESTION_START -->
+How far in and up is the hole positioned?
+<!-- OPTIONS -->
+2mm in, 2mm up|2.5mm in, 2.5mm up|3mm in, 3mm up|2.5mm in, 3mm up
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Construction lines are used to find the center (2.5mm in, 2.5mm up). This positions the hole precisely in the center of the hinge.
+<!-- QUESTION_END -->
 
-4. Position camera (use ViewCube)
 
-5. Click "Render"
 
-6. Wait for processing
+<!-- QUESTION_START -->
+What is the diameter of the hinge pin hole?
+<!-- OPTIONS -->
+0.5mm|1mm|1.5mm|2mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A 1mm circle is drawn at the center point. This will be the hole for the hinge pin.
+<!-- QUESTION_END -->
 
-7. Save the image
 
 
+<!-- QUESTION_START -->
+How deep is the hole cut?
+<!-- OPTIONS -->
+-3mm|-4mm|-5mm|-6mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The circle is extruded (cut) by -4mm through both the lid and box hinge parts. The negative value cuts through the material, creating the pin hole.
+<!-- QUESTION_END -->
 
-## Best Practices
 
 
+## Adding the Joint
 
-- Use appropriate materials for realism
+The main assembly component is activated. The Joint Tool is selected from the menu to create a connection between the lid and box that allows rotation.
 
-- Good lighting shows details
 
-- Multiple angles show different views
 
-- High quality for presentations
+### Snap Points
 
-- Draft quality for quick previews
+- The outer edge of the hole on the lid (lid is active/visible, box is hidden)
 
+- The corresponding outer edge of the hole on the box (lid is hidden, box is active/visible)
 
+These snap points align the two components at the hinge axis.
 
-## Environment Presets
 
-Fusion 360 includes environment presets:
 
+<!-- QUESTION_START -->
+What tool is used to create the connection between lid and box?
+<!-- OPTIONS -->
+Fastener Tool|Joint Tool|Align Tool|Connect Tool
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Joint Tool is selected from the menu to create a connection between the lid and box that allows rotation.
+<!-- QUESTION_END -->
 
 
-- **Studio**: Professional lighting
 
-- **Outdoor**: Natural sunlight
+<!-- QUESTION_START -->
+What are selected as snap points for the joint?
+<!-- OPTIONS -->
+The faces|The outer edges of the holes|The centers|The corners
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The outer edge of the hole on the lid and the corresponding outer edge of the hole on the box are selected as snap points. These align the two components at the hinge axis.
+<!-- QUESTION_END -->
 
-- **Indoor**: Room lighting
 
-- **Product**: Showcase lighting
 
+### Motion
 
+The motion type is set to Revolute to allow rotation. This creates a hinge joint that allows the lid to rotate around the hinge axis.
 
-## Post-Processing
 
-After rendering, you can:
 
+<!-- QUESTION_START -->
+What motion type is used for the hinge joint?
+<!-- OPTIONS -->
+Rigid|Revolute|Slider|Cylindrical
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The motion type is set to Revolute to allow rotation. This creates a hinge joint that allows the lid to rotate around the hinge axis.
+<!-- QUESTION_END -->
 
 
-- Adjust brightness/contrast
 
-- Add effects
+### Limits
 
-- Crop the image
+Joint limits are set to prevent clashing. Minimum is set to 0 degrees (closed) and Maximum to 180 degrees (fully open). This prevents the lid from rotating too far and colliding with other parts.
 
-- Export in different formats
 
 
+<!-- QUESTION_START -->
+What is the minimum joint limit (closed position)?
+<!-- OPTIONS -->
+-90 degrees|0 degrees|90 degrees|180 degrees
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The minimum joint limit is set to 0 degrees (closed). This defines the closed position of the lid.
+<!-- QUESTION_END -->
 
-## Export Options
 
 
+<!-- QUESTION_START -->
+What is the maximum joint limit (fully open position)?
+<!-- OPTIONS -->
+90 degrees|120 degrees|150 degrees|180 degrees
+<!-- CORRECT -->
+3
+<!-- EXPLANATION -->
+The maximum joint limit is set to 180 degrees (fully open). This prevents the lid from rotating too far and colliding with other parts.
+<!-- QUESTION_END -->
 
-- **PNG**: Good quality, supports transparency
 
-- **JPEG**: Smaller file size
 
-- **TIFF**: Highest quality, large files
+### Testing the Joint
+
+The user can now double-click the flag icon on the joint to manually open and close the lid. This allows testing the joint motion and verifying it works correctly.
+
+
+
+<!-- QUESTION_START -->
+How do you test the joint motion?
+<!-- OPTIONS -->
+Right-click the joint|Double-click the flag icon on the joint|Press the spacebar|Use the timeline
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The user can double-click the flag icon on the joint to manually open and close the lid. This allows testing the joint motion and verifying it works correctly.
+<!-- QUESTION_END -->
+
+
+
+## Key Concepts Learned
+
+- **Components**: Creating separate parts that can move independently
+- **Component Activation**: Switching between components to work on different parts
+- **Shell Tool**: Hollowing out solid bodies
+- **Join Operation**: Adding material to existing bodies
+- **New Body Operation**: Creating separate bodies
+- **Construction Lines**: Positioning elements precisely
+- **Extrude Cut**: Removing material to create holes
+- **Joint Tool**: Creating connections between components
+- **Revolute Joint**: Allowing rotation around an axis
+- **Joint Limits**: Controlling the range of motion
+- **Snap Points**: Aligning components precisely
 
 
 
 ## Important Notes
 
-
-
-- Rendering takes time - be patient
-
-- Higher quality = longer render time
-
-- Materials make a big difference
-
-- Lighting is crucial for realism
-
-- Practice with different settings`,
+- Components must be separate to create joints
+- The main assembly component must be activated to create joints
+- Snap points align components at the joint axis
+- Revolute joints allow rotation around one axis
+- Joint limits prevent unwanted movement and collisions
+- Construction lines help position holes precisely
+- Negative extrude values cut through material
+- The flag icon on joints allows manual testing
+- Shell tool creates hollow interiors
+- Join operation adds material to existing bodies
+- New Body operation creates separate bodies for different components`,
       quizId: quizId++,
       assessmentType: 'quiz',
       categoryId: 'fusion360',
@@ -5216,15 +6249,364 @@ After rendering, you can:
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 20,
-      title: "Fusion 360 Step 10: Master Timeline",
-      emoji: '⏱️',
-      content: `# Fusion 360 Step 10: Master Timeline
+      title: "Fusion 360 Step 9: Aftershave Bottle (Primitives & Appearances)",
+      emoji: '🧴',
+      content: `# Fusion 360 Step 9: Aftershave Bottle (Primitives & Appearances)
 
-## Master Fusion Timeline | Beginners Tutorial | 2025 | 2026 (Step 10)
+## Learn Autodesk Fusion in 10 Easy Steps - Step 9 (2025/2026)
 
-**Topic**: How to edit your design history and fix errors.
+**Topic**: Creating an aftershave bottle using primitive shapes and appearances.
 
-**YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=qlxM26qKBJI&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=10&pp=iAQB)
+**YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=qlxM26qKBJI&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=9&pp=iAQB)
+
+This tutorial demonstrates using primitive shapes (Box and Cylinder) instead of sketches, and applying materials/appearances to create a realistic product design.
+
+
+
+## Setup and Saving
+
+The file is saved as "after shave". A new component named "after shave" is created to contain the design. This helps organize the project.
+
+
+
+<!-- QUESTION_START -->
+What is the project name for this tutorial?
+<!-- OPTIONS -->
+Bottle|after shave|Aftershave|Container
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The file is saved as "after shave". A new component named "after shave" is created to contain the design.
+<!-- QUESTION_END -->
+
+
+
+## Using Primitives (The Box)
+
+Instead of sketching and extruding, the Primitive Box tool is used. Primitives are pre-made 3D shapes that can be created quickly without sketching.
+
+
+
+### Drawback Note
+
+The video highlights that primitives don't create sketches, which can make future editing harder compared to sketch-based modeling. However, they are faster for simple shapes.
+
+
+
+### Creation
+
+A box is drawn on the base plane using the Primitive Box tool. This creates a 3D box directly without needing to sketch a rectangle first.
+
+
+
+### Dimensions
+
+Length 25mm, Width 50mm, Height 70mm. The body is renamed to "bottle" for clarity.
+
+
+
+<!-- QUESTION_START -->
+What tool is used instead of sketching and extruding?
+<!-- OPTIONS -->
+Extrude Tool|Primitive Box tool|Revolve Tool|Sweep Tool
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Primitive Box tool is used instead of sketching and extruding. Primitives are pre-made 3D shapes that can be created quickly.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What is a drawback of using primitives?
+<!-- OPTIONS -->
+They are slower|They don't create sketches, making future editing harder|They are more complex|They use more memory
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Primitives don't create sketches, which can make future editing harder compared to sketch-based modeling. However, they are faster for simple shapes.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What are the dimensions of the box?
+<!-- OPTIONS -->
+20mm x 50mm x 70mm|25mm x 50mm x 70mm|25mm x 45mm x 70mm|30mm x 50mm x 70mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The box dimensions are Length 25mm, Width 50mm, Height 70mm. The body is renamed to "bottle" for clarity.
+<!-- QUESTION_END -->
+
+
+
+## Adding the Neck (Cylinder Primitive)
+
+The Primitive Cylinder tool is used on the top surface of the box to create the bottle neck.
+
+
+
+### Positioning
+
+The center point is found by hovering to infer the center. This uses Fusion 360's inference system to automatically snap to the center of the face.
+
+
+
+### Dimensions
+
+Diameter 20mm, Height 4mm. This creates a short neck section.
+
+
+
+### Operation
+
+Important change to New Body (instead of Join) so it remains separate. This keeps the neck as a separate body from the bottle, which is useful for applying different materials later.
+
+
+
+The body is renamed to "neck".
+
+
+
+<!-- QUESTION_START -->
+How is the center point found for the cylinder?
+<!-- OPTIONS -->
+By measuring|By hovering to infer the center|By drawing construction lines|By guessing
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The center point is found by hovering to infer the center. This uses Fusion 360's inference system to automatically snap to the center of the face.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What are the dimensions of the neck cylinder?
+<!-- OPTIONS -->
+Diameter 18mm, Height 4mm|Diameter 20mm, Height 4mm|Diameter 20mm, Height 5mm|Diameter 22mm, Height 4mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The neck cylinder has a diameter of 20mm and height of 4mm. This creates a short neck section for the bottle.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What operation is used for the neck cylinder?
+<!-- OPTIONS -->
+Join|New Body|Cut|Intersect
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The operation is set to New Body (instead of Join) so it remains separate. This keeps the neck as a separate body from the bottle.
+<!-- QUESTION_END -->
+
+
+
+## Adding the Lid (Cylinder Primitive)
+
+Another Primitive Cylinder is created on top of the neck to form the lid.
+
+
+
+### Dimensions
+
+Diameter 22mm, Height 24mm. The lid is slightly larger in diameter than the neck to fit over it.
+
+
+
+### Operation
+
+Set to New Body. The body is renamed to "lid".
+
+
+
+<!-- QUESTION_START -->
+What are the dimensions of the lid cylinder?
+<!-- OPTIONS -->
+Diameter 20mm, Height 24mm|Diameter 22mm, Height 24mm|Diameter 22mm, Height 20mm|Diameter 24mm, Height 24mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The lid cylinder has a diameter of 22mm and height of 24mm. The lid is slightly larger in diameter than the neck to fit over it.
+<!-- QUESTION_END -->
+
+
+
+## Filleting
+
+Fillets are added to round the sharp edges and give the bottle a more polished appearance.
+
+
+
+### Side Edges
+
+The four vertical edges of the bottle are filleted by 5mm. This rounds the corners of the main body.
+
+
+
+### Top/Bottom Faces
+
+The top and bottom faces of the main bottle body are filleted by 2mm. This creates rounded edges on the top and bottom.
+
+
+
+### Lid
+
+The top edge of the lid is filleted by 3mm. This rounds the top of the lid for a finished look.
+
+
+
+<!-- QUESTION_START -->
+What size fillet is applied to the four vertical edges of the bottle?
+<!-- OPTIONS -->
+3mm|5mm|7mm|10mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The four vertical edges of the bottle are filleted by 5mm. This rounds the corners of the main body.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What size fillet is applied to the top and bottom faces of the bottle?
+<!-- OPTIONS -->
+1mm|2mm|3mm|4mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The top and bottom faces of the main bottle body are filleted by 2mm. This creates rounded edges on the top and bottom.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What size fillet is applied to the top edge of the lid?
+<!-- OPTIONS -->
+2mm|3mm|4mm|5mm
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The top edge of the lid is filleted by 3mm. This rounds the top of the lid for a finished look.
+<!-- QUESTION_END -->
+
+
+
+## Appearances and Materials
+
+The Appearance menu is opened (Shortcut: A) to change the visual appearance of the bottle. This allows you to apply different materials and colors.
+
+
+
+### Applying Material
+
+The library is browsed to find Paint > Enamel Gloss Black. The material is dragged onto the bottle to change its visual appearance from the default steel gray to black. This gives the bottle a glossy black finish.
+
+
+
+<!-- QUESTION_START -->
+What is the shortcut key to open the Appearance menu?
+<!-- OPTIONS -->
+A|M|P|S
+<!-- CORRECT -->
+0
+<!-- EXPLANATION -->
+The Appearance menu is opened using the shortcut key A. This provides quick access to materials and appearances.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What material is applied to the bottle?
+<!-- OPTIONS -->
+Paint > Enamel Gloss Black|Paint > Matte Black|Metal > Steel|Plastic > ABS
+<!-- CORRECT -->
+0
+<!-- EXPLANATION -->
+The library is browsed to find Paint > Enamel Gloss Black. The material is dragged onto the bottle to change its appearance from the default steel gray to black.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What is the default material color in Fusion 360?
+<!-- OPTIONS -->
+White|Black|Steel gray|Blue
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+The default material in Fusion 360 is steel gray. Materials can be changed using the Appearance menu to apply different colors and finishes.
+<!-- QUESTION_END -->
+
+
+
+## Render Workspace Introduction
+
+The user switches from the Design workspace to the Render workspace. This view shows the material properties (like glossiness) more realistically, demonstrating how to create high-quality images of the product. The user switches back to Design and saves the file.
+
+
+
+<!-- QUESTION_START -->
+What workspace shows material properties more realistically?
+<!-- OPTIONS -->
+Design workspace|Render workspace|Animation workspace|Simulation workspace
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Render workspace shows the material properties (like glossiness) more realistically, demonstrating how to create high-quality images of the product.
+<!-- QUESTION_END -->
+
+
+
+## Key Concepts Learned
+
+- **Primitive Shapes**: Pre-made 3D shapes (Box, Cylinder) that don't require sketching
+- **Primitive Box**: Creating boxes directly without sketching rectangles
+- **Primitive Cylinder**: Creating cylinders directly without sketching circles
+- **Inference System**: Using hover to automatically find center points
+- **New Body Operation**: Keeping parts separate for different materials
+- **Fillets**: Rounding edges for a polished appearance
+- **Appearance Menu**: Changing materials and colors (Shortcut: A)
+- **Material Library**: Browsing and applying different materials
+- **Render Workspace**: Viewing materials realistically for high-quality images
+- **Naming Bodies**: Organizing your design by renaming bodies
+
+
+
+## Important Notes
+
+- Primitives are faster but don't create sketches, making editing harder
+- Use New Body operation to keep parts separate for different materials
+- The inference system helps find center points automatically
+- Fillets add a polished, professional appearance
+- The Appearance menu (Shortcut: A) allows quick material changes
+- Materials can be dragged directly onto bodies
+- The Render workspace shows materials more realistically
+- Naming bodies helps organize complex designs
+- Primitives are great for quick prototyping but sketches offer more control
+- Different fillet sizes can be applied to different edges for varied effects`,
+      quizId: quizId++,
+      assessmentType: 'quiz',
+      categoryId: 'fusion360',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'technology',
+      lessonNumber: 21,
+      title: "Fusion 360 Step 10: Exporting & Manufacturing",
+      emoji: '📤',
+      content: `# Fusion 360 Step 10: Exporting & Manufacturing
+
+## Learn Autodesk Fusion in 10 Easy Steps - Step 10 (2025/2026)
+
+**Topic**: Exporting your designs for 3D printing, manufacturing, and sharing.
+
+**YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=iUbGPrUilno&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=11&pp=iAQB)
 
 
 
@@ -5252,6 +6634,30 @@ Most common for 3D printing.
 
 
 
+<!-- QUESTION_START -->
+What file format is most common for 3D printing?
+<!-- OPTIONS -->
+STEP|STL|OBJ|DXF
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+STL (Stereolithography) is the most common format for 3D printing. It converts solid geometry to triangles and works with all 3D printers.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What does STL format contain?
+<!-- OPTIONS -->
+Geometry only|Colors and textures|Materials|Dimensions
+<!-- CORRECT -->
+0
+<!-- EXPLANATION -->
+STL format contains geometry only - no color or texture information. It converts solid models to triangles for 3D printing.
+<!-- QUESTION_END -->
+
+
+
 ### STEP
 
 For manufacturing and CAD exchange.
@@ -5263,6 +6669,30 @@ For manufacturing and CAD exchange.
 - **Industry standard**: Works with other CAD software
 
 - **Assembly support**: Can export entire assemblies
+
+
+
+<!-- QUESTION_START -->
+What file format is best for manufacturing and CAD exchange?
+<!-- OPTIONS -->
+STL|STEP|OBJ|DXF
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+STEP format is best for manufacturing and CAD exchange. It maintains precise geometry and is an industry standard that works with other CAD software.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What advantage does STEP format have over STL?
+<!-- OPTIONS -->
+Smaller file size|Maintains exact dimensions|Includes colors|Works with all printers
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+STEP format maintains precise geometry and exact dimensions, making it better for manufacturing than STL, which converts to triangles.
+<!-- QUESTION_END -->
 
 
 
@@ -5280,6 +6710,18 @@ For rendering and visualization.
 
 
 
+<!-- QUESTION_START -->
+What file format is best for rendering and visualization?
+<!-- OPTIONS -->
+STL|STEP|OBJ|DXF
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+OBJ format is best for rendering and visualization. It's like STL but with materials and texture support, making it common in animation software.
+<!-- QUESTION_END -->
+
+
+
 ### DXF/DWG
 
 For 2D drawings and laser cutting.
@@ -5291,6 +6733,18 @@ For 2D drawings and laser cutting.
 - **Laser cutting**: Perfect for CNC laser cutters
 
 - **Drawing views**: Technical drawings
+
+
+
+<!-- QUESTION_START -->
+What file format is best for laser cutting?
+<!-- OPTIONS -->
+STL|STEP|OBJ|DXF/DWG
+<!-- CORRECT -->
+3
+<!-- EXPLANATION -->
+DXF/DWG format is best for 2D drawings and laser cutting. It's a 2D format that's perfect for CNC laser cutters and technical drawings.
+<!-- QUESTION_END -->
 
 
 
@@ -5323,6 +6777,30 @@ For 2D drawings and laser cutting.
 - **Orientation**: Consider how it will print
 
 - **Supports**: May need support material
+
+
+
+<!-- QUESTION_START -->
+What does "watertight" mean for 3D printing?
+<!-- OPTIONS -->
+The model is waterproof|The model must be solid with no gaps|The model floats|The model is transparent
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+"Watertight" means the model must be solid with no gaps. This is essential for 3D printing because gaps can cause printing failures.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What does "manifold" mean for 3D printing?
+<!-- OPTIONS -->
+The model is round|All surfaces must connect properly|The model is flat|The model has multiple parts
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+"Manifold" means all surfaces must connect properly. This ensures the 3D printer can create a valid solid object without errors.
+<!-- QUESTION_END -->
 
 
 
@@ -5370,6 +6848,30 @@ Fusion 360 includes CAM (Computer-Aided Manufacturing) tools:
 
 
 
+<!-- QUESTION_START -->
+What does CAM stand for?
+<!-- OPTIONS -->
+Computer-Aided Manufacturing|Computer-Aided Modeling|Computer-Aided Machining|Computer-Aided Materials
+<!-- CORRECT -->
+0
+<!-- EXPLANATION -->
+CAM stands for Computer-Aided Manufacturing. Fusion 360 includes CAM tools for creating toolpaths for manufacturing machines.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What CAM operation is used for lathe operations?
+<!-- OPTIONS -->
+2D Milling|3D Milling|Turning|Additive
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+Turning is used for lathe operations. This creates toolpaths for machines that rotate the workpiece while cutting.
+<!-- QUESTION_END -->
+
+
+
 ## Creating Toolpaths
 
 
@@ -5414,6 +6916,30 @@ Converts toolpaths to machine code (G-code):
 
 
 
+<!-- QUESTION_START -->
+What does post-processing convert toolpaths into?
+<!-- OPTIONS -->
+STL files|G-code|STEP files|DXF files
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Post-processing converts toolpaths to machine code (G-code). This is the language that manufacturing machines understand.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What is the first step in post-processing?
+<!-- OPTIONS -->
+Choose your machine|Select operations|Generate G-code|Send to machine
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The first step in post-processing is to select the operations you want to convert. Then you click "Post Process" and choose your machine/controller.
+<!-- QUESTION_END -->
+
+
+
 ## Best Practices
 
 
@@ -5427,6 +6953,18 @@ Converts toolpaths to machine code (G-code):
 - Add supports if needed
 
 - Export at appropriate resolution
+
+
+
+<!-- QUESTION_START -->
+What should you check before exporting for 3D printing?
+<!-- OPTIONS -->
+File size|Model is watertight|Colors|Materials
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Before exporting for 3D printing, you should check that the model is watertight (solid with no gaps). This prevents printing failures.
+<!-- QUESTION_END -->
 
 
 
@@ -5468,61 +7006,43 @@ Converts toolpaths to machine code (G-code):
 
 - Test exports before sending to machines
 
-- Keep original Fusion 360 files for editing`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
-      categoryId: 'fusion360',
-    }),
+- Keep original Fusion 360 files for editing
 
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year4',
-      subjectId: 'technology',
-      lessonNumber: 21,
-      title: "Fusion 360: Full Course (Compilation)",
-      emoji: '📚',
-      content: `# Fusion 360: Full Course (Compilation)
 
-## Autodesk Fusion for Beginners | Full Course (2025/2026)
 
-**YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=iUbGPrUilno&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=11&pp=iAQB)
+<!-- QUESTION_START -->
+What should you always do before exporting?
+<!-- OPTIONS -->
+Check file size|Save your Fusion 360 file first|Close other programs|Restart Fusion 360
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Always save your Fusion 360 file first before exporting. This ensures you have a backup of your work in case something goes wrong.
+<!-- QUESTION_END -->
 
-This is a 1-hour compilation video that combines Steps 1-6 (and parts of others) into a single video for uninterrupted learning.
 
-## What's Included
 
-This comprehensive video covers:
+<!-- QUESTION_START -->
+What format should you use for 3D printing?
+<!-- OPTIONS -->
+STEP|STL|OBJ|DXF
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+STL format should be used for 3D printing. STEP format is better for manufacturing and CAD exchange.
+<!-- QUESTION_END -->
 
-- **Step 1**: User Interface
-- **Step 2**: Sketching
-- **Step 3**: Extrude & Fillets
-- **Step 4**: Sweeps & Construction Lines
-- **Step 5**: Revolve & Splines
-- **Step 6**: Extruded Cuts & Circular Patterns
-- Plus additional content from other steps
 
-## Perfect For
 
-- Reviewing all the basics in one session
-- Getting a complete overview of Fusion 360
-- Learning at your own pace without interruptions
-- Understanding how all the concepts work together
-
-## Watch the Full Course
-
-This compilation video is perfect for:
-- Complete beginners who want to see everything in one go
-- Review sessions after completing individual steps
-- Understanding how all the tools work together
-- Building confidence before starting your own projects
-
-## Next Steps
-
-After watching this full course, you'll be ready to:
-- Create your own 3D models
-- Apply the techniques you've learned
-- Explore more advanced features
-- Build real projects`,
+<!-- QUESTION_START -->
+What format should you use for manufacturing?
+<!-- OPTIONS -->
+STL|STEP|OBJ|DXF
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+STEP format should be used for manufacturing. It maintains precise geometry and is an industry standard for CAD exchange.
+<!-- QUESTION_END -->`,
       quizId: quizId++,
       assessmentType: 'quiz',
       categoryId: 'fusion360',

@@ -6,7 +6,17 @@ import ClickingGame from '../components/ClickingGame';
 import KeyboardGame from '../components/KeyboardGame';
 import DrawingGame from '../components/DrawingGame';
 import BlocklyEmbed from '../components/BlocklyEmbed';
+import SVGCodeEditor from '../components/SVGCodeEditor';
+import PythonCodeEditor from '../components/PythonCodeEditor';
+import ArduinoCodeEditor from '../components/ArduinoCodeEditor';
+import PhonicsLesson from '../components/PhonicsLesson';
+import MathGame from '../components/MathGame';
 import InfoButton from '../components/InfoButton';
+import EdgeBounceHelpButton from '../components/EdgeBounceHelpButton';
+import FlappyBirdGame from '../components/FlappyBirdGame';
+import BubblePopGame from '../components/BubblePopGame';
+import SnakeGame from '../components/SnakeGame';
+import TargetPracticeGame from '../components/TargetPracticeGame';
 import { Progress } from '../models/Progress';
 
 function LessonViewScreen() {
@@ -204,6 +214,97 @@ function LessonViewScreen() {
         }}>
           <DrawingGame lesson={lesson} />
         </div>
+      ) : lesson.title === 'Flappy Bird Game' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '30px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <FlappyBirdGame lesson={lesson} />
+        </div>
+      ) : lesson.title === 'Bubble Pop Game' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '30px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <BubblePopGame lesson={lesson} />
+        </div>
+      ) : lesson.title === 'Snake Game' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '30px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <SnakeGame lesson={lesson} />
+        </div>
+      ) : lesson.title === 'Target Practice Game' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '30px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <TargetPracticeGame lesson={lesson} />
+        </div>
+      ) : lesson.title?.startsWith('HTML Programming: SVG Graphics') ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <SVGCodeEditor lesson={lesson} />
+        </div>
+      ) : lesson.title?.startsWith('Python Lesson') || (lesson.subjectId === 'technology' && lesson.categoryId === 'python') ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <PythonCodeEditor lesson={lesson} />
+        </div>
+      ) : lesson.title?.startsWith('Arduino Lesson') || (lesson.subjectId === 'technology' && lesson.title?.includes('Arduino')) ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ArduinoCodeEditor lesson={lesson} />
+        </div>
       ) : lesson.title?.startsWith('Blockly') ? (
         <div style={{
           flex: 1,
@@ -219,11 +320,14 @@ function LessonViewScreen() {
           {/* Info button with instructions */}
           <InfoButton content={lesson.content} title={lesson.title} />
           
+          {/* Edge Bounce Help button for Blockly Pond Tutor (uses blocks) */}
+          {(lesson.title === 'Blockly Pond Tutor' || lesson.title === 'Blockly Pond') && <EdgeBounceHelpButton />}
+          
           {/* Blockly game - takes full space */}
           <div style={{ 
             flex: 1,
             minHeight: 0,
-            padding: '20px 30px',
+            padding: '10px 15px',
             display: 'flex',
             flexDirection: 'column',
           }}>
@@ -242,6 +346,32 @@ function LessonViewScreen() {
               return <BlocklyEmbed url={gameUrl} height="100%" isLocal={true} />;
             })()}
           </div>
+        </div>
+      ) : lesson.assessmentType === 'phonics' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <PhonicsLesson lesson={lesson} />
+        </div>
+      ) : lesson.assessmentType === 'maths-game' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <MathGame lesson={lesson} />
         </div>
       ) : (
         <div style={{
@@ -364,32 +494,6 @@ function LessonViewScreen() {
               ) : null}
             </div>
           )}
-        </div>
-      )}
-
-      {/* Quiz Button */}
-      {lesson.quizId && (
-        <div style={{
-          flexShrink: 0,
-          marginTop: '20px',
-          display: 'flex',
-          justifyContent: 'center',
-        }}>
-          <button
-            onClick={() => navigate(`/quiz/${lesson.quizId}`)}
-            style={{
-              padding: '12px 24px',
-              backgroundColor: '#007bff',
-              color: 'white',
-              border: 'none',
-              borderRadius: '6px',
-              cursor: 'pointer',
-              fontSize: '16px',
-              fontWeight: '600',
-            }}
-          >
-            Take Quiz →
-          </button>
         </div>
       )}
       </div>

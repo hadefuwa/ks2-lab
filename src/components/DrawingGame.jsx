@@ -279,7 +279,12 @@ function DrawingGame({ lesson }) {
       const mag2 = Math.sqrt(v2.x * v2.x + v2.y * v2.y);
       
       if (mag1 > 0 && mag2 > 0) {
-        const angle = Math.acos(Math.max(-1, Math.min(1, dot / (mag1 * mag2))));
+        const externalAngle = Math.acos(Math.max(-1, Math.min(1, dot / (mag1 * mag2))));
+        // For triangles, convert external angle to internal angle (internal = π - external)
+        // For other shapes, the external angle calculation works correctly
+        const angle = currentShape.name === 'triangle' 
+          ? Math.PI - externalAngle 
+          : externalAngle;
         angles.push(angle);
       }
     }
@@ -457,7 +462,7 @@ function DrawingGame({ lesson }) {
             borderRadius: '6px',
             fontWeight: 'bold',
           }}>
-            ✓ Perfect Square!
+            ✓ Perfect {currentShape.name.charAt(0).toUpperCase() + currentShape.name.slice(1)}!
           </div>
         )}
 

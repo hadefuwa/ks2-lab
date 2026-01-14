@@ -87,7 +87,8 @@ function TopNavigation() {
       return;
     }
     
-    console.log('Skipping lesson:', currentLesson.id, currentLesson.title, currentLesson.subjectId);
+    // Log skip action (informational only - not an error)
+    // console.log('Skipping lesson:', currentLesson.id, currentLesson.title, currentLesson.subjectId);
     
     try {
       const userId = getUserId();
@@ -119,13 +120,11 @@ function TopNavigation() {
       
       // Navigate to next lesson
       const nextLesson = getNextLessonAfter(currentLesson);
-      console.log('Next lesson found:', nextLesson ? nextLesson.id : 'none');
       
       if (nextLesson && nextLesson.id) {
         navigate(`/lesson/${nextLesson.id}`);
       } else {
         // If no next lesson, go back to lessons list for the subject
-        console.log('No next lesson, navigating to lessons list for subject:', currentLesson.subjectId);
         if (currentLesson && currentLesson.subjectId) {
           navigate(`/lessons?subjectId=${currentLesson.subjectId}`);
         } else {

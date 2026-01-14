@@ -49,13 +49,49 @@ Let's learn to count from 1 to 10!
 
 
 
+<!-- QUESTION_START -->
+What number comes after 7?
+<!-- OPTIONS -->
+6|7|8|9
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+After 7 comes 8! We count: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+How many fingers do you have on both hands?
+<!-- OPTIONS -->
+8|9|10|12
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+You have 5 fingers on each hand, so 5 + 5 = 10 fingers on both hands!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Which number is the smallest: 3, 7, or 1?
+<!-- OPTIONS -->
+1|3|7|They are all the same
+<!-- CORRECT -->
+0
+<!-- EXPLANATION -->
+1 is the smallest number! When we count, we start with 1, then 2, then 3, and so on.
+<!-- QUESTION_END -->
+
+
+
 ## Practice
 
 
 
 Count your fingers! How many do you have?`,
       quizId: quizId++,
-      assessmentType: 'quiz',
+      assessmentType: 'interactive',
       categoryId: null,
     }),
 
@@ -86,13 +122,49 @@ Addition means putting numbers together!
 
 
 
+<!-- QUESTION_START -->
+What is 2 + 2?
+<!-- OPTIONS -->
+2|3|4|5
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+2 + 2 = 4! When we add, we put the numbers together. Two plus two equals four.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What is 3 + 1?
+<!-- OPTIONS -->
+2|3|4|5
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+3 + 1 = 4! If you have 3 apples and add 1 more, you have 4 apples.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What is 1 + 4?
+<!-- OPTIONS -->
+3|4|5|6
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+1 + 4 = 5! Adding means putting numbers together, so 1 plus 4 equals 5.
+<!-- QUESTION_END -->
+
+
+
 ## Practice
 
 
 
 Try adding: 2 + 2 = ?`,
       quizId: quizId++,
-      assessmentType: 'quiz',
+      assessmentType: 'interactive',
       categoryId: null,
     }),
 
@@ -965,7 +1037,11 @@ In Movie, you'll learn to create animations by programming characters to move an
 - Use timing blocks to control speed
 - Make your own animated stories
 
-Bring your stories to life!`,
+Bring your stories to life!
+
+## Note
+
+You may see console messages about "Pixel errors" or "Canvas2D" - these are normal! Blockly Movie checks your animation frame-by-frame to see if it matches the target. These messages don't affect the game.`,
       quizId: null,
       assessmentType: null,
       categoryId: null,
@@ -991,7 +1067,11 @@ In Pond Tutor, you'll learn JavaScript programming concepts using visual blocks 
 - Complete exercises to practice
 - Build your programming skills
 
-Learn real programming concepts!`,
+Learn real programming concepts!
+
+## Note
+
+You may see console messages about "play() request was interrupted" - these are normal! Blockly Games preloads sound effects, which can trigger browser warnings. These messages don't affect the game and you can safely ignore them.`,
       quizId: null,
       assessmentType: null,
       categoryId: null,
@@ -1017,7 +1097,11 @@ In Pond, you'll write JavaScript code to compete in a duck racing game.
 - Optimize your code for speed
 - Compete with others or yourself
 
-Master JavaScript programming!`,
+Master JavaScript programming!
+
+## Note
+
+You may see console messages about "play() request was interrupted" or "createRadialGradient" - these are normal! Blockly Games preloads sound effects and creates visual effects that can trigger browser warnings. These messages don't affect the game and you can safely ignore them.`,
       quizId: null,
       assessmentType: null,
       categoryId: null,

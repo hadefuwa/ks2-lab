@@ -29,6 +29,24 @@ function BlocklyEmbed({ url = 'https://blockly.games/?lang=en', width = '100%', 
   
   const finalUrl = getFinalUrl();
 
+  // Listen for navigation messages from Blockly Games iframe
+  useEffect(() => {
+    if (!isLocalFile) return;
+    
+    const handleMessage = (event) => {
+      // Only accept messages from our blockly:// protocol
+      if (event.data && event.data.type === 'blockly-navigation-blocked') {
+        console.log('Blocked external navigation attempt from Blockly Games:', event.data.url);
+        // Navigation was blocked - the game will stay on current level
+      }
+    };
+    
+    window.addEventListener('message', handleMessage);
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+  }, [isLocalFile]);
+
   useEffect(() => {
     // For local files, skip internet check
     if (isLocalFile) {
@@ -107,6 +125,9 @@ function BlocklyEmbed({ url = 'https://blockly.games/?lang=en', width = '100%', 
   // If height is 100%, use flex layout instead of fixed height
   const useFlexHeight = height === '100%';
   
+  // Zoom out to give more space - scale down to 90% (reduced from 85% to avoid canvas coordinate issues)
+  const zoomScale = 0.90;
+  
   return (
     <div style={{
       width: '100%',
@@ -123,28 +144,39 @@ function BlocklyEmbed({ url = 'https://blockly.games/?lang=en', width = '100%', 
       overflow: 'hidden',
       boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
       backgroundColor: '#fff',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
     }}>
-      <iframe
-        width={width}
-        height={height}
-        src={finalUrl}
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        style={{
-          width: '100%',
-          height: '100%',
-          border: 'none',
-          flex: useFlexHeight ? 1 : undefined,
-          minHeight: useFlexHeight ? 0 : undefined,
-        }}
-        title="Blockly Games"
-        onLoad={() => setIsLoading(false)}
-        onError={() => {
-          setIsOnline(false);
-          setIsLoading(false);
-        }}
-      />
+      <div style={{
+        transform: `scale(${zoomScale})`,
+        transformOrigin: 'center center',
+        width: `${100 / zoomScale}%`,
+        height: `${100 / zoomScale}%`,
+        position: 'relative',
+      }}>
+        <iframe
+          width={width}
+          height={height}
+          src={finalUrl}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={{
+            width: '100%',
+            height: '100%',
+            border: 'none',
+            flex: useFlexHeight ? 1 : undefined,
+            minHeight: useFlexHeight ? 0 : undefined,
+          }}
+          title="Blockly Games"
+          onLoad={() => setIsLoading(false)}
+          onError={() => {
+            setIsOnline(false);
+            setIsLoading(false);
+          }}
+        />
+      </div>
     </div>
   );
 }
