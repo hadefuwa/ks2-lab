@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import useDataStore from '../store/dataStore';
 import { Progress } from '../models/Progress';
+import UpdateChecker from './UpdateChecker';
 
 function TopNavigation() {
   const [showPasswordModal, setShowPasswordModal] = useState(false);
@@ -252,40 +253,43 @@ function TopNavigation() {
         )}
       </div>
       
-      {isLessonPage && (
-        <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-          <button
-            onClick={() => setShowPasswordModal(true)}
-            style={{
-              padding: '8px 20px',
-              backgroundColor: '#6c757d',
-              color: '#fff',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              fontSize: '14px',
-              fontWeight: 'bold',
-            }}
-          >
-            🔒 Mark Completed
-          </button>
-          <button
-            onClick={handleSkipLesson}
-            style={{
-              padding: '8px 20px',
-              backgroundColor: '#ffc107',
-              color: '#333',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              fontSize: '14px',
-              fontWeight: 'bold',
-            }}
-          >
-            Skip Lesson →
-          </button>
-        </div>
-      )}
+      <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+        <UpdateChecker />
+        {isLessonPage && (
+          <>
+            <button
+              onClick={() => setShowPasswordModal(true)}
+              style={{
+                padding: '8px 20px',
+                backgroundColor: '#6c757d',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                fontSize: '14px',
+                fontWeight: 'bold',
+              }}
+            >
+              🔒 Mark Completed
+            </button>
+            <button
+              onClick={handleSkipLesson}
+              style={{
+                padding: '8px 20px',
+                backgroundColor: '#ffc107',
+                color: '#333',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                fontSize: '14px',
+                fontWeight: 'bold',
+              }}
+            >
+              Skip Lesson →
+            </button>
+          </>
+        )}
+      </div>
       
       {/* Password Modal */}
       {showPasswordModal && (

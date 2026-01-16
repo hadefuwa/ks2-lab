@@ -82,7 +82,7 @@
         "provider": "github",
         "owner": "hadefuwa",
         "repo": "homeschool-hub",
-        "private": true
+        "private": false
       }
     ]
   }

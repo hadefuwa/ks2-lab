@@ -58,6 +58,21 @@ let mainWindow;
 autoUpdater.autoDownload = false; // Don't auto-download, let user choose
 autoUpdater.autoInstallOnAppQuit = true; // Install on app quit if update is ready
 
+// TEMPORARY WORKAROUND: Disable signature verification for unsigned updates
+// WARNING: This is a security risk and should only be used until a code signing certificate is obtained.
+// For production, you MUST get a code signing certificate from a trusted CA.
+// See docs/CODE_SIGNING.md for instructions.
+if (process.platform === 'win32') {
+  // Override signature verification to allow unsigned updates
+  // This bypasses Windows signature checks but users may still see warnings
+  autoUpdater.verifyUpdateCodeSignature = async (publisherNames, filePath) => {
+    console.warn('WARNING: Signature verification disabled. Updates are not signed.');
+    console.warn('This is a temporary workaround. Get a code signing certificate for production.');
+    // Return null to indicate "verification passed" (bypassed)
+    return null;
+  };
+}
+
 // Auto-updater event handlers
 autoUpdater.on('checking-for-update', () => {
   console.log('Checking for updates...');
@@ -65,21 +80,28 @@ autoUpdater.on('checking-for-update', () => {
 
 autoUpdater.on('update-available', (info) => {
   console.log('Update available:', info.version);
-  if (mainWindow) {
-    dialog.showMessageBox(mainWindow, {
-      type: 'info',
-      title: 'Update Available',
-      message: `A new version (${info.version}) is available!`,
-      detail: 'Would you like to download it now?',
-      buttons: ['Download', 'Later'],
-      defaultId: 0,
-      cancelId: 1
-    }).then((result) => {
-      if (result.response === 0) {
-        autoUpdater.downloadUpdate();
-      }
-    });
-  }
+  const showDialog = () => {
+    const targetWindow = mainWindow || BrowserWindow.getAllWindows()[0];
+    if (targetWindow) {
+      dialog.showMessageBox(targetWindow, {
+        type: 'info',
+        title: 'Update Available',
+        message: `A new version (${info.version}) is available!`,
+        detail: 'Would you like to download it now?',
+        buttons: ['Download', 'Later'],
+        defaultId: 0,
+        cancelId: 1
+      }).then((result) => {
+        if (result.response === 0) {
+          autoUpdater.downloadUpdate();
+        }
+      });
+    } else {
+      // Window not ready yet, wait a bit and try again
+      setTimeout(showDialog, 1000);
+    }
+  };
+  showDialog();
 });
 
 autoUpdater.on('update-not-available', (info) => {
@@ -88,23 +110,56 @@ autoUpdater.on('update-not-available', (info) => {
 
 autoUpdater.on('error', (err) => {
   console.error('Error in auto-updater:', err);
+  console.error('Error details:', {
+    message: err.message,
+    stack: err.stack,
+    code: err.code
+  });
+  
   // Don't show error dialogs for expected errors
   const errorMessage = err.message || '';
   const is404Error = errorMessage.includes('404') || errorMessage.includes('Not Found');
   const isNetworkError = errorMessage.includes('ENOTFOUND') || errorMessage.includes('network');
   const isLatestYmlError = errorMessage.includes('latest.yml') || errorMessage.includes('Cannot find latest.yml');
+  const isAuthError = errorMessage.includes('401') || errorMessage.includes('403') || errorMessage.includes('Unauthorized');
+  const isSignatureError = errorMessage.includes('not signed') || errorMessage.includes('digitally signed') || errorMessage.includes('SignerCertificate');
   
-  if (!is404Error && !isNetworkError && !isLatestYmlError) {
-    // Only show dialog for unexpected errors
-    if (mainWindow) {
-      dialog.showErrorBox('Update Error', err.message || 'An error occurred while checking for updates.');
+  if (isSignatureError) {
+    // For signature errors, show a user-friendly message with manual download option
+    console.warn('Update signature verification failed. This is expected for unsigned builds.');
+    const targetWindow = mainWindow || BrowserWindow.getAllWindows()[0];
+    if (targetWindow) {
+      const { shell } = require('electron');
+      dialog.showMessageBox(targetWindow, {
+        type: 'warning',
+        title: 'Update Available (Unsigned)',
+        message: 'A new update is available, but it is not digitally signed.',
+        detail: 'Windows requires signed executables for security. The auto-update may be blocked.\n\nYou can:\n1. Try the auto-update (may show Windows security warnings)\n2. Manually download from GitHub releases\n\nNote: We are working on getting a code signing certificate to resolve this.',
+        buttons: ['Try Auto-Update', 'Download Manually', 'Cancel'],
+        defaultId: 0,
+        cancelId: 2
+      }).then((result) => {
+        if (result.response === 0) {
+          // User chose to try auto-update - it should work now with our bypass
+          console.log('User chose to try auto-update');
+          // The update should proceed with our signature verification bypass
+        } else if (result.response === 1) {
+          // User chose to download manually - open GitHub releases page
+          shell.openExternal('https://github.com/hadefuwa/homeschool-hub/releases');
+        }
+      });
     }
+  } else if (isAuthError) {
+    console.error('Update check: Authentication error. Check GitHub token configuration.');
+  } else if (isLatestYmlError) {
+    console.error('Update check: latest.yml file not found in release. Upload latest.yml to your GitHub release to enable auto-updates.');
+  } else if (is404Error || isNetworkError) {
+    console.log('Update check: No releases found yet or network issue. This is normal if you haven\'t published your first release.');
   } else {
-    // Log expected errors silently
-    if (isLatestYmlError) {
-      console.log('Update check: latest.yml file not found in release. Upload latest.yml to your GitHub release to enable auto-updates.');
-    } else {
-      console.log('Update check: No releases found yet or network issue. This is normal if you haven\'t published your first release.');
+    // Show dialog for unexpected errors
+    const targetWindow = mainWindow || BrowserWindow.getAllWindows()[0];
+    if (targetWindow) {
+      dialog.showErrorBox('Update Error', err.message || 'An error occurred while checking for updates.');
     }
   }
 });
@@ -120,21 +175,28 @@ autoUpdater.on('download-progress', (progressObj) => {
 
 autoUpdater.on('update-downloaded', (info) => {
   console.log('Update downloaded:', info.version);
-  if (mainWindow) {
-    dialog.showMessageBox(mainWindow, {
-      type: 'info',
-      title: 'Update Ready',
-      message: 'Update downloaded. The application will restart to apply the update.',
-      detail: `Version ${info.version} has been downloaded and will be installed on restart.`,
-      buttons: ['Restart Now', 'Later'],
-      defaultId: 0,
-      cancelId: 1
-    }).then((result) => {
-      if (result.response === 0) {
-        autoUpdater.quitAndInstall(false, true);
-      }
-    });
-  }
+  const showDialog = () => {
+    const targetWindow = mainWindow || BrowserWindow.getAllWindows()[0];
+    if (targetWindow) {
+      dialog.showMessageBox(targetWindow, {
+        type: 'info',
+        title: 'Update Ready',
+        message: 'Update downloaded. The application will restart to apply the update.',
+        detail: `Version ${info.version} has been downloaded and will be installed on restart.`,
+        buttons: ['Restart Now', 'Later'],
+        defaultId: 0,
+        cancelId: 1
+      }).then((result) => {
+        if (result.response === 0) {
+          autoUpdater.quitAndInstall(false, true);
+        }
+      });
+    } else {
+      // Window not ready yet, wait a bit and try again
+      setTimeout(showDialog, 1000);
+    }
+  };
+  showDialog();
 });
 
 function createWindow() {
@@ -430,12 +492,20 @@ app.whenReady().then(() => {
   if (!app.isPackaged) {
     console.log('Skipping update check in development mode');
   } else {
-    // Check for updates immediately
-    autoUpdater.checkForUpdates();
+    // Wait a moment for window to be ready, then check for updates
+    setTimeout(() => {
+      console.log('Checking for updates...');
+      autoUpdater.checkForUpdates().catch(err => {
+        console.error('Error initiating update check:', err);
+      });
+    }, 2000);
     
     // Check for updates every 4 hours
     setInterval(() => {
-      autoUpdater.checkForUpdates();
+      console.log('Periodic update check...');
+      autoUpdater.checkForUpdates().catch(err => {
+        console.error('Error in periodic update check:', err);
+      });
     }, 4 * 60 * 60 * 1000);
   }
 

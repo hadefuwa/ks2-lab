@@ -32,18 +32,24 @@ function UpdateChecker() {
 
     try {
       const result = await window.electronAPI.checkForUpdates();
+      console.log('Update check result:', result);
       
       if (result.success) {
         if (result.updateInfo) {
           setUpdateStatus(`Update available: ${result.updateInfo.version}`);
+          // The auto-updater should show a dialog automatically, but we can also show a message here
         } else {
           setUpdateStatus('You are running the latest version');
         }
       } else {
-        setUpdateStatus(`Error: ${result.error || 'Failed to check for updates'}`);
+        const errorMsg = result.error || 'Failed to check for updates';
+        setUpdateStatus(`Error: ${errorMsg}`);
+        console.error('Update check failed:', errorMsg);
       }
     } catch (error) {
-      setUpdateStatus(`Error: ${error.message}`);
+      const errorMsg = error.message || 'Unknown error';
+      setUpdateStatus(`Error: ${errorMsg}`);
+      console.error('Update check exception:', error);
     } finally {
       setChecking(false);
     }
