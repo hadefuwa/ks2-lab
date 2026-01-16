@@ -5,6 +5,8 @@ import { Quiz } from '../models/Quiz.js';
 import { Progress } from '../models/Progress.js';
 import { Student } from '../models/Student.js';
 import { Year } from '../models/Year.js';
+import { Reward } from '../models/Reward.js';
+import { Purchase } from '../models/Purchase.js';
 import { getDefaultData } from '../data/defaultData.js';
 
 const useDataStore = create((set, get) => ({
@@ -63,6 +65,12 @@ const useDataStore = create((set, get) => ({
 
       // Merge default lessons (add any missing lessons)
       await state._mergeDefaultLessons(appData);
+
+      // Merge default rewards (add if none exist)
+      await state._mergeDefaultRewards(appData);
+
+      // Calculate and award retroactive points if needed
+      await state._calculateAndAwardRetroactivePoints(appData);
 
       set({ 
         data: appData, 
@@ -182,6 +190,53 @@ const useDataStore = create((set, get) => ({
       }
     } else {
       console.log('[DataStore] No changes detected in default lessons/quizzes');
+    }
+  },
+
+  // Merge default rewards into existing data
+  _mergeDefaultRewards: async (appData) => {
+    const defaultData = AppData.fromJSON(getDefaultData());
+    
+    // If no rewards exist, add default rewards
+    if (!appData.rewards || appData.rewards.length === 0) {
+      console.log('[DataStore] No rewards found, adding default rewards');
+      appData.rewards = [...defaultData.rewards];
+      
+      // Save the updated data
+      if (window.electronAPI) {
+        try {
+          const jsonData = appData.toJSON();
+          await window.electronAPI.saveData(jsonData);
+          console.log('[DataStore] Default rewards added successfully');
+        } catch (error) {
+          console.error('Error saving default rewards:', error);
+        }
+      }
+    } else {
+      // Check if default rewards exist, if not add them
+      const defaultRewardIds = new Set(defaultData.rewards.map(r => r.id));
+      const existingRewardIds = new Set(appData.rewards.map(r => r.id));
+      
+      let hasNewRewards = false;
+      for (const defaultReward of defaultData.rewards) {
+        if (!existingRewardIds.has(defaultReward.id)) {
+          appData.rewards.push(defaultReward);
+          hasNewRewards = true;
+        }
+      }
+      
+      if (hasNewRewards) {
+        console.log('[DataStore] Adding missing default rewards');
+        if (window.electronAPI) {
+          try {
+            const jsonData = appData.toJSON();
+            await window.electronAPI.saveData(jsonData);
+            console.log('[DataStore] Default rewards added successfully');
+          } catch (error) {
+            console.error('Error saving default rewards:', error);
+          }
+        }
+      }
     }
   },
 
@@ -371,22 +426,45 @@ const useDataStore = create((set, get) => ({
            p.activityId === progress.activityId
     );
     
+    // Check if this is a new completion (wasn't completed before, but is now)
+    let isNewCompletion = false;
+    let updatedProgress = [...state.data.progress];
+    
     if (existingIndex !== -1) {
+      const existingProgress = updatedProgress[existingIndex];
+      isNewCompletion = !existingProgress.isCompleted && progress.isCompleted;
       // Update existing progress
-      state.data.progress[existingIndex] = progress;
+      updatedProgress[existingIndex] = progress;
     } else {
+      isNewCompletion = progress.isCompleted;
       // Add new progress
-      state.data.progress.push(progress);
+      updatedProgress.push(progress);
     }
     
-    // Create a new AppData instance to maintain the toJSON method
-    // This ensures the instance is preserved when state updates
+    // Calculate points to award if this is a newly completed lesson with a score
+    let pointsToAward = 0;
+    if (isNewCompletion && progress.activityType === 'Lesson' && progress.isCompleted && progress.score !== null) {
+      const medalType = state._getMedalForProgress(progress);
+      const pointsMap = {
+        'Bronze': 10,
+        'Silver': 20,
+        'Gold': 50,
+        'Platinum': 100,
+      };
+      pointsToAward = pointsMap[medalType] || 0;
+    }
+    
+    // Create a new AppData instance with updated progress and points
+    const currentBalance = state.data.pointsBalance || 0;
     const updatedData = new AppData({
       students: state.data.students,
       lessons: state.data.lessons,
       quizzes: state.data.quizzes,
-      progress: state.data.progress,
+      progress: updatedProgress,
       videoResources: state.data.videoResources,
+      rewards: state.data.rewards || [],
+      purchases: state.data.purchases || [],
+      pointsBalance: currentBalance + pointsToAward,
     });
     
     // Update state with the new AppData instance
@@ -682,6 +760,460 @@ const useDataStore = create((set, get) => ({
     });
     
     return { platinum, gold, silver, bronze };
+  },
+
+  // Check if student has gold or platinum for a specific lesson
+  hasGoldOrPlatinum: (lessonId, studentId = null) => {
+    const state = get();
+    if (!state.data || !lessonId) return false;
+    
+    const userId = studentId || state.getUserId();
+    const lesson = state.data.lessons.find(l => l.id === lessonId);
+    if (!lesson) return false;
+    
+    // Find progress for this lesson
+    const progress = state.data.progress.find(p => 
+      p.studentId === userId && 
+      p.activityId === lessonId &&
+      p.isCompleted && 
+      p.activityType === 'Lesson' &&
+      p.score !== null
+    );
+    
+    if (!progress) return false;
+    
+    const score = progress.score || 0;
+    let medal = 'Bronze';
+    
+    // Determine medal based on lesson type (same logic as getMedalCounts)
+    if (lesson.title === 'Clicking Game') {
+      const isHardMode = lesson.yearId === 'reception' && lesson.lessonNumber === 2 && lesson.subjectId === 'technology';
+      if (isHardMode) {
+        if (score >= 350) medal = 'Platinum';
+        else if (score >= 250) medal = 'Gold';
+        else if (score >= 150) medal = 'Silver';
+      } else {
+        if (score >= 300) medal = 'Platinum';
+        else if (score >= 200) medal = 'Gold';
+        else if (score >= 100) medal = 'Silver';
+      }
+    } else if (lesson.title === 'Keyboard Game' || lesson.title === 'WASD Game' || 
+               lesson.title === 'A-Z Game' || lesson.title === 'Numbers Game' || 
+               lesson.title === 'Symbols Game') {
+      const isWASDMode = lesson.yearId === 'nursery' && lesson.lessonNumber === 3 && lesson.subjectId === 'technology';
+      const isAZMode = lesson.yearId === 'nursery' && lesson.lessonNumber === 4 && lesson.subjectId === 'technology';
+      const isNumbersMode = lesson.yearId === 'nursery' && lesson.lessonNumber === 5 && lesson.subjectId === 'technology';
+      const isSymbolsMode = lesson.yearId === 'nursery' && lesson.lessonNumber === 6 && lesson.subjectId === 'technology';
+      
+      if (isAZMode) {
+        if (score >= 250) medal = 'Platinum';
+        else if (score >= 200) medal = 'Gold';
+        else if (score >= 150) medal = 'Gold';
+        else if (score >= 100) medal = 'Silver';
+      } else if (isNumbersMode) {
+        if (score >= 90) medal = 'Platinum';
+        else if (score >= 80) medal = 'Gold';
+        else if (score >= 70) medal = 'Gold';
+        else if (score >= 60) medal = 'Silver';
+      } else if (isSymbolsMode) {
+        if (score >= 90) medal = 'Platinum';
+        else if (score >= 80) medal = 'Gold';
+        else if (score >= 70) medal = 'Gold';
+        else if (score >= 60) medal = 'Silver';
+      } else {
+        // Arrow/WASD game
+        if (score >= 140) medal = 'Platinum';
+        else if (score >= 120) medal = 'Gold';
+        else if (score >= 100) medal = 'Gold';
+        else if (score >= 80) medal = 'Silver';
+      }
+    } else if (lesson.title === 'Flappy Bird Game') {
+      if (score >= 15) medal = 'Platinum';
+      else if (score >= 10) medal = 'Gold';
+      else if (score >= 5) medal = 'Silver';
+    } else if (lesson.title === 'Bubble Pop Game') {
+      if (score >= 200) medal = 'Platinum';
+      else if (score >= 150) medal = 'Gold';
+      else if (score >= 100) medal = 'Silver';
+    } else if (lesson.title === 'Snake Game') {
+      if (score >= 100) medal = 'Platinum';
+      else if (score >= 70) medal = 'Gold';
+      else if (score >= 40) medal = 'Silver';
+    } else if (lesson.title === 'Target Practice Game') {
+      if (score >= 150) medal = 'Platinum';
+      else if (score >= 100) medal = 'Gold';
+      else if (score >= 50) medal = 'Silver';
+    }
+    
+    return medal === 'Gold' || medal === 'Platinum';
+  },
+
+  // Helper function to determine medal type from progress
+  _getMedalForProgress: (progress) => {
+    const state = get();
+    if (!state.data || !progress || !progress.isCompleted || progress.score === null) {
+      return 'Bronze';
+    }
+
+    const lesson = state.data.lessons.find(l => l.id === progress.activityId);
+    if (!lesson) return 'Bronze';
+
+    const score = progress.score || 0;
+    let medal = 'Bronze';
+
+    // Determine medal based on lesson type (same logic as getMedalCounts)
+    if (lesson.title === 'Clicking Game') {
+      const isHardMode = lesson.yearId === 'reception' && lesson.lessonNumber === 2 && lesson.subjectId === 'technology';
+      if (isHardMode) {
+        if (score >= 350) medal = 'Platinum';
+        else if (score >= 250) medal = 'Gold';
+        else if (score >= 150) medal = 'Silver';
+      } else {
+        if (score >= 300) medal = 'Platinum';
+        else if (score >= 200) medal = 'Gold';
+        else if (score >= 100) medal = 'Silver';
+      }
+    } else if (lesson.title === 'Keyboard Game' || lesson.title === 'WASD Game' || 
+               lesson.title === 'A-Z Game' || lesson.title === 'Numbers Game' || 
+               lesson.title === 'Symbols Game') {
+      const isAZMode = lesson.yearId === 'nursery' && lesson.lessonNumber === 4 && lesson.subjectId === 'technology';
+      const isNumbersMode = lesson.yearId === 'nursery' && lesson.lessonNumber === 5 && lesson.subjectId === 'technology';
+      const isSymbolsMode = lesson.yearId === 'nursery' && lesson.lessonNumber === 6 && lesson.subjectId === 'technology';
+      
+      if (isAZMode) {
+        if (score >= 250) medal = 'Platinum';
+        else if (score >= 200) medal = 'Gold';
+        else if (score >= 150) medal = 'Gold';
+        else if (score >= 100) medal = 'Silver';
+      } else if (isNumbersMode) {
+        if (score >= 90) medal = 'Platinum';
+        else if (score >= 80) medal = 'Gold';
+        else if (score >= 70) medal = 'Gold';
+        else if (score >= 60) medal = 'Silver';
+      } else if (isSymbolsMode) {
+        if (score >= 90) medal = 'Platinum';
+        else if (score >= 80) medal = 'Gold';
+        else if (score >= 70) medal = 'Gold';
+        else if (score >= 60) medal = 'Silver';
+      } else {
+        // Arrow/WASD game
+        if (score >= 140) medal = 'Platinum';
+        else if (score >= 120) medal = 'Gold';
+        else if (score >= 100) medal = 'Gold';
+        else if (score >= 80) medal = 'Silver';
+      }
+    } else if (lesson.title === 'Flappy Bird Game') {
+      if (score >= 15) medal = 'Platinum';
+      else if (score >= 10) medal = 'Gold';
+      else if (score >= 5) medal = 'Silver';
+    } else if (lesson.title === 'Bubble Pop Game') {
+      if (score >= 200) medal = 'Platinum';
+      else if (score >= 150) medal = 'Gold';
+      else if (score >= 100) medal = 'Silver';
+    } else if (lesson.title === 'Snake Game') {
+      if (score >= 100) medal = 'Platinum';
+      else if (score >= 70) medal = 'Gold';
+      else if (score >= 40) medal = 'Silver';
+    } else if (lesson.title === 'Target Practice Game') {
+      if (score >= 150) medal = 'Platinum';
+      else if (score >= 100) medal = 'Gold';
+      else if (score >= 50) medal = 'Silver';
+    }
+
+    return medal;
+  },
+
+  // Points management
+  getPointsBalance: () => {
+    const state = get();
+    if (!state.data) return 0;
+    return state.data.pointsBalance || 0;
+  },
+
+  awardPointsForMedal: async (medalType) => {
+    const state = get();
+    if (!state.data) return;
+
+    const pointsMap = {
+      'Bronze': 10,
+      'Silver': 20,
+      'Gold': 50,
+      'Platinum': 100,
+    };
+
+    const pointsToAward = pointsMap[medalType] || 0;
+    if (pointsToAward === 0) return;
+
+    const currentBalance = state.data.pointsBalance || 0;
+    const newBalance = currentBalance + pointsToAward;
+
+    const updatedData = new AppData({
+      students: state.data.students,
+      lessons: state.data.lessons,
+      quizzes: state.data.quizzes,
+      progress: state.data.progress,
+      videoResources: state.data.videoResources,
+      rewards: state.data.rewards || [],
+      purchases: state.data.purchases || [],
+      pointsBalance: newBalance,
+    });
+
+    set({ data: updatedData });
+    await state.saveData();
+  },
+
+  // Calculate and award retroactive points
+  _calculateAndAwardRetroactivePoints: async (appData) => {
+    // Check if pointsBalance exists and is not 0 (meaning it's been initialized)
+    // If it's 0 or undefined, we need to calculate retroactive points
+    if (appData.pointsBalance !== undefined && appData.pointsBalance > 0) {
+      return; // Already calculated
+    }
+
+    console.log('[DataStore] Calculating retroactive points...');
+    let totalPoints = 0;
+
+    // Get all completed lesson progress
+    const userId = appData.students.length > 0 ? appData.students[0].id : 1;
+    const completedProgress = appData.progress.filter(p =>
+      p.studentId === userId &&
+      p.isCompleted &&
+      p.activityType === 'Lesson' &&
+      p.score !== null
+    );
+
+    // Calculate points for each completed lesson
+    completedProgress.forEach(progress => {
+      const lesson = appData.lessons.find(l => l.id === progress.activityId);
+      if (!lesson) return;
+
+      const score = progress.score || 0;
+      let medal = 'Bronze';
+
+      // Determine medal (same logic as _getMedalForProgress)
+      if (lesson.title === 'Clicking Game') {
+        const isHardMode = lesson.yearId === 'reception' && lesson.lessonNumber === 2 && lesson.subjectId === 'technology';
+        if (isHardMode) {
+          if (score >= 350) medal = 'Platinum';
+          else if (score >= 250) medal = 'Gold';
+          else if (score >= 150) medal = 'Silver';
+        } else {
+          if (score >= 300) medal = 'Platinum';
+          else if (score >= 200) medal = 'Gold';
+          else if (score >= 100) medal = 'Silver';
+        }
+      } else if (lesson.title === 'Keyboard Game' || lesson.title === 'WASD Game' || 
+                 lesson.title === 'A-Z Game' || lesson.title === 'Numbers Game' || 
+                 lesson.title === 'Symbols Game') {
+        const isAZMode = lesson.yearId === 'nursery' && lesson.lessonNumber === 4 && lesson.subjectId === 'technology';
+        const isNumbersMode = lesson.yearId === 'nursery' && lesson.lessonNumber === 5 && lesson.subjectId === 'technology';
+        const isSymbolsMode = lesson.yearId === 'nursery' && lesson.lessonNumber === 6 && lesson.subjectId === 'technology';
+        
+        if (isAZMode) {
+          if (score >= 250) medal = 'Platinum';
+          else if (score >= 200) medal = 'Gold';
+          else if (score >= 150) medal = 'Gold';
+          else if (score >= 100) medal = 'Silver';
+        } else if (isNumbersMode) {
+          if (score >= 90) medal = 'Platinum';
+          else if (score >= 80) medal = 'Gold';
+          else if (score >= 70) medal = 'Gold';
+          else if (score >= 60) medal = 'Silver';
+        } else if (isSymbolsMode) {
+          if (score >= 90) medal = 'Platinum';
+          else if (score >= 80) medal = 'Gold';
+          else if (score >= 70) medal = 'Gold';
+          else if (score >= 60) medal = 'Silver';
+        } else {
+          if (score >= 140) medal = 'Platinum';
+          else if (score >= 120) medal = 'Gold';
+          else if (score >= 100) medal = 'Gold';
+          else if (score >= 80) medal = 'Silver';
+        }
+      } else if (lesson.title === 'Flappy Bird Game') {
+        if (score >= 15) medal = 'Platinum';
+        else if (score >= 10) medal = 'Gold';
+        else if (score >= 5) medal = 'Silver';
+      } else if (lesson.title === 'Bubble Pop Game') {
+        if (score >= 200) medal = 'Platinum';
+        else if (score >= 150) medal = 'Gold';
+        else if (score >= 100) medal = 'Silver';
+      } else if (lesson.title === 'Snake Game') {
+        if (score >= 100) medal = 'Platinum';
+        else if (score >= 70) medal = 'Gold';
+        else if (score >= 40) medal = 'Silver';
+      } else if (lesson.title === 'Target Practice Game') {
+        if (score >= 150) medal = 'Platinum';
+        else if (score >= 100) medal = 'Gold';
+        else if (score >= 50) medal = 'Silver';
+      }
+
+      // Award points based on medal
+      const pointsMap = {
+        'Bronze': 10,
+        'Silver': 20,
+        'Gold': 50,
+        'Platinum': 100,
+      };
+      totalPoints += pointsMap[medal] || 10;
+    });
+
+    // Update points balance
+    appData.pointsBalance = totalPoints;
+    console.log(`[DataStore] Awarded ${totalPoints} retroactive points`);
+  },
+
+  // Purchase reward
+  purchaseReward: async (rewardId) => {
+    const state = get();
+    if (!state.data) throw new Error('Data not initialized');
+
+    const reward = state.data.rewards.find(r => r.id === rewardId && r.isActive);
+    if (!reward) throw new Error('Reward not found or not available');
+
+    const currentBalance = state.data.pointsBalance || 0;
+    if (currentBalance < reward.cost) {
+      throw new Error('Insufficient points');
+    }
+
+    // Create purchase record
+    const purchaseId = state.getNextPurchaseId();
+    const purchase = new Purchase({
+      id: purchaseId,
+      rewardId: reward.id,
+      purchasedAt: new Date(),
+      pointsSpent: reward.cost,
+    });
+
+    // Deduct points and add purchase
+    const newBalance = currentBalance - reward.cost;
+    const updatedPurchases = [...(state.data.purchases || []), purchase];
+
+    const updatedData = new AppData({
+      students: state.data.students,
+      lessons: state.data.lessons,
+      quizzes: state.data.quizzes,
+      progress: state.data.progress,
+      videoResources: state.data.videoResources,
+      rewards: state.data.rewards || [],
+      purchases: updatedPurchases,
+      pointsBalance: newBalance,
+    });
+
+    set({ data: updatedData });
+    await state.saveData();
+  },
+
+  // Reward management
+  getRewards: (activeOnly = true) => {
+    const state = get();
+    if (!state.data) return [];
+    const rewards = state.data.rewards || [];
+    return activeOnly ? rewards.filter(r => r.isActive) : rewards;
+  },
+
+  getPurchases: () => {
+    const state = get();
+    if (!state.data) return [];
+    return state.data.purchases || [];
+  },
+
+  getNextRewardId: () => {
+    const state = get();
+    if (!state.data || !state.data.rewards || state.data.rewards.length === 0) return 1;
+    return Math.max(...state.data.rewards.map(r => r.id)) + 1;
+  },
+
+  getNextPurchaseId: () => {
+    const state = get();
+    if (!state.data || !state.data.purchases || state.data.purchases.length === 0) return 1;
+    return Math.max(...state.data.purchases.map(p => p.id)) + 1;
+  },
+
+  addReward: async (reward) => {
+    const state = get();
+    if (!state.data) return;
+
+    const rewardId = state.getNextRewardId();
+    const newReward = new Reward({
+      id: rewardId,
+      name: reward.name,
+      description: reward.description,
+      cost: reward.cost,
+      imageUrl: reward.imageUrl || null,
+      isActive: reward.isActive !== undefined ? reward.isActive : true,
+      createdAt: new Date(),
+    });
+
+    const updatedRewards = [...(state.data.rewards || []), newReward];
+
+    const updatedData = new AppData({
+      students: state.data.students,
+      lessons: state.data.lessons,
+      quizzes: state.data.quizzes,
+      progress: state.data.progress,
+      videoResources: state.data.videoResources,
+      rewards: updatedRewards,
+      purchases: state.data.purchases || [],
+      pointsBalance: state.data.pointsBalance || 0,
+    });
+
+    set({ data: updatedData });
+    await state.saveData();
+  },
+
+  updateReward: async (reward) => {
+    const state = get();
+    if (!state.data) return;
+
+    const rewardIndex = state.data.rewards.findIndex(r => r.id === reward.id);
+    if (rewardIndex === -1) throw new Error('Reward not found');
+
+    const updatedRewards = [...state.data.rewards];
+    updatedRewards[rewardIndex] = reward instanceof Reward ? reward : Reward.fromJSON(reward);
+
+    const updatedData = new AppData({
+      students: state.data.students,
+      lessons: state.data.lessons,
+      quizzes: state.data.quizzes,
+      progress: state.data.progress,
+      videoResources: state.data.videoResources,
+      rewards: updatedRewards,
+      purchases: state.data.purchases || [],
+      pointsBalance: state.data.pointsBalance || 0,
+    });
+
+    set({ data: updatedData });
+    await state.saveData();
+  },
+
+  deleteReward: async (rewardId) => {
+    const state = get();
+    if (!state.data) return;
+
+    // Soft delete by setting isActive to false
+    const rewardIndex = state.data.rewards.findIndex(r => r.id === rewardId);
+    if (rewardIndex === -1) throw new Error('Reward not found');
+
+    const reward = state.data.rewards[rewardIndex];
+    const updatedReward = reward.copyWith({ isActive: false });
+
+    const updatedRewards = [...state.data.rewards];
+    updatedRewards[rewardIndex] = updatedReward;
+
+    const updatedData = new AppData({
+      students: state.data.students,
+      lessons: state.data.lessons,
+      quizzes: state.data.quizzes,
+      progress: state.data.progress,
+      videoResources: state.data.videoResources,
+      rewards: updatedRewards,
+      purchases: state.data.purchases || [],
+      pointsBalance: state.data.pointsBalance || 0,
+    });
+
+    set({ data: updatedData });
+    await state.saveData();
   },
 
   // Admin mode

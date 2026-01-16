@@ -22,6 +22,9 @@ export const getDefaultData = () => {
     quizzes: getDefaultQuizzesData(),
     progress: [],
     videoResources: [],
+    rewards: getDefaultRewards(),
+    purchases: [],
+    pointsBalance: 0,
   };
 };
 
@@ -85,5 +88,19 @@ function getDefaultQuizzesData() {
   const quizzes = getDefaultQuizzes(1, 1);
   // Convert to JSON format
   return quizzes.map(q => q.toJSON());
+}
+
+function getDefaultRewards() {
+  return [
+    {
+      id: 1,
+      name: 'Play for 30 mins',
+      description: 'Enjoy 30 minutes of free play time!',
+      cost: 100,
+      imageUrl: null,
+      isActive: true,
+      createdAt: new Date().toISOString(),
+    },
+  ];
 }
 
