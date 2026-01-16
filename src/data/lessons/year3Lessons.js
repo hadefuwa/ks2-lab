@@ -74,6 +74,14 @@ Let's learn about division!
 
 
 
+## How to Play
+
+
+
+Tap the numbers to hear them! Then play the game! 🎮
+
+
+
 ## What is Division?
 
 
@@ -106,81 +114,17 @@ This means: 12 shared equally into 3 groups = 4 in each group
 
 
 
-## Practice Questions
+## Practice
 
 
 
-<!-- QUESTION_START -->
-If you have 8 cookies and share them equally between 2 friends, how many cookies does each friend get?
-<!-- OPTIONS -->
-2 cookies|3 cookies|4 cookies|5 cookies
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-8 ÷ 2 = 4. Each friend gets 4 cookies!
-<!-- QUESTION_END -->
+- Learn to divide by 2, 3, 4, and 5
 
+- Practice sharing numbers equally
 
-
-<!-- QUESTION_START -->
-What is 10 ÷ 5?
-<!-- OPTIONS -->
-1|2|3|5
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-10 ÷ 5 = 2. When you divide 10 into 5 equal groups, each group has 2.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-If you have 12 apples and put them into 3 baskets equally, how many apples are in each basket?
-<!-- OPTIONS -->
-3 apples|4 apples|5 apples|6 apples
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-12 ÷ 3 = 4. Each basket will have 4 apples!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What is 15 ÷ 3?
-<!-- OPTIONS -->
-3|4|5|6
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-15 ÷ 3 = 5. When you divide 15 into 3 equal groups, each group has 5.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-If you have 20 stickers and share them equally between 4 friends, how many stickers does each friend get?
-<!-- OPTIONS -->
-3 stickers|4 stickers|5 stickers|6 stickers
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-20 ÷ 4 = 5. Each friend gets 5 stickers!
-<!-- QUESTION_END -->
-
-
-
-## Fun Activities
-
-
-
-- Share objects equally with friends
-
-- Practice division problems
-
-- Draw pictures to help you divide!`,
+- Play the division game! 🎮`,
       quizId: quizId++,
-      assessmentType: 'interactive',
+      assessmentType: 'maths-game',
       categoryId: null,
     }),
 
@@ -1292,335 +1236,338 @@ What time is "quarter to 6"?
     new Lesson({
       id: lessonId++,
       yearId: 'year3',
-      subjectId: 'english',
-      lessonNumber: 1,
-      title: "Writing Paragraphs",
+      subjectId: 'maths',
+      lessonNumber: 8,
+      title: "Place Value to 1000",
+      emoji: '🔢',
+      content: `# Place Value to 1000 🔢
+
+Let's learn about place value up to 1000!
+
+## What is Place Value?
+
+Place value tells us what each digit means!
+
+In the number 234:
+- The 2 is in the hundreds place (worth 200)
+- The 3 is in the tens place (worth 30)
+- The 4 is in the ones place (worth 4)
+
+## Examples
+
+- 156 = 1 hundred + 5 tens + 6 ones
+- 789 = 7 hundreds + 8 tens + 9 ones
+- 305 = 3 hundreds + 0 tens + 5 ones
+
+## How to Play
+
+Drag digits and type expanded form! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'place-value-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'maths',
+      lessonNumber: 9,
+      title: "Addition with Regrouping",
+      emoji: '➕',
+      content: `# Addition with Regrouping ➕
+
+Let's learn to add with carrying!
+
+## What is Regrouping?
+
+When we add and get 10 or more in a column, we carry to the next place!
+
+## Example
+
+  25
++ 17
+---
+  42
+
+- 5 + 7 = 12 (write 2, carry 1)
+- 2 + 1 + 1 = 4
+
+## How to Play
+
+Type column addition and drag carrying! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'typing-math-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'maths',
+      lessonNumber: 10,
+      title: "Subtraction with Regrouping",
+      emoji: '➖',
+      content: `# Subtraction with Regrouping ➖
+
+Let's learn to subtract with borrowing!
+
+## What is Borrowing?
+
+When we subtract and need more, we borrow from the next place!
+
+## Example
+
+  32
+- 15
+---
+  17
+
+- Can't do 2 - 5, so borrow from 3
+- 12 - 5 = 7
+- 2 - 1 = 1
+
+## How to Play
+
+Type column subtraction and drag borrowing! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'typing-math-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'maths',
+      lessonNumber: 11,
+      title: "3D Shapes",
+      emoji: '🎲',
+      content: `# 3D Shapes 🎲
+
+Let's learn about 3D shapes!
+
+## Common 3D Shapes
+
+- Cube 🎲 - 6 square faces
+- Sphere ⚪ - round, no edges
+- Cylinder 🥫 - round sides, flat ends
+- Cone 🍦 - round base, pointy top
+
+## Properties
+
+3D shapes have:
+- Faces (flat surfaces)
+- Edges (where faces meet)
+- Vertices (corners)
+
+## How to Play
+
+Click shapes and drag to match properties! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'shape-matching-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'maths',
+      lessonNumber: 12,
+      title: "Perimeter",
+      emoji: '📐',
+      content: `# Perimeter 📐
+
+Let's learn about perimeter!
+
+## What is Perimeter?
+
+Perimeter is the distance around a shape!
+
+## How to Find Perimeter
+
+Add up all the sides!
+
+## Examples
+
+- Square: 4 + 4 + 4 + 4 = 16
+- Rectangle: 5 + 3 + 5 + 3 = 16
+- Triangle: 3 + 4 + 5 = 12
+
+## How to Play
+
+Click grid squares and type the perimeter! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'maths',
+      lessonNumber: 13,
+      title: "Fractions on Number Line",
+      emoji: '📏',
+      content: `# Fractions on Number Line 📏
+
+Let's learn to place fractions on a number line!
+
+## Number Lines
+
+A number line helps us see where numbers belong!
+
+## Fractions on Number Line
+
+- 1/2 is halfway between 0 and 1
+- 1/4 is one quarter of the way
+- 3/4 is three quarters of the way
+
+## Examples
+
+0 ----1/4----1/2----3/4----1
+
+## How to Play
+
+Drag fractions to their positions! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'number-line-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'maths',
+      lessonNumber: 14,
+      title: "Time: Quarter Past/To",
+      emoji: '🕐',
+      content: `# Time: Quarter Past/To 🕐
+
+Let's learn quarter past and quarter to!
+
+## Quarter Past
+
+- 15 minutes past the hour
+- Minute hand at 3
+- Examples: quarter past 3, quarter past 7
+
+## Quarter To
+
+- 15 minutes before the hour
+- Minute hand at 9
+- Examples: quarter to 4, quarter to 8
+
+## How to Play
+
+Drag clock hands and type the time! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'clock-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'maths',
+      lessonNumber: 15,
+      title: "Mass and Capacity",
+      emoji: '⚖️',
+      content: `# Mass and Capacity ⚖️
+
+Let's learn about mass and capacity!
+
+## Mass (Weight)
+
+- Grams (g) - light things
+- Kilograms (kg) - heavier things
+- 1 kg = 1000 g
+
+## Capacity (Volume)
+
+- Milliliters (mL) - small amounts
+- Liters (L) - larger amounts
+- 1 L = 1000 mL
+
+## Examples
+
+- An apple: about 150 g
+- A bottle of water: 500 mL
+
+## How to Play
+
+Drag scales and click measurements! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'maths',
+      lessonNumber: 16,
+      title: "Bar Charts",
+      emoji: '📊',
+      content: `# Bar Charts 📊
+
+Let's learn to read and make bar charts!
+
+## What is a Bar Chart?
+
+A bar chart uses bars to show data!
+
+## Reading Bar Charts
+
+- Look at the height of each bar
+- Compare different bars
+- Find the tallest and shortest
+
+## Making Bar Charts
+
+- Choose categories
+- Count the data
+- Draw bars to show amounts
+
+## How to Play
+
+Click to add data and drag bars! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'graph-builder-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'maths',
+      lessonNumber: 17,
+      title: "Word Problems: Addition/Subtraction",
       emoji: '📝',
-      content: `# Writing Paragraphs 📝
+      content: `# Word Problems: Addition/Subtraction 📝
 
+Let's solve word problems!
 
+## What are Word Problems?
 
-Let's learn to write good paragraphs!
+Word problems are math stories that need solving!
 
+## Steps to Solve
 
+1. Read the problem carefully
+2. Find the numbers
+3. Decide: add or subtract?
+4. Solve the problem
+5. Check your answer
 
-## What is a Paragraph?
+## Examples
 
+- "Sarah has 15 stickers. She gets 8 more. How many does she have?" (Add: 15 + 8 = 23)
+- "Tom has 20 toys. He gives away 7. How many are left?" (Subtract: 20 - 7 = 13)
 
+## How to Play
 
-A paragraph is a group of sentences about one main idea.
-
-
-
-## Parts of a Paragraph
-
-
-
-1. **Topic Sentence** - Tells what the paragraph is about
-
-2. **Supporting Sentences** - Give details and examples
-
-3. **Closing Sentence** - Wraps up the paragraph
-
-
-
-## Example Paragraph
-
-
-
-**My Favorite Animal**
-
-
-
-My favorite animal is a dog. Dogs are friendly and loyal pets. They love to play and go for walks. Dogs can learn tricks and are great companions. I would love to have a dog one day.
-
-
-
-## Writing Tips
-
-
-
-- Start with a topic sentence
-
-- Add 3-5 supporting sentences
-
-- End with a closing sentence
-
-- Stay on one topic
-
-
-
-## Practice
-
-
-
-Write a paragraph about:
-
-- Your favorite hobby
-
-- A place you like
-
-- Your best friend
-
-- Your favorite food
-
-
-
-## Fun Activities
-
-
-
-- Write paragraphs every day
-
-- Share your paragraphs
-
-- Edit and improve your writing
-
-- Make a paragraph book
-
-
-
-## Remember
-
-
-
-- Paragraphs have a main idea
-
-- Use topic and supporting sentences
-
-- Practice makes perfect
-
-- You're becoming a great writer!`,
+Type answers and click operations! 🎮`,
       quizId: quizId++,
-      assessmentType: 'quiz',
-      categoryId: null,
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year3',
-      subjectId: 'english',
-      lessonNumber: 2,
-      title: "Reading Comprehension Skills",
-      emoji: '📚',
-      content: `# Reading Comprehension Skills 📚
-
-
-
-Let's improve our reading understanding!
-
-
-
-## Reading Strategies
-
-
-
-1. **Predict** - Guess what might happen
-
-2. **Question** - Ask questions as you read
-
-3. **Clarify** - Make sure you understand
-
-4. **Summarize** - Tell the main points
-
-
-
-## Finding Information
-
-
-
-- **Who?** - Characters in the story
-
-- **What?** - What happened
-
-- **Where?** - The setting
-
-- **When?** - The time period
-
-- **Why?** - Reasons for events
-
-- **How?** - How things happened
-
-
-
-## Main Idea
-
-
-
-The main idea is what the story or text is mostly about.
-
-
-
-## Supporting Details
-
-
-
-Details that support the main idea:
-
-- Examples
-
-- Facts
-
-- Descriptions
-
-- Events
-
-
-
-## Practice
-
-
-
-Read a story and:
-
-- Find the main idea
-
-- List supporting details
-
-- Answer who, what, where, when, why, how
-
-- Summarize in your own words
-
-
-
-## Fun Activities
-
-
-
-- Read and discuss stories
-
-- Answer comprehension questions
-
-- Write summaries
-
-- Make story maps
-
-
-
-## Remember
-
-
-
-- Understanding is key
-
-- Ask questions as you read
-
-- Find the main idea
-
-- Practice every day!`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
-      categoryId: null,
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year3',
-      subjectId: 'english',
-      lessonNumber: 3,
-      title: "Spelling and Vocabulary",
-      emoji: '📖',
-      content: `# Spelling and Vocabulary 📖
-
-
-
-Let's learn new words and how to spell them!
-
-
-
-## Learning New Words
-
-
-
-- Read widely to find new words
-
-- Look up words you don't know
-
-- Use new words in sentences
-
-- Practice spelling them
-
-
-
-## Spelling Rules
-
-
-
-**Adding -ing:**
-
-- Most words: add -ing (play → playing)
-
-- Words ending in e: drop e, add -ing (make → making)
-
-- Short vowel + consonant: double consonant (run → running)
-
-
-
-**Adding -ed:**
-
-- Most words: add -ed (walk → walked)
-
-- Words ending in e: add -d (like → liked)
-
-- Short vowel + consonant: double consonant (stop → stopped)
-
-
-
-## Common Words to Learn
-
-
-
-- beautiful, because, before
-
-- different, difficult, during
-
-- enough, every, everyone
-
-- friend, favorite, family
-
-
-
-## Practice
-
-
-
-- Spell words every day
-
-- Use spelling patterns
-
-- Write words in sentences
-
-- Test yourself
-
-
-
-## Fun Activities
-
-
-
-- Make word lists
-
-- Play spelling games
-
-- Use words in stories
-
-- Create vocabulary cards
-
-
-
-## Remember
-
-
-
-- Spelling takes practice
-
-- Learn spelling patterns
-
-- Use new words often
-
-- You're improving every day!`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
+      assessmentType: 'typing-math-game',
       categoryId: null,
     }),
 

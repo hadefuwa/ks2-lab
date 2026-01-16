@@ -94,6 +94,323 @@ Tap the numbers to hear them! Then play the game! 🎮
     new Lesson({
       id: lessonId++,
       yearId: 'year2',
+      subjectId: 'maths',
+      lessonNumber: 2,
+      title: "Place Value to 100",
+      emoji: '🔢',
+      content: `# Place Value to 100 🔢
+
+Let's learn about place value!
+
+## What is Place Value?
+
+Place value tells us what each digit in a number means!
+
+In the number 24:
+- The 2 is in the tens place (worth 20)
+- The 4 is in the ones place (worth 4)
+
+## Examples
+
+- 15 = 1 ten + 5 ones
+- 32 = 3 tens + 2 ones
+- 67 = 6 tens + 7 ones
+
+## How to Play
+
+Drag digits to build numbers! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'place-value-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'maths',
+      lessonNumber: 3,
+      title: "Addition to 20",
+      emoji: '➕',
+      content: `# Addition to 20 ➕
+
+Let's practice adding numbers up to 20!
+
+## Addition Strategies
+
+- Count on from the larger number
+- Use number bonds (pairs that make 10)
+- Draw pictures to help
+
+## Examples
+
+- 8 + 5 = 13
+- 12 + 4 = 16
+- 9 + 7 = 16
+
+## How to Play
+
+Type your answers! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'typing-math-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'maths',
+      lessonNumber: 4,
+      title: "Subtraction to 20",
+      emoji: '➖',
+      content: `# Subtraction to 20 ➖
+
+Let's practice subtracting numbers!
+
+## Subtraction Strategies
+
+- Count back from the larger number
+- Use number bonds
+- Draw pictures to help
+
+## Examples
+
+- 15 - 7 = 8
+- 18 - 9 = 9
+- 14 - 6 = 8
+
+## How to Play
+
+Drag objects to subtract, then type your answer! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'maths',
+      lessonNumber: 5,
+      title: "2D Shapes Recognition",
+      emoji: '🔷',
+      content: `# 2D Shapes Recognition 🔷
+
+Let's learn about 2D shapes!
+
+## Common 2D Shapes
+
+- Circle ⭕ - round, no corners
+- Triangle 🔺 - 3 sides, 3 corners
+- Square ⬜ - 4 equal sides, 4 corners
+- Rectangle ▭ - 4 sides, opposite sides equal
+
+## Properties
+
+Shapes have:
+- Sides (edges)
+- Corners (vertices)
+- Different sizes
+
+## How to Play
+
+Click shapes and drag to match! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'shape-matching-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'maths',
+      lessonNumber: 6,
+      title: "Comparing Numbers",
+      emoji: '⚖️',
+      content: `# Comparing Numbers ⚖️
+
+Let's learn to compare numbers!
+
+## Comparison Symbols
+
+- > means "greater than"
+- < means "less than"
+- = means "equal to"
+
+## Examples
+
+- 15 > 8 (15 is greater than 8)
+- 7 < 12 (7 is less than 12)
+- 10 = 10 (10 equals 10)
+
+## How to Play
+
+Drag the correct symbol! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'maths',
+      lessonNumber: 7,
+      title: "Number Patterns",
+      emoji: '🔢',
+      content: `# Number Patterns 🔢
+
+Let's find patterns in numbers!
+
+## What are Patterns?
+
+Patterns are sequences that follow a rule!
+
+## Examples
+
+- 2, 4, 6, 8, ? (add 2 each time)
+- 5, 10, 15, 20, ? (add 5 each time)
+- 10, 9, 8, 7, ? (subtract 1 each time)
+
+## How to Play
+
+Type the missing numbers! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'typing-math-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'maths',
+      lessonNumber: 8,
+      title: "Length Measurement",
+      emoji: '📏',
+      content: `# Length Measurement 📏
+
+Let's learn to measure length!
+
+## Units of Length
+
+- Centimeters (cm) - small measurements
+- Meters (m) - larger measurements
+
+## How to Measure
+
+- Use a ruler
+- Start at 0
+- Read the number at the end
+
+## Examples
+
+- A pencil is about 15 cm
+- A desk is about 1 m
+
+## How to Play
+
+Drag rulers and click measurements! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'maths',
+      lessonNumber: 9,
+      title: "Time: O'Clock and Half Past",
+      emoji: '🕐',
+      content: `# Time: O'Clock and Half Past 🕐
+
+Let's learn to tell time!
+
+## O'Clock Times
+
+- When the minute hand is at 12
+- Examples: 3 o'clock, 7 o'clock
+
+## Half Past
+
+- When the minute hand is at 6
+- Examples: half past 3, half past 7
+
+## How to Play
+
+Drag clock hands and type the time! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'clock-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'maths',
+      lessonNumber: 10,
+      title: "Money: Coins to £1",
+      emoji: '💰',
+      content: `# Money: Coins to £1 💰
+
+Let's learn about money!
+
+## UK Coins
+
+- 1p, 2p, 5p, 10p, 20p, 50p
+- £1 = 100p
+
+## Making Amounts
+
+- 20p = two 10p coins
+- 50p = five 10p coins
+- £1 = one hundred 1p coins
+
+## How to Play
+
+Drag coins and click amounts! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'money-drag-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'maths',
+      lessonNumber: 11,
+      title: "Data: Pictograms",
+      emoji: '📊',
+      content: `# Data: Pictograms 📊
+
+Let's learn about data and graphs!
+
+## What is a Pictogram?
+
+A pictogram uses pictures to show data!
+
+## Reading Pictograms
+
+- Each picture = 1 item
+- Count the pictures
+- Compare different groups
+
+## Examples
+
+- Favorite fruits
+- Number of pets
+- Weather data
+
+## How to Play
+
+Click to create graphs and drag items! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'graph-builder-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
       subjectId: 'technology',
       lessonNumber: 4,
       title: "Arduino Lesson 1: Understanding void setup()",
@@ -2809,317 +3126,6 @@ if (Serial.available() > 0) {
 - Check library documentation for proper usage`,
       quizId: null,
       assessmentType: 'interactive',
-      categoryId: null,
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year2',
-      subjectId: 'english',
-      lessonNumber: 1,
-      title: "Reading Comprehension",
-      emoji: '📚',
-      content: `# Reading Comprehension 📚
-
-
-
-Let's learn to understand what we read!
-
-
-
-## What is Comprehension?
-
-
-
-Comprehension means understanding what you read.
-
-
-
-## Reading Strategies
-
-
-
-1. **Read carefully** - Take your time
-
-2. **Think about it** - What does it mean?
-
-3. **Ask questions** - Who? What? Where? When? Why?
-
-4. **Find the main idea** - What is it about?
-
-
-
-## Questions to Ask
-
-
-
-- Who is in the story?
-
-- What happened?
-
-- Where did it happen?
-
-- When did it happen?
-
-- Why did it happen?
-
-
-
-## Practice
-
-
-
-Read a story and answer:
-
-- What is the story about?
-
-- Who are the characters?
-
-- What happens first?
-
-- What happens next?
-
-- How does it end?
-
-
-
-## Fun Activities
-
-
-
-- Read a story together
-
-- Answer questions about it
-
-- Draw pictures of what happened
-
-- Retell the story in your own words
-
-
-
-## Remember
-
-
-
-- Understanding is important
-
-- Ask questions as you read
-
-- Think about what you read
-
-- Practice makes you better!`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
-      categoryId: null,
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year2',
-      subjectId: 'english',
-      lessonNumber: 2,
-      title: "Writing Sentences",
-      emoji: '✏️',
-      content: `# Writing Sentences ✏️
-
-
-
-Let's learn to write good sentences!
-
-
-
-## What Makes a Good Sentence?
-
-
-
-A good sentence:
-
-- Starts with a capital letter
-
-- Has a subject (who or what)
-
-- Has a verb (action word)
-
-- Ends with punctuation (. ! ?)
-
-
-
-## Examples
-
-
-
-- The cat sat on the mat. ✅
-
-- I like to play outside. ✅
-
-- We went to the park! ✅
-
-- What is your name? ✅
-
-
-
-## Types of Sentences
-
-
-
-- **Statement** - Tells something (ends with .)
-
-- **Question** - Asks something (ends with ?)
-
-- **Exclamation** - Shows excitement (ends with !)
-
-
-
-## Practice
-
-
-
-Write sentences about:
-
-- Your favorite animal
-
-- What you did today
-
-- Your family
-
-- Your favorite food
-
-
-
-## Fun Activities
-
-
-
-- Write sentences every day
-
-- Make a sentence book
-
-- Write about pictures
-
-- Share your sentences
-
-
-
-## Remember
-
-
-
-- Sentences need capital letters
-
-- Sentences need punctuation
-
-- Practice writing every day
-
-- You're getting better!`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
-      categoryId: null,
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year2',
-      subjectId: 'english',
-      lessonNumber: 3,
-      title: "Grammar Basics",
-      emoji: '📝',
-      content: `# Grammar Basics 📝
-
-
-
-Let's learn about grammar!
-
-
-
-## Nouns
-
-
-
-Nouns are words for people, places, or things.
-
-
-
-- **People**: boy, girl, teacher, friend
-
-- **Places**: school, park, home, shop
-
-- **Things**: book, ball, car, tree
-
-
-
-## Verbs
-
-
-
-Verbs are action words - they tell us what someone does.
-
-
-
-- run, jump, play, read
-
-- eat, sleep, walk, talk
-
-- think, learn, write, draw
-
-
-
-## Adjectives
-
-
-
-Adjectives describe nouns - they tell us what something is like.
-
-
-
-- big, small, happy, sad
-
-- red, blue, fast, slow
-
-- nice, fun, good, great
-
-
-
-## Practice
-
-
-
-Find the nouns, verbs, and adjectives:
-
-- The big dog ran quickly.
-
-- The happy girl read a good book.
-
-- The small car drove fast.
-
-
-
-## Fun Activities
-
-
-
-- Find nouns in sentences
-
-- Act out verbs
-
-- Describe things with adjectives
-
-- Make sentences with all three!
-
-
-
-## Remember
-
-
-
-- Nouns are people, places, things
-
-- Verbs are action words
-
-- Adjectives describe
-
-- Grammar helps us write well!`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
       categoryId: null,
     }),
 

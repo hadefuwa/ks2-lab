@@ -19,7 +19,10 @@ function TopNavigation() {
   const saveData = useDataStore(state => state.saveData);
   const getLesson = useDataStore(state => state.getLesson);
   const hasCompletedLesson = useDataStore(state => state.hasCompletedLesson);
+  const getPointsBalance = useDataStore(state => state.getPointsBalance);
   const data = useDataStore(state => state.data);
+  
+  const pointsBalance = getPointsBalance();
   
   // Determine if we're on a lesson page
   const isLessonPage = location.pathname.startsWith('/lesson/');
@@ -280,6 +283,37 @@ function TopNavigation() {
       </div>
       
       <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+        {/* Points Balance Display */}
+        <div
+          onClick={handleShop}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+            padding: '8px 16px',
+            backgroundColor: '#ffd700',
+            color: '#333',
+            border: '2px solid #ffed4e',
+            borderRadius: '20px',
+            cursor: 'pointer',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            transition: 'transform 0.2s, box-shadow 0.2s',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'scale(1.05)';
+            e.currentTarget.style.boxShadow = '0 4px 8px rgba(0,0,0,0.15)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'scale(1)';
+            e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+          }}
+          title="Click to open shop"
+        >
+          <span style={{ fontSize: '20px' }}>🪙</span>
+          <span>{pointsBalance}</span>
+        </div>
         <UpdateChecker />
         <button
           onClick={handleShop}

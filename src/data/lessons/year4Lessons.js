@@ -170,385 +170,329 @@ Tap the numbers to hear them! Then play the game! 🎮
     new Lesson({
       id: lessonId++,
       yearId: 'year4',
-      subjectId: 'english',
-      lessonNumber: 1,
-      title: "Creative Writing",
-      emoji: '✍️',
-      content: `# Creative Writing ✍️
+      subjectId: 'maths',
+      lessonNumber: 4,
+      title: "Place Value to 10,000",
+      emoji: '🔢',
+      content: `# Place Value to 10,000 🔢
 
+Let's learn about place value up to 10,000!
 
+## Place Value Positions
 
-Let's write creative stories!
+In the number 3,456:
+- The 3 is in the thousands place (worth 3,000)
+- The 4 is in the hundreds place (worth 400)
+- The 5 is in the tens place (worth 50)
+- The 6 is in the ones place (worth 6)
 
+## Examples
 
+- 2,345 = 2 thousands + 3 hundreds + 4 tens + 5 ones
+- 7,890 = 7 thousands + 8 hundreds + 9 tens + 0 ones
+- 1,234 = one thousand, two hundred thirty-four
 
-## What is Creative Writing?
+## How to Play
 
-
-
-Creative writing is writing stories, poems, or other creative pieces from your imagination.
-
-
-
-## Story Structure
-
-
-
-1. **Beginning** - Introduce characters and setting
-
-2. **Middle** - Develop the plot and conflict
-
-3. **End** - Resolve the conflict and conclude
-
-
-
-## Writing Tips
-
-
-
-- Use descriptive words
-
-- Show, don't just tell
-
-- Use dialogue (speech)
-
-- Create interesting characters
-
-- Build suspense
-
-
-
-## Story Ideas
-
-
-
-- A magical adventure
-
-- A mystery to solve
-
-- A journey to a new place
-
-- Meeting a new friend
-
-- Finding something special
-
-
-
-## Practice
-
-
-
-Write a story about:
-
-- A day in the life of a superhero
-
-- An adventure in space
-
-- A talking animal
-
-- A magical object
-
-
-
-## Fun Activities
-
-
-
-- Write stories regularly
-
-- Share your stories
-
-- Illustrate your stories
-
-- Create a story collection
-
-
-
-## Remember
-
-
-
-- Use your imagination
-
-- Plan your story first
-
-- Edit and improve
-
-- Have fun writing!`,
+Drag digits and type in words! 🎮`,
       quizId: quizId++,
-      assessmentType: 'quiz',
+      assessmentType: 'place-value-game',
       categoryId: null,
     }),
 
     new Lesson({
       id: lessonId++,
       yearId: 'year4',
-      subjectId: 'english',
-      lessonNumber: 2,
-      title: "Poetry and Rhyme",
-      emoji: '📝',
-      content: `# Poetry and Rhyme 📝
+      subjectId: 'maths',
+      lessonNumber: 5,
+      title: "Multiplication Tables 3, 4, 6, 7, 8, 9",
+      emoji: '✖️',
+      content: `# Multiplication Tables 3, 4, 6, 7, 8, 9 ✖️
 
+Let's learn more times tables!
 
+## Times Tables
 
-Let's learn about poetry!
+- 3 times table: 3, 6, 9, 12, 15, 18, 21, 24, 27, 30
+- 4 times table: 4, 8, 12, 16, 20, 24, 28, 32, 36, 40
+- 6 times table: 6, 12, 18, 24, 30, 36, 42, 48, 54, 60
+- 7 times table: 7, 14, 21, 28, 35, 42, 49, 56, 63, 70
+- 8 times table: 8, 16, 24, 32, 40, 48, 56, 64, 72, 80
+- 9 times table: 9, 18, 27, 36, 45, 54, 63, 72, 81, 90
 
+## How to Play
 
-
-## What is Poetry?
-
-
-
-Poetry is a special way of writing that uses rhythm, rhyme, and imagery.
-
-
-
-## Rhyming Words
-
-
-
-Words that sound the same at the end:
-
-- cat, hat, bat, sat
-
-- run, fun, sun, bun
-
-- tree, bee, see, me
-
-- night, light, bright, sight
-
-
-
-## Types of Poems
-
-
-
-**Rhyming Couplets**
-
-Two lines that rhyme:
-
-\`\`\`
-
-The cat sat on the mat,
-
-Wearing a funny hat.
-
-\`\`\`
-
-
-
-**Haiku**
-
-Three lines: 5-7-5 syllables:
-
-\`\`\`
-
-The sun shines so bright
-
-Warming up the earth below
-
-Making flowers grow
-
-\`\`\`
-
-
-
-## Poetry Techniques
-
-
-
-- **Rhyme** - Words that sound the same
-
-- **Rhythm** - The beat of the poem
-
-- **Imagery** - Creating pictures with words
-
-- **Alliteration** - Words starting with the same sound
-
-
-
-## Practice
-
-
-
-Write a poem about:
-
-- Your favorite season
-
-- An animal
-
-- A place you like
-
-- Your family
-
-
-
-## Fun Activities
-
-
-
-- Read different poems
-
-- Write your own poems
-
-- Perform poems aloud
-
-- Make a poetry book
-
-
-
-## Remember
-
-
-
-- Poetry is creative
-
-- Rhyme makes it fun
-
-- Use descriptive words
-
-- Express yourself!`,
+Click answers and type tables! 🎮`,
       quizId: quizId++,
-      assessmentType: 'quiz',
+      assessmentType: 'maths-game',
       categoryId: null,
     }),
 
     new Lesson({
       id: lessonId++,
       yearId: 'year4',
-      subjectId: 'english',
-      lessonNumber: 3,
-      title: "Grammar: Verbs and Tenses",
-      emoji: '📚',
-      content: `# Grammar: Verbs and Tenses 📚
+      subjectId: 'maths',
+      lessonNumber: 6,
+      title: "Division with Remainders",
+      emoji: '➗',
+      content: `# Division with Remainders ➗
 
+Let's learn division with remainders!
 
+## What is a Remainder?
 
-Let's learn about verb tenses!
+Sometimes division doesn't divide evenly - we get a remainder!
 
+## Examples
 
+- 17 ÷ 5 = 3 remainder 2
+- 23 ÷ 4 = 5 remainder 3
+- 19 ÷ 6 = 3 remainder 1
 
-## What are Tenses?
+## How to Play
 
-
-
-Tenses tell us when something happens - past, present, or future.
-
-
-
-## Present Tense
-
-
-
-Shows what is happening now:
-
-- I walk to school.
-
-- She plays football.
-
-- They read books.
-
-
-
-## Past Tense
-
-
-
-Shows what happened before:
-
-- I walked to school.
-
-- She played football.
-
-- They read books.
-
-
-
-## Future Tense
-
-
-
-Shows what will happen:
-
-- I will walk to school.
-
-- She will play football.
-
-- They will read books.
-
-
-
-## Regular Verbs
-
-
-
-Most verbs add -ed for past tense:
-
-- walk → walked
-
-- play → played
-
-- jump → jumped
-
-
-
-## Irregular Verbs
-
-
-
-Some verbs change completely:
-
-- go → went
-
-- see → saw
-
-- do → did
-
-- have → had
-
-
-
-## Practice
-
-
-
-Change these to past tense:
-
-- I run → I ___
-
-- She jumps → She ___
-
-- They eat → They ___
-
-
-
-## Fun Activities
-
-
-
-- Practice verb tenses
-
-- Write sentences in different tenses
-
-- Identify tenses in reading
-
-- Play tense games
-
-
-
-## Remember
-
-
-
-- Tenses show when things happen
-
-- Practice regular and irregular verbs
-
-- Use the right tense
-
-- You're learning well!`,
+Type answers and drag remainders! 🎮`,
       quizId: quizId++,
-      assessmentType: 'quiz',
+      assessmentType: 'typing-math-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'maths',
+      lessonNumber: 7,
+      title: "Equivalent Fractions",
+      emoji: '🍕',
+      content: `# Equivalent Fractions 🍕
+
+Let's learn about equivalent fractions!
+
+## What are Equivalent Fractions?
+
+Fractions that are equal but look different!
+
+## Examples
+
+- 1/2 = 2/4 = 3/6 = 4/8
+- 1/3 = 2/6 = 3/9
+- 2/3 = 4/6 = 6/9
+
+## How to Find Equivalents
+
+Multiply or divide both top and bottom by the same number!
+
+## How to Play
+
+Drag fractions to match and click pairs! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'maths',
+      lessonNumber: 8,
+      title: "Decimals to 2 Places",
+      emoji: '🔢',
+      content: `# Decimals to 2 Places 🔢
+
+Let's learn about decimals!
+
+## What are Decimals?
+
+Decimals are numbers with a decimal point!
+
+## Decimal Places
+
+- 0.5 = five tenths
+- 0.25 = twenty-five hundredths
+- 0.75 = seventy-five hundredths
+- 1.50 = one and fifty hundredths
+
+## Examples
+
+- 0.5 = 1/2
+- 0.25 = 1/4
+- 0.75 = 3/4
+
+## How to Play
+
+Drag decimal points and type values! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'maths',
+      lessonNumber: 9,
+      title: "Angles",
+      emoji: '📐',
+      content: `# Angles 📐
+
+Let's learn about angles!
+
+## Types of Angles
+
+- Acute angle - less than 90°
+- Right angle - exactly 90°
+- Obtuse angle - more than 90° but less than 180°
+- Straight angle - exactly 180°
+
+## Measuring Angles
+
+Use a protractor to measure angles!
+
+## Examples
+
+- A square corner = 90° (right angle)
+- A straight line = 180° (straight angle)
+
+## How to Play
+
+Click angle types and drag to measure! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'angle-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'maths',
+      lessonNumber: 10,
+      title: "Area by Counting Squares",
+      emoji: '📏',
+      content: `# Area by Counting Squares 📏
+
+Let's learn about area!
+
+## What is Area?
+
+Area is the space inside a shape!
+
+## Finding Area
+
+Count the squares inside the shape!
+
+## Examples
+
+- A square with 3 squares on each side = 9 square units
+- A rectangle with 4 by 5 squares = 20 square units
+
+## How to Play
+
+Click squares and type the area! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'maths',
+      lessonNumber: 11,
+      title: "Time: 24-Hour Clock",
+      emoji: '🕐',
+      content: `# Time: 24-Hour Clock 🕐
+
+Let's learn the 24-hour clock!
+
+## 24-Hour Clock
+
+Instead of 12 hours, we use 24 hours!
+
+## Converting Times
+
+- 1:00 PM = 13:00
+- 2:30 PM = 14:30
+- 3:45 PM = 15:45
+- 12:00 PM = 12:00 (noon)
+- 12:00 AM = 00:00 (midnight)
+
+## Examples
+
+- Morning: 09:00 (9 AM)
+- Afternoon: 15:00 (3 PM)
+- Evening: 20:00 (8 PM)
+
+## How to Play
+
+Type times and drag conversions! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'clock-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'maths',
+      lessonNumber: 12,
+      title: "Money: Pounds and Pence",
+      emoji: '💰',
+      content: `# Money: Pounds and Pence 💰
+
+Let's learn about pounds and pence!
+
+## UK Money
+
+- 100 pence (p) = 1 pound (£)
+- Coins: 1p, 2p, 5p, 10p, 20p, 50p, £1, £2
+- Notes: £5, £10, £20, £50
+
+## Examples
+
+- £2.50 = 250p
+- 150p = £1.50
+- £5.75 = 575p
+
+## How to Play
+
+Drag coins/notes and type amounts! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'money-drag-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'maths',
+      lessonNumber: 13,
+      title: "Line Graphs",
+      emoji: '📈',
+      content: `# Line Graphs 📈
+
+Let's learn about line graphs!
+
+## What is a Line Graph?
+
+A line graph shows how data changes over time!
+
+## Reading Line Graphs
+
+- The line goes up = increase
+- The line goes down = decrease
+- The line is flat = no change
+
+## Making Line Graphs
+
+- Plot points for each time
+- Connect the points with a line
+- Label the axes
+
+## How to Play
+
+Click points and drag to create graphs! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'graph-builder-game',
       categoryId: null,
     }),
 

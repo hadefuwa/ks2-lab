@@ -54,6 +54,38 @@ const LESSON_CONFIGS = {
   24: { type: 'statistics', title: 'Statistics and Data', maxDataPoints: 10 },
   // Year 6 - Lesson 3: Advanced Problem Solving
   25: { type: 'problem-solving', title: 'Advanced Problem Solving', difficulty: 'advanced' },
+  // Year 5 - Lesson 5: Percentages
+  26: { type: 'percentages', title: 'Percentages', percentages: [25, 50, 75, 100], fractions: ['1/4', '1/2', '3/4', '1'] },
+  // Year 5 - Lesson 7: Symmetry
+  27: { type: 'symmetry', title: 'Symmetry', shapes: ['square', 'rectangle', 'circle', 'triangle', 'pentagon', 'hexagon'] },
+  // Year 5 - Lesson 8: Volume
+  28: { type: 'volume', title: 'Volume', maxDimension: 10 },
+  // Year 5 - Lesson 10: Mean, Median, Mode
+  29: { type: 'mean-median-mode', title: 'Mean, Median, Mode', maxDataPoints: 10 },
+  // Year 6 - Lesson 6: Ratio and Proportion
+  30: { type: 'ratio-proportion', title: 'Ratio and Proportion', maxRatio: 10 },
+  // Year 6 - Lesson 11: Converting Fractions/Decimals/Percentages
+  31: { type: 'fractions-decimals-percentages', title: 'Converting Fractions/Decimals/Percentages', fractions: ['1/2', '1/4', '3/4', '1/5', '2/5', '1/10'], decimals: [0.5, 0.25, 0.75, 0.2, 0.4, 0.1], percentages: [50, 25, 75, 20, 40, 10] },
+  // Year 2 - Place Value to 100
+  32: { type: 'place-value-100', title: 'Place Value to 100', maxNumber: 99 },
+  // Year 2 - Addition to 20
+  33: { type: 'addition-to-20', title: 'Addition to 20', maxSum: 20 },
+  // Year 2 - Subtraction to 20
+  34: { type: 'subtraction-to-20', title: 'Subtraction to 20', maxDifference: 20 },
+  // Year 3 - Place Value to 1000
+  35: { type: 'place-value-1000', title: 'Place Value to 1000', maxNumber: 999 },
+  // Year 3 - Perimeter
+  36: { type: 'perimeter', title: 'Perimeter', maxSide: 10 },
+  // Year 3 - Mass and Capacity
+  37: { type: 'mass-capacity', title: 'Mass and Capacity', maxAmount: 10000 },
+  // Year 4 - Place Value to 10,000
+  38: { type: 'place-value-10000', title: 'Place Value to 10,000', maxNumber: 9999 },
+  // Year 4 - Area by Counting Squares
+  39: { type: 'area-counting-squares', title: 'Area by Counting Squares', maxGrid: 5 },
+  // Year 5 - Place Value to 1,000,000
+  40: { type: 'place-value-1000000', title: 'Place Value to 1,000,000', maxNumber: 999999 },
+  // Year 6 - Negative Numbers
+  41: { type: 'negative-numbers', title: 'Negative Numbers', maxAbsValue: 10 },
 };
 
 // Scoring tiers
@@ -150,62 +182,74 @@ function MathGame({ lesson }) {
   const getUserId = useDataStore(state => state.getUserId);
   const saveData = useDataStore(state => state.saveData);
 
-  // Map lesson number to math game
+  // Map lesson title to math game config number
   const getMathLessonNumber = () => {
-    if (lesson?.title) {
-      if (lesson.title.includes('Number 1') && !lesson.title.includes('Numbers 1-5')) {
-        return 1;
-      } else if (lesson.title.includes('Number 2')) {
-        return 2;
-      } else if (lesson.title.includes('Number 3')) {
-        return 3;
-      } else if (lesson.title.includes('Counting 1-3')) {
-        return 4;
-      } else if (lesson.title.includes('Match Number 1')) {
-        return 5;
-      } else if (lesson.title.includes('Match Number 2')) {
-        return 6;
-      } else if (lesson.title.includes('Match Number 3')) {
-        return 7;
-      } else if (lesson.title.includes('Counting 1-5')) {
-        return 8;
-      } else if (lesson.title.includes('Number Order')) {
-        return 9;
-      } else if (lesson.title.includes('Numbers 1-5')) {
-        return 10;
-      } else if (lesson.title.includes('Counting to 10')) {
-        return 11;
-      } else if (lesson.title.includes('Counting to 20') && lesson.yearId === 'nursery') {
-        return 12;
-      } else if (lesson.title.includes('Recognising Numbers')) {
-        return 13;
-      } else if (lesson.title === 'Counting to 10' && lesson.yearId === 'year1') {
-        return 14;
-      } else if (lesson.title.includes('Adding Numbers')) {
-        return 15;
-      } else if (lesson.title === 'Counting to 20' && lesson.yearId === 'year2') {
-        return 16;
-      } else if (lesson.title.includes('Multiplication Tables')) {
-        return 17;
-      } else if (lesson.title.includes('Division Basics')) {
-        return 18;
-      } else if (lesson.title.includes('Fractions Introduction')) {
-        return 19;
-      } else if (lesson.title.includes('Long Multiplication')) {
-        return 20;
-      } else if (lesson.title.includes('Fractions and Decimals')) {
-        return 21;
-      } else if (lesson.title.includes('Measurement and Units')) {
-        return 22;
-      } else if (lesson.title.includes('Algebra Introduction')) {
-        return 23;
-      } else if (lesson.title.includes('Statistics and Data')) {
-        return 24;
-      } else if (lesson.title.includes('Advanced Problem Solving')) {
-        return 25;
-      }
+    if (!lesson?.title) {
+      console.warn('MathGame: No lesson title found, using default config');
+      return 1;
     }
-    return lesson?.lessonNumber || 1;
+
+    const title = lesson.title.toLowerCase();
+    const yearId = lesson.yearId;
+
+    // Early years lessons (nursery, reception, year1, year2)
+    if (title.includes('number 1') && !title.includes('numbers 1-5')) return 1;
+    if (title.includes('number 2')) return 2;
+    if (title.includes('number 3')) return 3;
+    if (title.includes('counting 1-3')) return 4;
+    if (title.includes('match number 1')) return 5;
+    if (title.includes('match number 2')) return 6;
+    if (title.includes('match number 3')) return 7;
+    if (title.includes('counting 1-5')) return 8;
+    if (title.includes('number order')) return 9;
+    if (title.includes('numbers 1-5')) return 10;
+    if (title.includes('counting to 10') && yearId === 'year1') return 14;
+    if (title.includes('counting to 10')) return 11;
+    if (title.includes('counting to 20') && yearId === 'nursery') return 12;
+    if (title.includes('counting to 20') && yearId === 'year2') return 16;
+    if (title.includes('recognising numbers') || title.includes('recognizing numbers')) return 13;
+    if (title.includes('adding numbers')) return 15;
+
+    // Year 2 lessons
+    if (title.includes('place value to 100') && yearId === 'year2') return 32;
+    if (title.includes('addition to 20') && yearId === 'year2') return 33;
+    if (title.includes('subtraction to 20') && yearId === 'year2') return 34;
+    
+    // Year 3+ lessons - check by year and title
+    if (title.includes('multiplication tables') || title.includes('multiplication')) return 17;
+    if (title.includes('division basics') || title.includes('division')) return 18;
+    if (title.includes('fractions introduction') || (title.includes('fractions') && yearId === 'year3')) return 19;
+    if (title.includes('long multiplication')) return 20;
+    if (title.includes('fractions and decimals') || (title.includes('fractions') && yearId === 'year4')) return 21;
+    if (title.includes('measurement and units') || title.includes('measurement')) return 22;
+    if (title.includes('algebra introduction') || (title.includes('algebra') && yearId === 'year6')) return 23;
+    if (title.includes('statistics and data') || title.includes('statistics')) return 24;
+    if (title.includes('advanced problem solving') || title.includes('problem solving')) return 25;
+    
+    // Year 3 lessons
+    if (title.includes('place value to 1000') && yearId === 'year3') return 35;
+    if (title.includes('perimeter') && yearId === 'year3') return 36;
+    if (title.includes('mass and capacity') && yearId === 'year3') return 37;
+    
+    // Year 4 lessons
+    if (title.includes('place value to 10,000') || title.includes('place value to 10000')) return 38;
+    if (title.includes('area by counting squares') && yearId === 'year4') return 39;
+    
+    // Year 5 lessons
+    if (title.includes('place value to 1,000,000') || title.includes('place value to 1000000')) return 40;
+    if (title.includes('percentages') && yearId === 'year5') return 26;
+    if (title.includes('symmetry') && yearId === 'year5') return 27;
+    if (title.includes('volume') && yearId === 'year5') return 28;
+    if (title.includes('mean, median, mode') || title.includes('mean median mode')) return 29;
+    
+    // Year 6 lessons
+    if (title.includes('negative numbers')) return 41;
+    if (title.includes('ratio and proportion') || title.includes('ratio')) return 30;
+    if (title.includes('converting fractions/decimals/percentages') || (title.includes('converting') && title.includes('fractions') && title.includes('percentages'))) return 31; // Use fractions-decimals-percentages config
+
+    // If no match found, log warning and use a safe default
+    console.warn(`MathGame: No config found for lesson "${lesson.title}" (Year: ${yearId}, Lesson #: ${lesson.lessonNumber}). Using default config.`);
+    return 1; // Use default config instead of lesson number
   };
 
   const mathLessonNumber = getMathLessonNumber();
@@ -542,6 +586,115 @@ function MathGame({ lesson }) {
         }
         options = options.slice(0, 4);
       }
+    } else if (config.type === 'fractions-decimals-percentages') {
+      // Year 6: Converting Fractions/Decimals/Percentages
+      const questionType = Math.floor(Math.random() * 6);
+      
+      if (questionType === 0) {
+        // Convert fraction to decimal
+        const fraction = config.fractions[Math.floor(Math.random() * config.fractions.length)];
+        const [num, den] = fraction.split('/').map(Number);
+        const decimal = num / den;
+        answer = decimal;
+        questionText = `What is ${fraction} as a decimal?`;
+        const wrong1 = Math.round((decimal + 0.1) * 100) / 100;
+        const wrong2 = Math.round((decimal - 0.1) * 100) / 100;
+        const wrong3 = Math.round((decimal * 2) * 100) / 100;
+        options = [decimal, wrong1, wrong2, wrong3].filter(n => n > 0 && n <= 1).sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.round(Math.random() * 100) / 100;
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      } else if (questionType === 1) {
+        // Convert fraction to percentage
+        const fraction = config.fractions[Math.floor(Math.random() * config.fractions.length)];
+        const [num, den] = fraction.split('/').map(Number);
+        const percentage = (num / den) * 100;
+        answer = percentage;
+        questionText = `What is ${fraction} as a percentage?`;
+        const wrong1 = percentage + 10;
+        const wrong2 = percentage - 10;
+        const wrong3 = percentage + 25;
+        options = [percentage, wrong1, wrong2, wrong3].filter(n => n >= 0 && n <= 100).sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 100) + 1;
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      } else if (questionType === 2) {
+        // Convert decimal to fraction
+        const decimal = config.decimals[Math.floor(Math.random() * config.decimals.length)];
+        let fraction;
+        if (decimal === 0.5) fraction = '1/2';
+        else if (decimal === 0.25) fraction = '1/4';
+        else if (decimal === 0.75) fraction = '3/4';
+        else if (decimal === 0.2) fraction = '1/5';
+        else if (decimal === 0.4) fraction = '2/5';
+        else fraction = '1/10';
+        answer = fraction;
+        questionText = `What is ${decimal} as a fraction?`;
+        const otherFractions = config.fractions.filter(f => f !== fraction);
+        options = [fraction, ...otherFractions.slice(0, 3)].sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const num = Math.floor(Math.random() * 3) + 1;
+          const den = Math.floor(Math.random() * 4) + 2;
+          const randomFrac = `${num}/${den}`;
+          if (!options.includes(randomFrac)) options.push(randomFrac);
+        }
+        options = options.slice(0, 4);
+      } else if (questionType === 3) {
+        // Convert decimal to percentage
+        const decimal = config.decimals[Math.floor(Math.random() * config.decimals.length)];
+        const percentage = decimal * 100;
+        answer = percentage;
+        questionText = `What is ${decimal} as a percentage?`;
+        const wrong1 = percentage + 10;
+        const wrong2 = percentage - 10;
+        const wrong3 = percentage + 5;
+        options = [percentage, wrong1, wrong2, wrong3].filter(n => n >= 0 && n <= 100).sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 100) + 1;
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      } else if (questionType === 4) {
+        // Convert percentage to fraction
+        const percentage = config.percentages[Math.floor(Math.random() * config.percentages.length)];
+        let fraction;
+        if (percentage === 50) fraction = '1/2';
+        else if (percentage === 25) fraction = '1/4';
+        else if (percentage === 75) fraction = '3/4';
+        else if (percentage === 20) fraction = '1/5';
+        else if (percentage === 40) fraction = '2/5';
+        else fraction = '1/10';
+        answer = fraction;
+        questionText = `What is ${percentage}% as a fraction?`;
+        const otherFractions = config.fractions.filter(f => f !== fraction);
+        options = [fraction, ...otherFractions.slice(0, 3)].sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const num = Math.floor(Math.random() * 3) + 1;
+          const den = Math.floor(Math.random() * 4) + 2;
+          const randomFrac = `${num}/${den}`;
+          if (!options.includes(randomFrac)) options.push(randomFrac);
+        }
+        options = options.slice(0, 4);
+      } else {
+        // Convert percentage to decimal
+        const percentage = config.percentages[Math.floor(Math.random() * config.percentages.length)];
+        const decimal = percentage / 100;
+        answer = decimal;
+        questionText = `What is ${percentage}% as a decimal?`;
+        const wrong1 = Math.round((decimal + 0.1) * 100) / 100;
+        const wrong2 = Math.round((decimal - 0.1) * 100) / 100;
+        const wrong3 = Math.round((decimal * 2) * 100) / 100;
+        options = [decimal, wrong1, wrong2, wrong3].filter(n => n > 0 && n <= 1).sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.round(Math.random() * 100) / 100;
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      }
     } else if (config.type === 'measurement') {
       // Year 4: Measurement and units
       const measurements = [
@@ -606,6 +759,594 @@ function MathGame({ lesson }) {
       answer = problem.answer;
       questionText = problem.question;
       options = problem.options.sort(() => Math.random() - 0.5);
+    } else if (config.type === 'percentages') {
+      // Year 5: Percentages
+      const questionType = Math.floor(Math.random() * 3);
+      
+      if (questionType === 0) {
+        // Convert fraction to percentage
+        const fraction = config.fractions[Math.floor(Math.random() * config.fractions.length)];
+        const [num, den] = fraction.split('/').map(Number);
+        const percentage = (num / den) * 100;
+        answer = percentage;
+        questionText = `What is ${fraction} as a percentage?`;
+        const wrong1 = percentage + 10;
+        const wrong2 = percentage - 10;
+        const wrong3 = percentage + 25;
+        options = [percentage, wrong1, wrong2, wrong3].filter(n => n >= 0 && n <= 100).sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 100) + 1;
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      } else if (questionType === 1) {
+        // Convert percentage to fraction
+        const percentage = config.percentages[Math.floor(Math.random() * config.percentages.length)];
+        const fraction = percentage === 25 ? '1/4' : percentage === 50 ? '1/2' : percentage === 75 ? '3/4' : '1';
+        answer = fraction;
+        questionText = `What is ${percentage}% as a fraction?`;
+        const otherFractions = config.fractions.filter(f => f !== fraction);
+        options = [fraction, ...otherFractions.slice(0, 3)].sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const num = Math.floor(Math.random() * 3) + 1;
+          const den = Math.floor(Math.random() * 4) + 2;
+          const randomFrac = `${num}/${den}`;
+          if (!options.includes(randomFrac)) options.push(randomFrac);
+        }
+        options = options.slice(0, 4);
+      } else {
+        // Identify percentage from visual
+        const percentage = config.percentages[Math.floor(Math.random() * config.percentages.length)];
+        answer = percentage;
+        questionText = `What percentage is shown?`;
+        const wrong1 = percentage === 25 ? 30 : percentage === 50 ? 40 : percentage === 75 ? 80 : 90;
+        const wrong2 = percentage === 25 ? 20 : percentage === 50 ? 60 : percentage === 75 ? 70 : 95;
+        const wrong3 = percentage === 25 ? 15 : percentage === 50 ? 45 : percentage === 75 ? 65 : 85;
+        options = [percentage, wrong1, wrong2, wrong3].filter(n => n >= 0 && n <= 100).sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 100) + 1;
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      }
+    } else if (config.type === 'symmetry') {
+      // Year 5: Symmetry
+      const shapes = {
+        square: { lines: 4, name: 'square' },
+        rectangle: { lines: 2, name: 'rectangle' },
+        circle: { lines: 'many', name: 'circle' },
+        triangle: { lines: 3, name: 'triangle' },
+        pentagon: { lines: 5, name: 'pentagon' },
+        hexagon: { lines: 6, name: 'hexagon' },
+      };
+      
+      const questionType = Math.floor(Math.random() * 2);
+      
+      if (questionType === 0) {
+        // "How many lines of symmetry does a [shape] have?"
+        const shapeKeys = Object.keys(shapes);
+        const shapeKey = shapeKeys[Math.floor(Math.random() * shapeKeys.length)];
+        const shape = shapes[shapeKey];
+        answer = shape.lines;
+        questionText = `How many lines of symmetry does a ${shape.name} have?`;
+        
+        if (shape.lines === 'many') {
+          // For circle, use "many" as answer
+          answer = 'many';
+          options = ['many', 4, 6, 8].sort(() => Math.random() - 0.5);
+        } else {
+          const wrong1 = shape.lines + 1;
+          const wrong2 = shape.lines - 1;
+          const wrong3 = shape.lines + 2;
+          options = [shape.lines, wrong1, wrong2, wrong3].filter(n => n > 0 && n <= 10).sort(() => Math.random() - 0.5);
+          while (options.length < 4) {
+            const random = Math.floor(Math.random() * 10) + 1;
+            if (!options.includes(random)) options.push(random);
+          }
+          options = options.slice(0, 4);
+        }
+      } else {
+        // "Which shape has [X] lines of symmetry?"
+        const shapeKeys = Object.keys(shapes).filter(key => shapes[key].lines !== 'many');
+        const shapeKey = shapeKeys[Math.floor(Math.random() * shapeKeys.length)];
+        const shape = shapes[shapeKey];
+        answer = shape.name;
+        questionText = `Which shape has ${shape.lines} lines of symmetry?`;
+        const otherShapes = shapeKeys.filter(key => key !== shapeKey);
+        options = [shape.name, ...otherShapes.slice(0, 3).map(key => shapes[key].name)].sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const randomShape = shapeKeys[Math.floor(Math.random() * shapeKeys.length)];
+          const randomName = shapes[randomShape].name;
+          if (!options.includes(randomName)) options.push(randomName);
+        }
+        options = options.slice(0, 4);
+      }
+    } else if (config.type === 'volume') {
+      // Year 5: Volume
+      const questionType = Math.floor(Math.random() * 2);
+      
+      if (questionType === 0) {
+        // Calculate volume of a rectangular prism
+        const length = Math.floor(Math.random() * 5) + 2; // 2-6
+        const width = Math.floor(Math.random() * 5) + 2; // 2-6
+        const height = Math.floor(Math.random() * 5) + 2; // 2-6
+        answer = length * width * height;
+        questionText = `What is the volume of a box that is ${length} × ${width} × ${height}?`;
+        const wrong1 = answer + (length * width);
+        const wrong2 = answer - (length * width);
+        const wrong3 = length + width + height;
+        options = [answer, wrong1, wrong2, wrong3].filter(n => n > 0).sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 200) + 1;
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      } else {
+        // Calculate volume of a cube
+        const side = Math.floor(Math.random() * 5) + 2; // 2-6
+        answer = side * side * side;
+        questionText = `What is the volume of a cube with sides of ${side}?`;
+        const wrong1 = answer + (side * side);
+        const wrong2 = answer - (side * side);
+        const wrong3 = side * side;
+        options = [answer, wrong1, wrong2, wrong3].filter(n => n > 0).sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 200) + 1;
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      }
+    } else if (config.type === 'mean-median-mode') {
+      // Year 5: Mean, Median, Mode
+      const questionType = Math.floor(Math.random() * 3);
+      
+      if (questionType === 0) {
+        // Mean (Average)
+        const dataSet = [];
+        const count = Math.floor(Math.random() * 4) + 3; // 3-6 numbers
+        for (let i = 0; i < count; i++) {
+          dataSet.push(Math.floor(Math.random() * 20) + 1); // 1-20
+        }
+        const sum = dataSet.reduce((a, b) => a + b, 0);
+        answer = Math.round(sum / count);
+        questionText = `What is the mean of: ${dataSet.join(', ')}?`;
+        const wrong1 = answer + 2;
+        const wrong2 = answer - 2;
+        const wrong3 = sum;
+        options = [answer, wrong1, wrong2, wrong3].filter(n => n > 0).sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 30) + 1;
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      } else if (questionType === 1) {
+        // Median
+        const dataSet = [];
+        const count = Math.floor(Math.random() * 2) + 5; // 5-6 numbers (odd for easier median)
+        for (let i = 0; i < count; i++) {
+          dataSet.push(Math.floor(Math.random() * 20) + 1);
+        }
+        const sorted = [...dataSet].sort((a, b) => a - b);
+        const midIndex = Math.floor(sorted.length / 2);
+        answer = sorted[midIndex];
+        questionText = `What is the median of: ${dataSet.join(', ')}?`;
+        const wrong1 = sorted[midIndex - 1] || answer + 1;
+        const wrong2 = sorted[midIndex + 1] || answer - 1;
+        const wrong3 = sorted[0];
+        options = [answer, wrong1, wrong2, wrong3].filter(n => n > 0).sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 20) + 1;
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      } else {
+        // Mode
+        const dataSet = [];
+        // Create a set with one number appearing more often
+        const modeValue = Math.floor(Math.random() * 10) + 1;
+        dataSet.push(modeValue, modeValue, modeValue); // Mode appears 3 times
+        // Add 2-3 other unique numbers
+        for (let i = 0; i < 3; i++) {
+          let num = Math.floor(Math.random() * 10) + 1;
+          while (num === modeValue) {
+            num = Math.floor(Math.random() * 10) + 1;
+          }
+          dataSet.push(num);
+        }
+        // Shuffle the array
+        const shuffled = dataSet.sort(() => Math.random() - 0.5);
+        answer = modeValue;
+        questionText = `What is the mode of: ${shuffled.join(', ')}?`;
+        const wrong1 = shuffled.find(n => n !== modeValue) || answer + 1;
+        const wrong2 = shuffled.find(n => n !== modeValue && n !== wrong1) || answer - 1;
+        const wrong3 = shuffled[0] === modeValue ? shuffled[1] : shuffled[0];
+        options = [answer, wrong1, wrong2, wrong3].filter(n => n > 0).sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 10) + 1;
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      }
+    } else if (config.type === 'ratio-proportion') {
+      // Year 6: Ratio and Proportion
+      const questionType = Math.floor(Math.random() * 3);
+      
+      if (questionType === 0) {
+        // Simplifying ratios: "What is 4:6 in simplest form?"
+        const ratios = [
+          { original: [4, 6], simplified: [2, 3], answer: '2:3' },
+          { original: [8, 12], simplified: [2, 3], answer: '2:3' },
+          { original: [6, 9], simplified: [2, 3], answer: '2:3' },
+          { original: [10, 15], simplified: [2, 3], answer: '2:3' },
+          { original: [3, 6], simplified: [1, 2], answer: '1:2' },
+          { original: [5, 10], simplified: [1, 2], answer: '1:2' },
+          { original: [6, 8], simplified: [3, 4], answer: '3:4' },
+          { original: [9, 12], simplified: [3, 4], answer: '3:4' },
+        ];
+        const ratio = ratios[Math.floor(Math.random() * ratios.length)];
+        answer = ratio.answer;
+        questionText = `What is ${ratio.original[0]}:${ratio.original[1]} in simplest form?`;
+        const wrong1 = `${ratio.original[0]}:${ratio.original[1]}`;
+        const wrong2 = `${ratio.simplified[0] + 1}:${ratio.simplified[1]}`;
+        const wrong3 = `${ratio.simplified[0]}:${ratio.simplified[1] + 1}`;
+        options = [ratio.answer, wrong1, wrong2, wrong3].sort(() => Math.random() - 0.5);
+      } else if (questionType === 1) {
+        // Proportion: "If 2:3 = 4:?, then ? = ?"
+        const proportions = [
+          { a: 2, b: 3, c: 4, answer: 6 },
+          { a: 3, b: 4, c: 6, answer: 8 },
+          { a: 2, b: 5, c: 4, answer: 10 },
+          { a: 1, b: 3, c: 2, answer: 6 },
+          { a: 3, b: 5, c: 6, answer: 10 },
+          { a: 2, b: 4, c: 5, answer: 10 },
+        ];
+        const prop = proportions[Math.floor(Math.random() * proportions.length)];
+        answer = prop.answer;
+        questionText = `If ${prop.a}:${prop.b} = ${prop.c}:?, then ? = ?`;
+        const wrong1 = prop.answer + 2;
+        const wrong2 = prop.answer - 2;
+        const wrong3 = prop.c * prop.b;
+        options = [prop.answer, wrong1, wrong2, wrong3].filter(n => n > 0).sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 20) + 1;
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      } else {
+        // Finding ratio from quantities: "If there are 4 apples and 6 oranges, what is the ratio?"
+        const quantities = [
+          { a: 4, b: 6, answer: '2:3' },
+          { a: 6, b: 9, answer: '2:3' },
+          { a: 3, b: 6, answer: '1:2' },
+          { a: 5, b: 10, answer: '1:2' },
+          { a: 6, b: 8, answer: '3:4' },
+          { a: 9, b: 12, answer: '3:4' },
+        ];
+        const qty = quantities[Math.floor(Math.random() * quantities.length)];
+        answer = qty.answer;
+        questionText = `If there are ${qty.a} apples and ${qty.b} oranges, what is the ratio in simplest form?`;
+        const wrong1 = `${qty.a}:${qty.b}`;
+        const [num, den] = qty.answer.split(':').map(Number);
+        const wrong2 = `${num + 1}:${den}`;
+        const wrong3 = `${num}:${den + 1}`;
+        options = [qty.answer, wrong1, wrong2, wrong3].sort(() => Math.random() - 0.5);
+      }
+    } else if (config.type === 'place-value-100') {
+      // Year 2: Place Value to 100
+      const num = Math.floor(Math.random() * 99) + 1;
+      const questionType = Math.floor(Math.random() * 2);
+      if (questionType === 0) {
+        // "What is the tens digit in 45?" or "What is the ones digit in 45?"
+        const tens = Math.floor(num / 10);
+        const ones = num % 10;
+        const askTens = Math.random() < 0.5;
+        answer = askTens ? tens : ones;
+        questionText = `What is the ${askTens ? 'tens' : 'ones'} digit in ${num}?`;
+        const wrong1 = askTens ? ones : tens;
+        const wrong2 = askTens ? (tens + 1) % 10 : (ones + 1) % 10;
+        const wrong3 = askTens ? (tens - 1 + 10) % 10 : (ones - 1 + 10) % 10;
+        options = [answer, wrong1, wrong2, wrong3].filter(n => n >= 0 && n <= 9).sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 10);
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      } else {
+        // "What number has 4 tens and 5 ones?" = 45
+        const tens = Math.floor(num / 10);
+        const ones = num % 10;
+        answer = num;
+        questionText = `What number has ${tens} tens and ${ones} ones?`;
+        const wrong1 = num + 10;
+        const wrong2 = num - 10;
+        const wrong3 = (tens * 10) + ((ones + 1) % 10);
+        options = [answer, wrong1, wrong2, wrong3].filter(n => n > 0 && n <= 99).sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 99) + 1;
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      }
+    } else if (config.type === 'addition-to-20') {
+      // Year 2: Addition to 20
+      const num1 = Math.floor(Math.random() * 15) + 1;
+      const num2 = Math.floor(Math.random() * (20 - num1)) + 1;
+      answer = num1 + num2;
+      questionText = `${num1} + ${num2} = ?`;
+      const wrong1 = answer + 1;
+      const wrong2 = answer - 1;
+      const wrong3 = num1 + num2 + 2;
+      options = [answer, wrong1, wrong2, wrong3].filter(n => n > 0 && n <= 20).sort(() => Math.random() - 0.5);
+      while (options.length < 4) {
+        const random = Math.floor(Math.random() * 20) + 1;
+        if (!options.includes(random)) options.push(random);
+      }
+      options = options.slice(0, 4);
+    } else if (config.type === 'subtraction-to-20') {
+      // Year 2: Subtraction to 20
+      const num1 = Math.floor(Math.random() * 15) + 5;
+      const num2 = Math.floor(Math.random() * (num1 - 1)) + 1;
+      answer = num1 - num2;
+      questionText = `${num1} - ${num2} = ?`;
+      const wrong1 = answer + 1;
+      const wrong2 = answer - 1;
+      const wrong3 = num1 - num2 - 2;
+      options = [answer, wrong1, wrong2, wrong3].filter(n => n >= 0 && n <= 20).sort(() => Math.random() - 0.5);
+      while (options.length < 4) {
+        const random = Math.floor(Math.random() * 20);
+        if (!options.includes(random)) options.push(random);
+      }
+      options = options.slice(0, 4);
+    } else if (config.type === 'place-value-1000') {
+      // Year 3: Place Value to 1000
+      const num = Math.floor(Math.random() * 999) + 1;
+      const questionType = Math.floor(Math.random() * 2);
+      if (questionType === 0) {
+        // "What is the hundreds digit in 456?"
+        const hundreds = Math.floor(num / 100);
+        const tens = Math.floor((num % 100) / 10);
+        const ones = num % 10;
+        const digitTypes = ['hundreds', 'tens', 'ones'];
+        const digitValues = [hundreds, tens, ones];
+        const index = Math.floor(Math.random() * 3);
+        answer = digitValues[index];
+        questionText = `What is the ${digitTypes[index]} digit in ${num}?`;
+        const wrongOptions = digitValues.filter((v, i) => i !== index);
+        options = [answer, ...wrongOptions.slice(0, 3)].sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 10);
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      } else {
+        // "What number has 4 hundreds, 5 tens, and 6 ones?" = 456
+        const hundreds = Math.floor(num / 100);
+        const tens = Math.floor((num % 100) / 10);
+        const ones = num % 10;
+        answer = num;
+        questionText = `What number has ${hundreds} hundreds, ${tens} tens, and ${ones} ones?`;
+        const wrong1 = num + 100;
+        const wrong2 = num - 100;
+        const wrong3 = (hundreds * 100) + (tens * 10) + ((ones + 1) % 10);
+        options = [answer, wrong1, wrong2, wrong3].filter(n => n > 0 && n <= 999).sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 999) + 1;
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      }
+    } else if (config.type === 'perimeter') {
+      // Year 3: Perimeter
+      const shapeType = Math.floor(Math.random() * 2);
+      if (shapeType === 0) {
+        // Rectangle
+        const length = Math.floor(Math.random() * config.maxSide) + 1;
+        const width = Math.floor(Math.random() * config.maxSide) + 1;
+        answer = 2 * (length + width);
+        questionText = `What is the perimeter of a rectangle with length ${length} and width ${width}?`;
+        const wrong1 = length + width;
+        const wrong2 = length * width;
+        const wrong3 = answer + 2;
+        options = [answer, wrong1, wrong2, wrong3].filter(n => n > 0).sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 50) + 1;
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      } else {
+        // Square
+        const side = Math.floor(Math.random() * config.maxSide) + 1;
+        answer = 4 * side;
+        questionText = `What is the perimeter of a square with side length ${side}?`;
+        const wrong1 = side * side;
+        const wrong2 = 2 * side;
+        const wrong3 = answer + 2;
+        options = [answer, wrong1, wrong2, wrong3].filter(n => n > 0).sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 50) + 1;
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      }
+    } else if (config.type === 'mass-capacity') {
+      // Year 3: Mass and Capacity
+      const questionType = Math.floor(Math.random() * 4);
+      if (questionType === 0) {
+        // "How many grams in 2 kg?" = 2000
+        const kg = Math.floor(Math.random() * 5) + 1;
+        answer = kg * 1000;
+        questionText = `How many grams in ${kg} kg?`;
+        const wrong1 = kg * 100;
+        const wrong2 = kg * 10;
+        const wrong3 = answer + 500;
+        options = [answer, wrong1, wrong2, wrong3].filter(n => n > 0).sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 10000) + 1;
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      } else if (questionType === 1) {
+        // "How many milliliters in 3 L?" = 3000
+        const liters = Math.floor(Math.random() * 5) + 1;
+        answer = liters * 1000;
+        questionText = `How many milliliters in ${liters} L?`;
+        const wrong1 = liters * 100;
+        const wrong2 = liters * 10;
+        const wrong3 = answer + 500;
+        options = [answer, wrong1, wrong2, wrong3].filter(n => n > 0).sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 10000) + 1;
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      } else if (questionType === 2) {
+        // "How many kg in 5000 g?" = 5
+        const grams = (Math.floor(Math.random() * 5) + 1) * 1000;
+        answer = grams / 1000;
+        questionText = `How many kilograms in ${grams} g?`;
+        const wrong1 = grams / 100;
+        const wrong2 = grams / 10;
+        const wrong3 = answer + 1;
+        options = [answer, wrong1, wrong2, wrong3].filter(n => n > 0).sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 10) + 1;
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      } else {
+        // "How many L in 2000 mL?" = 2
+        const milliliters = (Math.floor(Math.random() * 5) + 1) * 1000;
+        answer = milliliters / 1000;
+        questionText = `How many liters in ${milliliters} mL?`;
+        const wrong1 = milliliters / 100;
+        const wrong2 = milliliters / 10;
+        const wrong3 = answer + 1;
+        options = [answer, wrong1, wrong2, wrong3].filter(n => n > 0).sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 10) + 1;
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      }
+    } else if (config.type === 'place-value-10000') {
+      // Year 4: Place Value to 10,000
+      const num = Math.floor(Math.random() * 9999) + 1;
+      const thousands = Math.floor(num / 1000);
+      const hundreds = Math.floor((num % 1000) / 100);
+      const tens = Math.floor((num % 100) / 10);
+      const ones = num % 10;
+      const digitTypes = ['thousands', 'hundreds', 'tens', 'ones'];
+      const digitValues = [thousands, hundreds, tens, ones];
+      const index = Math.floor(Math.random() * 4);
+      answer = digitValues[index];
+      questionText = `What is the ${digitTypes[index]} digit in ${num}?`;
+      const wrongOptions = digitValues.filter((v, i) => i !== index);
+      options = [answer, ...wrongOptions.slice(0, 3)].sort(() => Math.random() - 0.5);
+      while (options.length < 4) {
+        const random = Math.floor(Math.random() * 10);
+        if (!options.includes(random)) options.push(random);
+      }
+      options = options.slice(0, 4);
+    } else if (config.type === 'area-counting-squares') {
+      // Year 4: Area by Counting Squares
+      const rows = Math.floor(Math.random() * config.maxGrid) + 2;
+      const cols = Math.floor(Math.random() * config.maxGrid) + 2;
+      answer = rows * cols;
+      questionText = `What is the area of a rectangle that is ${rows} squares tall and ${cols} squares wide?`;
+      const wrong1 = rows + cols;
+      const wrong2 = 2 * (rows + cols);
+      const wrong3 = answer + 1;
+      options = [answer, wrong1, wrong2, wrong3].filter(n => n > 0).sort(() => Math.random() - 0.5);
+      while (options.length < 4) {
+        const random = Math.floor(Math.random() * 30) + 1;
+        if (!options.includes(random)) options.push(random);
+      }
+      options = options.slice(0, 4);
+    } else if (config.type === 'place-value-1000000') {
+      // Year 5: Place Value to 1,000,000
+      const num = Math.floor(Math.random() * 999999) + 1;
+      const questionType = Math.floor(Math.random() * 2);
+      if (questionType === 0) {
+        // Ask about a specific place value digit
+        const numStr = num.toString();
+        const placeNames = ['ones', 'tens', 'hundreds', 'thousands', 'ten thousands', 'hundred thousands'];
+        const index = Math.floor(Math.random() * Math.min(6, numStr.length));
+        answer = parseInt(numStr[numStr.length - 1 - index]);
+        questionText = `What is the ${placeNames[index]} digit in ${num}?`;
+        const wrong1 = (answer + 1) % 10;
+        const wrong2 = (answer - 1 + 10) % 10;
+        const wrong3 = Math.floor(Math.random() * 10);
+        options = [answer, wrong1, wrong2, wrong3].filter(n => n >= 0 && n <= 9).sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 10);
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      } else {
+        // "What is 456,789 rounded to the nearest thousand?" = 457000
+        const thousands = Math.floor(num / 1000);
+        const remainder = num % 1000;
+        answer = remainder >= 500 ? (thousands + 1) * 1000 : thousands * 1000;
+        questionText = `What is ${num} rounded to the nearest thousand?`;
+        const wrong1 = thousands * 1000;
+        const wrong2 = (thousands + 1) * 1000;
+        const wrong3 = num;
+        options = [answer, wrong1, wrong2, wrong3].filter(n => n > 0).sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 1000000);
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      }
+    } else if (config.type === 'negative-numbers') {
+      // Year 6: Negative Numbers
+      const questionType = Math.floor(Math.random() * 3);
+      if (questionType === 0) {
+        // Addition with negative: "What is -5 + 3?" = -2
+        const neg = -(Math.floor(Math.random() * config.maxAbsValue) + 1);
+        const pos = Math.floor(Math.random() * config.maxAbsValue) + 1;
+        answer = neg + pos;
+        questionText = `What is ${neg} + ${pos}?`;
+        const wrong1 = Math.abs(neg) + pos;
+        const wrong2 = neg - pos;
+        const wrong3 = answer + 2;
+        options = [answer, wrong1, wrong2, wrong3].sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 20) - 10;
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      } else if (questionType === 1) {
+        // Subtraction with negative: "What is 5 - 8?" = -3
+        const pos = Math.floor(Math.random() * config.maxAbsValue) + 1;
+        const larger = pos + Math.floor(Math.random() * config.maxAbsValue) + 1;
+        answer = pos - larger;
+        questionText = `What is ${pos} - ${larger}?`;
+        const wrong1 = larger - pos;
+        const wrong2 = pos + larger;
+        const wrong3 = answer + 2;
+        options = [answer, wrong1, wrong2, wrong3].sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 20) - 10;
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      } else {
+        // Temperature: "If it's 5°C and drops 8 degrees, what is the temperature?" = -3°C
+        const start = Math.floor(Math.random() * 10) + 1;
+        const drop = Math.floor(Math.random() * 10) + 5;
+        answer = start - drop;
+        questionText = `If it's ${start}°C and drops ${drop} degrees, what is the temperature?`;
+        const wrong1 = start + drop;
+        const wrong2 = drop - start;
+        const wrong3 = answer + 2;
+        options = [answer, wrong1, wrong2, wrong3].sort(() => Math.random() - 0.5);
+        while (options.length < 4) {
+          const random = Math.floor(Math.random() * 20) - 10;
+          if (!options.includes(random)) options.push(random);
+        }
+        options = options.slice(0, 4);
+      }
     }
 
     // Ensure we have exactly 4 options, remove duplicates, and shuffle
@@ -639,7 +1380,28 @@ function MathGame({ lesson }) {
         break;
       }
     }
-    options = uniqueOptions.slice(0, 4).sort(() => Math.random() - 0.5);
+    
+    // Ensure the answer is included in the options before slicing
+    if (!uniqueOptions.includes(answer)) {
+      uniqueOptions.push(answer);
+    }
+    
+    // Shuffle and take first 4, but ensure answer is included
+    uniqueOptions.sort(() => Math.random() - 0.5);
+    let finalOptions = uniqueOptions.slice(0, 4);
+    
+    // If answer is not in final options, replace a random wrong option with the answer
+    if (!finalOptions.includes(answer)) {
+      const wrongOptions = finalOptions.filter(opt => opt !== answer);
+      if (wrongOptions.length > 0) {
+        const randomIndex = Math.floor(Math.random() * wrongOptions.length);
+        const indexToReplace = finalOptions.indexOf(wrongOptions[randomIndex]);
+        finalOptions[indexToReplace] = answer;
+      }
+    }
+    
+    // Final shuffle to randomize position of correct answer
+    options = finalOptions.sort(() => Math.random() - 0.5);
     
     console.log('generateValidation - Answer:', answer, 'Question:', questionText, 'Options:', options);
     
@@ -661,7 +1423,10 @@ function MathGame({ lesson }) {
       return;
     }
 
-    const isCorrect = option === correctAnswer;
+    // Handle both number and string comparisons (for percentages with fractions)
+    const isCorrect = option === correctAnswer || 
+                     (typeof option === 'string' && typeof correctAnswer === 'string' && option === correctAnswer) ||
+                     (typeof option === 'number' && typeof correctAnswer === 'number' && option === correctAnswer);
     const newAttempts = validationAttempts + 1;
     setValidationAttempts(newAttempts);
 
@@ -1014,6 +1779,8 @@ function MathGame({ lesson }) {
         displayQuestionText = `What number comes after ${NUMBER_NAMES[correctAnswer - 1]}?`;
       } else if (config.type === 'recognize-1-5') {
         displayQuestionText = `Find the number ${NUMBER_NAMES[correctAnswer]}!`;
+      } else if (config.type === 'recognize-1-10') {
+        displayQuestionText = `Find the number ${NUMBER_NAMES[correctAnswer]}!`;
       } else if (config.type === 'counting-to-10') {
         if (correctAnswer === 5) {
           displayQuestionText = 'How many fingers do you have on one hand?';
@@ -1077,6 +1844,9 @@ function MathGame({ lesson }) {
             // Handle string options (fractions, decimals, etc.)
             if (typeof option === 'string') {
               displayText = option;
+            } else if (config.type === 'percentages') {
+              // Display percentages with % symbol
+              displayText = `${option}%`;
             } else {
               // For two-digit numbers, use actual digits with tight spacing
               if (option > 10 && option < 100) {

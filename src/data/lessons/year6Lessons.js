@@ -192,439 +192,375 @@ Steps:
     new Lesson({
       id: lessonId++,
       yearId: 'year6',
-      subjectId: 'english',
-      lessonNumber: 1,
-      title: "Advanced Creative Writing",
-      emoji: '✍️',
-      content: `# Advanced Creative Writing ✍️
+      subjectId: 'maths',
+      lessonNumber: 4,
+      title: "Negative Numbers",
+      emoji: '🔢',
+      content: `# Negative Numbers 🔢
 
+Let's learn about negative numbers!
 
+## What are Negative Numbers?
 
-Let's write more advanced stories!
+Numbers less than zero!
 
+## Examples
 
+- -5 is less than 0
+- -10 is less than -5
+- 0 is neither positive nor negative
 
-## Story Elements
+## Number Line
 
+... -3, -2, -1, 0, 1, 2, 3 ...
 
+## Comparing
 
-**Character Development**
+- -5 < -2 (negative 5 is less than negative 2)
+- -1 > -5 (negative 1 is greater than negative 5)
 
-- Create interesting characters
+## How to Play
 
-- Show their personalities
-
-- Make them grow and change
-
-- Give them motivations
-
-
-
-**Plot Structure**
-
-- Exposition (beginning)
-
-- Rising action (conflict builds)
-
-- Climax (turning point)
-
-- Falling action (resolution)
-
-- Denouement (ending)
-
-
-
-**Setting**
-
-- Create vivid settings
-
-- Use all five senses
-
-- Make it come alive
-
-- Show, don't just tell
-
-
-
-## Writing Techniques
-
-
-
-**Dialogue**
-
-- Make conversations realistic
-
-- Show character through speech
-
-- Use proper punctuation
-
-- Vary speech tags
-
-
-
-**Descriptive Language**
-
-- Use vivid adjectives
-
-- Create imagery
-
-- Appeal to senses
-
-- Paint pictures with words
-
-
-
-**Show, Don't Tell**
-
-- Instead of "She was sad"
-
-- Write "Tears streamed down her face"
-
-- Let readers see and feel
-
-
-
-## Practice
-
-
-
-Write stories with:
-
-- Well-developed characters
-
-- Strong plot structure
-
-- Vivid settings
-
-- Good dialogue
-
-
-
-## Fun Activities
-
-
-
-- Write longer stories
-
-- Develop characters
-
-- Create detailed settings
-
-- Share and get feedback
-
-
-
-## Remember
-
-
-
-- Develop your characters
-
-- Build your plot
-
-- Create vivid settings
-
-- Show, don't tell!`,
+Drag on number line and type comparisons! 🎮`,
       quizId: quizId++,
-      assessmentType: 'quiz',
+      assessmentType: 'number-line-game',
       categoryId: null,
     }),
 
     new Lesson({
       id: lessonId++,
       yearId: 'year6',
-      subjectId: 'english',
-      lessonNumber: 2,
-      title: "Literary Analysis and Criticism",
-      emoji: '📚',
-      content: `# Literary Analysis and Criticism 📚
+      subjectId: 'maths',
+      lessonNumber: 5,
+      title: "BODMAS/BIDMAS",
+      emoji: '🔢',
+      content: `# BODMAS/BIDMAS 🔢
 
+Let's learn the order of operations!
 
+## What is BODMAS?
 
-Let's analyze literature in depth!
+Brackets, Orders, Division, Multiplication, Addition, Subtraction
 
+## Order of Operations
 
+1. Brackets first
+2. Orders (powers)
+3. Division and Multiplication (left to right)
+4. Addition and Subtraction (left to right)
 
-## What is Literary Criticism?
+## Examples
 
+- 2 + 3 × 4 = 2 + 12 = 14 (not 20!)
+- (2 + 3) × 4 = 5 × 4 = 20
+- 10 - 2 × 3 = 10 - 6 = 4
 
+## How to Play
 
-Literary criticism is analyzing and evaluating literature.
-
-
-
-## Elements to Analyze
-
-
-
-**Theme**
-
-- Main message or idea
-
-- What the author wants to say
-
-- Universal truths
-
-- Life lessons
-
-
-
-**Symbolism**
-
-- Objects that represent ideas
-
-- Colors with meaning
-
-- Actions that stand for something
-
-- Deeper meanings
-
-
-
-**Character Analysis**
-
-- Character traits
-
-- Motivations
-
-- Development
-
-- Relationships
-
-
-
-**Narrative Techniques**
-
-- Point of view
-
-- Foreshadowing
-
-- Flashbacks
-
-- Pacing
-
-
-
-## Writing Analysis
-
-
-
-**Structure:**
-
-1. Introduction with thesis
-
-2. Body paragraphs with evidence
-
-3. Conclusion summarizing points
-
-
-
-**Using Evidence:**
-
-- Quote from the text
-
-- Explain the quote
-
-- Connect to your point
-
-- Analyze the meaning
-
-
-
-## Practice
-
-
-
-Analyze:
-
-- Themes in stories
-
-- Character development
-
-- Symbolism
-
-- Author's techniques
-
-
-
-## Fun Activities
-
-
-
-- Read and analyze literature
-
-- Write detailed analyses
-
-- Discuss with others
-
-- Compare different works
-
-
-
-## Remember
-
-
-
-- Look for deeper meaning
-
-- Use evidence from text
-
-- Think critically
-
-- Enjoy exploring literature!`,
+Type order of operations and click steps! 🎮`,
       quizId: quizId++,
-      assessmentType: 'quiz',
+      assessmentType: 'typing-math-game',
       categoryId: null,
     }),
 
     new Lesson({
       id: lessonId++,
       yearId: 'year6',
-      subjectId: 'english',
-      lessonNumber: 3,
-      title: "Persuasive Writing",
-      emoji: '💬',
-      content: `# Persuasive Writing 💬
+      subjectId: 'maths',
+      lessonNumber: 6,
+      title: "Ratio and Proportion",
+      emoji: '⚖️',
+      content: `# Ratio and Proportion ⚖️
 
+Let's learn about ratios!
 
+## What is a Ratio?
 
-Let's learn to write persuasively!
+A ratio compares two amounts!
 
+## Examples
 
+- 2:3 means 2 parts to 3 parts
+- If there are 4 apples and 6 oranges, the ratio is 4:6 or 2:3
 
-## What is Persuasive Writing?
+## Simplifying Ratios
 
+- 4:6 = 2:3 (divide both by 2)
+- 8:12 = 2:3 (divide both by 4)
 
+## Proportion
 
-Persuasive writing tries to convince the reader to agree with your opinion.
+If 2:3 = 4:?, then ? = 6
 
+## How to Play
 
-
-## Structure
-
-
-
-1. **Introduction**
-
- - Hook the reader
-
- - State your position (thesis)
-
-
-
-2. **Body Paragraphs**
-
- - Each paragraph = one reason
-
- - Support with evidence
-
- - Explain your reasoning
-
-
-
-3. **Conclusion**
-
- - Restate your position
-
- - Summarize main points
-
- - Call to action
-
-
-
-## Persuasive Techniques
-
-
-
-**Appeal to Emotion**
-
-- Make readers feel something
-
-- Use emotional language
-
-- Connect to feelings
-
-
-
-**Appeal to Logic**
-
-- Use facts and statistics
-
-- Give logical reasons
-
-- Show cause and effect
-
-
-
-**Appeal to Authority**
-
-- Quote experts
-
-- Use reliable sources
-
-- Show credibility
-
-
-
-## Language for Persuasion
-
-
-
-- "Clearly..."
-
-- "Obviously..."
-
-- "Without a doubt..."
-
-- "It is essential that..."
-
-- "We must..."
-
-
-
-## Practice
-
-
-
-Write persuasively about:
-
-- Should school start later?
-
-- Why reading is important
-
-- Should children have phones?
-
-- Why we should protect nature
-
-
-
-## Fun Activities
-
-
-
-- Write persuasive essays
-
-- Practice different techniques
-
-- Debate topics
-
-- Get feedback
-
-
-
-## Remember
-
-
-
-- State your position clearly
-
-- Support with evidence
-
-- Use persuasive techniques
-
-- Convince your reader!`,
+Drag ratios and type proportions! 🎮`,
       quizId: quizId++,
-      assessmentType: 'quiz',
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'maths',
+      lessonNumber: 7,
+      title: "Percentages of Amounts",
+      emoji: '📊',
+      content: `# Percentages of Amounts 📊
+
+Let's learn to find percentages of amounts!
+
+## Finding Percentages
+
+- 50% of 100 = 50
+- 25% of 80 = 20
+- 10% of 50 = 5
+
+## Methods
+
+- 10% = divide by 10
+- 25% = divide by 4
+- 50% = divide by 2
+- 75% = 3 × 25%
+
+## Examples
+
+- 20% of 60 = 12
+- 15% of 40 = 6
+
+## How to Play
+
+Type calculations and click answers! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'typing-math-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'maths',
+      lessonNumber: 8,
+      title: "Area of Rectangles/Triangles",
+      emoji: '📐',
+      content: `# Area of Rectangles/Triangles 📐
+
+Let's learn area formulas!
+
+## Area of Rectangle
+
+Area = length × width
+
+Example: 5 × 3 = 15 square units
+
+## Area of Triangle
+
+Area = (base × height) ÷ 2
+
+Example: (6 × 4) ÷ 2 = 12 square units
+
+## Examples
+
+- Rectangle 8 × 5 = 40 square units
+- Triangle base 10, height 6 = 30 square units
+
+## How to Play
+
+Type formulas and drag measurements! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'typing-math-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'maths',
+      lessonNumber: 9,
+      title: "Pie Charts",
+      emoji: '🥧',
+      content: `# Pie Charts 🥧
+
+Let's learn about pie charts!
+
+## What is a Pie Chart?
+
+A pie chart shows data as slices of a circle!
+
+## Reading Pie Charts
+
+- Each slice represents part of the whole
+- Bigger slice = more data
+- All slices add up to 100%
+
+## Examples
+
+- Favorite colors
+- Survey results
+- Data distribution
+
+## How to Play
+
+Click segments and drag to create charts! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'graph-builder-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'maths',
+      lessonNumber: 10,
+      title: "Algebra: Solving Equations",
+      emoji: '🔢',
+      content: `# Algebra: Solving Equations 🔢
+
+Let's learn to solve equations!
+
+## What is an Equation?
+
+An equation has an equals sign!
+
+## Solving Equations
+
+Find the value of the variable!
+
+## Examples
+
+- x + 5 = 10 → x = 5
+- y - 3 = 7 → y = 10
+- 2z = 8 → z = 4
+
+## Steps
+
+1. Do the same to both sides
+2. Simplify
+3. Find the answer
+
+## How to Play
+
+Type solutions and drag variables! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'typing-math-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'maths',
+      lessonNumber: 11,
+      title: "Converting Fractions/Decimals/Percentages",
+      emoji: '🔄',
+      content: `# Converting Fractions/Decimals/Percentages 🔄
+
+Let's learn to convert between forms!
+
+## Conversions
+
+- 1/2 = 0.5 = 50%
+- 1/4 = 0.25 = 25%
+- 3/4 = 0.75 = 75%
+- 1/10 = 0.1 = 10%
+
+## Converting Fractions to Decimals
+
+Divide numerator by denominator!
+
+## Converting Decimals to Percentages
+
+Multiply by 100!
+
+## Examples
+
+- 1/5 = 0.2 = 20%
+- 2/5 = 0.4 = 40%
+
+## How to Play
+
+Drag conversions and type answers! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'maths',
+      lessonNumber: 12,
+      title: "Scale and Maps",
+      emoji: '🗺️',
+      content: `# Scale and Maps 🗺️
+
+Let's learn about scale!
+
+## What is Scale?
+
+Scale shows how much smaller a map is than real life!
+
+## Reading Scale
+
+- 1 cm on map = 100 m in real life
+- 1:100 means 1 unit = 100 units
+
+## Examples
+
+- If 1 cm = 5 km, then 3 cm = 15 km
+- If scale is 1:1000, then 2 cm = 2000 cm = 20 m
+
+## Using Scale
+
+Measure on map, then multiply by scale!
+
+## How to Play
+
+Click map points and type distances! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'coordinate-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'maths',
+      lessonNumber: 13,
+      title: "Multi-Step Word Problems",
+      emoji: '🧩',
+      content: `# Multi-Step Word Problems 🧩
+
+Let's solve complex word problems!
+
+## Multi-Step Problems
+
+Problems that need more than one calculation!
+
+## Steps to Solve
+
+1. Read carefully
+2. Find all the numbers
+3. Decide what operations to use
+4. Solve step by step
+5. Check your answer
+
+## Example
+
+"Tom has £50. He buys 3 books at £8 each and 2 pens at £3 each. How much money does he have left?"
+
+Steps:
+1. Cost of books: 3 × £8 = £24
+2. Cost of pens: 2 × £3 = £6
+3. Total spent: £24 + £6 = £30
+4. Money left: £50 - £30 = £20
+
+## How to Play
+
+Type solutions and click operations! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'typing-math-game',
       categoryId: null,
     }),
 

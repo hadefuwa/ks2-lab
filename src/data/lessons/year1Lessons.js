@@ -163,39 +163,6 @@ Three plus one equals four!
     new Lesson({
       id: lessonId++,
       yearId: 'year1',
-      subjectId: 'english',
-      lessonNumber: 1,
-      title: "The Alphabet",
-      emoji: '🔤',
-      content: `# The Alphabet
-
-
-
-Let's learn the letters of the alphabet!
-
-
-
-## A to Z
-
-
-
-A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z
-
-
-
-## Practice
-
-
-
-Can you say the alphabet out loud?`,
-      quizId: quizId++,
-      assessmentType: 'test',
-      categoryId: null,
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year1',
       subjectId: 'history',
       lessonNumber: 1,
       title: "Dinosaurs - When They Lived",

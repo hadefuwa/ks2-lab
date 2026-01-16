@@ -21,6 +21,13 @@ import SubtractionDragGame from '../components/SubtractionDragGame';
 import ShapePatternGame from '../components/ShapePatternGame';
 import MoneyDragGame from '../components/MoneyDragGame';
 import ClockGame from '../components/ClockGame';
+import PlaceValueGame from '../components/PlaceValueGame';
+import TypingMathGame from '../components/TypingMathGame';
+import NumberLineGame from '../components/NumberLineGame';
+import ShapeMatchingGame from '../components/ShapeMatchingGame';
+import GraphBuilderGame from '../components/GraphBuilderGame';
+import CoordinateGame from '../components/CoordinateGame';
+import AngleGame from '../components/AngleGame';
 import { Progress } from '../models/Progress';
 
 // Error Boundary component
@@ -71,6 +78,7 @@ function LessonViewScreen() {
   const addProgress = useDataStore(state => state.addProgress);
   const saveData = useDataStore(state => state.saveData);
   const getNextLessonAfter = useDataStore(state => state.getNextLessonAfter);
+  const hasGoldOrPlatinum = useDataStore(state => state.hasGoldOrPlatinum);
   
   // Track question answers for interactive lessons
   const [questionAnswers, setQuestionAnswers] = useState(new Map());
@@ -86,6 +94,21 @@ function LessonViewScreen() {
   
   const totalQuestions = getTotalQuestions();
   const isInteractiveLesson = lesson && lesson.assessmentType === 'interactive' && totalQuestions > 0;
+  
+  // Check if this is a technology game and if student has gold/platinum
+  const isTechnologyGame = lesson && lesson.subjectId === 'technology' && (
+    lesson.title === 'Clicking Game' ||
+    lesson.title === 'Keyboard Game' ||
+    lesson.title === 'WASD Game' ||
+    lesson.title === 'A-Z Game' ||
+    lesson.title === 'Numbers Game' ||
+    lesson.title === 'Symbols Game' ||
+    lesson.title === 'Flappy Bird Game' ||
+    lesson.title === 'Bubble Pop Game' ||
+    lesson.title === 'Snake Game' ||
+    lesson.title === 'Target Practice Game'
+  );
+  const hasGoldOrPlatinumForLesson = lesson && isTechnologyGame && hasGoldOrPlatinum(lesson.id);
   
   // Track lesson access when component mounts
   useEffect(() => {
@@ -217,7 +240,69 @@ function LessonViewScreen() {
       </div>
 
       {/* Lesson Content with YouTube Embeds or Special Components */}
-      {lesson.title === 'Clicking Game' ? (
+      {hasGoldOrPlatinumForLesson ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '40px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
+        }}>
+          <div style={{
+            fontSize: '64px',
+            marginBottom: '20px',
+          }}>
+            🏆
+          </div>
+          <h2 style={{
+            fontSize: '28px',
+            color: '#333',
+            marginBottom: '15px',
+          }}>
+            Excellent Work!
+          </h2>
+          <p style={{
+            fontSize: '18px',
+            color: '#666',
+            marginBottom: '10px',
+            maxWidth: '600px',
+            lineHeight: '1.6',
+          }}>
+            You've already achieved a <strong style={{ color: '#FFD700' }}>Gold</strong> or <strong style={{ color: '#E5E4E2' }}>Platinum</strong> medal on this game!
+          </p>
+          <p style={{
+            fontSize: '16px',
+            color: '#888',
+            marginTop: '20px',
+            maxWidth: '600px',
+            lineHeight: '1.6',
+          }}>
+            Great job! You've mastered this game. Please continue with other lessons to keep learning.
+          </p>
+          <button
+            onClick={() => navigate(`/lessons?subjectId=${lesson.subjectId}`)}
+            style={{
+              marginTop: '30px',
+              padding: '12px 24px',
+              backgroundColor: '#007bff',
+              color: 'white',
+              border: 'none',
+              borderRadius: '6px',
+              cursor: 'pointer',
+              fontSize: '16px',
+              fontWeight: '600',
+            }}
+          >
+            Back to Lessons
+          </button>
+        </div>
+      ) : lesson.title === 'Clicking Game' ? (
         <div style={{
           flex: 1,
           display: 'flex',
@@ -402,21 +487,6 @@ function LessonViewScreen() {
         }}>
           <PhonicsLesson lesson={lesson} />
         </div>
-      ) : lesson.assessmentType === 'maths-game' ? (
-        <div style={{
-          flex: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          minHeight: 0,
-          backgroundColor: 'white',
-          padding: '20px',
-          borderRadius: '8px',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-        }}>
-          <ErrorBoundary>
-            <MathGame lesson={lesson} />
-          </ErrorBoundary>
-        </div>
       ) : lesson.title === 'Subtraction Stories' ? (
         <div style={{
           flex: 1,
@@ -462,7 +532,22 @@ function LessonViewScreen() {
             <MoneyDragGame lesson={lesson} />
           </ErrorBoundary>
         </div>
-      ) : lesson.title === 'Time and Clocks' ? (
+      ) : lesson.assessmentType === 'maths-game' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ErrorBoundary>
+            <MathGame lesson={lesson} />
+          </ErrorBoundary>
+        </div>
+      ) : lesson.title === 'Time and Clocks' || lesson.title.includes("Time:") ? (
         <div style={{
           flex: 1,
           display: 'flex',
@@ -475,6 +560,126 @@ function LessonViewScreen() {
         }}>
           <ErrorBoundary>
             <ClockGame lesson={lesson} />
+          </ErrorBoundary>
+        </div>
+      ) : lesson.assessmentType === 'place-value-game' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ErrorBoundary>
+            <PlaceValueGame lesson={lesson} />
+          </ErrorBoundary>
+        </div>
+      ) : lesson.assessmentType === 'typing-math-game' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ErrorBoundary>
+            <TypingMathGame lesson={lesson} />
+          </ErrorBoundary>
+        </div>
+      ) : lesson.assessmentType === 'number-line-game' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ErrorBoundary>
+            <NumberLineGame lesson={lesson} />
+          </ErrorBoundary>
+        </div>
+      ) : lesson.assessmentType === 'shape-matching-game' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ErrorBoundary>
+            <ShapeMatchingGame lesson={lesson} />
+          </ErrorBoundary>
+        </div>
+      ) : lesson.assessmentType === 'graph-builder-game' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ErrorBoundary>
+            <GraphBuilderGame lesson={lesson} />
+          </ErrorBoundary>
+        </div>
+      ) : lesson.assessmentType === 'coordinate-game' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ErrorBoundary>
+            <CoordinateGame lesson={lesson} />
+          </ErrorBoundary>
+        </div>
+      ) : lesson.assessmentType === 'angle-game' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ErrorBoundary>
+            <AngleGame lesson={lesson} />
+          </ErrorBoundary>
+        </div>
+      ) : lesson.title === 'Money: Coins to £1' || lesson.title === 'Money: Pounds and Pence' || lesson.title.includes('Money:') ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ErrorBoundary>
+            <MoneyDragGame lesson={lesson} />
           </ErrorBoundary>
         </div>
       ) : (
