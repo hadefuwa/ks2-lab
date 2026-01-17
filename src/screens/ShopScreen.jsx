@@ -21,7 +21,12 @@ function ShopScreen() {
   const pointsBalance = getPointsBalance();
   const totalPointsSpent = getTotalPointsSpent();
   const totalPointsEarned = getTotalPointsEarned();
-  const purchasedRewardIds = new Set(purchases.map(p => p.rewardId));
+  
+  // Calculate purchase counts for each reward
+  const purchaseCounts = purchases.reduce((acc, purchase) => {
+    acc[purchase.rewardId] = (acc[purchase.rewardId] || 0) + 1;
+    return acc;
+  }, {});
 
   const handlePurchase = async (reward) => {
     if (pointsBalance < reward.cost) {
@@ -49,8 +54,50 @@ function ShopScreen() {
     }
   };
 
-  const availableRewards = rewards.filter(r => !purchasedRewardIds.has(r.id));
-  const ownedRewards = rewards.filter(r => purchasedRewardIds.has(r.id));
+  // Show all active rewards (no filtering)
+  const availableRewards = rewards;
+  // Show rewards that have been purchased at least once
+  const ownedRewards = rewards.filter(r => purchaseCounts[r.id] > 0);
+
+  // Format timestamp for display
+  const formatTimestamp = (date) => {
+    const purchaseDate = date instanceof Date ? date : new Date(date);
+    const now = new Date();
+    const diffMs = now - purchaseDate;
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMs / 3600000);
+    const diffDays = Math.floor(diffMs / 86400000);
+
+    if (diffMins < 1) return 'Just now';
+    if (diffMins < 60) return `${diffMins} minute${diffMins !== 1 ? 's' : ''} ago`;
+    if (diffHours < 24) return `${diffHours} hour${diffHours !== 1 ? 's' : ''} ago`;
+    if (diffDays < 7) return `${diffDays} day${diffDays !== 1 ? 's' : ''} ago`;
+    
+    // For older purchases, show full date
+    return purchaseDate.toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+  };
+
+  // Get purchase history sorted by most recent first
+  const purchaseHistory = purchases
+    .map(purchase => {
+      const reward = rewards.find(r => r.id === purchase.rewardId);
+      return {
+        ...purchase,
+        rewardName: reward ? reward.name : 'Unknown Reward',
+        rewardDescription: reward ? reward.description : '',
+      };
+    })
+    .sort((a, b) => {
+      const dateA = a.purchasedAt instanceof Date ? a.purchasedAt : new Date(a.purchasedAt);
+      const dateB = b.purchasedAt instanceof Date ? b.purchasedAt : new Date(b.purchasedAt);
+      return dateB - dateA; // Most recent first
+    });
 
   return (
     <div style={{
@@ -209,6 +256,16 @@ function ShopScreen() {
                 }}>
                   {reward.description}
                 </p>
+                {purchaseCounts[reward.id] > 0 && (
+                  <div style={{
+                    marginBottom: '10px',
+                    fontSize: '12px',
+                    color: '#28a745',
+                    fontWeight: 'bold',
+                  }}>
+                    Purchased {purchaseCounts[reward.id]} time{purchaseCounts[reward.id] !== 1 ? 's' : ''}
+                  </div>
+                )}
                 <div style={{
                   display: 'flex',
                   justifyContent: 'space-between',
@@ -279,7 +336,7 @@ function ShopScreen() {
                   fontSize: '12px',
                   fontWeight: 'bold',
                 }}>
-                  OWNED
+                  OWNED ×{purchaseCounts[reward.id]}
                 </div>
                 {reward.imageUrl && (
                   <div style={{
@@ -317,6 +374,85 @@ function ShopScreen() {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {/* Purchase History */}
+      {purchaseHistory.length > 0 && (
+        <div style={{ marginBottom: '40px' }}>
+          <h2 style={{ marginBottom: '20px', color: '#333' }}>Purchase History</h2>
+          <div style={{
+            backgroundColor: 'white',
+            border: '2px solid #e0e0e0',
+            borderRadius: '8px',
+            overflow: 'hidden',
+          }}>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '2fr 1fr 1fr',
+              gap: '15px',
+              padding: '15px 20px',
+              backgroundColor: '#f8f9fa',
+              borderBottom: '2px solid #e0e0e0',
+              fontWeight: 'bold',
+              fontSize: '14px',
+              color: '#666',
+            }}>
+              <div>Reward</div>
+              <div>Points</div>
+              <div>Date</div>
+            </div>
+            <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
+              {purchaseHistory.map((purchase, index) => (
+                <div
+                  key={purchase.id}
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: '2fr 1fr 1fr',
+                    gap: '15px',
+                    padding: '15px 20px',
+                    borderBottom: index < purchaseHistory.length - 1 ? '1px solid #e0e0e0' : 'none',
+                    backgroundColor: index % 2 === 0 ? 'white' : '#f8f9fa',
+                    transition: 'background-color 0.2s',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#e8f5e9';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = index % 2 === 0 ? 'white' : '#f8f9fa';
+                  }}
+                >
+                  <div>
+                    <div style={{ fontWeight: 'bold', color: '#333', marginBottom: '4px' }}>
+                      {purchase.rewardName}
+                    </div>
+                    {purchase.rewardDescription && (
+                      <div style={{ fontSize: '12px', color: '#666' }}>
+                        {purchase.rewardDescription}
+                      </div>
+                    )}
+                  </div>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    fontSize: '16px',
+                    fontWeight: 'bold',
+                    color: '#dc3545',
+                  }}>
+                    {purchase.pointsSpent} pts
+                  </div>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    fontSize: '14px',
+                    color: '#666',
+                  }}>
+                    {formatTimestamp(purchase.purchasedAt)}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}

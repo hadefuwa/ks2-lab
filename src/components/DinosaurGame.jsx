@@ -53,6 +53,7 @@ function DinosaurGame({ lesson }) {
   const [showMatching, setShowMatching] = useState(false);
   const [currentDinosaur, setCurrentDinosaur] = useState(null);
   const [showFeedback, setShowFeedback] = useState(false);
+  const [selectedAnswer, setSelectedAnswer] = useState(null); // { food: 'meat'|'leaves', isCorrect: boolean }
   const [correctMatches, setCorrectMatches] = useState(0);
   const TARGET_FOODS = 10;
   const [timeStarted, setTimeStarted] = useState(null);
@@ -363,19 +364,20 @@ function DinosaurGame({ lesson }) {
         setScore(scoreRef.current);
       }
 
-      // Spawn fossils on platforms
+      // Spawn fossils on platforms - improved spawning logic
       const currentTime = Date.now();
-      if (fossils.length < 3) {
+      if (fossils.length < 5) { // Increased from 3 to 5
         const availablePlatforms = platforms.filter(p => {
           const hasItem = fossils.some(f => 
-            Math.abs(f.x - (p.x + p.width / 2)) < 50
+            Math.abs(f.x - (p.x + p.width / 2)) < 80
           ) || dinosaurs.some(d => 
-            Math.abs(d.x - (p.x + p.width / 2)) < 50
+            Math.abs(d.x - (p.x + p.width / 2)) < 80
           );
-          return !hasItem && p.y < dino.y - 100;
+          return !hasItem && p.y < dino.y + 200 && p.y > dino.y - 800;
         });
         
-        if (availablePlatforms.length > 0 && currentTime % 4000 < 50) {
+        // More reliable spawning - check every 100 frames instead of timing
+        if (availablePlatforms.length > 0 && Math.random() < 0.02) {
           const platform = availablePlatforms[Math.floor(Math.random() * availablePlatforms.length)];
           fossils.push({
             x: platform.x + platform.width / 2,
@@ -385,18 +387,19 @@ function DinosaurGame({ lesson }) {
         }
       }
 
-      // Spawn dinosaurs on platforms
-      if (dinosaurs.length < 2) {
+      // Spawn dinosaurs on platforms - improved spawning logic
+      if (dinosaurs.length < 3) { // Increased from 2 to 3
         const availablePlatforms = platforms.filter(p => {
           const hasItem = fossils.some(f => 
-            Math.abs(f.x - (p.x + p.width / 2)) < 50
+            Math.abs(f.x - (p.x + p.width / 2)) < 80
           ) || dinosaurs.some(d => 
-            Math.abs(d.x - (p.x + p.width / 2)) < 50
+            Math.abs(d.x - (p.x + p.width / 2)) < 80
           );
-          return !hasItem && p.y < dino.y - 100;
+          return !hasItem && p.y < dino.y + 200 && p.y > dino.y - 800;
         });
         
-        if (availablePlatforms.length > 0 && currentTime % 6000 < 50) {
+        // More reliable spawning
+        if (availablePlatforms.length > 0 && Math.random() < 0.015) {
           const platform = availablePlatforms[Math.floor(Math.random() * availablePlatforms.length)];
           const dinoType = Math.random() < 0.5 ? 'TREX' : 'BRACHIOSAURUS';
           dinosaurs.push({
@@ -643,8 +646,47 @@ function DinosaurGame({ lesson }) {
       onPlatform: false 
     };
     cameraRef.current = { x: 0, y: 0 };
-    fossilsRef.current = [];
-    dinosaursRef.current = [];
+    
+    // Generate initial fossils on platforms
+    const initialFossils = [];
+    const platforms = platformsRef.current;
+    const startY = canvas.height - 150;
+    
+    // Place fossils on some of the higher platforms
+    for (let i = 2; i < Math.min(10, platforms.length); i++) {
+      if (Math.random() < 0.4) { // 40% chance per platform
+        const platform = platforms[i];
+        initialFossils.push({
+          x: platform.x + platform.width / 2,
+          y: platform.y - 30,
+          radius: 18,
+        });
+      }
+    }
+    
+    // Generate initial dinosaurs
+    const initialDinosaurs = [];
+    for (let i = 3; i < Math.min(12, platforms.length); i++) {
+      if (Math.random() < 0.25) { // 25% chance per platform
+        const platform = platforms[i];
+        const dinoType = Math.random() < 0.5 ? 'TREX' : 'BRACHIOSAURUS';
+        // Make sure no fossil is too close
+        const tooClose = initialFossils.some(f => 
+          Math.abs(f.x - (platform.x + platform.width / 2)) < 80
+        );
+        if (!tooClose) {
+          initialDinosaurs.push({
+            x: platform.x + platform.width / 2,
+            y: platform.y - 35,
+            type: dinoType,
+            emoji: DINOSAUR_TYPES[dinoType].emoji,
+          });
+        }
+      }
+    }
+    
+    fossilsRef.current = initialFossils;
+    dinosaursRef.current = initialDinosaurs;
     scoreRef.current = 0;
     highestYRef.current = canvas.height - 150;
     setScore(0);
@@ -655,6 +697,7 @@ function DinosaurGame({ lesson }) {
     setShowMatching(false);
     setCurrentDinosaur(null);
     setShowFeedback(false);
+    setSelectedAnswer(null);
     setCorrectMatches(0);
     setIsCompleted(false);
     setTimeStarted(Date.now());
@@ -709,6 +752,10 @@ function DinosaurGame({ lesson }) {
     const correctFood = currentDinosaur.type === 'TREX' ? 'meat' : 'leaves';
     const isCorrect = selectedFood === correctFood;
     
+    // Store the selected answer and whether it was correct
+    setSelectedAnswer({ food: selectedFood, isCorrect });
+    setShowFeedback(true);
+    
     if (isCorrect) {
       const newMatches = correctMatches + 1;
       setCorrectMatches(newMatches);
@@ -740,14 +787,13 @@ function DinosaurGame({ lesson }) {
         speak(`${dinoName} eats ${correctFoodName}. Try again!`, { volume: 1.0, rate: 0.8, pitch: 1.1 }).catch(() => {});
       }, 100);
     }
-    
-    setShowFeedback(true);
   };
 
   const handleMatchingNext = () => {
     setShowMatching(false);
     setCurrentDinosaur(null);
     setShowFeedback(false);
+    setSelectedAnswer(null);
     setIsPaused(false);
   };
 
@@ -766,7 +812,8 @@ function DinosaurGame({ lesson }) {
 
   if (showMatching && currentDinosaur) {
     const dinoInfo = DINOSAUR_TYPES[currentDinosaur.type];
-    const isCorrect = showFeedback && (currentDinosaur.type === 'TREX' ? 'meat' : 'leaves');
+    const correctFood = currentDinosaur.type === 'TREX' ? 'meat' : 'leaves';
+    const isAnswerCorrect = selectedAnswer ? selectedAnswer.isCorrect : false;
     
     return (
       <div style={{
@@ -876,17 +923,17 @@ function DinosaurGame({ lesson }) {
               style={{
                 padding: '30px 50px',
                 fontSize: '80px',
-                border: showFeedback && isCorrect === 'meat' 
-                  ? '6px solid #28a745' 
-                  : showFeedback && isCorrect !== 'meat'
-                  ? '6px solid #dc3545'
+                border: showFeedback && selectedAnswer && selectedAnswer.food === 'meat'
+                  ? (selectedAnswer.isCorrect ? '6px solid #28a745' : '6px solid #dc3545')
+                  : showFeedback && correctFood === 'meat'
+                  ? '6px solid #28a745'
                   : '6px solid #ddd',
                 borderRadius: '16px',
                 cursor: showFeedback ? 'default' : 'pointer',
-                backgroundColor: showFeedback && isCorrect === 'meat'
+                backgroundColor: showFeedback && selectedAnswer && selectedAnswer.food === 'meat'
+                  ? (selectedAnswer.isCorrect ? '#d4edda' : '#f8d7da')
+                  : showFeedback && correctFood === 'meat'
                   ? '#d4edda'
-                  : showFeedback && isCorrect !== 'meat'
-                  ? '#f8d7da'
                   : '#fff',
                 transition: 'all 0.3s ease',
                 minWidth: '200px',
@@ -914,17 +961,17 @@ function DinosaurGame({ lesson }) {
               style={{
                 padding: '30px 50px',
                 fontSize: '80px',
-                border: showFeedback && isCorrect === 'leaves'
+                border: showFeedback && selectedAnswer && selectedAnswer.food === 'leaves'
+                  ? (selectedAnswer.isCorrect ? '6px solid #28a745' : '6px solid #dc3545')
+                  : showFeedback && correctFood === 'leaves'
                   ? '6px solid #28a745'
-                  : showFeedback && isCorrect !== 'leaves'
-                  ? '6px solid #dc3545'
                   : '6px solid #ddd',
                 borderRadius: '16px',
                 cursor: showFeedback ? 'default' : 'pointer',
-                backgroundColor: showFeedback && isCorrect === 'leaves'
+                backgroundColor: showFeedback && selectedAnswer && selectedAnswer.food === 'leaves'
+                  ? (selectedAnswer.isCorrect ? '#d4edda' : '#f8d7da')
+                  : showFeedback && correctFood === 'leaves'
                   ? '#d4edda'
-                  : showFeedback && isCorrect !== 'leaves'
-                  ? '#f8d7da'
                   : '#fff',
                 transition: 'all 0.3s ease',
                 minWidth: '200px',
@@ -947,14 +994,14 @@ function DinosaurGame({ lesson }) {
             </button>
           </div>
 
-          {showFeedback && (
+          {showFeedback && selectedAnswer && (
             <div style={{
               marginBottom: '30px',
               padding: '20px',
-              backgroundColor: isCorrect === (currentDinosaur.type === 'TREX' ? 'meat' : 'leaves')
+              backgroundColor: isAnswerCorrect
                 ? '#d4edda'
                 : '#f8d7da',
-              border: `4px solid ${isCorrect === (currentDinosaur.type === 'TREX' ? 'meat' : 'leaves')
+              border: `4px solid ${isAnswerCorrect
                 ? '#28a745'
                 : '#dc3545'}`,
               borderRadius: '12px',
@@ -962,11 +1009,11 @@ function DinosaurGame({ lesson }) {
               <div style={{
                 fontSize: '28px',
                 fontWeight: 'bold',
-                color: isCorrect === (currentDinosaur.type === 'TREX' ? 'meat' : 'leaves')
+                color: isAnswerCorrect
                   ? '#155724'
                   : '#721c24',
               }}>
-                {isCorrect === (currentDinosaur.type === 'TREX' ? 'meat' : 'leaves')
+                {isAnswerCorrect
                   ? '✅ Great job!'
                   : `❌ ${dinoInfo.name} eats ${dinoInfo.food}!`}
               </div>

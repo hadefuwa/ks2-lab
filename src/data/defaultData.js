@@ -107,6 +107,15 @@ function getDefaultRewards() {
       isActive: true,
       createdAt: new Date().toISOString(),
     },
+    {
+      id: 2,
+      name: 'Have a sweet',
+      description: 'Enjoy a sweet treat!',
+      cost: 50,
+      imageUrl: null,
+      isActive: true,
+      createdAt: new Date().toISOString(),
+    },
   ];
 }
 

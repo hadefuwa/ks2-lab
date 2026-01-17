@@ -33,11 +33,15 @@ function ClockGame({ lesson }) {
     setTargetTime(problem);
     
     // Start with a random time (different from target) so child has to set it
+    // Hour should be 1-12 for display, but we'll store it as 0-11 internally for easier math
     let randomHour = Math.floor(Math.random() * 12);
     let randomMinute = Math.floor(Math.random() * 60);
     
     // Make sure the random time is different from the target
-    while (randomHour === problem.hour && randomMinute === problem.minute) {
+    // Convert problem.hour (which might be 0 for 12) to 0-11 range for comparison
+    const problemHourForComparison = problem.hour === 0 ? 12 : problem.hour;
+    const randomHourForComparison = randomHour === 0 ? 12 : randomHour;
+    while (randomHourForComparison === problemHourForComparison && randomMinute === problem.minute) {
       randomHour = Math.floor(Math.random() * 12);
       randomMinute = Math.floor(Math.random() * 60);
     }
@@ -58,24 +62,39 @@ function ClockGame({ lesson }) {
     const centerY = rect.top + rect.height / 2;
     const x = e.clientX - centerX;
     const y = e.clientY - centerY;
+    const distance = Math.sqrt(x * x + y * y);
+    const maxRadius = rect.width / 2 - 40; // Same as radius in renderClock
     const angle = Math.atan2(y, x) * (180 / Math.PI) + 90;
     const normalizedAngle = angle < 0 ? angle + 360 : angle;
-    const minute = Math.round(normalizedAngle / 6) % 60;
-    setMinuteHand(minute);
     
-    const hourAngle = normalizedAngle / 30;
-    const hour = Math.round(hourAngle) % 12 || 12;
-    setHourHand(hour);
+    // Determine which hand to move based on distance from center
+    // Inner 60% of radius = hour hand area, outer 40% = minute hand area
+    const hourHandRadius = maxRadius * 0.6;
+    
+    if (distance < hourHandRadius) {
+      // Click is in the inner area - move hour hand
+      // Calculate hour (0-11, where 0 represents 12 o'clock)
+      const hourAngle = normalizedAngle / 30;
+      let hour = Math.round(hourAngle) % 12;
+      setHourHand(hour);
+    } else {
+      // Click is in the outer area - move minute hand
+      const minute = Math.round(normalizedAngle / 6) % 60;
+      setMinuteHand(minute);
+    }
   };
 
   const checkAnswer = () => {
+    // Convert hourHand (0-11) to display format (1-12) for comparison
     const currentHour = hourHand === 0 ? 12 : hourHand;
     const currentMinute = minuteHand;
+    // targetTime.hour is already in 1-12 format (0 represents 12)
     const targetHour = targetTime.hour === 0 ? 12 : targetTime.hour;
     const targetMinute = targetTime.minute;
 
-    // Allow some tolerance
-    const hourMatch = currentHour === targetHour || (currentHour === 12 && targetHour === 0) || (currentHour === 0 && targetHour === 12);
+    // Allow some tolerance for hour (should match exactly)
+    const hourMatch = currentHour === targetHour;
+    // Allow 2 minutes tolerance for minute hand
     const minuteMatch = Math.abs(currentMinute - targetMinute) <= 2;
 
     if (hourMatch && minuteMatch) {
@@ -117,7 +136,14 @@ function ClockGame({ lesson }) {
     const center = size / 2;
     const radius = size / 2 - 40;
     
-    const hourAngle = (hourHand * 30 - 90) * (Math.PI / 180);
+    // Calculate hour hand angle: base hour position + offset based on minutes
+    // The hour hand moves gradually as minutes pass (60 minutes = 30 degrees, so 30 minutes = 15 degrees)
+    // hourHand is 0-11, where 0 represents 12 o'clock
+    const hourValue = hourHand === 0 ? 12 : hourHand;
+    const hourBaseAngle = (hourValue * 30 - 90) * (Math.PI / 180);
+    const minuteOffset = (minuteHand / 60) * 30; // Each minute moves hour hand by 0.5 degrees
+    const hourAngle = hourBaseAngle + (minuteOffset * Math.PI / 180);
+    
     const minuteAngle = (minuteHand * 6 - 90) * (Math.PI / 180);
     
     const hourX = center + radius * 0.5 * Math.cos(hourAngle);
@@ -194,7 +220,7 @@ function ClockGame({ lesson }) {
           Set the time to: {targetTime.text}
         </div>
         <div style={{ fontSize: '20px', color: '#666' }}>
-          Click on the clock to set the hands!
+          Click near the center for hour hand, near the edge for minute hand!
         </div>
       </div>
 

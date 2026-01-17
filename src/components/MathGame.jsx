@@ -177,6 +177,10 @@ function MathGame({ lesson }) {
   const [isInitialized, setIsInitialized] = useState(false);
   const [questionText, setQuestionText] = useState('');
   const initializedLessonIdRef = useRef(null); // Track which lesson we've initialized
+  const isGeneratingValidationRef = useRef(false); // Prevent multiple simultaneous calls to generateValidation
+  const speakTimeoutRef = useRef(null); // Track the timeout for speaking question
+  const currentQuestionTextRef = useRef(''); // Store the current question text to avoid stale closures
+  const questionGenerationIdRef = useRef(0); // Track question generation to prevent stale TTS
   const navigate = useNavigate();
   const addProgress = useDataStore(state => state.addProgress);
   const getNextLessonAfter = useDataStore(state => state.getNextLessonAfter);
@@ -275,6 +279,7 @@ function MathGame({ lesson }) {
     // Reset all state when lesson changes
     setIsInitialized(false);
     initializedLessonIdRef.current = null; // Reset initialization tracking
+    isGeneratingValidationRef.current = false; // Reset generation flag
     setGameState('validation'); // Reset to validation state
     setCurrentScore(null); // Clear the score/medal
     setCorrectAnswer(null);
@@ -283,8 +288,22 @@ function MathGame({ lesson }) {
     setValidationObjects([]);
     setValidationAttempts(0);
     
+    // Clear any pending speak timeout
+    if (speakTimeoutRef.current) {
+      clearTimeout(speakTimeoutRef.current);
+      speakTimeoutRef.current = null;
+    }
+    // Reset question text ref and increment generation ID to invalidate any pending TTS
+    currentQuestionTextRef.current = '';
+    questionGenerationIdRef.current += 1;
+    
     return () => {
       stop();
+      // Clear timeout on unmount
+      if (speakTimeoutRef.current) {
+        clearTimeout(speakTimeoutRef.current);
+        speakTimeoutRef.current = null;
+      }
     };
   }, [lesson?.id]);
 
@@ -325,6 +344,13 @@ function MathGame({ lesson }) {
     try {
       // Stop any current speech first
       stop();
+      // Clear any pending speak timeout
+      if (speakTimeoutRef.current) {
+        clearTimeout(speakTimeoutRef.current);
+        speakTimeoutRef.current = null;
+      }
+      // Small delay to ensure stop completes
+      await new Promise(resolve => setTimeout(resolve, 100));
       const numberName = NUMBER_NAMES[number] || number.toString();
       console.log('Speaking number:', numberName, 'for number:', number);
       await speak(numberName, { volume: 1.0, rate: 0.6, pitch: 1.2 });
@@ -356,6 +382,23 @@ function MathGame({ lesson }) {
   };
 
   const generateValidation = () => {
+    // Prevent multiple simultaneous calls
+    if (isGeneratingValidationRef.current) {
+      console.log('generateValidation already in progress, skipping...');
+      return;
+    }
+    
+    isGeneratingValidationRef.current = true;
+    
+    // Clear any pending speak timeout
+    if (speakTimeoutRef.current) {
+      clearTimeout(speakTimeoutRef.current);
+      speakTimeoutRef.current = null;
+    }
+    
+    // Stop any current speech immediately
+    stop();
+    
     // Generate a random question based on the lesson type
     let answer;
     let questionText = '';
@@ -1434,15 +1477,50 @@ function MathGame({ lesson }) {
     
     console.log('generateValidation - Answer:', answer, 'Question:', questionText, 'Options:', options);
     
+    // Increment generation ID to track this question generation
+    questionGenerationIdRef.current += 1;
+    const thisGenerationId = questionGenerationIdRef.current;
+    
+    // Store the question text in a ref to avoid stale closure issues
+    currentQuestionTextRef.current = questionText;
+    
     setCorrectAnswer(answer);
     setValidationOptions(options);
     setQuestionText(questionText);
     
-    // Speak the question
-    setTimeout(() => {
-      speak(questionText, { volume: 1.0, rate: 0.6, pitch: 1.2 }).catch(err => {
+    // Reset the generation flag after state is set
+    isGeneratingValidationRef.current = false;
+    
+    // Speak the question after a delay to ensure state is updated and any previous speech has stopped
+    speakTimeoutRef.current = setTimeout(async () => {
+      // Only speak if this is still the current generation (prevents stale TTS)
+      if (questionGenerationIdRef.current !== thisGenerationId) {
+        console.log('Skipping TTS - question generation has changed');
+        speakTimeoutRef.current = null;
+        return;
+      }
+      
+      // Get the current question text from ref to ensure we have the latest value
+      const textToSpeak = currentQuestionTextRef.current;
+      
+      // Double-check that speech is stopped before starting new speech
+      stop();
+      // Small delay to ensure stop completes
+      await new Promise(resolve => setTimeout(resolve, 100));
+      
+      // Check again after the delay to ensure we're still on the same generation
+      if (questionGenerationIdRef.current !== thisGenerationId) {
+        console.log('Skipping TTS - question generation changed during delay');
+        speakTimeoutRef.current = null;
+        return;
+      }
+      
+      try {
+        await speak(textToSpeak, { volume: 1.0, rate: 0.6, pitch: 1.2 });
+      } catch (err) {
         console.error('Error speaking question:', err);
-      });
+      }
+      speakTimeoutRef.current = null;
     }, 500);
   };
 
@@ -1469,13 +1547,26 @@ function MathGame({ lesson }) {
       } else {
         // Stop any ongoing speech (like the question being read) before speaking "try again"
         stop();
+        // Clear any pending speak timeout
+        if (speakTimeoutRef.current) {
+          clearTimeout(speakTimeoutRef.current);
+          speakTimeoutRef.current = null;
+        }
         // Wait a brief moment to ensure the stop completes before speaking
         setTimeout(async () => {
-          await speak('Try again!', { volume: 1.0, rate: 0.6, pitch: 1.2 });
-          // Wait for "try again" to finish before generating new question
-          setTimeout(() => {
-            generateValidation();
-          }, 800);
+          try {
+            await speak('Try again!', { volume: 1.0, rate: 0.6, pitch: 1.2 });
+            // Wait for "try again" to finish before generating new question
+            setTimeout(() => {
+              generateValidation();
+            }, 800);
+          } catch (err) {
+            console.error('Error speaking "try again":', err);
+            // Still generate new validation even if TTS fails
+            setTimeout(() => {
+              generateValidation();
+            }, 300);
+          }
         }, 100);
       }
     }

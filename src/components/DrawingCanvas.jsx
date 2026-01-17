@@ -95,6 +95,20 @@ function DrawingCanvas({ lesson, prompt }) {
     };
   }, []);
 
+  // Clear canvas and reset state when lesson changes
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas || !lesson) return;
+
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    setHasDrawn(false);
+    setSavedImagePath(null);
+    setHasSpoken(false);
+  }, [lesson?.id]);
+
   // Read prompt using TTS - only once
   useEffect(() => {
     if (prompt && !hasSpoken) {
@@ -123,8 +137,15 @@ function DrawingCanvas({ lesson, prompt }) {
     setIsDrawing(true);
     setHasDrawn(true);
     
-    const x = (e.clientX || e.touches?.[0]?.clientX) - rect.left;
-    const y = (e.clientY || e.touches?.[0]?.clientY) - rect.top;
+    // Account for canvas scaling
+    const clientX = e.clientX || e.touches?.[0]?.clientX;
+    const clientY = e.clientY || e.touches?.[0]?.clientY;
+    
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    
+    const x = (clientX - rect.left) * scaleX;
+    const y = (clientY - rect.top) * scaleY;
     
     ctx.beginPath();
     ctx.moveTo(x, y);
@@ -137,8 +158,15 @@ function DrawingCanvas({ lesson, prompt }) {
     const ctx = canvas.getContext('2d');
     const rect = canvas.getBoundingClientRect();
     
-    const x = (e.clientX || e.touches?.[0]?.clientX) - rect.left;
-    const y = (e.clientY || e.touches?.[0]?.clientY) - rect.top;
+    // Account for canvas scaling
+    const clientX = e.clientX || e.touches?.[0]?.clientX;
+    const clientY = e.clientY || e.touches?.[0]?.clientY;
+    
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    
+    const x = (clientX - rect.left) * scaleX;
+    const y = (clientY - rect.top) * scaleY;
     
     ctx.strokeStyle = color;
     ctx.lineWidth = brushSize;
@@ -254,8 +282,8 @@ function DrawingCanvas({ lesson, prompt }) {
       gap: '15px',
       overflow: 'hidden',
     }}>
-      {/* Grade Badge */}
-      {existingProgress && (
+      {/* Grade Badge - Only show if graded */}
+      {existingProgress && existingProgress.score > 0 && (
         <div style={{
           padding: '10px 20px',
           background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -267,9 +295,7 @@ function DrawingCanvas({ lesson, prompt }) {
         }}>
           <span style={{ marginRight: '8px' }}>{grade.icon}</span>
           {grade.name}
-          {grade !== GRADE_TIERS.UNGRADED && (
-            <span style={{ marginLeft: '8px' }}>({existingProgress.score}%)</span>
-          )}
+          <span style={{ marginLeft: '8px' }}>({existingProgress.score}%)</span>
         </div>
       )}
 
