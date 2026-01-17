@@ -176,7 +176,7 @@ function LessonsListScreen() {
                   color: '#666',
                   textAlign: 'center',
                 }}>
-                  {Year.getById(nextLesson.yearId)?.name || nextLesson.yearId} - Lesson {nextLesson.lessonNumber}
+                  {Year.getById(nextLesson.yearId)?.name || nextLesson.yearId}
                 </p>
                 <div style={{
                   textAlign: 'center',
@@ -293,7 +293,7 @@ function LessonsListScreen() {
                       color: '#666',
                       textAlign: 'center',
                     }}>
-                      {Year.getById(lesson.yearId)?.name || lesson.yearId} - Lesson {lesson.lessonNumber}
+                      {Year.getById(lesson.yearId)?.name || lesson.yearId}
                     </p>
                   </div>
                 );

@@ -33,7 +33,9 @@ import HistoryGame from '../components/HistoryGame';
 import DinosaurGame from '../components/DinosaurGame';
 import AdamEveGame from '../components/AdamEveGame';
 import HTMLGameEmbed from '../components/HTMLGameEmbed';
+import DrawingCanvas from '../components/DrawingCanvas';
 import { Progress } from '../models/Progress';
+import { Year } from '../models/Year';
 
 // Error Boundary component
 class ErrorBoundary extends React.Component {
@@ -244,7 +246,7 @@ function LessonViewScreen() {
               color: '#666',
               fontSize: '16px',
             }}>
-              Lesson {lesson.lessonNumber}
+              {Year.getById(lesson.yearId)?.name || lesson.yearId}
             </p>
           </div>
         </div>
@@ -712,14 +714,39 @@ function LessonViewScreen() {
           display: 'flex',
           flexDirection: 'column',
           minHeight: 0,
-          backgroundColor: 'white',
-          padding: '20px',
-          borderRadius: '8px',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          gap: '20px',
         }}>
-          <ErrorBoundary>
-            <HTMLGameEmbed url="/html-games/dinosaur-sorting.html" height="100%" lesson={lesson} />
-          </ErrorBoundary>
+          {/* Lesson Content with Clickable Emojis */}
+          <div style={{
+            flexShrink: 0,
+            backgroundColor: 'white',
+            padding: '20px',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            maxHeight: '40%',
+            overflowY: 'auto',
+          }}>
+            <MarkdownWithYouTube 
+              content={lesson.content} 
+              onQuestionAnswer={undefined}
+            />
+          </div>
+          
+          {/* Game */}
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            padding: '20px',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          }}>
+            <ErrorBoundary>
+              <HTMLGameEmbed url="/html-games/dinosaur-sorting.html" height="100%" lesson={lesson} />
+            </ErrorBoundary>
+          </div>
         </div>
       ) : lesson.title === "Noah's Ark - A Big Boat" ? (
         <div style={{
@@ -796,6 +823,36 @@ function LessonViewScreen() {
             <AdamEveGame lesson={lesson} />
           </ErrorBoundary>
         </div>
+      ) : lesson.subjectId === 'art' && lesson.assessmentType === 'drawing' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ErrorBoundary>
+            <DrawingCanvas lesson={lesson} prompt={lesson.drawingPrompt || lesson.title} />
+          </ErrorBoundary>
+        </div>
+      ) : lesson.title === 'Dinosaurs - When They Lived' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ErrorBoundary>
+            <HTMLGameEmbed url="/html-games/dinosaurs-when-they-lived.html" height="100%" lesson={lesson} />
+          </ErrorBoundary>
+        </div>
       ) : lesson.title === 'Days of the Week' ? (
         <div style={{
           flex: 1,
@@ -809,6 +866,21 @@ function LessonViewScreen() {
         }}>
           <ErrorBoundary>
             <HTMLGameEmbed url="/html-games/days.html" height="100%" lesson={lesson} />
+          </ErrorBoundary>
+        </div>
+      ) : lesson.title === 'Ancient Egypt - Pyramids and Pharaohs' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ErrorBoundary>
+            <HTMLGameEmbed url="/html-games/ancient-egypt-pyramids-pharaohs.html" height="100%" lesson={lesson} />
           </ErrorBoundary>
         </div>
       ) : lesson.assessmentType === 'history-game' ? (

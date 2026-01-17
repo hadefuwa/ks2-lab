@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useDataStore from '../store/dataStore';
 import { Progress } from '../models/Progress';
+import { speak, isSpeaking, stop } from '../utils/textToSpeech';
 
 /**
  * HTML Game Embed Component
@@ -39,9 +40,33 @@ function HTMLGameEmbed({ url = '/html-games/days.html', width = '100%', height =
   
   const finalUrl = getFinalUrl();
 
-  // Listen for completion messages from the iframe
+  // Listen for messages from the iframe (completion and TTS requests)
   useEffect(() => {
-    const handleMessage = (event) => {
+    const handleMessage = async (event) => {
+      // Handle TTS stop requests from HTML games
+      if (event.data && event.data.type === 'html-game-tts-stop') {
+        stop();
+        return;
+      }
+      
+      // Handle TTS requests from HTML games
+      if (event.data && event.data.type === 'html-game-tts') {
+        try {
+          // Stop any current speech before starting new speech
+          stop();
+          // Small delay to ensure stop completes
+          await new Promise(resolve => setTimeout(resolve, 100));
+          await speak(event.data.text, { 
+            volume: event.data.volume || 1.0, 
+            rate: event.data.rate || 0.8, 
+            pitch: event.data.pitch || 1.1 
+          });
+        } catch (error) {
+          console.error('Error speaking text from HTML game:', error);
+        }
+        return;
+      }
+      
       // Only accept messages from our HTML game
       if (event.data && event.data.type === 'html-game-complete') {
         setGameCompleted(true);
@@ -64,6 +89,36 @@ function HTMLGameEmbed({ url = '/html-games/days.html', width = '100%', height =
           });
           addProgress(progress);
           saveData();
+        }
+        
+        // If this is the Days of the Week game, read all days in order
+        if (event.data.game === 'days-of-the-week') {
+          const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+          
+          // Helper function to wait for speech to complete
+          const waitForSpeechToComplete = () => {
+            return new Promise((resolve) => {
+              const checkInterval = setInterval(() => {
+                if (!isSpeaking()) {
+                  clearInterval(checkInterval);
+                  resolve();
+                }
+              }, 100); // Check every 100ms
+            });
+          };
+          
+          // Read each day, waiting for each to complete before starting the next
+          for (let i = 0; i < daysOfWeek.length; i++) {
+            try {
+              await speak(daysOfWeek[i], { volume: 1.0, rate: 0.8, pitch: 1.1 });
+              // Wait for speech to complete before moving to next day
+              await waitForSpeechToComplete();
+              // Small pause between days
+              await new Promise(resolve => setTimeout(resolve, 300));
+            } catch (error) {
+              console.error('Error speaking day:', error);
+            }
+          }
         }
         
         // Show overlay after a short delay to let the game's celebration be seen first

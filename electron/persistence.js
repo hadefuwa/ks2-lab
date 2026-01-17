@@ -41,6 +41,16 @@ export const loadData = async (getDefaultData) => {
     try {
       const data = await fs.readFile(dataPath, 'utf-8');
       const json = JSON.parse(data);
+      
+      // Validate that the data structure is correct
+      // If it's missing critical fields or is malformed, treat as fresh install
+      if (!json || typeof json !== 'object') {
+        console.log('Data file is invalid, using default data');
+        const defaultData = getDefaultData();
+        await saveData(defaultData);
+        return defaultData;
+      }
+      
       return json;
     } catch (error) {
       // File doesn't exist or is invalid, return default data
@@ -50,7 +60,11 @@ export const loadData = async (getDefaultData) => {
         await saveData(defaultData);
         return defaultData;
       }
-      throw error;
+      // JSON parsing error or other file read error - treat as fresh install
+      console.log('Error reading/parsing data file, using default data:', error.message);
+      const defaultData = getDefaultData();
+      await saveData(defaultData);
+      return defaultData;
     }
   } catch (error) {
     console.error('Error loading data:', error);

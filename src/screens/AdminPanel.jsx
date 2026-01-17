@@ -10,6 +10,7 @@ function AdminPanel() {
   const updateReward = useDataStore(state => state.updateReward);
   const deleteReward = useDataStore(state => state.deleteReward);
   const saveData = useDataStore(state => state.saveData);
+  const resetAllProgress = useDataStore(state => state.resetAllProgress);
 
   const [showPasswordModal, setShowPasswordModal] = useState(true);
   const [passwordInput, setPasswordInput] = useState('');
@@ -27,6 +28,7 @@ function AdminPanel() {
     isActive: true,
   });
   const [error, setError] = useState(null);
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -93,6 +95,24 @@ function AdminPanel() {
     } catch (err) {
       setError(err.message || 'Failed to delete reward');
       setTimeout(() => setError(null), 5000);
+    }
+  };
+
+  const handleResetAllProgress = async () => {
+    try {
+      await resetAllProgress();
+      setError(null);
+      setShowResetConfirm(false);
+      // Show success message
+      const successMsg = 'All progress has been reset successfully!';
+      setError(successMsg);
+      setTimeout(() => setError(null), 5000);
+      // Reload the page to reflect changes
+      window.location.reload();
+    } catch (err) {
+      setError(err.message || 'Failed to reset progress');
+      setTimeout(() => setError(null), 5000);
+      setShowResetConfirm(false);
     }
   };
 
@@ -258,22 +278,67 @@ function AdminPanel() {
         alignItems: 'center',
         marginBottom: '30px',
       }}>
-        <h1 style={{ margin: 0, color: '#333' }}>Reward Management</h1>
-        <button
-          onClick={handleCreateNew}
-          style={{
-            padding: '10px 20px',
-            backgroundColor: '#28a745',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            fontSize: '14px',
-            fontWeight: 'bold',
-          }}
-        >
-          + Create New Reward
-        </button>
+        <h1 style={{ margin: 0, color: '#333' }}>Admin Panel</h1>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <button
+            onClick={() => navigate('/art-grading')}
+            style={{
+              padding: '10px 20px',
+              backgroundColor: '#9b59b6',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '14px',
+              fontWeight: 'bold',
+            }}
+          >
+            🎨 Grade Art
+          </button>
+          <button
+            onClick={() => setShowResetConfirm(true)}
+            style={{
+              padding: '10px 20px',
+              backgroundColor: '#dc3545',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '14px',
+              fontWeight: 'bold',
+            }}
+          >
+          🔄 Reset All Progress
+          </button>
+          <button
+            onClick={handleCreateNew}
+            style={{
+              padding: '10px 20px',
+              backgroundColor: '#28a745',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '14px',
+              fontWeight: 'bold',
+            }}
+          >
+            + Create New Reward
+          </button>
+        </div>
+      </div>
+
+      <div style={{
+        backgroundColor: '#fff3cd',
+        border: '1px solid #ffc107',
+        borderRadius: '8px',
+        padding: '15px',
+        marginBottom: '20px',
+      }}>
+        <h2 style={{ margin: '0 0 10px 0', color: '#856404', fontSize: '18px' }}>Reward Management</h2>
+        <p style={{ margin: 0, color: '#856404', fontSize: '14px' }}>
+          Manage rewards that students can purchase with their points.
+        </p>
       </div>
 
       {error && (
@@ -558,6 +623,88 @@ function AdminPanel() {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Reset Confirmation Modal */}
+      {showResetConfirm && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 1000,
+        }}>
+          <div style={{
+            backgroundColor: 'white',
+            padding: '30px',
+            borderRadius: '8px',
+            boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+            maxWidth: '500px',
+            width: '90%',
+          }}>
+            <h3 style={{ marginTop: 0, marginBottom: '15px', color: '#dc3545' }}>
+              ⚠️ Reset All Progress
+            </h3>
+            <p style={{ marginBottom: '20px', color: '#666', lineHeight: '1.6' }}>
+              Are you sure you want to reset ALL progress? This will:
+            </p>
+            <ul style={{ 
+              marginBottom: '20px', 
+              paddingLeft: '20px',
+              color: '#666',
+              lineHeight: '1.8'
+            }}>
+              <li>Delete all students</li>
+              <li>Clear all lesson progress and completions</li>
+              <li>Reset points balance to 0</li>
+              <li>Clear all purchases</li>
+            </ul>
+            <p style={{ 
+              marginBottom: '20px', 
+              color: '#dc3545', 
+              fontWeight: 'bold',
+              fontSize: '14px'
+            }}>
+              This action cannot be undone!
+            </p>
+            <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
+              <button
+                onClick={() => setShowResetConfirm(false)}
+                style={{
+                  padding: '10px 20px',
+                  backgroundColor: '#6c757d',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                }}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleResetAllProgress}
+                style={{
+                  padding: '10px 20px',
+                  backgroundColor: '#dc3545',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  fontWeight: 'bold',
+                }}
+              >
+                Yes, Reset Everything
+              </button>
+            </div>
           </div>
         </div>
       )}

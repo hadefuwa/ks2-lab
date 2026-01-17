@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useDataStore from '../store/dataStore';
 import { Progress } from '../models/Progress';
-import { speak } from '../utils/textToSpeech';
+import { speak, isSpeaking } from '../utils/textToSpeech';
 
 // Scoring tiers
 const SCORE_TIERS = {
@@ -17,6 +17,25 @@ const DINOSAUR_TYPES = {
   TREX: { emoji: '🦖', name: 'T-Rex', food: 'meat', foodEmoji: '🥩' },
   BRACHIOSAURUS: { emoji: '🦕', name: 'Brachiosaurus', food: 'leaves', foodEmoji: '🍃' },
 };
+
+// Dinosaur facts to read when collecting bones
+const DINOSAUR_FACTS = [
+  "Dinosaurs lived millions of years ago!",
+  "Some dinosaurs were as big as houses!",
+  "T-Rex was a meat-eating dinosaur!",
+  "Brachiosaurus was a plant-eating dinosaur!",
+  "Dinosaurs had different sizes and shapes!",
+  "Some dinosaurs could fly!",
+  "Dinosaurs lived on Earth for a very long time!",
+  "We learn about dinosaurs from fossils!",
+  "Fossils are bones that turned into stone!",
+  "Dinosaurs are extinct, which means they don't live anymore!",
+  "The biggest dinosaurs were plant eaters!",
+  "Some dinosaurs had very long necks!",
+  "Dinosaurs laid eggs like birds do!",
+  "Scientists study dinosaur bones to learn about them!",
+  "There were many different types of dinosaurs!",
+];
 
 function DinosaurGame({ lesson }) {
   const navigate = useNavigate();
@@ -111,7 +130,7 @@ function DinosaurGame({ lesson }) {
     
     // Generate platforms going upward - wider and closer together for easier jumping
     let currentY = startY - 100;
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 30; i++) {
       const x = 50 + (Math.random() - 0.5) * 250;
       const width = 200 + Math.random() * 100;
       platforms.push({
@@ -400,6 +419,12 @@ function DinosaurGame({ lesson }) {
           fossils.splice(i, 1);
           scoreRef.current += 10;
           setScore(scoreRef.current);
+          
+          // Speak a random dinosaur fact
+          const randomFact = DINOSAUR_FACTS[Math.floor(Math.random() * DINOSAUR_FACTS.length)];
+          speak(randomFact, { volume: 1.0, rate: 0.8, pitch: 1.1 }).catch(() => {
+            // Ignore errors
+          });
         }
       }
 
@@ -543,6 +568,50 @@ function DinosaurGame({ lesson }) {
     };
   }, [isPlaying, isGameOver, isPaused, showMatching]);
 
+  // Read question and options when matching screen appears
+  useEffect(() => {
+    if (showMatching && currentDinosaur && !showFeedback) {
+      const dinoInfo = DINOSAUR_TYPES[currentDinosaur.type];
+      const questionText = `What does ${dinoInfo.name} eat?`;
+      
+      const readQuestionAndOptions = async () => {
+        try {
+          // Read the question first
+          await speak(questionText, { volume: 1.0, rate: 0.9, pitch: 1.0 });
+          
+          // Wait for speech to complete
+          const waitForSpeech = () => {
+            return new Promise((resolve) => {
+              const checkInterval = setInterval(() => {
+                if (!isSpeaking()) {
+                  clearInterval(checkInterval);
+                  resolve();
+                }
+              }, 100);
+              // Safety timeout
+              setTimeout(() => {
+                clearInterval(checkInterval);
+                resolve();
+              }, 5000);
+            });
+          };
+          
+          await waitForSpeech();
+          
+          // Small pause between question and options
+          await new Promise(resolve => setTimeout(resolve, 500));
+          
+          // Read the options together
+          await speak("The choices are: Meat, or Leaves", { volume: 1.0, rate: 0.85, pitch: 1.0 });
+        } catch (err) {
+          console.error('Error speaking question:', err);
+        }
+      };
+      
+      readQuestionAndOptions();
+    }
+  }, [showMatching, currentDinosaur, showFeedback]);
+
   const handleCanvasClick = (e) => {
     if (!isPlaying) {
       startGame();
@@ -653,13 +722,18 @@ function DinosaurGame({ lesson }) {
       if (newMatches >= TARGET_FOODS) {
         setTimeout(() => {
           completeGame();
-        }, 1500); // Wait a bit to show the feedback
+        }, 2000); // Wait a bit to show the feedback
+      } else {
+        // Continue playing after a short delay
+        setTimeout(() => {
+          handleMatchingNext();
+        }, 2000); // Show feedback for 2 seconds then continue
       }
     } else {
       // Speak correction
       const dinoName = currentDinosaur.type === 'TREX' ? 'T-Rex' : 'Brachiosaurus';
       const correctFoodName = currentDinosaur.type === 'TREX' ? 'meat' : 'leaves';
-      speak(`${dinoName} eats ${correctFoodName}`, { volume: 1.0, rate: 0.8, pitch: 1.1 }).catch(() => {});
+      speak(`${dinoName} eats ${correctFoodName}. Try again!`, { volume: 1.0, rate: 0.8, pitch: 1.1 }).catch(() => {});
     }
     
     setShowFeedback(true);
@@ -711,13 +785,71 @@ function DinosaurGame({ lesson }) {
           boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
           textAlign: 'center',
         }}>
-          <h2 style={{
-            fontSize: '36px',
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '15px',
             marginBottom: '30px',
-            color: '#333',
           }}>
-            What does {dinoInfo.name} eat? 🦕
-          </h2>
+            <h2 style={{
+              fontSize: '36px',
+              margin: 0,
+              color: '#333',
+            }}>
+              What does {dinoInfo.name} eat? {dinoInfo.emoji}
+            </h2>
+            <button
+              onClick={async () => {
+                const questionText = `What does ${dinoInfo.name} eat?`;
+                try {
+                  await speak(questionText, { volume: 1.0, rate: 0.9, pitch: 1.0 });
+                  
+                  const waitForSpeech = () => {
+                    return new Promise((resolve) => {
+                      const checkInterval = setInterval(() => {
+                        if (!isSpeaking()) {
+                          clearInterval(checkInterval);
+                          resolve();
+                        }
+                      }, 100);
+                    });
+                  };
+                  
+                  await waitForSpeech();
+                  await new Promise(resolve => setTimeout(resolve, 300));
+                  
+                  await speak("Option A: Meat", { volume: 1.0, rate: 0.9, pitch: 1.0 });
+                  await waitForSpeech();
+                  await new Promise(resolve => setTimeout(resolve, 200));
+                  
+                  await speak("Option B: Leaves", { volume: 1.0, rate: 0.9, pitch: 1.0 });
+                } catch (err) {
+                  console.error('Error speaking question:', err);
+                }
+              }}
+              style={{
+                padding: '10px 15px',
+                fontSize: '24px',
+                backgroundColor: '#f0f0f0',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.backgroundColor = '#e0e0e0';
+                e.target.style.transform = 'scale(1.1)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.backgroundColor = '#f0f0f0';
+                e.target.style.transform = 'scale(1)';
+              }}
+              title="Read question aloud"
+            >
+              🔊
+            </button>
+          </div>
           
           <div style={{
             fontSize: '120px',

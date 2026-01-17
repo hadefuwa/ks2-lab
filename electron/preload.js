@@ -23,5 +23,8 @@ contextBridge.exposeInMainWorld('electronAPI', {
   ttsSpeak: (text, options) => ipcRenderer.invoke('tts-speak', { text, ...options }),
   ttsStop: () => ipcRenderer.invoke('tts-stop'),
   ttsGetVoices: () => ipcRenderer.invoke('tts-get-voices'),
+  // Drawing functions
+  saveDrawing: (data) => ipcRenderer.invoke('save-drawing', data),
+  loadDrawing: (filePath) => ipcRenderer.invoke('load-drawing', filePath),
 });
 

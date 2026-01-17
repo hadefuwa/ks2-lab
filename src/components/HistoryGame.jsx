@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useDataStore from '../store/dataStore';
 import { Progress } from '../models/Progress';
-import { speak } from '../utils/textToSpeech';
+import { speak, isSpeaking } from '../utils/textToSpeech';
 
 // Scoring tiers
 const SCORE_TIERS = {
@@ -153,11 +153,42 @@ function HistoryGame({ lesson }) {
     setTimeElapsed(0);
   };
 
-  const handleSpeakQuestion = () => {
-    if (questions[currentQuestionIndex]) {
-      speak(questions[currentQuestionIndex].question, { volume: 1.0, rate: 0.9, pitch: 1.0 }).catch(err => {
-        console.error('Error speaking question:', err);
-      });
+  const handleSpeakQuestion = async () => {
+    if (!questions[currentQuestionIndex]) return;
+    
+    const currentQuestion = questions[currentQuestionIndex];
+    
+    try {
+      // Read the question first
+      await speak(currentQuestion.question, { volume: 1.0, rate: 0.9, pitch: 1.0 });
+      
+      // Wait for speech to complete before reading options
+      const waitForSpeech = () => {
+        return new Promise((resolve) => {
+          const checkInterval = setInterval(() => {
+            if (!isSpeaking()) {
+              clearInterval(checkInterval);
+              resolve();
+            }
+          }, 100);
+        });
+      };
+      
+      await waitForSpeech();
+      
+      // Small pause between question and options
+      await new Promise(resolve => setTimeout(resolve, 300));
+      
+      // Read each option with its letter
+      for (let i = 0; i < currentQuestion.options.length; i++) {
+        const optionText = `${String.fromCharCode(65 + i)}. ${currentQuestion.options[i]}`;
+        await speak(optionText, { volume: 1.0, rate: 0.9, pitch: 1.0 });
+        await waitForSpeech();
+        // Small pause between options
+        await new Promise(resolve => setTimeout(resolve, 200));
+      }
+    } catch (err) {
+      console.error('Error speaking question:', err);
     }
   };
 

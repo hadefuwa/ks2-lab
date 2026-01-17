@@ -11,6 +11,7 @@ export class Subject {
     new Subject({ id: 'english', name: 'English', emoji: '📚', order: 1 }),
     new Subject({ id: 'history', name: 'History', emoji: '📜', order: 2 }),
     new Subject({ id: 'technology', name: 'Technology', emoji: '💻', order: 3 }),
+    new Subject({ id: 'art', name: 'Art', emoji: '🎨', order: 4 }),
   ];
 
   static getById(id) {

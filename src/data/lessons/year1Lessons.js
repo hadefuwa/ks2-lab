@@ -167,6 +167,7 @@ Three plus one equals four!
       lessonNumber: 1,
       title: "Dinosaurs - When They Lived",
       emoji: '🦕',
+      assessmentType: null, // Uses HTML game instead
       content: `# Dinosaurs - When They Lived 🦕
 
 
@@ -329,7 +330,6 @@ Nothing|Study them and put bones together|Throw them away|Hide them
 Scientists study fossils, put bones together, and learn how dinosaurs lived. They teach us about the past!
 <!-- QUESTION_END -->`,
       quizId: 43,
-      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -338,167 +338,13 @@ Scientists study fossils, put bones together, and learn how dinosaurs lived. The
       yearId: 'year1',
       subjectId: 'history',
       lessonNumber: 2,
-      title: "Biblical Times - Adam and Eve to Noah",
-      emoji: '📖',
-      content: `# Biblical Times - Adam and Eve to Noah 📖
-
-
-
-Let's learn about stories from the Bible!
-
-
-
-## The Story of Creation
-
-
-
-- In the beginning, God created the world
-
-- He made light and dark
-
-- He made land and sea
-
-- He made animals and people
-
-
-
-## Adam and Eve
-
-
-
-- Adam and Eve were the first people 👫
-
-- They lived in the Garden of Eden
-
-- It was a beautiful place
-
-- They were the first family
-
-
-
-## The First Families
-
-
-
-- Adam and Eve had children
-
-- Their sons were Cain and Abel
-
-- Families grew bigger
-
-- People spread across the world
-
-
-
-## Noah and the Ark
-
-
-
-- Noah was a good man
-
-- God told him to build an ark 🚢
-
-- Animals came in pairs
-
-- The rainbow was a promise 🌈
-
-
-
-## Timeline of Biblical Stories
-
-
-
-1. Creation - The world was made
-
-2. Adam and Eve - First people
-
-3. First families - Children were born
-
-4. Noah's Ark - The big boat
-
-5. The rainbow promise - God's promise
-
-
-
-## Fun Activities
-
-
-
-- Draw a timeline of stories
-
-- Act out the stories
-
-- Learn about each story
-
-- Write about what you learned
-
-
-
-## Remember
-
-
-
-- These are important stories
-
-- They happened long ago
-
-- They teach us lessons
-
-- History includes these stories!
-
-
-
-## Practice Questions
-
-
-
-<!-- QUESTION_START -->
-Who were the first people according to the Bible?
-<!-- OPTIONS -->
-Noah and his family|Adam and Eve|Cain and Abel|Moses
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Adam and Eve were the first people! They lived in the Garden of Eden, which was a beautiful place!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What did God tell Noah to build?
-<!-- OPTIONS -->
-A house|A temple|An ark|A palace
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-God told Noah to build an ark, which was a big boat! Animals came in pairs, and the rainbow was a promise!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What did God create in the beginning?
-<!-- OPTIONS -->
-Only animals|Only people|The world with light, dark, land, sea, animals, and people|Only plants
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-In the beginning, God created the world - He made light and dark, land and sea, animals and people!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What was the rainbow a symbol of?
-<!-- OPTIONS -->
-Rain|A promise|A storm|Nothing
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The rainbow was a promise from God! It came after Noah's ark and the flood!
-<!-- QUESTION_END -->`,
-      quizId: 43,
-      assessmentType: 'history-game',
+      title: "Ancient Egypt - Pyramids and Pharaohs",
+      emoji: '🏺',
+      content: `# Ancient Egypt - Pyramids and Pharaohs 🏺
+
+Play the game to find the Pharaoh's treasures!`,
+      quizId: 53,
+      assessmentType: null, // Uses HTML game instead
       categoryId: null,
     }),
 
@@ -507,173 +353,6 @@ The rainbow was a promise from God! It came after Noah's ark and the flood!
       yearId: 'year1',
       subjectId: 'history',
       lessonNumber: 3,
-      title: "Ancient Egypt - Pyramids and Pharaohs",
-      emoji: '🏺',
-      content: `# Ancient Egypt - Pyramids and Pharaohs 🏺
-
-
-
-Let's learn about ancient Egypt!
-
-
-
-## When Was Ancient Egypt?
-
-
-
-- Ancient Egypt existed thousands of years ago
-
-- It was a very long time ago
-
-- Before many other civilizations
-
-- It was in Africa
-
-
-
-## The River Nile
-
-
-
-- The Nile River was very important
-
-- It provided water for crops
-
-- People lived along the river
-
-- It helped Egypt grow
-
-
-
-## Pyramids
-
-
-
-- Pyramids were huge stone buildings
-
-- They were tombs for pharaohs
-
-- The Great Pyramid is still standing!
-
-- They are amazing buildings
-
-
-
-## Pharaohs
-
-
-
-- Pharaohs were the rulers of Egypt 👑
-
-- They were like kings
-
-- Tutankhamun was a famous pharaoh
-
-- They were very powerful
-
-
-
-## Mummies
-
-
-
-- Egyptians made mummies
-
-- They preserved bodies
-
-- They wrapped them in cloth
-
-- They put them in pyramids
-
-
-
-## Fun Activities
-
-
-
-- Draw a pyramid
-
-- Learn about pharaohs
-
-- Make a timeline of ancient Egypt
-
-- Write about ancient Egypt
-
-
-
-## Remember
-
-
-
-- Ancient Egypt was long ago
-
-- Pyramids are amazing
-
-- Pharaohs were powerful rulers
-
-- We can learn from ancient Egypt!
-
-
-
-## Practice Questions
-
-
-
-<!-- QUESTION_START -->
-What were pyramids used for?
-<!-- OPTIONS -->
-Homes|Tombs for pharaohs|Markets|Schools
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Pyramids were huge stone buildings that were tombs for pharaohs! The Great Pyramid is still standing today!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What were pharaohs?
-<!-- OPTIONS -->
-Farmers|Rulers of Egypt like kings|Soldiers|Priests
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Pharaohs were the rulers of Egypt, like kings! They were very powerful. Tutankhamun was a famous pharaoh!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What river was very important to ancient Egypt?
-<!-- OPTIONS -->
-The Thames|The Nile|The Amazon|The Mississippi
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Nile River was very important! It provided water for crops, people lived along it, and it helped Egypt grow!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What did Egyptians make to preserve bodies?
-<!-- OPTIONS -->
-Statues|Mummies|Paintings|Pottery
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Egyptians made mummies! They preserved bodies by wrapping them in cloth and putting them in pyramids!
-<!-- QUESTION_END -->`,
-      quizId: 53,
-      assessmentType: 'history-game',
-      categoryId: null,
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year1',
-      subjectId: 'history',
-      lessonNumber: 4,
       title: "Life Long Ago vs. Life Now",
       emoji: '🏰',
       content: `# Life Long Ago vs. Life Now 🏰
@@ -882,7 +561,7 @@ Now we have instant communication with smartphones, computers, and the internet!
       id: lessonId++,
       yearId: 'year1',
       subjectId: 'history',
-      lessonNumber: 5,
+      lessonNumber: 4,
       title: "Famous People from History",
       emoji: '👑',
       content: `# Famous People from History 👑
@@ -1035,7 +714,7 @@ We remember famous people because they did important things, helped others, chan
       id: lessonId++,
       yearId: 'year1',
       subjectId: 'history',
-      lessonNumber: 6,
+      lessonNumber: 5,
       title: "Local History",
       emoji: '🏘️',
       content: `# Local History 🏘️

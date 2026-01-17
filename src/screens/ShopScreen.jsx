@@ -7,6 +7,8 @@ function ShopScreen() {
   const getRewards = useDataStore(state => state.getRewards);
   const getPurchases = useDataStore(state => state.getPurchases);
   const getPointsBalance = useDataStore(state => state.getPointsBalance);
+  const getTotalPointsSpent = useDataStore(state => state.getTotalPointsSpent);
+  const getTotalPointsEarned = useDataStore(state => state.getTotalPointsEarned);
   const purchaseReward = useDataStore(state => state.purchaseReward);
   const saveData = useDataStore(state => state.saveData);
 
@@ -17,6 +19,8 @@ function ShopScreen() {
   const rewards = getRewards(true);
   const purchases = getPurchases();
   const pointsBalance = getPointsBalance();
+  const totalPointsSpent = getTotalPointsSpent();
+  const totalPointsEarned = getTotalPointsEarned();
   const purchasedRewardIds = new Set(purchases.map(p => p.rewardId));
 
   const handlePurchase = async (reward) => {
@@ -66,15 +70,51 @@ function ShopScreen() {
         textAlign: 'center',
         border: '2px solid #007bff',
       }}>
-        <h2 style={{ margin: '0 0 10px 0', color: '#333' }}>Your Points</h2>
+        <h2 style={{ margin: '0 0 15px 0', color: '#333' }}>Your Points</h2>
         <div style={{
-          fontSize: '48px',
-          fontWeight: 'bold',
-          color: '#007bff',
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '30px',
+          flexWrap: 'wrap',
         }}>
-          {pointsBalance}
+          <div style={{ textAlign: 'center' }}>
+            <div style={{
+              fontSize: '48px',
+              fontWeight: 'bold',
+              color: '#007bff',
+            }}>
+              {pointsBalance}
+            </div>
+            <div style={{ color: '#666', fontSize: '14px', marginTop: '5px' }}>
+              Available
+            </div>
+          </div>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{
+              fontSize: '32px',
+              fontWeight: 'bold',
+              color: '#28a745',
+            }}>
+              {totalPointsEarned}
+            </div>
+            <div style={{ color: '#666', fontSize: '14px', marginTop: '5px' }}>
+              Total Earned
+            </div>
+          </div>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{
+              fontSize: '32px',
+              fontWeight: 'bold',
+              color: '#dc3545',
+            }}>
+              {totalPointsSpent}
+            </div>
+            <div style={{ color: '#666', fontSize: '14px', marginTop: '5px' }}>
+              Spent
+            </div>
+          </div>
         </div>
-        <p style={{ margin: '10px 0 0 0', color: '#666' }}>
+        <p style={{ margin: '15px 0 0 0', color: '#666' }}>
           Earn points by completing lessons and earning medals!
         </p>
       </div>

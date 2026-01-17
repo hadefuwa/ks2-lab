@@ -131,7 +131,7 @@
 </head>
 <body>
 
-    <h1>🌈 Days of the Week 🌈</h1>
+    <h1>Days of the Week</h1>
     <p class="instructions">Tap the colored days to put them in the right boxes!</p>
 
     <div id="drop-zone-container">
@@ -144,17 +144,53 @@
 
     <script>
         const days = [
-            { name: "Sunday", class: "sunday", id: 0 },
-            { name: "Monday", class: "monday", id: 1 },
-            { name: "Tuesday", class: "tuesday", id: 2 },
-            { name: "Wednesday", class: "wednesday", id: 3 },
-            { name: "Thursday", class: "thursday", id: 4 },
-            { name: "Friday", class: "friday", id: 5 },
-            { name: "Saturday", class: "saturday", id: 6 }
+            { name: "Monday", class: "monday", id: 0 },
+            { name: "Tuesday", class: "tuesday", id: 1 },
+            { name: "Wednesday", class: "wednesday", id: 2 },
+            { name: "Thursday", class: "thursday", id: 3 },
+            { name: "Friday", class: "friday", id: 4 },
+            { name: "Saturday", class: "saturday", id: 5 },
+            { name: "Sunday", class: "sunday", id: 6 }
         ];
 
         let currentStep = 0;
-        const synth = window.speechSynthesis;
+        
+        // Helper function to use new TTS via parent window
+        function speak(text, options = {}) {
+            return new Promise((resolve) => {
+                // Try to use parent window TTS (new system)
+                if (window.parent && window.parent !== window) {
+                    window.parent.postMessage({
+                        type: 'html-game-tts',
+                        text: text,
+                        volume: options.volume || 1.0,
+                        rate: options.rate || 0.9,
+                        pitch: options.pitch || 1.2
+                    }, '*');
+                    // Estimate speech duration more accurately
+                    // Average speaking rate: ~150 words per minute at rate 1.0
+                    // Adjust for actual rate setting
+                    const rate = options.rate || 0.9;
+                    const words = text.split(/\s+/).length;
+                    const baseDuration = (words / 150) * 60 * 1000; // Base duration in ms at rate 1.0
+                    const adjustedDuration = baseDuration / rate; // Adjust for rate
+                    // Add extra buffer for safety (20% more time)
+                    const duration = Math.max(adjustedDuration * 1.2, 800); // Minimum 800ms
+                    setTimeout(resolve, duration);
+                } else {
+                    // Fallback to Web Speech API if no parent
+                    const synth = window.speechSynthesis;
+                    if (synth.speaking) {
+                        synth.cancel();
+                    }
+                    const utterThis = new SpeechSynthesisUtterance(text);
+                    utterThis.pitch = options.pitch || 1.2;
+                    utterThis.rate = options.rate || 0.9;
+                    utterThis.onend = resolve;
+                    synth.speak(utterThis);
+                }
+            });
+        }
 
         function initGame() {
             const dropZone = document.getElementById('drop-zone-container');
@@ -186,18 +222,10 @@
             });
         }
 
-        function speak(text) {
-            if (synth.speaking) {
-                synth.cancel();
-            }
-            const utterThis = new SpeechSynthesisUtterance(text);
-            utterThis.pitch = 1.2;
-            utterThis.rate = 0.9;
-            synth.speak(utterThis);
-        }
+        // speak function is now defined above in the initialization
 
-        function handlePieceClick(piece, dayObj) {
-            speak(dayObj.name);
+        async function handlePieceClick(piece, dayObj) {
+            await speak(dayObj.name);
 
             if (dayObj.id === currentStep) {
                 // Correct!
@@ -227,7 +255,8 @@
                 setTimeout(() => { piece.style.transform = "translateX(-10px)"; }, 100);
                 setTimeout(() => { piece.style.transform = "translateX(10px)"; }, 200);
                 setTimeout(() => { piece.style.transform = "translateX(0)"; }, 300);
-                speak("Try again!");
+                // Wait for the day name to finish speaking before saying "Try again"
+                await speak("Try again!");
             }
         }
 

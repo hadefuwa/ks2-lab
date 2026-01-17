@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import YouTubeEmbed from './YouTubeEmbed';
 import InteractiveQuestion from './InteractiveQuestion';
 import { extractYouTubeVideosFromContent } from '../utils/youtube';
+import { speak } from '../utils/textToSpeech';
 
 /**
  * Markdown component that automatically embeds YouTube videos
@@ -172,6 +173,90 @@ function MarkdownWithYouTube({ content, removeTitle = true, onQuestionAnswer }) 
     segments.push(...processedElements);
   }
 
+  // Helper function to extract dinosaur name from text context
+  const extractDinosaurName = (text, emojiIndex) => {
+    // Look for text before the emoji, typically in format "**Name** 🦖" or "Name 🦖"
+    const beforeEmoji = text.substring(0, emojiIndex).trim();
+    
+    // Remove markdown formatting (**bold**, *italic*, etc.)
+    let name = beforeEmoji
+      .replace(/\*\*/g, '') // Remove bold
+      .replace(/\*/g, '')    // Remove italic
+      .replace(/#{1,6}\s*/g, '') // Remove headers
+      .trim();
+    
+    // Extract the last word or phrase (the dinosaur name)
+    // Handle cases like "**T-Rex** 🦖" -> "T-Rex"
+    const words = name.split(/\s+/);
+    if (words.length > 0) {
+      const lastWord = words[words.length - 1];
+      // Remove any trailing punctuation
+      name = lastWord.replace(/[.,;:!?]+$/, '');
+    }
+    
+    return name || 'dinosaur';
+  };
+
+  // Helper function to process text and make emojis clickable
+  const processTextWithClickableEmojis = (text) => {
+    if (!text || typeof text !== 'string') return text;
+    
+    // Emoji regex pattern (covers most emojis including 🦖, 🦕, 🦏)
+    const emojiRegex = /[\u{1F300}-\u{1F9FF}]|[\u{2600}-\u{27FF}]|[\u{1F600}-\u{1F64F}]|[\u{1F680}-\u{1F6FF}]/gu;
+    const parts = [];
+    let lastIndex = 0;
+    let match;
+    
+    while ((match = emojiRegex.exec(text)) !== null) {
+      // Add text before emoji
+      if (match.index > lastIndex) {
+        parts.push(text.substring(lastIndex, match.index));
+      }
+      
+      // Add clickable emoji
+      const emoji = match[0];
+      const dinosaurName = extractDinosaurName(text, match.index);
+      
+      parts.push(
+        <span
+          key={`emoji-${match.index}`}
+          onClick={async (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            try {
+              await speak(dinosaurName, { volume: 1.0, rate: 0.8, pitch: 1.1 });
+            } catch (error) {
+              console.error('Error speaking dinosaur name:', error);
+            }
+          }}
+          style={{
+            cursor: 'pointer',
+            userSelect: 'none',
+            display: 'inline-block',
+            transition: 'transform 0.1s',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'scale(1.2)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'scale(1)';
+          }}
+        >
+          {emoji}
+        </span>
+      );
+      
+      lastIndex = match.index + emoji.length;
+    }
+    
+    // Add remaining text
+    if (lastIndex < text.length) {
+      parts.push(text.substring(lastIndex));
+    }
+    
+    return parts.length > 0 ? parts : text;
+  };
+
   // Custom renderer for ReactMarkdown
   const components = {
     p: ({ children, ...props }) => {
@@ -184,7 +269,37 @@ function MarkdownWithYouTube({ content, removeTitle = true, onQuestionAnswer }) 
         return null;
       }
       
-      return <p {...props}>{children}</p>;
+      // Process text to make emojis clickable
+      const processedChildren = typeof children === 'string' 
+        ? processTextWithClickableEmojis(children)
+        : React.Children.map(children, (child) => {
+            if (typeof child === 'string') {
+              return processTextWithClickableEmojis(child);
+            }
+            return child;
+          });
+      
+      return <p {...props}>{processedChildren}</p>;
+    },
+    strong: ({ children, ...props }) => {
+      // Process bold text for emojis
+      const processedChildren = typeof children === 'string' 
+        ? processTextWithClickableEmojis(children)
+        : React.Children.map(children, (child) => {
+            if (typeof child === 'string') {
+              return processTextWithClickableEmojis(child);
+            }
+            return child;
+          });
+      
+      return <strong {...props}>{processedChildren}</strong>;
+    },
+    text: ({ children, ...props }) => {
+      // Process text nodes for emojis
+      if (typeof children === 'string') {
+        return <>{processTextWithClickableEmojis(children)}</>;
+      }
+      return <>{children}</>;
     },
   };
 

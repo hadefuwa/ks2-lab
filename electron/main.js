@@ -50,7 +50,7 @@ protocol.registerSchemesAsPrivileged([
   },
 ]);
 
-// Default data function - returns empty structure
+// Default data function - returns empty structure for fresh installs
 // Lessons will be added by mergeDefaultLessons in the React app
 const getDefaultDataFunc = () => {
   return {
@@ -59,6 +59,9 @@ const getDefaultDataFunc = () => {
     quizzes: [],
     progress: [],
     videoResources: [],
+    rewards: [],
+    purchases: [],
+    pointsBalance: 0,
   };
 };
 
@@ -257,8 +260,9 @@ autoUpdater.on('update-downloaded', (info) => {
                 dialog.showErrorBox('Installation Error', 
                   `Failed to launch installer: ${error}\n\nPlease manually download from GitHub releases.`);
               } else {
-                // Installer launched successfully - app will close when user installs
-                console.log('Installer launched successfully');
+                // Installer launched successfully - close app so installer can run
+                console.log('Installer launched successfully, closing app...');
+                app.quit();
               }
             });
           } else {
@@ -512,6 +516,57 @@ ipcMain.handle('tts-get-voices', async () => {
   } catch (error) {
     console.error('Error getting voices:', error);
     return { success: false, error: error.message, voices: [] };
+  }
+});
+
+// IPC handler for saving drawings
+ipcMain.handle('save-drawing', async (event, { imageData, lessonId, lessonTitle, studentId }) => {
+  try {
+    // Create drawings directory if it doesn't exist
+    const userDataPath = app.getPath('userData');
+    const drawingsDir = path.join(userDataPath, 'drawings');
+    
+    if (!fs.existsSync(drawingsDir)) {
+      fs.mkdirSync(drawingsDir, { recursive: true });
+    }
+    
+    // Create filename with timestamp
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const filename = `drawing_student${studentId}_lesson${lessonId}_${timestamp}.png`;
+    const filePath = path.join(drawingsDir, filename);
+    
+    // Convert base64 to buffer and save
+    const base64Data = imageData.replace(/^data:image\/png;base64,/, '');
+    const buffer = Buffer.from(base64Data, 'base64');
+    fs.writeFileSync(filePath, buffer);
+    
+    console.log('Drawing saved to:', filePath);
+    
+    return { 
+      success: true, 
+      filePath: filePath,
+      filename: filename 
+    };
+  } catch (error) {
+    console.error('Error saving drawing:', error);
+    return { success: false, error: error.message };
+  }
+});
+
+// IPC handler for loading drawing images (for parent review)
+ipcMain.handle('load-drawing', async (event, filePath) => {
+  try {
+    if (!fs.existsSync(filePath)) {
+      throw new Error('Drawing file not found');
+    }
+    
+    const imageBuffer = fs.readFileSync(filePath);
+    const base64Image = `data:image/png;base64,${imageBuffer.toString('base64')}`;
+    
+    return { success: true, imageData: base64Image };
+  } catch (error) {
+    console.error('Error loading drawing:', error);
+    return { success: false, error: error.message };
   }
 });
 

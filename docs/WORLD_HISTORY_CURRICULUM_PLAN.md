@@ -76,12 +76,6 @@ This comprehensive curriculum plan covers world history from prehistoric times (
 - Different houses
 - Different clothes
 
-**Lesson 6: Famous People from Stories**
-- 👑 Kings and queens from stories
-- Brave heroes
-- Kind helpers
-- People who did good things
-
 ---
 
 ## **YEAR 1 (Ages 5-6) - Life in the Past**
@@ -94,34 +88,27 @@ This comprehensive curriculum plan covers world history from prehistoric times (
 - Dinosaur fossils
 - How we know about dinosaurs
 
-**Lesson 2: Biblical Times - Adam and Eve to Noah**
-- 📖 The story of creation
-- Adam and Eve in the garden
-- The first families
-- Noah and the flood
-- Timeline: Biblical stories
-
-**Lesson 3: Ancient Egypt - Pyramids and Pharaohs**
+**Lesson 2: Ancient Egypt - Pyramids and Pharaohs**
 - 🏺 Introduction to Ancient Egypt
 - Pyramids
 - Pharaohs (kings)
 - Mummies
 - The Nile River
 
-**Lesson 4: Life Long Ago vs. Life Now**
+**Lesson 3: Life Long Ago vs. Life Now**
 - 🏰 Comparing past and present
 - Homes then and now
 - Transport then and now
 - Schools then and now
 - Technology changes
 
-**Lesson 5: Famous People from History**
+**Lesson 4: Famous People from History**
 - 👑 Queen Elizabeth I
 - Florence Nightingale
 - William Shakespeare
 - What made them special
 
-**Lesson 6: Local History**
+**Lesson 5: Local History**
 - 🏘️ History of our local area
 - Old buildings
 - How our area changed
@@ -441,7 +428,7 @@ This comprehensive curriculum plan covers world history from prehistoric times (
 
 ### **Year 1 (5-6 years)**
 - Focus: Comparing past and present, ancient Egypt introduction
-- 6 lessons
+- 5 lessons
 - Comparison and basic historical concepts
 
 ### **Year 2 (6-7 years)**

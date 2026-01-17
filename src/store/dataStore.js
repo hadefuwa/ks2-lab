@@ -43,9 +43,14 @@ const useDataStore = create((set, get) => ({
       // Convert to AppData instance
       const appData = AppData.fromJSON(loadedData);
 
-      // If no lessons exist, this is a fresh install - use default data directly
-      if (!appData.lessons || appData.lessons.length === 0) {
-        console.log('[DataStore] No lessons found, using default data');
+      // Check if this is a truly fresh install:
+      // - No lessons OR no students OR no progress = fresh install
+      const isFreshInstall = !appData.lessons || appData.lessons.length === 0 ||
+                             !appData.students || appData.students.length === 0 ||
+                             !appData.progress || appData.progress.length === 0;
+
+      if (isFreshInstall) {
+        console.log('[DataStore] Fresh install detected - initializing with default data');
         const defaultData = AppData.fromJSON(getDefaultData());
         set({ 
           data: defaultData, 
@@ -69,8 +74,24 @@ const useDataStore = create((set, get) => ({
       // Merge default rewards (add if none exist)
       await state._mergeDefaultRewards(appData);
 
-      // Calculate and award retroactive points if needed
-      await state._calculateAndAwardRetroactivePoints(appData);
+      // Points system version - increment this when points calculation changes
+      // Version 2: Added year-based multipliers (nursery 0.2x to year6 3x)
+      const POINTS_SYSTEM_VERSION = 2;
+
+      // Recalculate points if:
+      // 1. pointsBalance hasn't been set yet (fresh install or upgrade)
+      // 2. Points system version has changed (multipliers updated)
+      const hasUserProgress = appData.progress && appData.progress.length > 0;
+      const needsPointsRecalc = hasUserProgress &&
+                                (appData.pointsBalance === undefined ||
+                                 appData.pointsBalance === 0 ||
+                                 appData.pointsSystemVersion !== POINTS_SYSTEM_VERSION);
+
+      if (needsPointsRecalc) {
+        console.log('[DataStore] Recalculating points with new multiplier system...');
+        await state._calculateAndAwardRetroactivePoints(appData);
+        appData.pointsSystemVersion = POINTS_SYSTEM_VERSION;
+      }
 
       set({ 
         data: appData, 
@@ -451,7 +472,10 @@ const useDataStore = create((set, get) => ({
         'Gold': 50,
         'Platinum': 100,
       };
-      pointsToAward = pointsMap[medalType] || 0;
+      const basePoints = pointsMap[medalType] || 0;
+      // Apply year-based multiplier (higher years = more points)
+      const yearMultiplier = state._getYearMultiplier(progress.yearId);
+      pointsToAward = Math.round(basePoints * yearMultiplier);
     }
     
     // Create a new AppData instance with updated progress and points
@@ -465,6 +489,7 @@ const useDataStore = create((set, get) => ({
       rewards: state.data.rewards || [],
       purchases: state.data.purchases || [],
       pointsBalance: currentBalance + pointsToAward,
+      pointsSystemVersion: state.data.pointsSystemVersion || 0,
     });
     
     // Update state with the new AppData instance
@@ -904,6 +929,21 @@ const useDataStore = create((set, get) => ({
     return medal === 'Gold' || medal === 'Platinum';
   },
 
+  // Helper function to get year-based points multiplier
+  _getYearMultiplier: (yearId) => {
+    const multipliers = {
+      'nursery': 0.2,
+      'reception': 0.5,
+      'year1': 1,
+      'year2': 1.5,
+      'year3': 2,
+      'year4': 2.5,
+      'year5': 3,
+      'year6': 3,
+    };
+    return multipliers[yearId] || 1;
+  },
+
   // Helper function to determine medal type from progress
   _getMedalForProgress: (progress) => {
     const state = get();
@@ -1040,14 +1080,42 @@ const useDataStore = create((set, get) => ({
       rewards: state.data.rewards || [],
       purchases: state.data.purchases || [],
       pointsBalance: newBalance,
+      pointsSystemVersion: state.data.pointsSystemVersion || 0,
     });
 
     set({ data: updatedData });
     await state.saveData();
   },
 
+  // Get total points spent in the shop
+  getTotalPointsSpent: () => {
+    const state = get();
+    if (!state.data || !state.data.purchases) return 0;
+    return state.data.purchases.reduce((total, p) => total + (p.pointsSpent || 0), 0);
+  },
+
+  // Get total points earned (current balance + spent)
+  getTotalPointsEarned: () => {
+    const state = get();
+    if (!state.data) return 0;
+    const currentBalance = state.data.pointsBalance || 0;
+    const totalSpent = state.data.purchases?.reduce((total, p) => total + (p.pointsSpent || 0), 0) || 0;
+    return currentBalance + totalSpent;
+  },
+
   // Calculate and award retroactive points
   _calculateAndAwardRetroactivePoints: async (appData) => {
+    // Safety check: only calculate if there are students and progress
+    if (!appData.students || appData.students.length === 0) {
+      console.log('[DataStore] No students found, skipping retroactive points calculation');
+      return;
+    }
+
+    if (!appData.progress || appData.progress.length === 0) {
+      console.log('[DataStore] No progress found, skipping retroactive points calculation');
+      return;
+    }
+
     // Check if pointsBalance exists and is not 0 (meaning it's been initialized)
     // If it's 0 or undefined, we need to calculate retroactive points
     if (appData.pointsBalance !== undefined && appData.pointsBalance > 0) {
@@ -1058,7 +1126,7 @@ const useDataStore = create((set, get) => ({
     let totalPoints = 0;
 
     // Get all completed lesson progress
-    const userId = appData.students.length > 0 ? appData.students[0].id : 1;
+    const userId = appData.students[0].id;
     const completedProgress = appData.progress.filter(p =>
       p.studentId === userId &&
       p.isCompleted &&
@@ -1160,14 +1228,27 @@ const useDataStore = create((set, get) => ({
         else if (score >= threshold.silver) medal = 'Silver';
       }
 
-      // Award points based on medal
+      // Award points based on medal with year multiplier
       const pointsMap = {
         'Bronze': 10,
         'Silver': 20,
         'Gold': 50,
         'Platinum': 100,
       };
-      totalPoints += pointsMap[medal] || 10;
+      const basePoints = pointsMap[medal] || 10;
+      // Apply year-based multiplier (higher years = more points)
+      const multipliers = {
+        'nursery': 0.2,
+        'reception': 0.5,
+        'year1': 1,
+        'year2': 1.5,
+        'year3': 2,
+        'year4': 2.5,
+        'year5': 3,
+        'year6': 3,
+      };
+      const yearMultiplier = multipliers[lesson.yearId] || 1;
+      totalPoints += Math.round(basePoints * yearMultiplier);
     });
 
     // Update points balance
@@ -1210,6 +1291,7 @@ const useDataStore = create((set, get) => ({
       rewards: state.data.rewards || [],
       purchases: updatedPurchases,
       pointsBalance: newBalance,
+      pointsSystemVersion: state.data.pointsSystemVersion || 0,
     });
 
     set({ data: updatedData });
@@ -1268,6 +1350,7 @@ const useDataStore = create((set, get) => ({
       rewards: updatedRewards,
       purchases: state.data.purchases || [],
       pointsBalance: state.data.pointsBalance || 0,
+      pointsSystemVersion: state.data.pointsSystemVersion || 0,
     });
 
     set({ data: updatedData });
@@ -1293,6 +1376,7 @@ const useDataStore = create((set, get) => ({
       rewards: updatedRewards,
       purchases: state.data.purchases || [],
       pointsBalance: state.data.pointsBalance || 0,
+      pointsSystemVersion: state.data.pointsSystemVersion || 0,
     });
 
     set({ data: updatedData });
@@ -1322,6 +1406,7 @@ const useDataStore = create((set, get) => ({
       rewards: updatedRewards,
       purchases: state.data.purchases || [],
       pointsBalance: state.data.pointsBalance || 0,
+      pointsSystemVersion: state.data.pointsSystemVersion || 0,
     });
 
     set({ data: updatedData });
@@ -1335,6 +1420,31 @@ const useDataStore = create((set, get) => ({
 
   setAdminMode: (enabled) => {
     set({ adminMode: enabled });
+  },
+
+  // Reset all progress - clears students, progress, points, and purchases
+  // Keeps lessons, quizzes, and rewards intact
+  resetAllProgress: async () => {
+    const state = get();
+    if (!state.data) return;
+
+    // Create fresh data with empty students, progress, points, and purchases
+    // But keep lessons, quizzes, and rewards
+    const resetData = new AppData({
+      students: [],
+      lessons: state.data.lessons,
+      quizzes: state.data.quizzes,
+      progress: [],
+      videoResources: state.data.videoResources || [],
+      rewards: state.data.rewards || [],
+      purchases: [],
+      pointsBalance: 0,
+      pointsSystemVersion: state.data.pointsSystemVersion || 0,
+    });
+
+    set({ data: resetData });
+    await state.saveData();
+    console.log('[DataStore] All progress reset successfully');
   },
 }));
 

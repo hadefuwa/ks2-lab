@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { speak } from '../utils/textToSpeech';
+import { speak, isSpeaking } from '../utils/textToSpeech';
 
 /**
  * Interactive Question Component
@@ -11,11 +11,40 @@ function InteractiveQuestion({ question, options, correctIndex, explanation, que
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
 
-  const handleTTS = () => {
-    if (question) {
-      speak(question, { volume: 1.0, rate: 0.9, pitch: 1.0 }).catch(err => {
-        console.error('Error speaking question:', err);
-      });
+  const handleTTS = async () => {
+    if (!question) return;
+    
+    try {
+      // Read the question first
+      await speak(question, { volume: 1.0, rate: 0.9, pitch: 1.0 });
+      
+      // Wait for speech to complete before reading options
+      const waitForSpeech = () => {
+        return new Promise((resolve) => {
+          const checkInterval = setInterval(() => {
+            if (!isSpeaking()) {
+              clearInterval(checkInterval);
+              resolve();
+            }
+          }, 100);
+        });
+      };
+      
+      await waitForSpeech();
+      
+      // Small pause between question and options
+      await new Promise(resolve => setTimeout(resolve, 300));
+      
+      // Read each option with its letter
+      for (let i = 0; i < options.length; i++) {
+        const optionText = `${String.fromCharCode(65 + i)}. ${options[i]}`;
+        await speak(optionText, { volume: 1.0, rate: 0.9, pitch: 1.0 });
+        await waitForSpeech();
+        // Small pause between options
+        await new Promise(resolve => setTimeout(resolve, 200));
+      }
+    } catch (err) {
+      console.error('Error speaking question:', err);
     }
   };
 

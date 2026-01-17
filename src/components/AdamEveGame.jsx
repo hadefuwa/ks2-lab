@@ -147,41 +147,15 @@ function AdamEveGame({ lesson }) {
 
   // Draw pixelated character (faceless)
   const drawPlayer = useCallback((ctx, x, y, direction, isAdam = true) => {
-    const color = '#D4A574'; // Skin tone
-    const hairColor = isAdam ? '#4A3728' : '#8B4513'; // Brown hair
-
     const bx = Math.floor(x);
     const by = Math.floor(y);
 
-    // Draw head (faceless - no eyes)
-    ctx.fillStyle = color;
-    ctx.fillRect(bx + 8, by, 16, 16);
-
-    // Draw hair
-    ctx.fillStyle = hairColor;
-    if (isAdam) {
-      ctx.fillRect(bx + 8, by, 16, 6);
-    } else {
-      ctx.fillRect(bx + 4, by, 24, 8);
-      ctx.fillRect(bx + 4, by + 8, 4, 12);
-      ctx.fillRect(bx + 24, by + 8, 4, 12);
-    }
-
-    // Draw body (leaf covering)
-    ctx.fillStyle = '#228B22';
-    ctx.fillRect(bx + 6, by + 18, 20, 20);
-
-    // Draw legs
-    ctx.fillStyle = color;
-    ctx.fillRect(bx + 8, by + 38, 6, 10);
-    ctx.fillRect(bx + 18, by + 38, 6, 10);
-
-    // Draw arms
-    ctx.fillRect(bx + 2, by + 20, 4, 12);
-    ctx.fillRect(bx + 26, by + 20, 4, 12);
+    // Draw simple rectangle - blue for Adam, pink for Eve
+    ctx.fillStyle = isAdam ? '#4A90E2' : '#FFB6C1'; // Blue for Adam, Pink for Eve
+    ctx.fillRect(bx, by, 32, 48); // Simple rectangle
   }, []);
 
-  // Draw the Garden of Eden
+  // Draw the garden
   const drawGarden = useCallback((ctx, canvas) => {
     // Sky gradient (heavenly)
     const skyGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
@@ -458,7 +432,7 @@ function AdamEveGame({ lesson }) {
           setGameState(GAME_STATES.GAME_OVER);
         }
       } else {
-        // Draw Garden of Eden
+        // Draw the garden
         drawGarden(ctx, canvas);
 
         // Update player position
@@ -489,7 +463,7 @@ function AdamEveGame({ lesson }) {
           if (isNearForbiddenTree() && !warningShown) {
             setGameState(GAME_STATES.WARNING);
             setWarningShown(true);
-            setMessage("God says: 'You may eat from any tree, but NOT from the Tree of Knowledge!'");
+            setMessage("God says: 'You may eat from any tree, but NOT from the tree!'");
           }
 
           // Check if touching fruit after warning
@@ -576,7 +550,7 @@ function AdamEveGame({ lesson }) {
       ctx.fillStyle = 'white';
       ctx.font = 'bold 28px Arial';
       ctx.textAlign = 'center';
-      ctx.fillText('The Garden of Eden', canvas.width / 2, 100);
+      ctx.fillText('The Garden', canvas.width / 2, 100);
 
       ctx.font = '16px Arial';
       ctx.fillText('Adam and Eve lived happily in God\'s garden.', canvas.width / 2, 160);
@@ -748,7 +722,7 @@ function AdamEveGame({ lesson }) {
             The Fall of Man
           </h2>
           <p style={{ fontSize: '16px', color: '#555', marginBottom: '10px', lineHeight: '1.5' }}>
-            Because Adam and Eve disobeyed God, they had to leave the Garden of Eden.
+            Because Adam and Eve disobeyed God, they had to leave the garden.
           </p>
           <p style={{ fontSize: '14px', color: '#555', marginBottom: '15px', lineHeight: '1.5' }}>
             You collected {fruitsCollected}/3 good fruits before eating the forbidden fruit.

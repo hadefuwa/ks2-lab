@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
-            background-color: #E0F7FA;
+            background: linear-gradient(to bottom, #87CEEB 0%, #E0F7FA 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -20,32 +20,127 @@
 
         h1 {
             color: #00695C;
-            text-shadow: 2px 2px #4DB6AC;
+            text-shadow: 3px 3px #4DB6AC;
             margin: 5px 0;
-            font-size: 1.8rem;
+            font-size: 2rem;
             pointer-events: none;
+            text-align: center;
+        }
+
+        /* --- INTRO SCREEN --- */
+        #intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            flex-direction: column;
+        }
+
+        #intro-screen.hidden {
+            display: none;
+        }
+
+        .intro-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .intro-content h2 {
+            color: #00695C;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .intro-content p {
+            font-size: 1.3rem;
+            color: #333;
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+
+        .example-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 25px 0;
+        }
+
+        .example-item {
+            text-align: center;
+        }
+
+        .example-dino {
+            font-size: 4rem;
+            margin-bottom: 10px;
+        }
+
+        .example-label {
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 5px 15px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .label-big {
+            background: #FF6B6B;
+            color: white;
+        }
+
+        .label-small {
+            background: #4ECDC4;
+            color: white;
+        }
+
+        #start-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.5rem;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+
+        #start-btn:hover {
+            transform: scale(1.05);
         }
 
         /* --- SCOREBOARD --- */
         #scoreboard {
             background: white;
-            padding: 5px 15px;
+            padding: 10px 20px;
             border-radius: 20px;
             font-weight: bold;
             color: #555;
             margin-bottom: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             pointer-events: none;
+            font-size: 1.3rem;
         }
 
         /* --- ZONES --- */
         .zones-container {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
             width: 95%;
             max-width: 800px;
-            height: 160px; /* Fixed height target */
+            height: 200px; /* Increased height for better visibility */
             margin-bottom: 20px;
             z-index: 10; /* Behind draggables */
         }
@@ -57,43 +152,68 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            padding-top: 10px;
-            border: 4px dashed rgba(0,0,0,0.2);
-            transition: transform 0.2s, background-color 0.3s;
+            padding-top: 15px;
+            border: 6px dashed rgba(0,0,0,0.3);
+            transition: transform 0.2s, background-color 0.3s, border 0.3s;
             position: relative;
+            box-shadow: inset 0 4px 8px rgba(0,0,0,0.1);
         }
 
         .zone.highlight {
-            transform: scale(1.05);
+            transform: scale(1.08);
             border-style: solid;
-            border-color: yellow;
+            border-color: #FFD700;
+            border-width: 8px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
         }
 
-        /* BIG CAVE */
+        /* BIG CAVE - Red/Brown tones */
         .cave {
-            background-color: #5D4037; 
-            color: #D7CCC8;
+            background: linear-gradient(135deg, #8B4513 0%, #5D4037 100%);
+            color: white;
         }
         
-        /* SMALL NEST */
+        /* SMALL NEST - Green tones */
         .nest {
-            background-color: #AED581; 
-            color: #33691E;
+            background: linear-gradient(135deg, #AED581 0%, #7CB342 100%);
+            color: white;
         }
 
         .zone-label {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
+            font-size: 2rem;
+            margin-bottom: 10px;
             pointer-events: none;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .zone-size-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            padding: 5px 15px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.9);
+            pointer-events: none;
+        }
+
+        .cave .zone-size-text {
+            color: #D32F2F;
+        }
+
+        .nest .zone-size-text {
+            color: #00897B;
         }
 
         /* Counter for items inside */
         .count-badge {
-            background: rgba(0,0,0,0.2);
-            padding: 2px 10px;
-            border-radius: 10px;
-            font-size: 0.9rem;
+            background: rgba(0,0,0,0.3);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 1.1rem;
             margin-top: 5px;
+            color: white;
+            font-weight: bold;
         }
 
         /* --- PLAY AREA --- */
@@ -102,50 +222,85 @@
             width: 100%;
             max-width: 900px;
             position: relative;
-            background-color: rgba(255,255,255,0.4);
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, rgba(144,238,144,0.2) 100%);
             border-radius: 30px 30px 0 0;
             margin-top: 10px;
+            min-height: 300px;
         }
 
         /* --- DINOSAURS --- */
         .dino {
             position: absolute;
             cursor: grab;
-            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2));
+            filter: drop-shadow(0 5px 8px rgba(0,0,0,0.3));
             transition: transform 0.1s;
             touch-action: none;
             z-index: 100;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
+            gap: 5px;
         }
 
         .dino:active {
             cursor: grabbing;
-            transform: scale(1.1);
+            transform: scale(1.15);
             z-index: 1000;
         }
 
-        .dino.size-big { font-size: 5rem; }
-        .dino.size-small { font-size: 2.5rem; }
+        .dino-emoji {
+            display: block;
+        }
+
+        .dino-label {
+            background: rgba(0,0,0,0.75);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .dino.size-big .dino-emoji { font-size: 5.5rem; }
+        .dino.size-small .dino-emoji { font-size: 2.8rem; }
+
+        .dino.size-big .dino-label { 
+            background: #D32F2F;
+            font-size: 1.1rem;
+        }
+        .dino.size-small .dino-label { 
+            background: #00897B;
+            font-size: 0.9rem;
+        }
 
         /* Animation for wrong answer */
         @keyframes shake {
             0% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            50% { transform: translateX(10px); }
-            75% { transform: translateX(-10px); }
+            25% { transform: translateX(-15px); }
+            50% { transform: translateX(15px); }
+            75% { transform: translateX(-15px); }
             100% { transform: translateX(0); }
         }
-        .shake { animation: shake 0.4s ease; }
+        .shake { animation: shake 0.5s ease; }
 
         /* Animation for success (poof away) */
         @keyframes popOut {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.5); opacity: 0; }
-            100% { transform: scale(0); opacity: 0; }
+            0% { transform: scale(1) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1.8) rotate(180deg); opacity: 0.7; }
+            100% { transform: scale(0) rotate(360deg); opacity: 0; }
         }
-        .poof { animation: popOut 0.5s ease forwards; pointer-events: none; }
+        .poof { animation: popOut 0.6s ease forwards; pointer-events: none; }
+
+        /* Pulse animation for zones */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .pulse { animation: pulse 0.5s ease; }
 
         /* Confetti */
         #confetti {
@@ -153,47 +308,154 @@
             top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none; z-index: 1500;
         }
+
+        /* Encouragement message */
+        #encouragement {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(76, 175, 80, 0.95);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 20px;
+            font-size: 2rem;
+            font-weight: bold;
+            z-index: 1100;
+            display: none;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        #encouragement.show {
+            display: block;
+            animation: popIn 0.5s ease;
+        }
+
+        @keyframes popIn {
+            0% { transform: translate(-50%, -50%) scale(0); }
+            70% { transform: translate(-50%, -50%) scale(1.1); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
     </style>
 </head>
 <body>
 
-    <h1>🦕 Drag to the Home 🦖</h1>
+    <!-- Intro Screen -->
+    <div id="intro-screen">
+        <div class="intro-content">
+            <h2>🦕 Dinosaur Sorting! 🦖</h2>
+            <p>Help the dinosaurs find their homes!</p>
+            
+            <div class="example-row">
+                <div class="example-item">
+                    <div class="example-dino">🦖</div>
+                    <div class="example-label label-big">BIG</div>
+                    <p style="margin: 10px 0 0 0;">goes to the Cave ⛰️</p>
+                </div>
+                <div class="example-item">
+                    <div class="example-dino">🦎</div>
+                    <div class="example-label label-small">SMALL</div>
+                    <p style="margin: 10px 0 0 0;">goes to the Nest 🪺</p>
+                </div>
+            </div>
+            
+            <p><strong>Drag each dinosaur to its correct home!</strong></p>
+            
+            <button id="start-btn">Let's Play! 🎮</button>
+        </div>
+    </div>
+
+    <h1>🦕 Drag Dinosaurs to Their Homes! 🦖</h1>
     
-    <div id="scoreboard">Dinos Left: <span id="count-display">0</span></div>
+    <div id="scoreboard">Dinosaurs Left: <span id="count-display">0</span></div>
 
     <div class="zones-container">
         <div class="zone cave" id="drop-big">
-            <div class="zone-label">⛰️ BIG CAVE</div>
-            <div class="count-badge" id="badge-big">0</div>
+            <div class="zone-size-text">BIG</div>
+            <div class="zone-label">⛰️ CAVE</div>
+            <div class="count-badge" id="badge-big">0 sorted</div>
         </div>
         <div class="zone nest" id="drop-small">
-            <div class="zone-label">🪺 SMALL NEST</div>
-            <div class="count-badge" id="badge-small">0</div>
+            <div class="zone-size-text">SMALL</div>
+            <div class="zone-label">🪺 NEST</div>
+            <div class="count-badge" id="badge-small">0 sorted</div>
         </div>
     </div>
 
     <div id="play-area"></div>
 
+    <div id="encouragement"></div>
     <canvas id="confetti"></canvas>
 
     <script>
         // --- CONFIG ---
-        const totalDinos = 8;
-        const dinoIcons = ['🦖','🦕','🐊','🐢','🐉','🦎'];
+        const totalDinos = 6; // Reduced for easier gameplay
+        const dinoIcons = ['🦖','🦕','🐊','🐢','🦎','🐉'];
         
         // --- STATE ---
         let dinos = [];
         let mistakes = 0;
         let sortedCount = 0;
         let zIndexCounter = 100;
-        const synth = window.speechSynthesis;
+        let gameStarted = false;
+        
+        // Encouragement messages
+        const encouragementMessages = [
+            "Great job! 🌟",
+            "You're doing amazing! ⭐",
+            "Fantastic! 🎉",
+            "Perfect! 👏",
+            "Keep going! 💪",
+            "Super! 🦸"
+        ];
+        
+        // Helper function to use new TTS via parent window
+        function speak(text, options = {}) {
+            // Try to use parent window TTS (new system)
+            if (window.parent && window.parent !== window) {
+                window.parent.postMessage({
+                    type: 'html-game-tts',
+                    text: text,
+                    volume: options.volume || 1.0,
+                    rate: options.rate || 0.9,
+                    pitch: options.pitch || 1.2
+                }, '*');
+            } else {
+                // Fallback to Web Speech API if no parent
+                const synth = window.speechSynthesis;
+                if (synth.speaking) synth.cancel();
+                const utterThis = new SpeechSynthesisUtterance(text);
+                utterThis.pitch = options.pitch || 1.2;
+                utterThis.rate = options.rate || 0.9;
+                synth.speak(utterThis);
+            }
+        }
+
+        // Show encouragement message
+        function showEncouragement(message) {
+            const el = document.getElementById('encouragement');
+            el.textContent = message;
+            el.classList.add('show');
+            setTimeout(() => {
+                el.classList.remove('show');
+            }, 1500);
+        }
+
+        // --- INTRO SCREEN ---
+        document.getElementById('start-btn').addEventListener('click', () => {
+            document.getElementById('intro-screen').classList.add('hidden');
+            speak("Let's sort the dinosaurs! Drag the BIG dinosaurs to the CAVE, and the SMALL dinosaurs to the NEST!");
+            gameStarted = true;
+            initGame();
+        });
 
         // --- INIT ---
         function initGame() {
             const playArea = document.getElementById('play-area');
             playArea.innerHTML = '';
-            document.getElementById('badge-big').innerText = '0';
-            document.getElementById('badge-small').innerText = '0';
+            document.getElementById('badge-big').innerText = '0 sorted';
+            document.getElementById('badge-small').innerText = '0 sorted';
             document.getElementById('count-display').innerText = totalDinos;
             stopConfetti();
 
@@ -216,7 +478,10 @@
             const icon = dinoIcons[Math.floor(Math.random() * dinoIcons.length)];
             
             el.className = `dino ${isBig ? 'size-big' : 'size-small'}`;
-            el.innerText = icon;
+            el.innerHTML = `
+                <span class="dino-emoji">${icon}</span>
+                <span class="dino-label">${isBig ? 'BIG' : 'SMALL'}</span>
+            `;
             el.id = `dino-${index}`;
             el.dataset.size = isBig ? 'big' : 'small';
 
@@ -316,12 +581,11 @@
                     handleSuccess(el, targetHit);
                 } else {
                     // WRONG HOME
-                    handleFailure(el, "Wrong home!");
+                    handleFailure(el, `That's the ${targetHit} zone! This dinosaur is ${el.dataset.size}.`);
                 }
             } else {
                 // DROPPED IN EMPTY SPACE
                 // Just reset transform to snap back to original % position visually
-                // (or leave it there? Snap back looks cleaner)
                 el.style.transform = 'translate(0, 0)';
             }
         }
@@ -333,13 +597,24 @@
         function handleSuccess(el, type) {
             sortedCount++;
             
-            // Audio
-            if(type === 'big') speak("Big!");
-            else speak("Small!");
+            // Pulse the zone
+            const zone = document.getElementById(`drop-${type}`);
+            zone.classList.add('pulse');
+            setTimeout(() => zone.classList.remove('pulse'), 500);
+            
+            // Audio with full sentence
+            const sizeName = type === 'big' ? 'Big' : 'Small';
+            const homeName = type === 'big' ? 'cave' : 'nest';
+            speak(`Correct! ${sizeName} dinosaur goes in the ${homeName}!`);
+            
+            // Show encouragement
+            const message = encouragementMessages[Math.floor(Math.random() * encouragementMessages.length)];
+            showEncouragement(message);
 
             // Update Badge
             const badge = document.getElementById(`badge-${type}`);
-            badge.innerText = parseInt(badge.innerText) + 1;
+            const count = parseInt(badge.innerText) + 1;
+            badge.innerText = `${count} sorted`;
 
             // Visuals
             el.classList.add('poof'); // Disappear animation
@@ -349,31 +624,32 @@
 
             // Check Win
             if (sortedCount === totalDinos) {
-                setTimeout(winGame, 800);
+                setTimeout(winGame, 1000);
             }
         }
 
         function handleFailure(el, msg) {
             mistakes++;
-            speak("Uh oh! Try again.");
+            speak("Oops! Try again. Look at the dinosaur label!");
             
             // Visual Shake
             el.style.transform = 'translate(0,0)'; // Snap back immediately
             el.classList.add('shake');
             
-            // Turn background red temporarily
-            el.style.filter = "sepia(1) hue-rotate(-50deg) saturate(5)";
+            // Flash red
+            el.style.filter = "sepia(1) hue-rotate(-50deg) saturate(5) brightness(0.8)";
 
             setTimeout(() => {
                 el.classList.remove('shake');
-                el.style.filter = "drop-shadow(0 5px 5px rgba(0,0,0,0.2))";
-            }, 500);
+                el.style.filter = "drop-shadow(0 5px 8px rgba(0,0,0,0.3))";
+            }, 600);
         }
 
         // --- GAME OVER ---
         function winGame() {
-            speak("You are a Dinosaur Expert!");
+            speak("Fantastic! You sorted all the dinosaurs! You understand big and small perfectly!");
             startConfetti();
+            showEncouragement("🎉 YOU WIN! 🎉");
             
             // Notify parent window that game is complete
             if (window.parent && window.parent !== window) {
@@ -384,16 +660,7 @@
             }
         }
 
-        // --- AUDIO ---
-        function speak(text) {
-            if (synth.speaking) synth.cancel();
-            const utterThis = new SpeechSynthesisUtterance(text);
-            utterThis.pitch = 1.2;
-            utterThis.rate = 1.0;
-            synth.speak(utterThis);
-        }
-
-        // --- CONFETTI (Reused) ---
+        // --- CONFETTI ---
         let confettiInterval;
         function startConfetti() {
             const canvas = document.getElementById('confetti');
@@ -434,7 +701,9 @@
         }
 
         // Start
-        window.onload = initGame;
+        window.onload = () => {
+            // Don't auto-start, wait for intro screen button
+        };
     </script>
 </body>
 </html>

@@ -9,6 +9,7 @@ import { getYear3Lessons } from './lessons/year3Lessons.js';
 import { getYear4Lessons } from './lessons/year4Lessons.js';
 import { getYear5Lessons } from './lessons/year5Lessons.js';
 import { getYear6Lessons } from './lessons/year6Lessons.js';
+import { getArtLessons } from './lessons/artLessons.js';
 import { getDefaultQuizzes } from './defaultQuizzes.js';
 
 /**
@@ -78,7 +79,12 @@ function getDefaultLessons() {
   // Year 6 lessons
   const year6Lessons = getYear6Lessons(lessonId, quizId);
   allLessons.push(...year6Lessons);
-  // No need to update IDs after the last one
+  lessonId += year6Lessons.length;
+  quizId += year6Lessons.filter(l => l.quizId !== null).length;
+
+  // Art lessons (all years)
+  const artLessons = getArtLessons(lessonId);
+  allLessons.push(...artLessons);
 
   return allLessons.map(l => l.toJSON());
 }
