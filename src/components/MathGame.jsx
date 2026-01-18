@@ -181,9 +181,11 @@ function MathGame({ lesson }) {
   const speakTimeoutRef = useRef(null); // Track the timeout for speaking question
   const currentQuestionTextRef = useRef(''); // Store the current question text to avoid stale closures
   const questionGenerationIdRef = useRef(0); // Track question generation to prevent stale TTS
+  const isMountedRef = useRef(true); // Track if component is mounted
   const navigate = useNavigate();
   const addProgress = useDataStore(state => state.addProgress);
-  const getNextLessonAfter = useDataStore(state => state.getNextLessonAfter);
+  const getNextLessonUrl = useDataStore(state => state.getNextLessonUrl);
+  const disableStudyMode = useDataStore(state => state.disableStudyMode);
   const getNextLessonForSubject = useDataStore(state => state.getNextLessonForSubject);
   const getNextProgressId = useDataStore(state => state.getNextProgressId);
   const getUserId = useDataStore(state => state.getUserId);
@@ -287,7 +289,7 @@ function MathGame({ lesson }) {
     setQuestionText('');
     setValidationObjects([]);
     setValidationAttempts(0);
-    
+
     // Clear any pending speak timeout
     if (speakTimeoutRef.current) {
       clearTimeout(speakTimeoutRef.current);
@@ -296,7 +298,10 @@ function MathGame({ lesson }) {
     // Reset question text ref and increment generation ID to invalidate any pending TTS
     currentQuestionTextRef.current = '';
     questionGenerationIdRef.current += 1;
-    
+
+    // Mark component as mounted
+    isMountedRef.current = true;
+
     return () => {
       stop();
       // Clear timeout on unmount
@@ -304,6 +309,8 @@ function MathGame({ lesson }) {
         clearTimeout(speakTimeoutRef.current);
         speakTimeoutRef.current = null;
       }
+      // Mark component as unmounted
+      isMountedRef.current = false;
     };
   }, [lesson?.id]);
 
@@ -352,12 +359,17 @@ function MathGame({ lesson }) {
       }
       // Small delay to ensure stop completes
       await new Promise(resolve => setTimeout(resolve, 100));
+
+      // Check if component is still mounted before speaking
+      if (!isMountedRef.current) return;
+
       const numberName = NUMBER_NAMES[number] || number.toString();
       console.log('Speaking number:', numberName, 'for number:', number);
       await speak(numberName, { volume: 1.0, rate: 0.6, pitch: 1.2 });
     } catch (error) {
       console.error('Error speaking number:', error);
       // Fallback: try without await
+      if (!isMountedRef.current) return;
       const numberName = NUMBER_NAMES[number] || number.toString();
       speak(numberName, { volume: 1.0, rate: 0.6, pitch: 1.2 }).catch(err => {
         console.error('Error in fallback speak:', err);
@@ -1531,7 +1543,14 @@ function MathGame({ lesson }) {
         speakTimeoutRef.current = null;
         return;
       }
-      
+
+      // Check if component is still mounted before speaking
+      if (!isMountedRef.current) {
+        console.log('Skipping TTS - component unmounted');
+        speakTimeoutRef.current = null;
+        return;
+      }
+
       try {
         await speak(textToSpeak, { volume: 1.0, rate: 0.6, pitch: 1.2 });
       } catch (err) {
@@ -1571,17 +1590,26 @@ function MathGame({ lesson }) {
         }
         // Wait a brief moment to ensure the stop completes before speaking
         setTimeout(async () => {
+          // Check if component is still mounted before speaking
+          if (!isMountedRef.current) return;
+
           try {
             await speak('Try again!', { volume: 1.0, rate: 0.6, pitch: 1.2 });
             // Wait for "try again" to finish before generating new question
+            // Also check if component is still mounted before generating new validation
             setTimeout(() => {
-              generateValidation();
+              if (isMountedRef.current) {
+                generateValidation();
+              }
             }, 800);
           } catch (err) {
             console.error('Error speaking "try again":', err);
             // Still generate new validation even if TTS fails
+            // Also check if component is still mounted before generating new validation
             setTimeout(() => {
-              generateValidation();
+              if (isMountedRef.current) {
+                generateValidation();
+              }
             }, 300);
           }
         }, 100);
@@ -1597,8 +1625,12 @@ function MathGame({ lesson }) {
   };
 
   const completeLesson = async (score) => {
-    setGameState('completed');
-    setCurrentScore(score);
+    // Only update state if component is still mounted
+    if (isMountedRef.current) {
+      setGameState('completed');
+      setCurrentScore(score);
+    }
+
     if (lesson) {
       const userId = getUserId();
       const progressId = getNextProgressId();
@@ -2165,16 +2197,19 @@ function MathGame({ lesson }) {
                 onClick={async () => {
                   // Wait a moment to ensure progress is saved
                   await new Promise(resolve => setTimeout(resolve, 200));
-                  // Reset state before navigating to clear the medal screen
-                  setGameState('validation');
-                  setCurrentScore(null);
-                  // Use getNextLessonForSubject to skip already completed lessons
-                  const nextLesson = getNextLessonForSubject(lesson.subjectId);
-                  if (nextLesson && nextLesson.id) {
-                    navigate(`/lesson/${nextLesson.id}`);
-                  } else {
-                    navigate(`/lessons?subjectId=${lesson.subjectId}`);
+
+                  // Check if component is still mounted before updating state
+                  if (isMountedRef.current) {
+                    // Reset state before navigating to clear the medal screen
+                    setGameState('validation');
+                    setCurrentScore(null);
                   }
+
+                  const { url, shouldDisableStudyMode } = getNextLessonUrl(lesson);
+                  if (shouldDisableStudyMode) {
+                    disableStudyMode();
+                  }
+                  navigate(url);
                 }}
                 style={{
                   padding: '18px 40px',

@@ -16,6 +16,10 @@ const useDataStore = create((set, get) => ({
   initialized: false,
   loading: false,
   adminMode: false,
+  studyMode: {
+    enabled: false,
+    subjectId: null,
+  },
 
   // Initialize the store
   initialize: async () => {
@@ -111,6 +115,8 @@ const useDataStore = create((set, get) => ({
 
       // Clean up any duplicate points from before the fix
       await state.cleanupDuplicatePoints();
+      // Clean up any duplicate purchases from before the fix
+      await state.cleanupDuplicatePurchases();
     } catch (error) {
       console.error('Error initializing data store:', error);
       const defaultData = AppData.fromJSON(getDefaultData());
@@ -862,114 +868,7 @@ const useDataStore = create((set, get) => ({
   // Check if student has gold or platinum for a specific lesson
   hasGoldOrPlatinum: (lessonId, studentId = null) => {
     const state = get();
-    if (!state.data || !lessonId) return false;
-    
-    const userId = studentId || state.getUserId();
-    const lesson = state.data.lessons.find(l => l.id === lessonId);
-    if (!lesson) return false;
-    
-    // Find progress for this lesson
-    const progress = state.data.progress.find(p => 
-      p.studentId === userId && 
-      p.activityId === lessonId &&
-      p.isCompleted && 
-      p.activityType === 'Lesson' &&
-      p.score !== null
-    );
-    
-    if (!progress) return false;
-    
-    const score = progress.score || 0;
-    let medal = 'Bronze';
-    
-    // Determine medal based on lesson type (same logic as getMedalCounts)
-    if (lesson.title === 'Clicking Game') {
-      const isHardMode = lesson.yearId === 'reception' && lesson.lessonNumber === 2 && lesson.subjectId === 'technology';
-      if (isHardMode) {
-        if (score >= 350) medal = 'Platinum';
-        else if (score >= 250) medal = 'Gold';
-        else if (score >= 150) medal = 'Silver';
-      } else {
-        if (score >= 300) medal = 'Platinum';
-        else if (score >= 200) medal = 'Gold';
-        else if (score >= 100) medal = 'Silver';
-      }
-    } else if (lesson.title === 'Keyboard Game' || lesson.title === 'WASD Game' || 
-               lesson.title === 'A-Z Game' || lesson.title === 'Numbers Game' || 
-               lesson.title === 'Symbols Game') {
-      const isWASDMode = lesson.yearId === 'nursery' && lesson.lessonNumber === 3 && lesson.subjectId === 'technology';
-      const isAZMode = lesson.yearId === 'nursery' && lesson.lessonNumber === 4 && lesson.subjectId === 'technology';
-      const isNumbersMode = lesson.yearId === 'nursery' && lesson.lessonNumber === 5 && lesson.subjectId === 'technology';
-      const isSymbolsMode = lesson.yearId === 'nursery' && lesson.lessonNumber === 6 && lesson.subjectId === 'technology';
-      
-      if (isAZMode) {
-        if (score >= 250) medal = 'Platinum';
-        else if (score >= 200) medal = 'Gold';
-        else if (score >= 150) medal = 'Gold';
-        else if (score >= 100) medal = 'Silver';
-      } else if (isNumbersMode) {
-        if (score >= 90) medal = 'Platinum';
-        else if (score >= 80) medal = 'Gold';
-        else if (score >= 70) medal = 'Gold';
-        else if (score >= 60) medal = 'Silver';
-      } else if (isSymbolsMode) {
-        if (score >= 90) medal = 'Platinum';
-        else if (score >= 80) medal = 'Gold';
-        else if (score >= 70) medal = 'Gold';
-        else if (score >= 60) medal = 'Silver';
-      } else {
-        // Arrow/WASD game
-        if (score >= 140) medal = 'Platinum';
-        else if (score >= 120) medal = 'Gold';
-        else if (score >= 100) medal = 'Gold';
-        else if (score >= 80) medal = 'Silver';
-      }
-    } else if (lesson.title === 'Flappy Bird Game') {
-      if (score >= 15) medal = 'Platinum';
-      else if (score >= 10) medal = 'Gold';
-      else if (score >= 5) medal = 'Silver';
-    } else if (lesson.title === 'Bubble Pop Game') {
-      if (score >= 200) medal = 'Platinum';
-      else if (score >= 150) medal = 'Gold';
-      else if (score >= 100) medal = 'Silver';
-    } else if (lesson.title === 'Snake Game') {
-      if (score >= 100) medal = 'Platinum';
-      else if (score >= 70) medal = 'Gold';
-      else if (score >= 40) medal = 'Silver';
-    } else if (lesson.title === 'Target Practice Game') {
-      if (score >= 150) medal = 'Platinum';
-      else if (score >= 100) medal = 'Gold';
-      else if (score >= 50) medal = 'Silver';
-    } else if (lesson.title?.includes('TapTapTap')) {
-      // TapTapTap scoring based on level
-      const level = lesson.title.includes('Level 1') || lesson.title.includes('Beginner') ? 1 :
-                    lesson.title.includes('Level 2') || lesson.title.includes('Intermediate') ? 2 :
-                    lesson.title.includes('Level 3') || lesson.title.includes('Advanced') ? 3 :
-                    lesson.title.includes('Level 4') || lesson.title.includes('Expert') ? 4 :
-                    lesson.title.includes('Level 5') || lesson.title.includes('Master') ? 5 :
-                    lesson.title.includes('Level 6') || lesson.title.includes('Champion') ? 6 :
-                    lesson.yearId === 'year1' ? 1 :
-                    lesson.yearId === 'year2' ? 2 :
-                    lesson.yearId === 'year3' ? 3 :
-                    lesson.yearId === 'year4' ? 4 :
-                    lesson.yearId === 'year5' ? 5 :
-                    lesson.yearId === 'year6' ? 6 : 1;
-      
-      const thresholds = {
-        1: { platinum: 20, gold: 15, silver: 10 },
-        2: { platinum: 40, gold: 30, silver: 20 },
-        3: { platinum: 60, gold: 45, silver: 30 },
-        4: { platinum: 80, gold: 60, silver: 40 },
-        5: { platinum: 100, gold: 75, silver: 50 },
-        6: { platinum: 120, gold: 90, silver: 60 },
-      };
-      
-      const threshold = thresholds[level] || thresholds[1];
-      if (score >= threshold.platinum) medal = 'Platinum';
-      else if (score >= threshold.gold) medal = 'Gold';
-      else if (score >= threshold.silver) medal = 'Silver';
-    }
-    
+    const medal = state.getMedalForLesson(lessonId, studentId);
     return medal === 'Gold' || medal === 'Platinum';
   },
 
@@ -1001,7 +900,7 @@ const useDataStore = create((set, get) => ({
     const score = progress.score || 0;
     let medal = 'Bronze';
 
-    // Determine medal based on lesson type (same logic as getMedalCounts)
+    // Determine medal based on lesson type
     if (lesson.title === 'Clicking Game') {
       const isHardMode = lesson.yearId === 'reception' && lesson.lessonNumber === 2 && lesson.subjectId === 'technology';
       if (isHardMode) {
@@ -1043,9 +942,17 @@ const useDataStore = create((set, get) => ({
         else if (score >= 80) medal = 'Silver';
       }
     } else if (lesson.title === 'Flappy Bird Game') {
-      if (score >= 15) medal = 'Platinum';
-      else if (score >= 10) medal = 'Gold';
-      else if (score >= 5) medal = 'Silver';
+      const difficultyMap = {
+        'nursery': 5,
+        'reception': 10,
+        'year1': 15,
+        'year2': 20
+      };
+      const platinumTarget = difficultyMap[lesson.yearId] || 15;
+      
+      if (score >= platinumTarget) medal = 'Platinum';
+      else if (score >= Math.ceil(platinumTarget * 0.6)) medal = 'Gold';
+      else if (score >= Math.ceil(platinumTarget * 0.3)) medal = 'Silver';
     } else if (lesson.title === 'Bubble Pop Game') {
       if (score >= 200) medal = 'Platinum';
       else if (score >= 150) medal = 'Gold';
@@ -1059,19 +966,25 @@ const useDataStore = create((set, get) => ({
       else if (score >= 100) medal = 'Gold';
       else if (score >= 50) medal = 'Silver';
     } else if (lesson.title?.includes('TapTapTap')) {
-      // TapTapTap scoring based on level
-      const level = lesson.title.includes('Level 1') || lesson.title.includes('Beginner') ? 1 :
-                    lesson.title.includes('Level 2') || lesson.title.includes('Intermediate') ? 2 :
-                    lesson.title.includes('Level 3') || lesson.title.includes('Advanced') ? 3 :
-                    lesson.title.includes('Level 4') || lesson.title.includes('Expert') ? 4 :
-                    lesson.title.includes('Level 5') || lesson.title.includes('Master') ? 5 :
-                    lesson.title.includes('Level 6') || lesson.title.includes('Champion') ? 6 :
-                    lesson.yearId === 'year1' ? 1 :
-                    lesson.yearId === 'year2' ? 2 :
-                    lesson.yearId === 'year3' ? 3 :
-                    lesson.yearId === 'year4' ? 4 :
-                    lesson.yearId === 'year5' ? 5 :
-                    lesson.yearId === 'year6' ? 6 : 1;
+      let level = 1;
+      if (lesson.title.includes('Level 6')) level = 6;
+      else if (lesson.title.includes('Level 5')) level = 5;
+      else if (lesson.title.includes('Level 4')) level = 4;
+      else if (lesson.title.includes('Level 3')) level = 3;
+      else if (lesson.title.includes('Level 2')) level = 2;
+      else if (lesson.title.includes('Level 1')) level = 1;
+      else if (lesson.title.includes('Champion')) level = 6;
+      else if (lesson.title.includes('Master')) level = 5;
+      else if (lesson.title.includes('Expert')) level = 4;
+      else if (lesson.title.includes('Advanced')) level = 3;
+      else if (lesson.title.includes('Intermediate')) level = 2;
+      else if (lesson.title.includes('Beginner')) level = 1;
+      else if (lesson.yearId === 'year6') level = 6;
+      else if (lesson.yearId === 'year5') level = 5;
+      else if (lesson.yearId === 'year4') level = 4;
+      else if (lesson.yearId === 'year3') level = 3;
+      else if (lesson.yearId === 'year2') level = 2;
+      else if (lesson.yearId === 'year1') level = 1;
       
       const thresholds = {
         1: { platinum: 20, gold: 15, silver: 10 },
@@ -1087,15 +1000,12 @@ const useDataStore = create((set, get) => ({
       else if (score >= threshold.gold) medal = 'Gold';
       else if (score >= threshold.silver) medal = 'Silver';
     } else if (lesson.subjectId === 'art') {
-      // Art lessons use percentage scores (0-100)
-      // Match the grading tiers from ArtGradingScreen
-      if (score >= 100) medal = 'Platinum';      // 100% = Platinum
-      else if (score >= 90) medal = 'Gold';     // 90% = Gold
-      else if (score >= 75) medal = 'Silver';   // 75% = Silver
-      else if (score >= 60) medal = 'Bronze';   // 60% = Bronze
-      // Below 60 defaults to Bronze (already set)
+      if (score >= 100) medal = 'Platinum';
+      else if (score >= 90) medal = 'Gold';
+      else if (score >= 75) medal = 'Silver';
+      else if (score >= 60) medal = 'Bronze';
     }
-    
+
     return medal;
   },
 
@@ -1204,106 +1114,8 @@ const useDataStore = create((set, get) => ({
       const lesson = appData.lessons.find(l => l.id === progress.activityId);
       if (!lesson) return;
 
-      // If no score, treat as 100 (perfect score) to award appropriate medal
-      // This ensures older completions without scores still get points
-      const score = progress.score !== null && progress.score !== undefined ? progress.score : 100;
-      let medal = 'Bronze';
-
-      // Determine medal (same logic as _getMedalForProgress)
-      if (lesson.title === 'Clicking Game') {
-        const isHardMode = lesson.yearId === 'reception' && lesson.lessonNumber === 2 && lesson.subjectId === 'technology';
-        if (isHardMode) {
-          if (score >= 350) medal = 'Platinum';
-          else if (score >= 250) medal = 'Gold';
-          else if (score >= 150) medal = 'Silver';
-        } else {
-          if (score >= 300) medal = 'Platinum';
-          else if (score >= 200) medal = 'Gold';
-          else if (score >= 100) medal = 'Silver';
-        }
-      } else if (lesson.title === 'Keyboard Game' || lesson.title === 'WASD Game' || 
-                 lesson.title === 'A-Z Game' || lesson.title === 'Numbers Game' || 
-                 lesson.title === 'Symbols Game') {
-        const isAZMode = lesson.yearId === 'nursery' && lesson.lessonNumber === 4 && lesson.subjectId === 'technology';
-        const isNumbersMode = lesson.yearId === 'nursery' && lesson.lessonNumber === 5 && lesson.subjectId === 'technology';
-        const isSymbolsMode = lesson.yearId === 'nursery' && lesson.lessonNumber === 6 && lesson.subjectId === 'technology';
-        
-        if (isAZMode) {
-          if (score >= 250) medal = 'Platinum';
-          else if (score >= 200) medal = 'Gold';
-          else if (score >= 150) medal = 'Gold';
-          else if (score >= 100) medal = 'Silver';
-        } else if (isNumbersMode) {
-          if (score >= 90) medal = 'Platinum';
-          else if (score >= 80) medal = 'Gold';
-          else if (score >= 70) medal = 'Gold';
-          else if (score >= 60) medal = 'Silver';
-        } else if (isSymbolsMode) {
-          if (score >= 90) medal = 'Platinum';
-          else if (score >= 80) medal = 'Gold';
-          else if (score >= 70) medal = 'Gold';
-          else if (score >= 60) medal = 'Silver';
-        } else {
-          if (score >= 140) medal = 'Platinum';
-          else if (score >= 120) medal = 'Gold';
-          else if (score >= 100) medal = 'Gold';
-          else if (score >= 80) medal = 'Silver';
-        }
-      } else if (lesson.title === 'Flappy Bird Game') {
-        if (score >= 15) medal = 'Platinum';
-        else if (score >= 10) medal = 'Gold';
-        else if (score >= 5) medal = 'Silver';
-      } else if (lesson.title === 'Bubble Pop Game') {
-        if (score >= 200) medal = 'Platinum';
-        else if (score >= 150) medal = 'Gold';
-        else if (score >= 100) medal = 'Silver';
-      } else if (lesson.title === 'Snake Game') {
-        if (score >= 100) medal = 'Platinum';
-        else if (score >= 70) medal = 'Gold';
-        else if (score >= 40) medal = 'Silver';
-      } else if (lesson.title === 'Target Practice Game') {
-        if (score >= 150) medal = 'Platinum';
-        else if (score >= 100) medal = 'Gold';
-        else if (score >= 50) medal = 'Silver';
-      } else if (lesson.title?.includes('TapTapTap')) {
-        // TapTapTap scoring based on level
-        // Check for explicit level numbers FIRST (most specific), then check for keywords
-        // This ensures "Beginner Level 2" matches Level 2, not Beginner
-        // And "Advanced Level 2" matches Level 2, not Advanced
-        let level = 1; // default
-        if (lesson.title.includes('Level 6')) level = 6;
-        else if (lesson.title.includes('Level 5')) level = 5;
-        else if (lesson.title.includes('Level 4')) level = 4;
-        else if (lesson.title.includes('Level 3')) level = 3;
-        else if (lesson.title.includes('Level 2')) level = 2;
-        else if (lesson.title.includes('Level 1')) level = 1;
-        else if (lesson.title.includes('Champion')) level = 6;
-        else if (lesson.title.includes('Master')) level = 5;
-        else if (lesson.title.includes('Expert')) level = 4;
-        else if (lesson.title.includes('Advanced')) level = 3;
-        else if (lesson.title.includes('Intermediate')) level = 2;
-        else if (lesson.title.includes('Beginner')) level = 1;
-        else if (lesson.yearId === 'year6') level = 6;
-        else if (lesson.yearId === 'year5') level = 5;
-        else if (lesson.yearId === 'year4') level = 4;
-        else if (lesson.yearId === 'year3') level = 3;
-        else if (lesson.yearId === 'year2') level = 2;
-        else if (lesson.yearId === 'year1') level = 1;
-        
-        const thresholds = {
-          1: { platinum: 20, gold: 15, silver: 10 },
-          2: { platinum: 40, gold: 30, silver: 20 },
-          3: { platinum: 60, gold: 45, silver: 30 },
-          4: { platinum: 80, gold: 60, silver: 40 },
-          5: { platinum: 100, gold: 75, silver: 50 },
-          6: { platinum: 120, gold: 90, silver: 60 },
-        };
-        
-        const threshold = thresholds[level] || thresholds[1];
-        if (score >= threshold.platinum) medal = 'Platinum';
-        else if (score >= threshold.gold) medal = 'Gold';
-        else if (score >= threshold.silver) medal = 'Silver';
-      }
+      // Determine medal using the centralized helper
+      const medal = state._getMedalForProgress(progress);
 
       // Award points based on medal with year multiplier
       const pointsMap = {
@@ -1392,19 +1204,40 @@ const useDataStore = create((set, get) => ({
   getNextRewardId: () => {
     const state = get();
     if (!state.data || !state.data.rewards || state.data.rewards.length === 0) return 1;
-    return Math.max(...state.data.rewards.map(r => r.id)) + 1;
+
+    // Filter out invalid IDs and get the highest valid ID
+    const validIds = state.data.rewards
+      .map(r => parseInt(r.id))
+      .filter(id => !isNaN(id) && id > 0);
+
+    if (validIds.length === 0) return 1;
+    return Math.max(...validIds) + 1;
   },
 
   getNextPurchaseId: () => {
     const state = get();
     if (!state.data || !state.data.purchases || state.data.purchases.length === 0) return 1;
-    return Math.max(...state.data.purchases.map(p => p.id)) + 1;
+
+    // Filter out invalid IDs and get the highest valid ID
+    const validIds = state.data.purchases
+      .map(p => parseInt(p.id))
+      .filter(id => !isNaN(id) && id > 0);
+
+    if (validIds.length === 0) return 1;
+    return Math.max(...validIds) + 1;
   },
 
   getNextPointsActivityId: () => {
     const state = get();
     if (!state.data || !state.data.pointsActivities || state.data.pointsActivities.length === 0) return 1;
-    return Math.max(...state.data.pointsActivities.map(pa => pa.id)) + 1;
+
+    // Filter out invalid IDs and get the highest valid ID
+    const validIds = state.data.pointsActivities
+      .map(pa => parseInt(pa.id))
+      .filter(id => !isNaN(id) && id > 0);
+
+    if (validIds.length === 0) return 1;
+    return Math.max(...validIds) + 1;
   },
 
   // Get points activities for a student
@@ -1567,6 +1400,69 @@ const useDataStore = create((set, get) => ({
     console.log(`[DataStore] Cleanup complete. Removed ${duplicatesToRemove.length} duplicates, deducted ${pointsToDeduct} points. New balance: ${newBalance}`);
   },
 
+  // Clean up duplicate purchases
+  cleanupDuplicatePurchases: async () => {
+    const state = get();
+    if (!state.data) return;
+
+    const purchases = state.data.purchases || [];
+
+    // Group by rewardId + purchasedAt to identify duplicates
+    const purchaseMap = new Map();
+    const duplicatesToRemove = [];
+
+    purchases.forEach(purchase => {
+      const key = `${purchase.rewardId}_${purchase.purchasedAt}`;
+
+      if (purchaseMap.has(key)) {
+        // This is a duplicate - mark for removal
+        duplicatesToRemove.push(purchase.id);
+        console.log(`[DataStore] Found duplicate purchase for reward ${purchase.rewardId} at ${purchase.purchasedAt}`);
+      } else {
+        // First occurrence - keep it
+        purchaseMap.set(key, purchase);
+      }
+    });
+
+    if (duplicatesToRemove.length === 0) {
+      console.log('[DataStore] No duplicate purchases found');
+      return;
+    }
+
+    console.log(`[DataStore] Removing ${duplicatesToRemove.length} duplicate purchases`);
+
+    // Remove duplicates
+    const cleanedPurchases = purchases.filter(p => !duplicatesToRemove.includes(p.id));
+
+    // Update points balance by refunding the duplicate purchases
+    let pointsToRefund = 0;
+    const duplicatePurchases = purchases.filter(p => duplicatesToRemove.includes(p.id));
+    duplicatePurchases.forEach(p => {
+      pointsToRefund += p.pointsSpent;
+    });
+
+    const currentBalance = state.data.pointsBalance || 0;
+    const newBalance = currentBalance + pointsToRefund;
+
+    const updatedData = new AppData({
+      students: state.data.students,
+      lessons: state.data.lessons,
+      quizzes: state.data.quizzes,
+      progress: state.data.progress,
+      videoResources: state.data.videoResources,
+      rewards: state.data.rewards || [],
+      purchases: cleanedPurchases,
+      pointsActivities: state.data.pointsActivities || [],
+      pointsBalance: newBalance,
+      pointsSystemVersion: state.data.pointsSystemVersion || 0,
+    });
+
+    set({ data: updatedData });
+    await state.saveData();
+
+    console.log(`[DataStore] Purchase cleanup complete. Removed ${duplicatesToRemove.length} duplicates, refunded ${pointsToRefund} points. New balance: ${newBalance}`);
+  },
+
   // Admin mode
   toggleAdminMode: () => {
     set(state => ({ adminMode: !state.adminMode }));
@@ -1713,6 +1609,109 @@ const useDataStore = create((set, get) => ({
     }
 
     return { fixed: fixedCount, errors: errorCount };
+  },
+
+  // Study Mode methods
+  enableStudyMode: (subjectId) => {
+    set({
+      studyMode: {
+        enabled: true,
+        subjectId: subjectId,
+      }
+    });
+  },
+
+  disableStudyMode: () => {
+    set({
+      studyMode: {
+        enabled: false,
+        subjectId: null,
+      }
+    });
+  },
+
+  getStudyModePlaylist: (subjectId) => {
+    const state = get();
+    const userId = state.getUserId();
+
+    // Get all lessons for subject, sorted by year and lesson number
+    const allLessons = state.getAllLessonsForSubject(subjectId);
+
+    // Filter to only incomplete lessons
+    const incompleteLessons = allLessons.filter(lesson => {
+      return !state.hasCompletedLesson(
+        userId,
+        lesson.yearId,
+        lesson.subjectId,
+        lesson.lessonNumber
+      );
+    });
+
+    return incompleteLessons;
+  },
+
+  getNextStudyModeLesson: (currentLessonId) => {
+    const state = get();
+    const { enabled, subjectId } = state.studyMode;
+
+    if (!enabled || !subjectId) {
+      return null;
+    }
+
+    const playlist = state.getStudyModePlaylist(subjectId);
+    const currentIndex = playlist.findIndex(l => l.id === currentLessonId);
+
+    // If current lesson is in playlist and there's a next lesson
+    if (currentIndex !== -1 && currentIndex < playlist.length - 1) {
+      return playlist[currentIndex + 1];
+    }
+
+    // If current lesson is the last in playlist
+    return null;
+  },
+
+  // Helper to get the next lesson URL considering Study Mode
+  // Returns: { url: string, shouldDisableStudyMode: boolean }
+  getNextLessonUrl: (currentLesson) => {
+    const state = get();
+    const { enabled, subjectId } = state.studyMode;
+
+    // Check if Study Mode is active for this lesson's subject
+    if (enabled && currentLesson && subjectId === currentLesson.subjectId) {
+      const nextStudyLesson = state.getNextStudyModeLesson(currentLesson.id);
+      if (nextStudyLesson && nextStudyLesson.id) {
+        // Continue to next uncompleted lesson in Study Mode
+        return {
+          url: `/lesson/${nextStudyLesson.id}`,
+          shouldDisableStudyMode: false,
+        };
+      } else {
+        // No more uncompleted lessons - exit Study Mode and return to subject
+        return {
+          url: `/lessons?subjectId=${currentLesson.subjectId}`,
+          shouldDisableStudyMode: true,
+        };
+      }
+    } else {
+      // Normal mode: Navigate to next lesson or back to subject
+      const nextLesson = state.getNextLessonAfter(currentLesson);
+      if (nextLesson && nextLesson.id) {
+        return {
+          url: `/lesson/${nextLesson.id}`,
+          shouldDisableStudyMode: false,
+        };
+      } else if (currentLesson.subjectId) {
+        return {
+          url: `/lessons?subjectId=${currentLesson.subjectId}`,
+          shouldDisableStudyMode: false,
+        };
+      } else {
+        return {
+          url: '/',
+          shouldDisableStudyMode: false,
+        };
+      }
+    }
   },
 }));
 

@@ -203,7 +203,7 @@ function ShopScreen() {
           }}>
             {availableRewards.map(reward => (
               <div
-                key={reward.id}
+                key={`available-${reward.id}`}
                 style={{
                   backgroundColor: 'white',
                   border: '2px solid #e0e0e0',
@@ -316,7 +316,7 @@ function ShopScreen() {
           }}>
             {ownedRewards.map(reward => (
               <div
-                key={reward.id}
+                key={`owned-${reward.id}`}
                 style={{
                   backgroundColor: '#e8f5e9',
                   border: '2px solid #4caf50',
@@ -408,7 +408,7 @@ function ShopScreen() {
             <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
               {purchaseHistory.map((purchase, index) => (
                 <div
-                  key={purchase.id}
+                  key={`${purchase.id}-${index}`}
                   style={{
                     display: 'grid',
                     gridTemplateColumns: '2fr 1fr 1fr',
@@ -504,7 +504,7 @@ function ShopScreen() {
 
                   return (
                     <div
-                      key={activity.id}
+                      key={`${activity.id}-${index}`}
                       style={{
                         display: 'grid',
                         gridTemplateColumns: '2fr 1fr 1fr 1fr',
