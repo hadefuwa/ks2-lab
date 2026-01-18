@@ -1580,161 +1580,28 @@ Type answers and click operations! 🎮`,
       emoji: '🪨',
       content: `# Prehistoric Britain - Stone Age to Iron Age 🪨
 
-
-
-Let's learn about prehistoric Britain!
-
-
-
-## Stone Age Britain
-
-
-
-- People lived in Britain thousands of years ago
-
-- They used stone tools
-
-- They lived in caves and simple shelters
-
-- They hunted and gathered food
-
-
-
-## Bronze Age
-
-
-
-- People learned to use bronze
-
-- Bronze is a metal
-
-- They made better tools
-
-- They made weapons and jewelry
-
-
-
-## Iron Age
-
-
-
-- People learned to use iron
-
-- Iron is stronger than bronze
-
-- They made even better tools
-
-- They built hill forts
-
-
-
-## Hill Forts
-
-
-
-- People built forts on hills
-
-- They protected people
-
-- They had walls around them
-
-- They were safe places
-
-
-
-## Celtic People
-
-
-
-- Celtic people lived in Britain
-
-- They had their own culture
-
-- They made beautiful art
-
-- They had their own language
-
-
-
-## Fun Activities
-
-
-
-- Draw prehistoric Britain
-
-- Make a timeline
-
-- Learn about hill forts
-
-- Write about prehistoric life
-
-
-
-## Remember
-
-
-
-- Prehistoric Britain was long ago
-
-- People used stone, bronze, and iron
-
-- They built hill forts
-
-- Celtic people lived there!
-
-
-
-## Practice Questions
-
-
-
-<!-- QUESTION_START -->
-What material did people use first in prehistoric Britain?
-<!-- OPTIONS -->
-Stone|Bronze|Iron|Steel
-<!-- CORRECT -->
-0
-<!-- EXPLANATION -->
-People first used stone tools in the Stone Age, before learning to use bronze and then iron!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What did people build on hills during the Iron Age?
-<!-- OPTIONS -->
-Caves|Hill forts|Temples|Bridges
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-People built hill forts on hills during the Iron Age to protect themselves. These were safe places with walls around them!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-Which metal is stronger: bronze or iron?
-<!-- OPTIONS -->
-Bronze|Iron|They are the same|Neither
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Iron is stronger than bronze! That's why people started using iron after the Bronze Age.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-Who lived in Britain during prehistoric times?
-<!-- OPTIONS -->
-Romans|Celtic people|Vikings|Anglo-Saxons
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Celtic people lived in Britain during prehistoric times. They had their own culture, language, and made beautiful art!
-<!-- QUESTION_END -->`,
+Welcome to a journey through 10,000 years of British history! Before the Romans arrived, Britain went through three major periods of change.
+
+## 1. The Stone Age (Early Britain)
+Technically split into the Palaeolithic, Mesolithic, and Neolithic.
+- **Hunter-Gatherers**: Early humans followed herds of mammoths and deer.
+- **Flint Tools**: Discovering that flint could be chipped into sharp axes and spears was a turning point.
+- **First Farmers**: Eventually, people learned to plant seeds and keep animals, leading to the first permanent villages like Skara Brae.
+
+## 2. The Bronze Age (Building and Settling)
+- **Metalworking**: Around 2500 BC, people learned to mix copper and tin to make **Bronze**.
+- **Roundhouses**: People lived in circular wooden homes with thatched roofs.
+- **Stonehenge**: Many of the great stone monuments were completed or used during this time.
+
+## 3. The Iron Age (Forts and Warriors)
+- **Stronger Metal**: Iron was much harder than bronze, allowing for better plows and sharper weapons.
+- **Hill Forts**: To protect themselves from rival tribes, people built massive earthwork forts on hills (like Maiden Castle).
+- **Celtic Culture**: This was the time of the Celts, known for their beautiful jewelry (torcs) and fierce warriors.
+
+## The Evolution of Technology
+In the game, you will need to find the key inventions of each age to "evolve" your civilization to the next period!`,
       quizId: 61,
-      assessmentType: 'history-game',
+      assessmentType: 'prehistoric-britain-game',
       categoryId: null,
     }),
 
@@ -1743,38 +1610,44 @@ Celtic people lived in Britain during prehistoric times. They had their own cult
       yearId: 'year3',
       subjectId: 'history',
       lessonNumber: 2,
-      title: "Adam and Eve - The First People",
-      emoji: '🍎',
-      content: `# Adam and Eve - The First People 🍎
+      title: "Genetics and Family Trees - The First Families",
+      emoji: '🧬',
+      content: `# Genetics and Family Trees - The First Families 🧬
 
-Let's learn about Adam and Eve through play!
+Let's learn about genetics through the story of the first families!
 
-## The Story
+## The Story of Twins
 
-In the beginning, God created a beautiful garden called Eden. He placed Adam and Eve there to live happily.
+In the beginning, God created the first families. Some families had twins - two children who looked very similar!
 
-God told them: "You may eat from ANY tree in the garden, but you must NOT eat from the Forbidden Tree."
+In this game, you'll learn how traits like eye color, hair color, and height are passed from parents to children.
 
 ## How to Play
 
-Use **Arrow Keys** or **WASD** to move Adam around the Garden of Eden.
+1. **Match the Couples**: Drag boys to girls to create married couples
+2. **Explore Genetics**: See how traits combine using Punnett squares
+3. **Take a Quiz**: Answer questions about what children might look like
 
-- Explore the beautiful garden
-- Find the Forbidden Tree
-- Learn what happens when we disobey God
+## What You'll Learn
 
-## The Lesson
+- **Dominant vs Recessive**: Some traits are stronger than others
+- **Genotypes and Phenotypes**: The difference between genes and appearance
+- **Family Trees**: How traits are passed through generations
+- **Probability**: What combinations are possible in children
 
-This story teaches us about:
-- **Obedience** - Following God's instructions
-- **Consequences** - What happens when we make wrong choices
-- **God's Love** - Even when Adam and Eve disobeyed, God still loved them
+## The Science
+
+Just like the Haribo genetics meme, when twins marry twins, their children can have many different combinations of traits!
+
+**Eye Color**: Brown eyes (B) are dominant over blue eyes (b)
+**Hair Shade**: Dark hair (D) is dominant over blonde hair (d)
+**Height**: Tall (T) is dominant over short (t)
 
 ## Remember
 
-God always loves us, even when we make mistakes. But our choices have consequences!`,
+Every person is unique, created by God with special combinations of traits!`,
       quizId: null,
-      assessmentType: 'adam-eve-game',
+      assessmentType: 'genetics-game',
       categoryId: null,
     }),
 
@@ -1783,7 +1656,7 @@ God always loves us, even when we make mistakes. But our choices have consequenc
       yearId: 'year3',
       subjectId: 'history',
       lessonNumber: 3,
-      title: "Biblical History - Kings and Prophets",
+      title: "Religious History - Kings and Prophets",
       emoji: '👑',
       content: `# Biblical History - Kings and Prophets 👑
 
@@ -2121,8 +1994,8 @@ The Colosseum|The Parthenon|The Great Wall|The Pyramids
 <!-- EXPLANATION -->
 The Parthenon is a famous Greek building that used columns. Greek architecture is still admired today!
 <!-- QUESTION_END -->`,
-      quizId: 70,
-      assessmentType: 'history-game',
+      quizId: null,
+      assessmentType: 'ancient-greece-game',
       categoryId: null,
     }),
 
@@ -2302,175 +2175,22 @@ Greeks made beautiful pottery, sculptures, and art that is still admired today! 
       emoji: '🏛️',
       content: `# Ancient Rome - The Empire 🏛️
 
+Rome grew from a small town in Italy into one of the largest and most powerful empires the world has ever seen. This was possible because Romans were brilliant engineers and organized leaders.
 
+## Key Roman Innovations
+- **Aqueducts**: Huge stone bridges that carried fresh water for miles from the mountains into the city. Gravity did all the work!
+- **Roman Roads**: They built 50,000 miles of straight, paved roads. This allowed their armies to move quickly and merchants to trade goods easily.
+- **Concrete**: Romans invented a special type of concrete that was so strong it could even set underwater! This allowed them to build massive structures like the Colosseum.
 
-Let's learn about the Roman Empire!
+## The Roman Army
+The backbone of the empire was the **Roman Legions**. These were professional, highly disciplined soldiers who wore strong armor and fought in perfect formation. They didn't just fight; they also built many of the empire's roads and bridges.
 
+## Rule and Culture
+Rome was ruled by **Emperors** who held absolute power. The official language was **Latin**, which is the ancestor of Spanish, French, Italian, and many English words!
 
-
-## When Was Ancient Rome?
-
-
-
-- Ancient Rome existed from about 753 BC to AD 476
-
-- That's a very long time!
-
-- It was a huge empire
-
-- It covered much of Europe
-
-
-
-## The Roman Empire
-
-
-
-- Rome had a huge empire
-
-- It covered many countries
-
-- It was very powerful
-
-- It lasted for hundreds of years
-
-
-
-## Roman Army
-
-
-
-- The Roman army was strong
-
-- Soldiers were well trained
-
-- They built roads
-
-- They protected the empire
-
-
-
-## Roman Roads
-
-
-
-- Romans built amazing roads
-
-- They were straight and strong
-
-- They connected the empire
-
-- Some still exist today!
-
-
-
-## Roman Buildings
-
-
-
-- Romans built amazing buildings
-
-- The Colosseum is famous
-
-- They built aqueducts for water
-
-- They built many temples
-
-
-
-## Roman Emperors
-
-
-
-- Emperors ruled Rome
-
-- They were very powerful
-
-- Some were good, some were bad
-
-- They controlled the empire
-
-
-
-## Fun Activities
-
-
-
-- Draw Roman buildings
-
-- Learn about the army
-
-- Make a map of the empire
-
-- Write about ancient Rome
-
-
-
-## Remember
-
-
-
-- Rome had a huge empire
-
-- The army was strong
-
-- They built amazing things
-
-- Rome was very powerful!
-
-
-
-## Practice Questions
-
-
-
-<!-- QUESTION_START -->
-What was the Roman army known for?
-<!-- OPTIONS -->
-Being weak|Being strong and well-trained|Not building anything|Only fighting
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Roman army was strong and well-trained! Soldiers were very skilled, and they built roads and protected the empire!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What famous building did the Romans build?
-<!-- OPTIONS -->
-The Parthenon|The Colosseum|The Great Wall|The Pyramids
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Colosseum is a famous Roman building! Romans built amazing buildings, aqueducts for water, and many temples!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What did Romans build that connected their empire?
-<!-- OPTIONS -->
-Bridges|Roads|Tunnels|Canals
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Romans built amazing roads that were straight and strong! These roads connected the empire, and some still exist today!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-Who ruled the Roman Empire?
-<!-- OPTIONS -->
-Kings|Emperors|Presidents|Governors
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Emperors ruled Rome! They were very powerful and controlled the huge empire. Some were good, some were bad!
-<!-- QUESTION_END -->`,
-      quizId: 54,
-      assessmentType: 'history-game',
+In the game, you will take on the role of an **Empire Architect**. You must choose the right Roman innovations to solve the problems of the city and help the Emperor expand our borders!`,
+      quizId: null,
+      assessmentType: 'ancient-rome-game',
       categoryId: null,
     }),
 
@@ -2483,161 +2203,26 @@ Emperors ruled Rome! They were very powerful and controlled the huge empire. Som
       emoji: '🏺',
       content: `# Ancient Rome - Daily Life 🏺
 
+What was it like to wake up in the city of Rome 2,000 years ago? For some it was a life of luxury, but for most, it was a busy, crowded, and exciting world.
 
+## Roman Homes: Villas vs. Insulae
+- **Rich Romans** lived in beautiful houses called **Villas**. They had inner courtyards (Atriums), floor heating (Hypocausts), and even running water!
+- **Poor Romans** lived in tall apartment blocks called **Insulae**. These were often made of wood and were very crowded. There were no kitchens or toilets inside!
 
-Let's learn about how people lived in ancient Rome!
+## The Social Heart: Public Baths
+The baths were more than just a place to get clean. They were a social club. Romans went there to exercise, gossip about politics, listen to poetry, and relax in different temperature pools.
 
+## Food and Dining
+Romans didn't sit at tables to eat fancy meals; they reclined on couches! Most people ate simple food like bread, porridge, and olives. They loved a salty fish sauce called **Garum**, which they put on almost everything.
 
+## Great Entertainment
+Rome was famous for "Bread and Circuses"—food and games to keep the people happy.
+- **The Colosseum**: Where gladiators fought for glory.
+- **Circus Maximus**: A massive track for high-speed, dangerous chariot races.
 
-## Roman Homes
-
-
-
-- Rich people: Large houses (villas)
-
-- Poor people: Small apartments
-
-- Houses had courtyards
-
-- They had beautiful decorations
-
-
-
-## Roman Baths
-
-
-
-- Romans loved baths
-
-- They went to public bathhouses
-
-- They relaxed and talked
-
-- Baths were social places
-
-
-
-## Roman Food
-
-
-
-- Romans ate different foods
-
-- They ate bread and olives
-
-- They ate fish and meat
-
-- Rich people ate fancy meals
-
-
-
-## Roman Entertainment
-
-
-
-- Romans loved entertainment
-
-- They watched gladiator fights
-
-- They watched chariot races
-
-- They went to the theater
-
-
-
-## Roman Writing
-
-
-
-- Romans wrote in Latin
-
-- Latin was their language
-
-- They wrote on scrolls
-
-- Many languages come from Latin
-
-
-
-## Fun Activities
-
-
-
-- Draw Roman homes
-
-- Learn about baths
-
-- Draw Roman food
-
-- Write about Roman life
-
-
-
-## Remember
-
-
-
-- Roman homes varied
-
-- Romans loved baths
-
-- They enjoyed entertainment
-
-- Life was different then!
-
-
-
-## Practice Questions
-
-
-
-<!-- QUESTION_START -->
-What did rich Romans live in?
-<!-- OPTIONS -->
-Small apartments|Large houses called villas|Caves|Tents
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Rich Romans lived in large houses called villas! Poor people lived in small apartments. Houses had courtyards and beautiful decorations!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-Where did Romans go to relax and talk?
-<!-- OPTIONS -->
-The Colosseum|Public bathhouses|The market|The temple
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Romans loved baths and went to public bathhouses! They relaxed and talked there - baths were social places!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What did Romans watch for entertainment?
-<!-- OPTIONS -->
-Only plays|Gladiator fights and chariot races|Only sports|Nothing
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Romans loved entertainment! They watched gladiator fights, chariot races, and went to the theater!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What language did Romans write in?
-<!-- OPTIONS -->
-Greek|English|Latin|French
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-Romans wrote in Latin! Latin was their language, and they wrote on scrolls. Many languages today come from Latin!
-<!-- QUESTION_END -->`,
-      quizId: 54,
-      assessmentType: 'history-game',
+In the game, you will explore the streets of Rome and visit these famous locations to witness daily life yourself!`,
+      quizId: null,
+      assessmentType: 'roman-daily-life-game',
       categoryId: null,
     }),
 
@@ -2650,161 +2235,19 @@ Romans wrote in Latin! Latin was their language, and they wrote on scrolls. Many
       emoji: '⚔️',
       content: `# The Fall of Rome ⚔️
 
-
-
-Let's learn about why the Roman Empire fell!
-
-
-
-## Why Rome Fell
-
-
-
-- The empire was too big
-
-- It was hard to control
-
-- There were many problems
-
-- It slowly fell apart
-
-
-
-## Barbarian Invasions
-
-
-
-- Barbarians attacked Rome
-
-- They came from outside
-
-- They wanted land
-
-- They were strong warriors
-
-
-
-## Problems in the Empire
-
-
-
-- The empire was too large
-
-- It was expensive to run
-
-- There were many enemies
-
-- It was hard to defend
-
-
-
-## End of the Empire
-
-
-
-- The empire split in two
-
-- The western part fell first
-
-- The eastern part lasted longer
-
-- Rome fell in AD 476
-
-
-
-## What Came After
-
-
-
-- After Rome fell, things changed
-
-- New kingdoms formed
-
-- The Middle Ages began
-
-- Europe changed forever
-
-
-
-## Fun Activities
-
-
-
-- Learn about the fall
-
-- Make a timeline
-
-- Write about what happened
-
-- Learn about what came after
-
-
-
-## Remember
-
-
-
-- Rome fell for many reasons
-
-- The empire was too big
-
-- Barbarians attacked
-
-- It was the end of an era!
-
-
-
-## Practice Questions
-
-
-
-<!-- QUESTION_START -->
-Why was it hard for Rome to control its empire?
-<!-- OPTIONS -->
-It was too small|It was too big|It had no enemies|It had no problems
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Roman Empire was too big! It was hard to control, expensive to run, and difficult to defend. This was one reason it fell!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-Who attacked Rome from outside?
-<!-- OPTIONS -->
-Romans|Barbarians|Greeks|Egyptians
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Barbarians attacked Rome from outside! They were strong warriors who wanted land, and their attacks helped bring down the empire!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-When did Rome fall?
-<!-- OPTIONS -->
-AD 100|AD 476|AD 1000|BC 476
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Rome fell in AD 476! The western part of the empire fell first, while the eastern part lasted longer!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What began after Rome fell?
-<!-- OPTIONS -->
-The Renaissance|The Middle Ages|The Modern Age|The Stone Age
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-After Rome fell, the Middle Ages began! New kingdoms formed, and Europe changed forever!
-<!-- QUESTION_END -->`,
-      quizId: 61,
-      assessmentType: 'history-game',
+No empire lasts forever. After hundreds of years of power, the Roman Empire began to decline. It didn't happen overnight; it was a slow process caused by many different problems working together.
+
+## Why did the Giant Fall?
+1. **Size**: The empire was so large it was almost impossible to defend. News traveled slowly by horse, meaning the Emperor often didn't know about an attack until it was too late.
+2. **Economic Collapse**: The army was incredibly expensive to maintain. To pay for it, Rome printed more money, but this caused **Inflation**—where money loses its value and prices go up.
+3. **Invasions**: Hungry and powerful tribes from outside Rome, like the **Goths**, **Vandals**, and **Huns**, began attacking the borders.
+
+## The Final Blow
+In **AD 476**, the last Roman Emperor in the West was overthrown by a tribal leader. While the Western Empire fell into the "Dark Ages," Roman influence never truly disappeared. Their laws, buildings, and language changed the world forever.
+
+In the game, you will handle the difficult challenges of the late empire. Can you make the choices needed to try and save Rome?`,
+      quizId: null,
+      assessmentType: 'fall-of-rome-game',
       categoryId: null,
     }),
 

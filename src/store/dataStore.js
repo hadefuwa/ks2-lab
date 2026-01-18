@@ -163,7 +163,10 @@ const useDataStore = create((set, get) => ({
             existingLesson.emoji !== defaultLesson.emoji ||
             existingLesson.lessonNumber !== defaultLesson.lessonNumber ||
             existingLesson.subjectId !== defaultLesson.subjectId ||
-            existingLesson.yearId !== defaultLesson.yearId) {
+            existingLesson.yearId !== defaultLesson.yearId ||
+            existingLesson.assessmentType !== defaultLesson.assessmentType ||
+            existingLesson.categoryId !== defaultLesson.categoryId ||
+            existingLesson.quizId !== defaultLesson.quizId) {
           lessonsContentChanged = true;
           break;
         }
@@ -846,18 +849,28 @@ const useDataStore = create((set, get) => ({
         else if (score >= 50) medal = 'Silver';
       } else if (lesson.title?.includes('TapTapTap')) {
         // TapTapTap scoring based on level
-        const level = lesson.title.includes('Level 1') || lesson.title.includes('Beginner') ? 1 :
-                      lesson.title.includes('Level 2') || lesson.title.includes('Intermediate') ? 2 :
-                      lesson.title.includes('Level 3') || lesson.title.includes('Advanced') ? 3 :
-                      lesson.title.includes('Level 4') || lesson.title.includes('Expert') ? 4 :
-                      lesson.title.includes('Level 5') || lesson.title.includes('Master') ? 5 :
-                      lesson.title.includes('Level 6') || lesson.title.includes('Champion') ? 6 :
-                      lesson.yearId === 'year1' ? 1 :
-                      lesson.yearId === 'year2' ? 2 :
-                      lesson.yearId === 'year3' ? 3 :
-                      lesson.yearId === 'year4' ? 4 :
-                      lesson.yearId === 'year5' ? 5 :
-                      lesson.yearId === 'year6' ? 6 : 1;
+        // Check for explicit level numbers FIRST (most specific), then check for keywords
+        // This ensures "Beginner Level 2" matches Level 2, not Beginner
+        // And "Advanced Level 2" matches Level 2, not Advanced
+        let level = 1; // default
+        if (lesson.title.includes('Level 6')) level = 6;
+        else if (lesson.title.includes('Level 5')) level = 5;
+        else if (lesson.title.includes('Level 4')) level = 4;
+        else if (lesson.title.includes('Level 3')) level = 3;
+        else if (lesson.title.includes('Level 2')) level = 2;
+        else if (lesson.title.includes('Level 1')) level = 1;
+        else if (lesson.title.includes('Champion')) level = 6;
+        else if (lesson.title.includes('Master')) level = 5;
+        else if (lesson.title.includes('Expert')) level = 4;
+        else if (lesson.title.includes('Advanced')) level = 3;
+        else if (lesson.title.includes('Intermediate')) level = 2;
+        else if (lesson.title.includes('Beginner')) level = 1;
+        else if (lesson.yearId === 'year6') level = 6;
+        else if (lesson.yearId === 'year5') level = 5;
+        else if (lesson.yearId === 'year4') level = 4;
+        else if (lesson.yearId === 'year3') level = 3;
+        else if (lesson.yearId === 'year2') level = 2;
+        else if (lesson.yearId === 'year1') level = 1;
         
         const thresholds = {
           1: { platinum: 20, gold: 15, silver: 10 },
@@ -1299,18 +1312,28 @@ const useDataStore = create((set, get) => ({
         else if (score >= 50) medal = 'Silver';
       } else if (lesson.title?.includes('TapTapTap')) {
         // TapTapTap scoring based on level
-        const level = lesson.title.includes('Level 1') || lesson.title.includes('Beginner') ? 1 :
-                      lesson.title.includes('Level 2') || lesson.title.includes('Intermediate') ? 2 :
-                      lesson.title.includes('Level 3') || lesson.title.includes('Advanced') ? 3 :
-                      lesson.title.includes('Level 4') || lesson.title.includes('Expert') ? 4 :
-                      lesson.title.includes('Level 5') || lesson.title.includes('Master') ? 5 :
-                      lesson.title.includes('Level 6') || lesson.title.includes('Champion') ? 6 :
-                      lesson.yearId === 'year1' ? 1 :
-                      lesson.yearId === 'year2' ? 2 :
-                      lesson.yearId === 'year3' ? 3 :
-                      lesson.yearId === 'year4' ? 4 :
-                      lesson.yearId === 'year5' ? 5 :
-                      lesson.yearId === 'year6' ? 6 : 1;
+        // Check for explicit level numbers FIRST (most specific), then check for keywords
+        // This ensures "Beginner Level 2" matches Level 2, not Beginner
+        // And "Advanced Level 2" matches Level 2, not Advanced
+        let level = 1; // default
+        if (lesson.title.includes('Level 6')) level = 6;
+        else if (lesson.title.includes('Level 5')) level = 5;
+        else if (lesson.title.includes('Level 4')) level = 4;
+        else if (lesson.title.includes('Level 3')) level = 3;
+        else if (lesson.title.includes('Level 2')) level = 2;
+        else if (lesson.title.includes('Level 1')) level = 1;
+        else if (lesson.title.includes('Champion')) level = 6;
+        else if (lesson.title.includes('Master')) level = 5;
+        else if (lesson.title.includes('Expert')) level = 4;
+        else if (lesson.title.includes('Advanced')) level = 3;
+        else if (lesson.title.includes('Intermediate')) level = 2;
+        else if (lesson.title.includes('Beginner')) level = 1;
+        else if (lesson.yearId === 'year6') level = 6;
+        else if (lesson.yearId === 'year5') level = 5;
+        else if (lesson.yearId === 'year4') level = 4;
+        else if (lesson.yearId === 'year3') level = 3;
+        else if (lesson.yearId === 'year2') level = 2;
+        else if (lesson.yearId === 'year1') level = 1;
         
         const thresholds = {
           1: { platinum: 20, gold: 15, silver: 10 },

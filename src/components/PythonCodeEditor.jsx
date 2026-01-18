@@ -30,7 +30,28 @@ function PythonCodeEditor({ lesson }) {
     const exerciseMatch = lesson.content.match(/<!-- EXERCISE_START -->([\s\S]*?)<!-- EXERCISE_END -->/);
     if (exerciseMatch) {
       try {
-        return JSON.parse(exerciseMatch[1]);
+        const parsed = JSON.parse(exerciseMatch[1]);
+        // Ensure we have a valid instruction field
+        if (parsed && typeof parsed === 'object' && parsed.instruction) {
+          // Make sure instruction is a string, not an object
+          const instruction = typeof parsed.instruction === 'string' 
+            ? parsed.instruction 
+            : String(parsed.instruction);
+          
+          return {
+            instruction: instruction,
+            expectedOutput: parsed.expectedOutput || null,
+            expectedContains: parsed.expectedContains || null,
+            codePattern: parsed.codePattern || null
+          };
+        }
+        // If parsed but no instruction, treat as text
+        return {
+          instruction: exerciseMatch[1].trim(),
+          expectedOutput: null,
+          expectedContains: null,
+          codePattern: null
+        };
       } catch (e) {
         // If not JSON, try to parse as simple text
         return {
@@ -446,14 +467,14 @@ function PythonCodeEditor({ lesson }) {
       // Set default code based on lesson number
       if (lesson.lessonNumber) {
         const defaults = {
-          1: 'print("Hello, World!")',
-          2: 'print("Your name here")',
-          3: 'name = "Your Name"\nprint(name)',
-          4: 'name = "Your Name"\nprint("Hello,", name)',
-          5: 'number = 15\nif number > 10:\n    print("The number is greater than 10")',
-          6: 'for i in range(1, 6):\n    print(i)',
-          7: 'def greet():\n    print("Hello!")\n\ngreet()',
-          8: 'import turtle\nt = turtle.Turtle()\nfor i in range(4):\n    t.forward(100)\n    t.left(90)'
+          1: 'print("Hello, World!")', // Lesson 1: Code pre-written for first lesson
+          2: '', // Lesson 2: Students write their own code
+          3: '', // Lesson 3: Students learn to create variables themselves
+          4: '', // Lesson 4: Students learn input() and type conversion
+          5: '', // Lesson 5: Students learn if statements and decision-making
+          6: '', // Lesson 6: Students learn loops and repetition
+          7: '', // Lesson 7: Students learn functions and code organization
+          8: '', // Lesson 8: Students learn turtle graphics and creative coding
         };
         if (defaults[lesson.lessonNumber]) {
           setCode(defaults[lesson.lessonNumber]);
@@ -484,22 +505,99 @@ function PythonCodeEditor({ lesson }) {
         <p style={{ margin: '0 0 10px 0', color: '#666', fontSize: '14px' }}>
           Write Python code and run it to see the results!
         </p>
-        {exercise && (
-          <div style={{
-            padding: '12px',
-            backgroundColor: '#e7f3ff',
-            borderRadius: '6px',
-            border: '1px solid #b3d9ff',
-            marginTop: '10px',
-          }}>
-            <div style={{ fontWeight: '600', marginBottom: '5px', color: '#004085' }}>
-              Exercise:
+        {exercise && (() => {
+          // Safely extract instruction text - handle various formats
+          let instructionText = '';
+          
+          // First, try to get instruction from exercise object
+          if (exercise && typeof exercise === 'object') {
+            if (exercise.instruction) {
+              instructionText = String(exercise.instruction);
+            } else {
+              // If no instruction property, exercise might be malformed
+              return null;
+            }
+          } else if (typeof exercise === 'string') {
+            // If exercise is a string, try to parse it as JSON
+            try {
+              const parsed = JSON.parse(exercise);
+              if (parsed && parsed.instruction && typeof parsed.instruction === 'string') {
+                instructionText = parsed.instruction;
+              } else {
+                return null; // Can't extract instruction
+              }
+            } catch {
+              return null; // Not valid JSON
+            }
+          } else {
+            return null; // Invalid exercise format
+          }
+          
+          // If instruction looks like JSON (contains JSON structure), try to parse it to extract the actual instruction
+          let trimmed = instructionText.trim();
+          
+          // More aggressive check for JSON - look for the pattern of a JSON object with instruction key
+          const hasJsonStructure = trimmed.startsWith('{') && 
+                                   (trimmed.includes('"instruction"') || trimmed.includes("'instruction'")) &&
+                                   (trimmed.includes('"codePattern"') || trimmed.includes('"expectedContains"') || 
+                                    trimmed.includes("'codePattern'") || trimmed.includes("'expectedContains'"));
+          
+          if (hasJsonStructure) {
+            try {
+              const parsed = JSON.parse(trimmed);
+              if (parsed && parsed.instruction) {
+                // Recursively extract if instruction is still JSON
+                let extracted = String(parsed.instruction);
+                if (extracted.trim().startsWith('{') && extracted.includes('"instruction"')) {
+                  try {
+                    const nestedParsed = JSON.parse(extracted);
+                    extracted = nestedParsed.instruction || extracted;
+                  } catch {
+                    // Not nested JSON, use as is
+                  }
+                }
+                instructionText = extracted;
+              } else {
+                return null; // Can't extract instruction from JSON
+              }
+            } catch (e) {
+              // If JSON parsing fails, try to extract instruction manually using regex
+              const instructionMatch = trimmed.match(/"instruction"\s*:\s*"([^"]+)"/);
+              if (instructionMatch && instructionMatch[1]) {
+                instructionText = instructionMatch[1].replace(/\\"/g, '"').replace(/\\n/g, '\n');
+              } else {
+                return null; // Can't extract instruction
+              }
+            }
+          }
+          
+          // Final validation - ensure we have clean instruction text (not JSON)
+          trimmed = instructionText.trim();
+          const stillLooksLikeJson = trimmed.startsWith('{') && 
+                                     (trimmed.includes('"instruction"') || trimmed.includes("'instruction'")) &&
+                                     (trimmed.includes('"codePattern"') || trimmed.includes('"expectedContains"'));
+          
+          if (!trimmed || trimmed === '' || stillLooksLikeJson) {
+            return null;
+          }
+          
+          return (
+            <div style={{
+              padding: '12px',
+              backgroundColor: '#e7f3ff',
+              borderRadius: '6px',
+              border: '1px solid #b3d9ff',
+              marginTop: '10px',
+            }}>
+              <div style={{ fontWeight: '600', marginBottom: '5px', color: '#004085' }}>
+                Exercise:
+              </div>
+              <div style={{ color: '#004085', fontSize: '14px' }}>
+                {trimmed}
+              </div>
             </div>
-            <div style={{ color: '#004085', fontSize: '14px' }}>
-              {exercise.instruction}
-            </div>
-          </div>
-        )}
+          );
+        })()}
       </div>
 
       {/* Main content area */}

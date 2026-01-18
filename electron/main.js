@@ -714,7 +714,7 @@ function setupCSPModification() {
         "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: file: blockly: htmlgame: https://www.gstatic.com https://fonts.gstatic.com https://cdn.jsdelivr.net; " +
         "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.gstatic.com https://cdn.jsdelivr.net https://www.youtube.com https://s.ytimg.com https://static.doubleclick.net https://www.google.com; " +
         "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
-        "connect-src 'self' https://www.gstatic.com https://fonts.gstatic.com https://cdn.jsdelivr.net https://www.youtube.com https://*.googlevideo.com https://*.doubleclick.net https://*.googleadservices.com https://*.google.com; " +
+        "connect-src 'self' https://www.gstatic.com https://fonts.gstatic.com https://cdn.jsdelivr.net https://www.youtube.com https://*.googlevideo.com https://*.doubleclick.net https://*.googleadservices.com https://*.google.com https://*.googleapis.com; " +
         "img-src 'self' data: blob: file: https:; " +
         "font-src 'self' data: file: https://fonts.gstatic.com; " +
         "worker-src 'self' blob:; " +

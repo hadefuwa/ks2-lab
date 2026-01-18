@@ -175,6 +175,7 @@ function HTMLGameEmbed({ url = '/html-games/days.html', width = '100%', height =
       overflow: 'hidden',
       boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
       backgroundColor: '#fff',
+      isolation: 'isolate',
     }}>
       {isLoading && (
         <div style={{

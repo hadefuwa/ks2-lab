@@ -100,7 +100,7 @@ function getDefaultRewards() {
   return [
     {
       id: 1,
-      name: 'Play for 30 mins',
+      name: '🎮 Play for 30 mins',
       description: 'Enjoy 30 minutes of free play time!',
       cost: 100,
       imageUrl: null,
@@ -109,9 +109,9 @@ function getDefaultRewards() {
     },
     {
       id: 2,
-      name: 'Have a sweet',
+      name: '🍬 Have a sweet',
       description: 'Enjoy a sweet treat!',
-      cost: 50,
+      cost: 100,
       imageUrl: null,
       isActive: true,
       createdAt: new Date().toISOString(),

@@ -17,46 +17,25 @@ export function getYear4Lessons(startLessonId, startQuizId) {
       emoji: '✖️',
       content: `# Long Multiplication ✖️
 
-
-
 Let's learn to multiply larger numbers!
-
-
 
 ## How to Play
 
-
-
 Tap the numbers to hear them! Then play the game! 🎮
-
-
 
 ## What is Long Multiplication?
 
-
-
 Long multiplication helps us multiply numbers with more than one digit!
-
-
 
 ## Example
 
-
-
 23 × 4 = 92
-
 45 × 6 = 270
-
-
 
 ## Fun Activities
 
-
-
 - Practice long multiplication
-
 - Check your answers
-
 - Play the multiplication game!`,
       quizId: quizId++,
       assessmentType: 'maths-game',
@@ -72,46 +51,25 @@ Long multiplication helps us multiply numbers with more than one digit!
       emoji: '🔢',
       content: `# Fractions and Decimals 🔢
 
-
-
 Let's learn about fractions and decimals!
-
-
 
 ## How to Play
 
-
-
 Tap the numbers to hear them! Then play the game! 🎮
-
-
 
 ## What are Fractions and Decimals?
 
-
-
 Fractions and decimals show parts of a whole!
-
-
 
 ## Examples
 
-
-
 - 1/2 = 0.5 (half)
-
 - 1/4 = 0.25 (quarter)
-
 - 3/4 = 0.75 (three quarters)
-
-
 
 ## Fun Activities
 
-
-
 - Practice converting fractions to decimals
-
 - Play the fractions and decimals game!`,
       quizId: quizId++,
       assessmentType: 'maths-game',
@@ -505,161 +463,20 @@ Click points and drag to create graphs! 🎮`,
       emoji: '🌑',
       content: `# The Dark Ages - After Rome 🌑
 
+When the Roman Empire collapsed around AD 476, Europe entered a period often called the "Dark Ages." This wasn't because the sun stopped shining, but because many of the records and learning of Rome were lost.
 
+## The Arrival of the Anglo-Saxons
+As Roman soldiers left Britain, tribes from Germany and Denmark—the **Angles, Saxons, and Jutes**—began to settle. They built small wooden villages and established kingdoms like Wessex and Mercia.
 
-Let's learn about life after the Roman Empire!
+## The Viking Age
+Starting around AD 793, fierce explorers and warriors from Scandinavia (the Vikings) began to raid the coasts of Britain and Europe. They were skilled sailors who traveled in "Longships" that could navigate both the open sea and shallow rivers.
 
+## Monasteries: Libraries of the Past
+In a time when few could read, monks in monasteries became the keepers of knowledge. They spent their lives copying books by hand, creating beautiful "Illuminated Manuscripts."
 
-
-## What Were the Dark Ages?
-
-
-
-- The Dark Ages came after Rome fell
-
-- It was a difficult time
-
-- Learning decreased
-
-- Life was harder
-
-
-
-## Vikings
-
-
-
-- Vikings came from Scandinavia
-
-- They were skilled sailors
-
-- They raided and explored
-
-- They settled in many places
-
-
-
-## Anglo-Saxons
-
-
-
-- Anglo-Saxons came to Britain
-
-- They settled in England
-
-- They created kingdoms
-
-- They had their own culture
-
-
-
-## Monasteries
-
-
-
-- Monasteries were important places
-
-- Monks lived there
-
-- They copied books
-
-- They kept learning alive
-
-
-
-## Learning and Books
-
-
-
-- Books were very rare
-
-- Monks copied them by hand
-
-- Learning was mostly in monasteries
-
-- Books were very valuable
-
-
-
-## Fun Activities
-
-
-
-- Learn about the Dark Ages
-
-- Draw monasteries
-
-- Make a timeline
-
-- Write about this period
-
-
-
-## Remember
-
-
-
-- Dark Ages came after Rome
-
-- Life was difficult
-
-- Monasteries kept learning alive
-
-- It was a time of change!
-
-
-
-## Practice Questions
-
-
-
-<!-- QUESTION_START -->
-What came after the Roman Empire fell?
-<!-- OPTIONS -->
-The Renaissance|The Dark Ages|Modern times|The Stone Age
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Dark Ages came after Rome fell! It was a difficult time when learning decreased and life was harder!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-Where did Vikings come from?
-<!-- OPTIONS -->
-Britain|Scandinavia|France|Italy
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Vikings came from Scandinavia! They were skilled sailors who raided, explored, and settled in many places!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-Who kept learning alive during the Dark Ages?
-<!-- OPTIONS -->
-Kings|Monks in monasteries|Soldiers|Farmers
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Monks in monasteries kept learning alive! They copied books by hand, and learning was mostly in monasteries!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What did Anglo-Saxons do in Britain?
-<!-- OPTIONS -->
-Nothing|Settled in England and created kingdoms|Only fought|Only farmed
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Anglo-Saxons came to Britain, settled in England, created kingdoms, and had their own culture!
-<!-- QUESTION_END -->`,
-      quizId: 62,
-      assessmentType: 'history-game',
+In the game, you will explore this era of transition. Learn about the technology of the Viking ships, the lifestyle of the Anglo-Saxons, and the legendary King Alfred the Great!`,
+      quizId: null,
+      assessmentType: 'dark-ages-game',
       categoryId: null,
     }),
 
@@ -839,161 +656,24 @@ The Bible has the Old and New Testaments and tells Jesus' story! It's an importa
       emoji: '🏰',
       content: `# Medieval Times - Castles and Knights 🏰
 
-
-
-Let's learn about medieval times!
-
-
-
-## When Were Medieval Times?
-
-
-
-- Medieval times were from about AD 500 to 1500
-
-- That's the Middle Ages
-
-- It was after the Dark Ages
-
-- Before modern times
-
-
-
-## Medieval Castles
-
-
-
-- Castles were strong buildings
-
-- They protected people
-
-- They had thick walls
-
-- They had towers and moats
-
-
-
-## Knights and Armor
-
-
-
-- Knights were warriors
-
-- They wore armor
-
-- They fought on horses
-
-- They protected the kingdom
-
-
-
-## Feudalism
-
-
-
-- Feudalism was a system
-
-- Lords owned land
-
-- Knights served lords
-
-- Serfs worked the land
-
-
-
-## Lords and Serfs
-
-
-
-- Lords were powerful
-
-- They owned land
-
-- Serfs were workers
-
-- They worked for lords
-
-
-
-## Fun Activities
-
-
-
-- Draw castles
-
-- Learn about knights
-
-- Make a timeline
-
-- Write about medieval times
-
-
-
-## Remember
-
-
-
-- Medieval times were long ago
-
-- Castles were important
-
-- Knights were warriors
-
-- Feudalism was the system!
-
-
-
-## Practice Questions
-
-
-
-<!-- QUESTION_START -->
-When were medieval times?
-<!-- OPTIONS -->
-AD 100-500|AD 500-1500|AD 1500-2000|BC 500-AD 500
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Medieval times were from about AD 500 to 1500! That's the Middle Ages, after the Dark Ages and before modern times!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What were castles used for?
-<!-- OPTIONS -->
-Decoration|Protecting people|Housing animals|Storing food
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Castles were strong buildings that protected people! They had thick walls, towers, and moats!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What was feudalism?
-<!-- OPTIONS -->
-A type of castle|A system where lords owned land, knights served lords, and serfs worked|A type of weapon|A type of food
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Feudalism was a system where lords owned land, knights served lords, and serfs worked the land!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What did knights do?
-<!-- OPTIONS -->
-Only farmed|Were warriors who wore armor, fought on horses, and protected the kingdom|Only built castles|Only wrote books
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Knights were warriors who wore armor, fought on horses, and protected the kingdom! They were an important part of medieval society!
-<!-- QUESTION_END -->`,
-      quizId: 63,
-      assessmentType: 'history-game',
+The Middle Ages (AD 500 – 1500) was a time of massive stone fortresses, courageous knights, and a strict social hierarchy.
+
+## Castle Architecture: Built for Defense
+Castles weren't just homes for royalty; they were military machines designed to withstand long sieges.
+- **The Keep**: The inner-most stronghold, built with walls often 4 meters thick.
+- **The Moat**: A deep watery barrier to stop enemies from using battering rams or ladders.
+- **Machicolations**: Overhanging gaps in the walls where defenders could drop rocks or boiling oil on attackers!
+
+## The Feudal System: A Social Ladder
+Society was organized like a pyramid, with every person knowing their place.
+1. **The King**: Owned all the land and gave portions to Nobles.
+2. **The Nobles (Lords)**: Provided the King with military service and knights.
+3. **The Knights**: Professional warriors who followed the code of **Chivalry** (bravery, honesty, and protecting the weak).
+4. **The Peasants (Serfs)**: Worked the land and produced food, receiving protection in return.
+
+In the game, you will explore the defenses of a medieval castle and then prove your knowledge by organizing the Feudal System for the King!`,
+      quizId: null,
+      assessmentType: 'medieval-castle-game',
       categoryId: null,
     }),
 
@@ -1006,161 +686,24 @@ Knights were warriors who wore armor, fought on horses, and protected the kingdo
       emoji: '🏘️',
       content: `# Medieval Times - Daily Life 🏘️
 
-
-
-Let's learn about how people lived in medieval times!
-
-
-
-## Medieval Villages
-
-
-
-- Most people lived in villages
-
-- Villages were small
-
-- People worked together
-
-- They farmed the land
-
-
-
-## Medieval Farming
-
-
-
-- Most people were farmers
-
-- They grew crops
-
-- They raised animals
-
-- They worked hard
-
-
-
-## Medieval Crafts
-
-
-
-- Some people were craftspeople
-
-- They made things by hand
-
-- Blacksmiths made tools
-
-- Weavers made cloth
-
-
-
-## Medieval Markets
-
-
-
-- People went to markets
-
-- They bought and sold things
-
-- Markets were important
-
-- They were social places
-
-
-
-## Medieval Homes
-
-
-
-- Homes were simple
-
-- Made of wood and mud
-
-- Had thatched roofs
-
-- Were small and dark
-
-
-
-## Fun Activities
-
-
-
-- Draw medieval villages
-
-- Learn about farming
-
-- Draw medieval homes
-
-- Write about daily life
-
-
-
-## Remember
-
-
-
-- Most people were farmers
-
-- Life was hard
-
-- People worked together
-
-- Villages were important!
-
-
-
-## Practice Questions
-
-
-
-<!-- QUESTION_START -->
-Where did most people live in medieval times?
-<!-- OPTIONS -->
-In castles|In villages|In cities|In caves
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Most people lived in villages! Villages were small, people worked together, and they farmed the land!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What did most people do for work?
-<!-- OPTIONS -->
-Were soldiers|Were farmers|Were kings|Were priests
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Most people were farmers! They grew crops, raised animals, and worked very hard!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What did blacksmiths and weavers do?
-<!-- OPTIONS -->
-Farmed|Made things by hand - blacksmiths made tools, weavers made cloth|Fought|Wrote books
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Craftspeople made things by hand! Blacksmiths made tools, and weavers made cloth! They were important in medieval villages!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What were medieval homes like?
-<!-- OPTIONS -->
-Big and modern|Simple, made of wood and mud, with thatched roofs, small and dark|Made of stone|Made of metal
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Medieval homes were simple, made of wood and mud, had thatched roofs, and were small and dark! Life was very different then!
-<!-- QUESTION_END -->`,
-      quizId: 62,
-      assessmentType: 'history-game',
+In the 13th century, life for the average person was a cycle of hard work, strong community ties, and a deep connection to the land.
+
+## The Village Community
+90% of people lived in small rural villages. Everything was done by hand. Neighbors helped each other plough the "strip fields" and gather the harvest.
+- **The Church**: The center of village life, used for worship, community meetings, and even festivals.
+- **The Manor House**: Where the Lord lived and where the local court was held.
+
+## Working the Land
+Peasants were either **Freemen** (who paid rent) or **Serfs** (who belonged to the land). They grew wheat for bread and barley for ale. The "Three-Field System" was used, where one field was left empty (fallow) each year to let the soil recover.
+
+## Food and Drink
+- **Pottage**: A thick stew made of peas, beans, and vegetables.
+- **Black Bread**: Made from rye or barley.
+- **Ale**: Safe-to-drink fermented water, as clean river water was rare.
+
+In the game, you will step into the boots of a villager. Can you complete the tasks needed to keep the community fed and thriving?`,
+      quizId: null,
+      assessmentType: 'medieval-daily-life-game',
       categoryId: null,
     }),
 
@@ -1173,147 +716,23 @@ Medieval homes were simple, made of wood and mud, had thatched roofs, and were s
       emoji: '⚔️',
       content: `# The Crusades ⚔️
 
-
-
-Let's learn about the Crusades!
-
-
-
-## What Were the Crusades?
-
-
-
-- The Crusades were wars
-
-- They happened in the Middle Ages
-
-- Christians fought Muslims
-
-- They wanted control of the Holy Land
-
-
-
-## Why They Happened
-
-
-
-- The Holy Land was important
-
-- Both sides wanted it
-
-- They went to war
-
-- Many crusades happened
-
-
-
-## Knights Going to the Holy Land
-
-
-
-- Knights traveled far
-
-- They went to the Middle East
-
-- They fought in battles
-
-- It was a long journey
-
-
-
-## Effects of the Crusades
-
-
-
-- Many people died
-
-- Countries changed
-
-- People learned about other places
-
-- Trade increased
-
-
-
-## Fun Activities
-
-
-
-- Learn about the Crusades
-
-- Draw knights traveling
-
-- Make a timeline
-
-- Write about the effects
-
-
-
-## Remember
-
-
-
-- Crusades were wars
-
-- They happened long ago
-
-- They had big effects
-
-- They changed history!
-
-
-
-## Practice Questions
-
-
-
-<!-- QUESTION_START -->
-What were the Crusades?
-<!-- OPTIONS -->
-Peaceful meetings|Wars between Christians and Muslims for control of the Holy Land|Trade agreements|Religious ceremonies
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Crusades were wars that happened in the Middle Ages! Christians fought Muslims, and they wanted control of the Holy Land!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-Why did the Crusades happen?
-<!-- OPTIONS -->
-For fun|The Holy Land was important and both sides wanted it|For trade|For exploration
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Holy Land was important, and both sides wanted it! They went to war, and many crusades happened!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What did knights do during the Crusades?
-<!-- OPTIONS -->
-Stayed home|Traveled far to the Middle East and fought in battles|Only traded|Only farmed
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Knights traveled far to the Middle East, went to the Holy Land, fought in battles, and it was a long journey!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What were effects of the Crusades?
-<!-- OPTIONS -->
-Nothing changed|Many people died, countries changed, people learned about other places, and trade increased|Only trade increased|Only people died
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Crusades had big effects: many people died, countries changed, people learned about other places, and trade increased!
-<!-- QUESTION_END -->`,
-      quizId: 71,
-      assessmentType: 'history-game',
+The Crusades were a series of religious wars between Christians and Muslims between 1095 and 1291. They were fought primarily for control of the "Holy Land" (modern-day Israel/Palestine), which was sacred to both religions.
+
+## Motivations for the Journey
+Thousands of people—from powerful kings to poor peasants—traveled over 3,000 miles to join the Crusades.
+- **Faith**: Many believed that fighting in the Crusades would guarantee them a place in heaven.
+- **Adventure**: For many knights, it was a chance to see the world and win glory.
+- **Land**: Younger sons of nobles who wouldn't inherit land at home hoped to win their own estates in the East.
+
+## Consequences of the Conflict
+While the wars were violent, they led to an explosion of new knowledge in Europe.
+- **Mathematics & Science**: Europeans learned about algebra, decimals, and advanced medicine from the Islamic world.
+- **Trade**: Ships brought back silks, cotton, and exotic spices like cinnamon and pepper.
+- **Culture**: New musical instruments and philosophical ideas reached Europe for the first time.
+
+In the game, you will navigate the decisions and difficulties of a Crusader. Can you understand the legacy of these massive world events?`,
+      quizId: null,
+      assessmentType: 'crusades-game',
       categoryId: null,
     }),
 
@@ -1326,147 +745,47 @@ The Crusades had big effects: many people died, countries changed, people learne
       emoji: '🎨',
       content: `# The Renaissance - A New Beginning 🎨
 
+Florence, Rome, and Venice became creative laboratories between 1400 and 1600. Artists studied mathematics to draw realistic spaces, scientists tested new ideas, and explorers carried European technology across oceans.
 
+## The Big Ideas
 
-Let's learn about the Renaissance!
+- **Humanism** – Scholars revisited Greek and Roman books to understand people, not only kings.
+- **Perspective** – Artists used rulers and math to make flat walls feel three-dimensional.
+- **Innovation** – Printing presses, new sails, and precise maps accelerated the spread of ideas.
 
+## How to Play – Renaissance Studio Challenge
 
+1. **Patronage Board**
+    - Click an *Idea Card* (Medici funds, marble, pigments, etc.).
+    - Click the city panel that needs that resource.
+    - Florence, Rome, and Venice each require two different ingredients to flourish.
+2. **Perspective Timeline**
+    - Once the cities are stocked, rebuild the Renaissance timeline by selecting events from the earliest year to the latest.
+3. **Invention Lab**
+    - Mix the exact components that created the printing press, the scientific method, and bold voyages.
+    - Lock in your choices to see whether the invention works!
 
-## What Was the Renaissance?
+Earn points in every phase. A perfect run scores 100%.
 
+## Learning Goals
 
+- Match patrons, artists, and resources to the Italian city that needed them most.
+- Explain the order of key Renaissance breakthroughs.
+- Describe how combining the right tools led to new inventions.
 
-- Renaissance means "rebirth"
+## Vocabulary
 
-- It was a time of new ideas
-
-- It started in Italy
-
-- It spread across Europe
-
-
-
-## Renaissance Art
-
-
-
-- Art became more realistic
-
-- Artists used perspective
-
-- Leonardo da Vinci was famous
-
-- Michelangelo was famous too
-
-
-
-## New Ideas and Learning
-
-
-
-- People studied ancient texts
-
-- They asked questions
-
-- They made discoveries
-
-- Learning increased
-
-
-
-## Famous People
-
-
-
-- Leonardo da Vinci - Artist and inventor
-
-- Michelangelo - Artist and sculptor
-
-- They created amazing art
-
-- They were very talented
-
-
-
-## Fun Activities
-
-
-
-- Study Renaissance art
-
-- Learn about famous people
-
-- Make a timeline
-
-- Write about the Renaissance
-
-
+- **Patronage** – Money or protection that allows artists to focus on their craft.
+- **Perspective** – A math-based way to show depth on a flat surface.
+- **Humanism** – A focus on people, their choices, and classical ideas.
 
 ## Remember
 
-
-
-- Renaissance was a rebirth
-
-- Art and learning flourished
-
-- Many famous people
-
-- It changed the world!
-
-
-
-## Practice Questions
-
-
-
-<!-- QUESTION_START -->
-What does "Renaissance" mean?
-<!-- OPTIONS -->
-Darkness|Rebirth|War|End
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Renaissance means "rebirth"! It was a time of new ideas that started in Italy and spread across Europe!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What happened to art during the Renaissance?
-<!-- OPTIONS -->
-It disappeared|It became more realistic, artists used perspective|It stayed the same|It got worse
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Art became more realistic during the Renaissance! Artists used perspective, and Leonardo da Vinci and Michelangelo were famous!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What did people do during the Renaissance?
-<!-- OPTIONS -->
-Nothing|Studied ancient texts, asked questions, made discoveries, and learning increased|Only fought|Only farmed
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-People studied ancient texts, asked questions, made discoveries, and learning increased! It was a time of new ideas!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-Who were famous Renaissance artists?
-<!-- OPTIONS -->
-No one|Leonardo da Vinci and Michelangelo|Only soldiers|Only kings
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Leonardo da Vinci and Michelangelo were famous Renaissance artists! They created amazing art and were very talented!
-<!-- QUESTION_END -->`,
-      quizId: 95,
-      assessmentType: 'history-game',
+- The Renaissance was a *rebirth* powered by cities working together.
+- Art, science, and exploration are connected—changing one sparks the others.
+- Asking better questions and testing ideas is what launches a new era!`,
+      quizId: null,
+      assessmentType: 'renaissance-game',
       categoryId: null,
     }),
 
@@ -1479,328 +798,25 @@ Leonardo da Vinci and Michelangelo were famous Renaissance artists! They created
       emoji: '🚢',
       content: `# Age of Exploration 🚢
 
-
-
-Let's learn about explorers and their journeys!
-
-
-
-## Explorers
-
-
-
-- Explorers traveled to new places
-
-- They discovered new lands
-
-- They were very brave
-
-- They sailed across oceans
-
-
-
-## Christopher Columbus
-
-
-
-- Columbus sailed from Spain
-
-- He wanted to reach Asia
-
-- He found America instead
-
-- He made important journeys
-
-
-
-## Discovering New Lands
-
-
-
-- Explorers found new continents
-
-- They found new countries
-
-- They met new people
-
-- They changed the world
-
-
-
-## Trade Routes
-
-
-
-- Explorers found new trade routes
-
-- They could trade with new places
-
-- Trade increased
-
-- Countries became richer
-
-
-
-## New Foods
-
-
-
-- Explorers brought new foods
-
-- Potatoes came from America
-
-- Tomatoes came from America
-
-- Foods spread around the world
-
-
-
-## Fun Activities
-
-
-
-- Learn about explorers
-
-- Draw their journeys
-
-- Make a map
-
-- Write about exploration
-
-
-
-## Remember
-
-
-
-- Explorers were brave
-
-- They discovered new places
-
-- They changed trade
-
-- They changed the world!
-
-
-
-## Practice Questions
-
-
-
-<!-- QUESTION_START -->
-What did explorers do?
-<!-- OPTIONS -->
-Stayed home|Traveled to new places, discovered new lands, and sailed across oceans|Only traded|Only farmed
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Explorers traveled to new places, discovered new lands, were very brave, and sailed across oceans!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What did Christopher Columbus do?
-<!-- OPTIONS -->
-Stayed in Spain|Sailed from Spain, wanted to reach Asia, but found America instead|Only traded|Only farmed
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Christopher Columbus sailed from Spain, wanted to reach Asia, but found America instead! He made important journeys!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What did explorers find?
-<!-- OPTIONS -->
-Nothing|New continents, new countries, and met new people|Only gold|Only animals
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Explorers found new continents, new countries, met new people, and changed the world!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What foods came from America?
-<!-- OPTIONS -->
-Rice and wheat|Potatoes and tomatoes|Bananas and oranges|Apples and pears
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Potatoes and tomatoes came from America! Explorers brought new foods, and foods spread around the world!
-<!-- QUESTION_END -->`,
-      quizId: 72,
-      assessmentType: 'history-game',
-      categoryId: null,
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year4',
-      subjectId: 'history',
-      lessonNumber: 8,
-      title: "The Reformation",
-      emoji: '📖',
-      content: `# The Reformation 📖
-
-
-
-Let's learn about the Reformation!
-
-
-
-## What Was the Reformation?
-
-
-
-- The Reformation was a change
-
-- It changed the church
-
-- It started in the 1500s
-
-- It was very important
-
-
-
-## Martin Luther
-
-
-
-- Martin Luther was a monk
-
-- He questioned the church
-
-- He wrote 95 theses
-
-- He started the Reformation
-
-
-
-## Changes in the Church
-
-
-
-- The church split
-
-- New churches formed
-
-- People had different beliefs
-
-- It changed religion
-
-
-
-## Printing Press
-
-
-
-- The printing press was invented
-
-- Books could be made faster
-
-- Ideas spread quickly
-
-- It helped the Reformation
-
-
-
-## New Ideas About Religion
-
-
-
-- People questioned old ideas
-
-- They read the Bible themselves
-
-- They had new beliefs
-
-- Religion changed
-
-
-
-## Fun Activities
-
-
-
-- Learn about Martin Luther
-
-- Learn about the printing press
-
-- Make a timeline
-
-- Write about the Reformation
-
-
-
-## Remember
-
-
-
-- Reformation changed the church
-
-- Martin Luther was important
-
-- Printing press helped
-
-- It was a time of change!
-
-
-
-## Practice Questions
-
-
-
-<!-- QUESTION_START -->
-What was the Reformation?
-<!-- OPTIONS -->
-A war|A change that changed the church|A type of art|A type of building
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Reformation was a change that changed the church! It started in the 1500s and was very important!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-Who started the Reformation?
-<!-- OPTIONS -->
-A king|Martin Luther, a monk|A soldier|A farmer
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Martin Luther was a monk who questioned the church, wrote 95 theses, and started the Reformation!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What helped the Reformation spread?
-<!-- OPTIONS -->
-Horses|The printing press|Ships|Weapons
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The printing press was invented and helped the Reformation! Books could be made faster, ideas spread quickly!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What did people do during the Reformation?
-<!-- OPTIONS -->
-Nothing|Questioned old ideas, read the Bible themselves, and had new beliefs|Only fought|Only farmed
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-People questioned old ideas, read the Bible themselves, had new beliefs, and religion changed!
-<!-- QUESTION_END -->`,
-      quizId: 84,
-      assessmentType: 'history-game',
+In the 15th and 16th centuries, European explorers set out into the unknown, driven by a desire for riches, fame, and a faster route to the spices of the East.
+
+## Global Trade and Spices
+During the Middle Ages, spices like cinnamon, pepper, and cloves were as valuable as gold. They were used to preserve food and make it taste better. European kings wanted to bypass the expensive land routes (the Silk Road) and find a direct sea route to Asia.
+
+## Modern Navigation Technology
+New inventions allowed explorers to sail further than ever before:
+- **The Compass**: Allowed sailors to find their direction even when they couldn't see the sun or stars.
+- **The Astrolabe**: Helped sailors calculate their latitude (their distance from the Equator).
+- **The Caravel**: A new type of faster, more maneuverable ship with triangular sails.
+
+## The Columbian Exchange
+The voyages of Columbus and others led to a massive exchange of plants, animals, and ideas between the "Old World" (Europe, Africa, Asia) and the "New World" (The Americas).
+- **To Europe**: Potatoes, tomatoes, cocoa, and corn.
+- **To the Americas**: Horses, cattle, wheat, and unfortunately, many new diseases.
+
+In the game, you will follow the paths of great explorers and test your knowledge of how the world became connected!`,
+      quizId: null,
+      assessmentType: 'exploration-game',
       categoryId: null,
     }),
 
@@ -1855,7 +871,7 @@ There are different ways to run Python:
 
 ## Your First Program
 
-Let's write your very first Python program!
+The code is already written for you! Look at the code editor below - you'll see:
 
 \`\`\`python
 print("Hello, World!")
@@ -1864,20 +880,19 @@ print("Hello, World!")
 **What does this do?**
 - \`print()\` is a function that displays text
 - The text in quotes is what gets shown
-- Run this and you'll see: Hello, World!
+- When you run this code, you'll see: Hello, World!
 
 ## Try It Yourself
 
-1. Open Python or a text editor
-2. Type: \`print("Hello, World!")\`
-3. Run it
-4. Change the message to say hello to yourself!
+1. Look at the code in the editor below (it's already there!)
+2. Click the "Run Code" button to see what happens
+3. You should see "Hello, World!" appear in the output
+4. Try changing the message to say hello to yourself!
 
 <!-- EXERCISE_START -->
 {
-  "instruction": "Write a program that prints 'Hello, World!'",
-  "expectedOutput": "Hello, World!",
-  "expectedContains": "Hello, World!",
+  "instruction": "The code is already written for you! Run it to see 'Hello, World!' appear. Then try changing the message to say hello to yourself!",
+  "expectedContains": "Hello",
   "codePattern": null
 }
 <!-- EXERCISE_END -->
@@ -2025,12 +1040,40 @@ print("Who learned Python")
 print("And created amazing things!")
 \`\`\`
 
+## Example Code to Guide You
+
+Here's some example code that shows similar patterns you can use:
+
+\`\`\`python
+# Example: Printing different types of information
+print("My favorite animal is a dog")
+print("I have", 3, "pets")
+print("Coding is", "fun!")
+
+# Notice how:
+# - Text goes in quotes
+# - Numbers don't need quotes
+# - You can print multiple things with commas
+\`\`\`
+
+**Now try your own version!** Use the patterns above but with your own information.
+
 ## Try It Yourself
 
-1. Print your name
+Now it's your turn! Write your own code in the editor below:
+
+1. Print your name using \`print()\`
 2. Print your favorite color
-3. Print some math problems
-4. Write a short story using print statements
+3. Print some math problems (like \`print("5 + 3 =", 5 + 3)\`)
+4. Write a short story using multiple print statements
+
+<!-- EXERCISE_START -->
+{
+  "instruction": "Write code to print your name and favorite color. Use the print() function!",
+  "expectedContains": null,
+  "codePattern": "print\\(.*\\)"
+}
+<!-- EXERCISE_END -->
 
 ## Important Notes
 
@@ -2207,12 +1250,60 @@ print("Width:", width)
 print("Area:", area)
 \`\`\`
 
+## How to Create a Variable
+
+Follow these steps to create your own variable:
+
+1. **Choose a name** - Use lowercase letters and underscores (e.g., \`my_name\`, \`favorite_color\`)
+2. **Use the equals sign** - Write \`=\` to assign a value
+3. **Add the value** - Put text in quotes or numbers without quotes
+
+**Example pattern:**
+\`\`\`
+variable_name = value
+\`\`\`
+
+## Example Code to Guide You
+
+Here's some example code showing how to create and use variables:
+
+\`\`\`python
+# Example: Creating variables for different types of information
+student_name = "Sam"
+student_grade = 4
+favorite_subject = "Math"
+
+# Printing the variables
+print("Student:", student_name)
+print("Grade:", student_grade)
+print("Favorite subject:", favorite_subject)
+
+# Notice how:
+# - Text variables use quotes: "Sam"
+# - Number variables don't use quotes: 4
+# - You can print variables just like text or numbers
+\`\`\`
+
+**Now try your own version!** Create variables for your name and age, then print them.
+
 ## Try It Yourself
 
-1. Create variables for your name, age, and favorite color
-2. Print them all
-3. Create variables for two numbers and add them
-4. Change a variable's value and print it again
+Now write your own code in the editor below! Try these challenges:
+
+1. **Create a variable** called \`my_name\` and set it to your name (remember: text needs quotes!)
+2. **Create a variable** called \`my_age\` and set it to your age (numbers don't need quotes)
+3. **Print both variables** using \`print()\`
+4. **Create two number variables** and add them together, then print the result
+
+**Hint:** Remember the pattern: \`name = "value"\` for text, and \`number = 5\` for numbers!
+
+<!-- EXERCISE_START -->
+{
+  "instruction": "Create a variable called 'name' and set it to your name, then print it. Also create a variable for your age and print that too!",
+  "codePattern": "name\\s*=\\s*[\"'].*[\"']|my_name\\s*=\\s*[\"'].*[\"']",
+  "expectedContains": null
+}
+<!-- EXERCISE_END -->
 
 ## Important Notes
 
@@ -2237,43 +1328,69 @@ print("Area:", area)
 
 ## Making Programs Interactive
 
-So far, our programs just display messages. Now let's make them interactive by getting input from the user!
+Until now, your programs have been one-way conversations - they talk to you, but you can't talk back! The \`input()\` function changes that. It's like giving your program ears so it can listen to what users type.
 
-## The Input Function
+**Why is this important?** Real programs need to interact with users - games ask for your name, calculators ask for numbers, and apps respond to what you do. This lesson teaches you how to make your programs truly interactive!
 
-The \`input()\` function lets users type information into your program.
+## Understanding the Input Function
 
-## Basic Input
+The \`input()\` function pauses your program and waits for the user to type something and press Enter. Whatever they type gets stored in a variable.
+
+### How It Works
 
 \`\`\`python
 name = input("What is your name? ")
 print("Hello,", name)
 \`\`\`
 
-**What happens:**
-1. Program asks: "What is your name? "
-2. User types their name
-3. Program says hello
+**Step by step:**
+1. The program displays: "What is your name? " and waits
+2. User types their name (e.g., "Alice") and presses Enter
+3. The text "Alice" is stored in the \`name\` variable
+4. The program continues and prints: "Hello, Alice"
 
-## Getting Different Types of Input
+## The Input Prompt
 
-### Text Input
+The text inside \`input()\` is called a **prompt**. It tells the user what to type. Good prompts are:
+- **Clear**: "Enter your age: " is better than "Age:"
+- **Helpful**: "Enter a number between 1 and 10: " guides the user
+- **Friendly**: "What's your favorite color? " feels more welcoming
+
+## Working with Text Input
+
+Text input is straightforward - whatever the user types becomes a string (text):
 
 \`\`\`python
 favorite_color = input("What is your favorite color? ")
 print("I like", favorite_color, "too!")
+print("That's a beautiful color!")
 \`\`\`
 
-### Number Input
+**Try it:** The user can type anything - "blue", "red", "purple", or even "rainbow sparkle"!
 
-**Important:** \`input()\` always returns text, even for numbers!
+## Working with Number Input
+
+**Critical Concept:** \`input()\` always returns text, even when the user types numbers!
 
 \`\`\`python
 age = input("How old are you? ")
 print("You are", age, "years old")
+# age is a string like "8", not the number 8
 \`\`\`
 
-To do math with numbers, convert them:
+If you try to do math with this, you'll get an error:
+\`\`\`python
+age = input("How old are you? ")
+next_year = age + 1  # ERROR! Can't add number to text
+\`\`\`
+
+## Converting Text to Numbers
+
+You must convert text to numbers before doing math:
+
+### Converting to Integers (Whole Numbers)
+
+Use \`int()\` to convert text to a whole number:
 
 \`\`\`python
 age = int(input("How old are you? "))
@@ -2281,107 +1398,197 @@ next_year = age + 1
 print("Next year you will be", next_year)
 \`\`\`
 
-**Important:** Make sure the user enters a number! If they type text instead of a number, the program will show an error. For now, just remember to enter numbers when asked.
+**What happens:**
+- User types "8" (as text)
+- \`int()\` converts "8" to the number 8
+- Now you can do math: 8 + 1 = 9
 
-## Converting Input Types
+### Converting to Floats (Decimal Numbers)
 
-### String to Integer
+Use \`float()\` for numbers with decimals:
 
 \`\`\`python
-number = int(input("Enter a number: "))
-double = number * 2
-print("Double is", double)
+height = float(input("How tall are you in meters? "))
+print("You are", height, "meters tall")
 \`\`\`
 
-### String to Float
+**Example:** User types "1.25" → becomes the number 1.25
+
+## Real-World Applications
+
+### Application 1: Personal Information Form
+
+Create a program that collects information like a form:
 
 \`\`\`python
-price = float(input("Enter a price: "))
-tax = price * 0.1
-print("Tax is", tax)
-\`\`\`
+print("=== Personal Information Form ===")
+print()
 
-## Building Interactive Programs
+name = input("Full name: ")
+age = int(input("Age: "))
+favorite_subject = input("Favorite subject: ")
+birth_month = input("Birth month: ")
 
-### Example 1: Greeting Program
-
-\`\`\`python
-name = input("What is your name? ")
-age = input("How old are you? ")
-
-print("Hello,", name)
-print("You are", age, "years old")
-print("Nice to meet you!")
-\`\`\`
-
-### Example 2: Calculator
-
-\`\`\`python
-num1 = int(input("Enter first number: "))
-num2 = int(input("Enter second number: "))
-
-total = num1 + num2
-print("The sum is", total)
-\`\`\`
-
-### Example 3: Story Maker
-
-\`\`\`python
-name = input("Enter a name: ")
-place = input("Enter a place: ")
-animal = input("Enter an animal: ")
-
-print("Once upon a time,", name)
-print("went to", place)
-print("and met a", animal)
-\`\`\`
-
-## Combining Input and Variables
-
-\`\`\`python
-# Get information
-name = input("What is your name? ")
-favorite_food = input("What is your favorite food? ")
-times_per_week = int(input("How many times per week do you eat it? "))
-
-# Calculate
-times_per_month = times_per_week * 4
-
-# Display results
-print(name, "eats", favorite_food, times_per_month, "times per month!")
-\`\`\`
-
-## Practice Examples
-
-### Example: Personal Quiz
-
-\`\`\`python
-print("Let's learn about you!")
-
-name = input("What is your name? ")
-age = int(input("How old are you? "))
-favorite_subject = input("What is your favorite subject? ")
-
-print("\\nHere's what I learned:")
+print()
+print("Thank you! Here's your information:")
 print("Name:", name)
 print("Age:", age)
 print("Favorite subject:", favorite_subject)
+print("Birth month:", birth_month)
 \`\`\`
+
+### Application 2: Interactive Calculator
+
+Build a calculator that asks for numbers:
+
+\`\`\`python
+print("=== Simple Calculator ===")
+
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+
+print()
+print("Results:")
+print("Addition:", num1 + num2)
+print("Subtraction:", num1 - num2)
+print("Multiplication:", num1 * num2)
+print("Division:", num1 / num2)
+\`\`\`
+
+### Application 3: Mad Libs Story Generator
+
+Create an interactive story:
+
+\`\`\`python
+print("Let's create a story together!")
+print()
+
+name = input("Enter a character name: ")
+place = input("Enter a place: ")
+animal = input("Enter an animal: ")
+verb = input("Enter an action (like 'run' or 'jump'): ")
+number = int(input("Enter a number: "))
+
+print()
+print("=== Your Story ===")
+print("Once upon a time,", name)
+print("went to", place)
+print("and saw", number, animal + "s")
+print("that liked to", verb)
+print("every day!")
+print("The end!")
+\`\`\`
+
+### Application 4: Shopping Calculator
+
+Calculate costs with user input:
+
+\`\`\`python
+print("=== Shopping Calculator ===")
+
+item = input("What are you buying? ")
+price = float(input("What's the price? £"))
+quantity = int(input("How many do you want? "))
+
+total = price * quantity
+
+print()
+print("Receipt:")
+print("Item:", item)
+print("Price each: £" + str(price))
+print("Quantity:", quantity)
+print("Total: £" + str(total))
+\`\`\`
+
+## Common Mistakes to Avoid
+
+1. **Forgetting to convert numbers:**
+   \`\`\`python
+   # Wrong:
+   age = input("Age: ")
+   next_year = age + 1  # Error!
+   
+   # Right:
+   age = int(input("Age: "))
+   next_year = age + 1  # Works!
+   \`\`\`
+
+2. **Unclear prompts:**
+   \`\`\`python
+   # Bad:
+   x = input("x: ")
+   
+   # Good:
+   name = input("What is your name? ")
+   \`\`\`
+
+3. **Not handling errors:**
+   If a user types text when you expect a number, the program will crash. For now, just make sure to type numbers when the program asks!
+
+## Example Code to Guide You
+
+Here's some example code showing how to use input() and convert to numbers:
+
+\`\`\`python
+# Example: Getting input and doing calculations
+# Note: In this simulator, input() won't work, so we'll use direct values
+# But in real Python, you'd use: user_age = int(input("How old are you? "))
+
+user_age = 9  # This simulates: int(input("How old are you? "))
+years_later = 3
+future_age = user_age + years_later
+
+print("You are", user_age, "years old now")
+print("In", years_later, "years, you will be", future_age)
+
+# Notice how:
+# - We use int() to convert text to a number
+# - We can do math with the converted number
+# - We combine text and numbers in print statements
+\`\`\`
+
+**Now try your own version!** Ask for name and age, then calculate something with the age.
 
 ## Try It Yourself
 
-1. Create a program that asks for your name and says hello
-2. Make a simple calculator that adds two numbers
-3. Create a story maker that asks for words and makes a story
-4. Build a quiz about yourself
+Now write your own interactive programs! Try these challenges:
+
+1. **Personal Greeting Program**
+   - Ask for the user's name and age
+   - Calculate how old they'll be in 5 years
+   - Print a personalized message
+
+2. **Math Quiz Helper**
+   - Ask for two numbers
+   - Calculate and display: sum, difference, product, and quotient
+   - Format the output nicely
+
+3. **Fun Facts Generator**
+   - Ask for: name, favorite animal, favorite number
+   - Create a fun fact using their answers
+   - Example: "Did you know Alice's favorite number is 7, and they love elephants!"
+
+4. **Recipe Converter**
+   - Ask for number of servings
+   - Ask for ingredient amounts (like cups of flour)
+   - Calculate amounts for double the servings
+
+<!-- EXERCISE_START -->
+{
+  "instruction": "Create an interactive program that asks for the user's name and age, then calculates and prints how old they will be in 10 years. Remember: use int() to convert the age input to a number!",
+  "codePattern": "int\\(input|age\\s*=\\s*int",
+  "expectedContains": null
+}
+<!-- EXERCISE_END -->
 
 ## Important Notes
 
-- \`input()\` always returns text (strings)
-- Use \`int()\` to convert to whole numbers
-- Use \`float()\` to convert to decimal numbers
-- Always provide clear prompts for users
-- Test your programs with different inputs`,
+- \`input()\` always returns text (strings), even for numbers
+- Use \`int()\` to convert text to whole numbers
+- Use \`float()\` to convert text to decimal numbers
+- Write clear, helpful prompts so users know what to enter
+- Test your programs with different inputs to make sure they work
+- Interactive programs make coding much more fun and useful!`,
       quizId: quizId++,
       assessmentType: 'quiz',
       categoryId: 'python',
@@ -2396,168 +1603,320 @@ print("Favorite subject:", favorite_subject)
       emoji: '🤔',
       content: `# Python Lesson 5: Decisions (if statements) 🤔
 
-## Making Choices
+## Making Smart Decisions
 
-Programs need to make decisions, just like we do! Python uses \`if\` statements to make choices.
+Real programs need to make decisions - just like you do! Should I show this message? Can this user access this feature? Is this answer correct? Python uses \`if\` statements to make these choices based on conditions.
 
-## Basic If Statement
+**Think of it like this:** If it's raining, you bring an umbrella. If it's sunny, you wear sunglasses. Programs work the same way - they check conditions and respond accordingly!
+
+## Understanding Conditions
+
+A **condition** is a question that can be answered with True or False:
+- "Is the age 8 or more?" → True or False
+- "Is the score greater than 80?" → True or False
+- "Is the password correct?" → True or False
+
+## The Basic If Statement
+
+The simplest decision: "If this is true, do that."
 
 \`\`\`python
-age = 8
+age = 10
 
 if age >= 8:
     print("You can ride the roller coaster!")
 \`\`\`
 
-**What's happening?**
-- \`if\` checks a condition
-- \`age >= 8\` means "age is 8 or more"
-- If true, the code inside runs
-- Notice the colon \`:\` and indentation!
+**Breaking it down:**
+- \`if\` - starts the decision
+- \`age >= 8\` - the condition (question)
+- \`:\` - colon means "here comes the action"
+- Indented code - what happens if the condition is True
 
-## Comparison Operators
+**Critical:** The indentation (4 spaces) is required! Python uses indentation to know which code belongs inside the if statement.
 
-- \`==\` equals (is the same)
-- \`!=\` not equals (is different)
-- \`>\` greater than
-- \`<\` less than
-- \`>=\` greater than or equal
-- \`<=\` less than or equal
+## Comparison Operators - Your Decision Tools
 
-## Examples
+These operators let you compare values:
 
-### Checking Numbers
+| Operator | Meaning | Example | Result |
+|----------|---------|---------|--------|
+| \`==\` | equals | \`5 == 5\` | True |
+| \`!=\` | not equals | \`5 != 3\` | True |
+| \`>\` | greater than | \`10 > 5\` | True |
+| \`<\` | less than | \`3 < 7\` | True |
+| \`>=\` | greater than or equal | \`8 >= 8\` | True |
+| \`<=\` | less than or equal | \`5 <= 10\` | True |
 
-\`\`\`python
-score = 85
+**Common mistake:** Using \`=\` instead of \`==\`
+- \`=\` assigns a value (age = 10)
+- \`==\` compares values (age == 10)
 
-if score >= 80:
-    print("Great job!")
-\`\`\`
+## Real-World Decision Examples
 
-### Checking Text
-
-\`\`\`python
-color = input("What is your favorite color? ")
-
-if color == "blue":
-    print("Blue is a great color!")
-\`\`\`
-
-## If-Else Statements
-
-Use \`else\` for when the condition is false:
+### Example 1: Game Score System
 
 \`\`\`python
-age = 7
+score = int(input("What's your game score? "))
 
-if age >= 8:
-    print("You can ride!")
+if score >= 100:
+    print("🏆 Champion! Amazing score!")
+elif score >= 50:
+    print("⭐ Great job! You're doing well!")
+elif score >= 20:
+    print("👍 Good effort! Keep practicing!")
 else:
-    print("Sorry, you're too young")
+    print("💪 Keep trying! You'll get better!")
 \`\`\`
 
-## If-Elif-Else
-
-Use \`elif\` (else-if) for multiple conditions:
+### Example 2: Weather Advisor
 
 \`\`\`python
-score = 85
+temperature = int(input("What's the temperature? "))
 
-if score >= 90:
-    print("Excellent!")
-elif score >= 80:
-    print("Great job!")
-elif score >= 70:
-    print("Good work!")
+if temperature > 25:
+    print("It's hot! Wear light clothes and drink water.")
+elif temperature > 15:
+    print("Nice weather! Perfect for playing outside.")
+elif temperature > 5:
+    print("It's cool. A jacket would be good.")
 else:
-    print("Keep practicing!")
+    print("It's cold! Bundle up with warm clothes.")
 \`\`\`
 
-## Multiple Conditions
-
-### Using \`and\`
-
-Both conditions must be true:
-
-\`\`\`python
-age = 10
-has_ticket = True  # True means yes, False means no
-
-if age >= 8 and has_ticket:
-    print("You can enter!")
-\`\`\`
-
-**Note:** \`True\` and \`False\` are special values in Python. They represent yes/no or on/off states.
-
-### Using \`or\`
-
-Either condition can be true:
-
-\`\`\`python
-day = "Saturday"
-
-if day == "Saturday" or day == "Sunday":
-    print("It's the weekend!")
-\`\`\`
-
-## Practice Examples
-
-### Example 1: Age Checker
+### Example 3: Access Control
 
 \`\`\`python
 age = int(input("How old are you? "))
 
 if age >= 13:
-    print("You are a teenager")
+    print("You can watch PG-13 movies!")
 elif age >= 8:
-    print("You are a child")
+    print("You can watch family movies!")
 else:
-    print("You are very young!")
+    print("Stick to kids' movies for now!")
 \`\`\`
 
-### Example 2: Grade Calculator
+## If-Else: Two Paths
+
+When you have two options - do this OR do that:
 
 \`\`\`python
-score = int(input("Enter your score: "))
+password = input("Enter the password: ")
+
+if password == "python123":
+    print("✅ Access granted! Welcome!")
+else:
+    print("❌ Access denied! Wrong password.")
+\`\`\`
+
+**Think of it like:** If the password is correct, let them in. Otherwise, block access.
+
+## If-Elif-Else: Multiple Paths
+
+When you have many options, use \`elif\` (short for "else if"):
+
+\`\`\`python
+score = int(input("Enter your test score: "))
 
 if score >= 90:
     grade = "A"
+    message = "Outstanding work!"
 elif score >= 80:
     grade = "B"
+    message = "Great job!"
 elif score >= 70:
     grade = "C"
+    message = "Good work!"
+elif score >= 60:
+    grade = "D"
+    message = "You passed, but try harder next time!"
 else:
-    grade = "Keep trying!"
+    grade = "F"
+    message = "Keep studying and try again!"
 
-print("Your grade is", grade)
+print("Your grade:", grade)
+print(message)
 \`\`\`
 
-### Example 3: Password Checker
+**How it works:** Python checks each condition in order. As soon as one is True, it runs that code and skips the rest.
+
+## Combining Conditions
+
+### Using \`and\` - Both Must Be True
 
 \`\`\`python
-password = input("Enter password: ")
+age = 12
+has_permission = True
 
-if password == "python123":
-    print("Access granted!")
+if age >= 10 and has_permission:
+    print("You can go to the park!")
 else:
-    print("Access denied!")
+    print("Sorry, you need to be 10+ AND have permission.")
 \`\`\`
+
+**Real example:** You can watch a movie if you're old enough AND have a ticket.
+
+### Using \`or\` - Either Can Be True
+
+\`\`\`python
+day = input("What day is it? ")
+
+if day == "Saturday" or day == "Sunday":
+    print("It's the weekend! Time to relax!")
+else:
+    print("It's a school day. Time to learn!")
+\`\`\`
+
+**Real example:** You can sleep in if it's Saturday OR Sunday.
+
+### Using \`not\` - Reverse the Condition
+
+\`\`\`python
+is_raining = input("Is it raining? (yes/no): ")
+
+if not is_raining == "yes":
+    print("Great! Let's go outside and play!")
+else:
+    print("Stay inside and read a book!")
+\`\`\`
+
+## Practical Applications
+
+### Application 1: Smart Calculator
+
+\`\`\`python
+print("=== Smart Calculator ===")
+num1 = float(input("First number: "))
+operation = input("Operation (+, -, *, /): ")
+num2 = float(input("Second number: "))
+
+if operation == "+":
+    result = num1 + num2
+elif operation == "-":
+    result = num1 - num2
+elif operation == "*":
+    result = num1 * num2
+elif operation == "/":
+    if num2 == 0:
+        result = "Error! Can't divide by zero!"
+    else:
+        result = num1 / num2
+else:
+    result = "Invalid operation!"
+
+print("Result:", result)
+\`\`\`
+
+### Application 2: Adventure Game Choice
+
+\`\`\`python
+print("You're in a forest. You see two paths.")
+choice = input("Do you go LEFT or RIGHT? ")
+
+if choice.lower() == "left":
+    print("You found a treasure chest! 🏆")
+    print("You win!")
+elif choice.lower() == "right":
+    print("You found a friendly dragon! 🐉")
+    print("The dragon gives you a magic gem!")
+else:
+    print("You stand still, confused. Try LEFT or RIGHT next time!")
+\`\`\`
+
+### Application 3: Study Time Advisor
+
+\`\`\`python
+time = int(input("What time is it? (0-23): "))
+has_homework = input("Do you have homework? (yes/no): ")
+
+if time >= 20 or time < 7:
+    print("It's late or early! Time to rest.")
+elif has_homework.lower() == "yes":
+    if time < 18:
+        print("Good time to do homework! Focus and get it done.")
+    else:
+        print("Do your homework, but don't stay up too late!")
+else:
+    print("Free time! Maybe read a book or play outside.")
+\`\`\`
+
+## Example Code to Guide You
+
+Here's some example code showing how to use if/elif/else statements:
+
+\`\`\`python
+# Example: Checking a number and giving feedback
+number = 15
+
+if number > 10:
+    print("The number is greater than 10")
+elif number < 10:
+    print("The number is less than 10")
+else:
+    print("The number is exactly 10")
+
+# Example: Checking multiple conditions
+score = 85
+if score >= 90:
+    print("Excellent!")
+elif score >= 70:
+    print("Good job!")
+else:
+    print("Keep practicing!")
+
+# Notice how:
+# - if checks the first condition
+# - elif checks other conditions if the first is false
+# - else handles everything else
+# - You can check numbers, text, or combinations
+\`\`\`
+
+**Now try your own version!** Use if/elif/else to check different conditions.
 
 ## Try It Yourself
 
-1. Create a program that checks if a number is positive or negative
-2. Make a weather program that gives advice based on temperature
-3. Build a simple password checker
-4. Create a program that checks if you can vote (age 18+)
+Create your own decision-making programs! Try these:
+
+1. **Number Analyzer**
+   - Ask for a number
+   - Tell if it's positive, negative, or zero
+   - Tell if it's even or odd
+   - Tell if it's greater than 100
+
+2. **Shopping Helper**
+   - Ask how much money they have
+   - Ask the price of an item
+   - Tell them if they can afford it
+   - If yes, calculate change
+
+3. **Game Character Creator**
+   - Ask for character name and age
+   - Based on age, assign a character class (young = wizard, medium = warrior, old = sage)
+   - Print their character info
+
+4. **Weather-Based Activity Planner**
+   - Ask about weather (sunny, rainy, snowy)
+   - Suggest appropriate activities
+   - Include temperature in the decision
+
+<!-- EXERCISE_START -->
+{
+  "instruction": "Create a program that asks for a number, then uses if/elif/else to check if it's positive, negative, or zero, and prints an appropriate message. Also check if the number is greater than 100!",
+  "codePattern": "if.*>|elif.*<|else:",
+  "expectedContains": null
+}
+<!-- EXERCISE_END -->
 
 ## Important Notes
 
 - Always use a colon \`:\` after \`if\`, \`elif\`, and \`else\`
-- Indent code inside if statements (use 4 spaces)
-- \`==\` checks if equal, \`=\` assigns a value
-- Use \`and\` for both conditions, \`or\` for either condition
-- Test your conditions with different values`,
+- **Indentation is critical** - use 4 spaces for code inside if statements
+- \`==\` compares (checks if equal), \`=\` assigns (gives a value)
+- Use \`and\` when BOTH conditions must be true
+- Use \`or\` when EITHER condition can be true
+- Test your programs with different values to make sure all paths work
+- Decision-making is what makes programs smart and useful!`,
       quizId: quizId++,
       assessmentType: 'quiz',
       categoryId: 'python',
@@ -2572,81 +1931,88 @@ else:
       emoji: '🔄',
       content: `# Python Lesson 6: Loops 🔄
 
-## What are Loops?
+## The Power of Repetition
 
-Loops let you repeat code without typing it over and over. They make programs efficient and powerful!
+Imagine having to write "Hello!" 100 times - that would take forever! Loops solve this problem. They let you repeat code automatically, making programs powerful and efficient.
 
-## For Loops
+**Why loops matter:** Real programs use loops constantly - games loop through levels, websites loop through pages, and apps loop through data. Learning loops unlocks the ability to build truly useful programs!
 
-A \`for\` loop repeats code a specific number of times.
+## Understanding For Loops
 
-### Counting
+A \`for\` loop repeats code a **specific number of times**. Think of it like: "Do this 5 times" or "Repeat this for each item in a list."
+
+### The Range Function
+
+\`range()\` is your tool for controlling how many times a loop runs:
 
 \`\`\`python
 for i in range(5):
     print("Hello!")
 \`\`\`
 
-**Output:**
-\`\`\`
-Hello!
-Hello!
-Hello!
-Hello!
-Hello!
-\`\`\`
+**What happens:**
+- \`range(5)\` creates numbers: 0, 1, 2, 3, 4 (5 numbers total)
+- The loop runs once for each number
+- \`i\` is a variable that holds the current number
+- Result: "Hello!" prints 5 times
 
-### Using Range
+### Using the Loop Variable
+
+The variable \`i\` (or any name you choose) holds the current number:
 
 \`\`\`python
 for i in range(5):
-    print(i)
+    print("Count:", i)
 \`\`\`
 
 **Output:**
 \`\`\`
-0
-1
-2
-3
-4
+Count: 0
+Count: 1
+Count: 2
+Count: 3
+Count: 4
 \`\`\`
 
-**Note:** \`range(5)\` goes from 0 to 4 (5 numbers total)
+**Important:** \`range(5)\` starts at 0, not 1! This is because programmers often count from 0.
 
-### Range with Start and End
+### Starting from a Different Number
+
+Use \`range(start, end)\` to begin from a specific number:
 
 \`\`\`python
 for i in range(1, 6):
     print(i)
 \`\`\`
 
-**Output:**
-\`\`\`
-1
-2
-3
-4
-5
-\`\`\`
+**Output:** 1, 2, 3, 4, 5 (starts at 1, ends before 6)
 
-### Range with Steps
+### Counting by Steps
+
+Use \`range(start, end, step)\` to count by 2s, 3s, etc.:
 
 \`\`\`python
 for i in range(0, 10, 2):
     print(i)
 \`\`\`
 
-**Output:**
-\`\`\`
-0
-2
-4
-6
-8
+**Output:** 0, 2, 4, 6, 8 (counts by 2s)
+
+### Counting Backwards
+
+Use a negative step to count down:
+
+\`\`\`python
+for i in range(10, 0, -1):
+    print(i)
+print("Blast off! 🚀")
 \`\`\`
 
+**Output:** 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, then "Blast off! 🚀"
+
 ## Looping Through Lists
+
+You can loop through items in a list (we'll learn more about lists later):
 
 \`\`\`python
 fruits = ["apple", "banana", "orange"]
@@ -2655,16 +2021,11 @@ for fruit in fruits:
     print("I like", fruit)
 \`\`\`
 
-**Output:**
-\`\`\`
-I like apple
-I like banana
-I like orange
-\`\`\`
+**What happens:** The loop runs once for each item in the list, and \`fruit\` holds the current item.
 
-## While Loops
+## While Loops - Repeat Until...
 
-A \`while\` loop repeats as long as a condition is true.
+A \`while\` loop repeats **as long as a condition is true**. Think: "Keep doing this until something changes."
 
 ### Basic While Loop
 
@@ -2673,19 +2034,12 @@ count = 0
 
 while count < 5:
     print("Count is", count)
-    count = count + 1
+    count = count + 1  # Important: change the variable!
 \`\`\`
 
-**Output:**
-\`\`\`
-Count is 0
-Count is 1
-Count is 2
-Count is 3
-Count is 4
-\`\`\`
+**Critical:** You MUST change the variable inside the loop, or it will run forever (infinite loop)!
 
-### User Input Loop
+### Interactive While Loop
 
 \`\`\`python
 answer = ""
@@ -2693,91 +2047,222 @@ answer = ""
 while answer != "yes":
     answer = input("Do you want to continue? (yes/no): ")
     print("You said:", answer)
+
+print("Great! Let's continue!")
 \`\`\`
 
-## Nested Loops
+**Use case:** Keep asking until you get the answer you want.
 
-Loops inside loops:
+## When to Use For vs While
+
+- **Use \`for\`** when you know exactly how many times to repeat
+- **Use \`while\`** when you need to repeat until a condition changes
+
+## Practical Loop Applications
+
+### Application 1: Multiplication Table Generator
 
 \`\`\`python
-for i in range(3):
-    for j in range(2):
-        print(i, j)
+number = int(input("Which times table? (1-12): "))
+
+print(f"=== {number} Times Table ===")
+for i in range(1, 13):
+    result = number * i
+    print(f"{number} x {i} = {result}")
+\`\`\`
+
+### Application 2: Number Pattern Generator
+
+\`\`\`python
+print("=== Number Patterns ===")
+
+# Pattern 1: Counting up
+print("Counting 1 to 10:")
+for i in range(1, 11):
+    print(i, end=" ")
+print()
+
+# Pattern 2: Even numbers
+print("Even numbers 0 to 20:")
+for i in range(0, 21, 2):
+    print(i, end=" ")
+print()
+
+# Pattern 3: Powers of 2
+print("Powers of 2:")
+for i in range(1, 6):
+    power = 2 ** i
+    print(f"2^{i} = {power}")
+\`\`\`
+
+### Application 3: Accumulator Pattern
+
+Build up a total by adding in a loop:
+
+\`\`\`python
+total = 0
+print("Enter 5 numbers to add:")
+
+for i in range(5):
+    number = int(input(f"Number {i+1}: "))
+    total = total + number
+    print(f"Running total: {total}")
+
+print(f"Final sum: {total}")
+\`\`\`
+
+### Application 4: Password Retry System
+
+\`\`\`python
+correct_password = "python123"
+attempts = 0
+max_attempts = 3
+
+while attempts < max_attempts:
+    password = input("Enter password: ")
+    if password == correct_password:
+        print("✅ Access granted!")
+        break
+    else:
+        attempts = attempts + 1
+        remaining = max_attempts - attempts
+        if remaining > 0:
+            print(f"❌ Wrong password! {remaining} attempts left.")
+        else:
+            print("❌ Access denied! Too many failed attempts.")
+\`\`\`
+
+## Nested Loops - Loops Inside Loops
+
+Sometimes you need a loop inside another loop:
+
+\`\`\`python
+# Draw a grid pattern
+for row in range(3):
+    for col in range(4):
+        print(f"({row},{col})", end=" ")
+    print()  # New line after each row
 \`\`\`
 
 **Output:**
 \`\`\`
-0 0
-0 1
-1 0
-1 1
-2 0
-2 1
+(0,0) (0,1) (0,2) (0,3)
+(1,0) (1,1) (1,2) (1,3)
+(2,0) (2,1) (2,2) (2,3)
 \`\`\`
 
-## Practice Examples
+**Real use:** Creating grids, tables, or patterns.
 
-### Example 1: Countdown
+## Common Loop Patterns
 
-\`\`\`python
-for i in range(10, 0, -1):
-    print(i)
-print("Blast off!")
-\`\`\`
-
-### Example 2: Multiplication Table
-
-\`\`\`python
-number = 5
-
-for i in range(1, 11):
-    result = number * i
-    print(number, "x", i, "=", result)
-\`\`\`
-
-### Example 3: Sum Numbers
+### Pattern 1: Sum a Range
 
 \`\`\`python
 total = 0
-
-for i in range(1, 6):
+for i in range(1, 101):
     total = total + i
-    print("Adding", i, "Total is now", total)
-
-print("Final total:", total)
+print("Sum of 1 to 100:", total)
 \`\`\`
 
-### Example 4: Guessing Game
+### Pattern 2: Find Maximum
 
 \`\`\`python
-secret = 7
-guess = 0
+numbers = [5, 12, 3, 8, 15, 2]
+maximum = numbers[0]
 
-while guess != secret:
-    guess = int(input("Guess the number (1-10): "))
-    if guess < secret:
-        print("Too low!")
-    elif guess > secret:
-        print("Too high!")
+for num in numbers:
+    if num > maximum:
+        maximum = num
 
-print("You got it!")
+print("Maximum number:", maximum)
+\`\`\`
+
+### Pattern 3: Count Occurrences
+
+\`\`\`python
+text = "hello world"
+count = 0
+
+for letter in text:
+    if letter == "l":
+        count = count + 1
+
+print(f"The letter 'l' appears {count} times")
 \`\`\`
 
 ## Try It Yourself
 
-1. Print numbers from 1 to 10
-2. Print the 5 times table
-3. Create a program that counts from 10 down to 1
-4. Make a guessing game
-5. Print your name 5 times using a loop
+Create these programs using loops:
+
+1. **Times Table Generator**
+   - Ask which number's times table to generate
+   - Print the full table from 1x to 12x
+
+2. **Number Analyzer**
+   - Ask for 5 numbers
+   - Calculate and display: sum, average, maximum, minimum
+
+3. **Countdown Timer**
+   - Count down from a number the user enters
+   - Display each number
+   - End with a special message
+
+4. **Pattern Creator**
+   - Print a pattern like: 1, 22, 333, 4444, 55555
+   - Or: *, **, ***, ****, *****
+
+5. **Interactive Quiz**
+   - Ask 5 questions in a loop
+   - Keep track of correct answers
+   - Display final score
+
+## Example Code to Guide You
+
+Here's some example code showing how to use loops:
+
+\`\`\`python
+# Example: Using a for loop to count
+for i in range(1, 6):
+    print("Count:", i)
+
+# Example: Using a loop to create a pattern
+for i in range(1, 4):
+    print("Number", i, "squared is", i * i)
+
+# Example: Building up a total in a loop
+total = 0
+for i in range(1, 4):
+    total = total + i
+    print("Adding", i, "- Total so far:", total)
+print("Final total:", total)
+
+# Notice how:
+# - range(1, 6) gives you 1, 2, 3, 4, 5
+# - The loop variable (i) changes each time
+# - You can do calculations inside the loop
+# - You can build up values (like total) as you loop
+\`\`\`
+
+**Now try your own version!** Use loops to repeat actions and create patterns.
+
+<!-- EXERCISE_START -->
+{
+  "instruction": "Create a program that uses a for loop to print numbers from 1 to 10, then uses another loop to print the 5 times table (5 x 1 = 5, 5 x 2 = 10, etc. up to 5 x 10 = 50).",
+  "codePattern": "for.*range|for.*in.*range",
+  "expectedContains": null
+}
+<!-- EXERCISE_END -->
 
 ## Important Notes
 
-- \`for\` loops repeat a specific number of times
-- \`while\` loops repeat while a condition is true
-- Always indent code inside loops
-- Be careful with \`while\` loops - make sure they can end! (Otherwise you'll get an infinite loop that never stops)
-- Use \`range()\` to control how many times a loop runs`,
+- \`for\` loops are perfect when you know how many times to repeat
+- \`while\` loops are perfect when you need to repeat until a condition changes
+- **Always indent code inside loops** (4 spaces)
+- **Be careful with while loops** - make sure the condition can become False, or you'll get an infinite loop!
+- \`range(start, end)\` goes from start up to (but not including) end
+- \`range(5)\` gives you 0, 1, 2, 3, 4 (5 numbers, starting at 0)
+- Loops make programs powerful - you can process lots of data or repeat actions easily
+- Practice with different ranges and conditions to master loops!`,
       quizId: quizId++,
       assessmentType: 'quiz',
       categoryId: 'python',
@@ -2794,186 +2279,356 @@ print("You got it!")
 
 ## What are Functions?
 
-Functions are reusable pieces of code. Instead of writing the same code over and over, you write it once in a function and use it whenever you need it!
+Functions are like **reusable tools** in your programming toolbox. Instead of writing the same code repeatedly, you write it once as a function and use it whenever needed!
 
-## Why Use Functions?
+**Real-world analogy:** Think of a function like a recipe. You write the recipe once, but you can use it to cook the same dish many times. Functions work the same way - define once, use many times!
 
-- **Reuse code**: Write once, use many times
-- **Organize code**: Break problems into smaller pieces
-- **Easier to fix**: Change code in one place
-- **Cleaner programs**: Makes code easier to read
+## Why Functions Are Powerful
 
-## Creating Functions
+- **Avoid repetition**: Write code once, use it everywhere
+- **Organize your code**: Break big problems into smaller, manageable pieces
+- **Easy to fix**: Change code in one place, and it updates everywhere
+- **Readable code**: Function names describe what they do
+- **Testable**: Test each function separately
 
-### Basic Function
+## Creating Your First Function
+
+### Basic Function Structure
 
 \`\`\`python
 def greet():
     print("Hello!")
-    print("Welcome to Python")
+    print("Welcome to Python programming!")
 
+# Call (use) the function
 greet()
 \`\`\`
 
-**Output:**
-\`\`\`
-Hello!
-Welcome to Python
-\`\`\`
+**Breaking it down:**
+- \`def\` - keyword that means "define a function"
+- \`greet\` - the function name (you choose this)
+- \`()\` - parentheses (empty here, but can hold parameters)
+- \`:\` - colon means "here comes the function code"
+- Indented code - what the function does
+- \`greet()\` - calling the function makes it run
 
-### Function with Parameters
+### Functions with Parameters
 
-Parameters are information you give to the function:
+**Parameters** are like ingredients you give to your function:
 
 \`\`\`python
 def greet(name):
     print("Hello,", name)
     print("Nice to meet you!")
+    print("Have a great day!")
 
+# Use the function with different names
 greet("Alice")
 greet("Bob")
+greet("Charlie")
 \`\`\`
 
-**Output:**
-\`\`\`
-Hello, Alice
-Nice to meet you!
-Hello, Bob
-Nice to meet you!
+**What happens:** The function receives the name as a parameter and uses it inside. You can call it with different values!
+
+### Functions with Multiple Parameters
+
+Functions can take multiple inputs:
+
+\`\`\`python
+def introduce(name, age, hobby):
+    print(f"Hi! I'm {name}")
+    print(f"I'm {age} years old")
+    print(f"I love {hobby}")
+
+introduce("Sam", 9, "coding")
+introduce("Emma", 10, "drawing")
 \`\`\`
 
-### Function with Return
+## Returning Values
 
-Functions can give back (return) a value:
+Functions can **return** (give back) a value using the \`return\` keyword:
 
 \`\`\`python
 def add(a, b):
     result = a + b
     return result
 
+# Use the returned value
 sum = add(5, 3)
 print("The sum is", sum)
+
+# Or use it directly
+print("10 + 7 =", add(10, 7))
 \`\`\`
 
-**Output:**
-\`\`\`
-The sum is 8
-\`\`\`
+**Key concept:** \`return\` sends a value back to where the function was called. Without \`return\`, the function does something but doesn't give back a value.
 
-## Function Examples
+## Real-World Function Examples
 
-### Example 1: Calculator Functions
+### Example 1: Math Helper Functions
 
 \`\`\`python
-def add(a, b):
-    return a + b
+def square(number):
+    """Calculate the square of a number"""
+    return number * number
 
-def subtract(a, b):
-    return a - b
+def cube(number):
+    """Calculate the cube of a number"""
+    return number * number * number
 
-def multiply(a, b):
-    return a * b
+def power(base, exponent):
+    """Calculate base raised to exponent"""
+    result = 1
+    for i in range(exponent):
+        result = result * base
+    return result
 
 # Use the functions
-result1 = add(10, 5)
-result2 = subtract(10, 5)
-result3 = multiply(10, 5)
-
-print("10 + 5 =", result1)
-print("10 - 5 =", result2)
-print("10 * 5 =", result3)
+print("5 squared =", square(5))
+print("3 cubed =", cube(3))
+print("2 to the power of 8 =", power(2, 8))
 \`\`\`
 
-### Example 2: Greeting Function
+### Example 2: Text Processing Functions
 
 \`\`\`python
-def greet(name, age):
-    print("Hello,", name)
-    print("You are", age, "years old")
-    print("Have a great day!")
+def create_greeting(name, time_of_day):
+    """Create a personalized greeting"""
+    if time_of_day == "morning":
+        greeting = "Good morning"
+    elif time_of_day == "afternoon":
+        greeting = "Good afternoon"
+    else:
+        greeting = "Good evening"
+    
+    return f"{greeting}, {name}! How are you today?"
 
-greet("Alice", 8)
-greet("Bob", 10)
+def count_words(text):
+    """Count words in a text"""
+    words = text.split()
+    return len(words)
+
+# Use the functions
+message = create_greeting("Alex", "morning")
+print(message)
+
+text = "Python is fun to learn"
+print(f"'{text}' has {count_words(text)} words")
 \`\`\`
 
-### Example 3: Area Calculator
+### Example 3: Game Helper Functions
 
 \`\`\`python
-def rectangle_area(length, width):
-    area = length * width
-    return area
+def calculate_score(points, multiplier):
+    """Calculate final score with multiplier"""
+    return points * multiplier
 
-def circle_area(radius):
-    area = 3.14 * radius * radius
-    return area
+def check_level(score):
+    """Determine player level based on score"""
+    if score >= 1000:
+        return "Master"
+    elif score >= 500:
+        return "Expert"
+    elif score >= 200:
+        return "Advanced"
+    elif score >= 100:
+        return "Intermediate"
+    else:
+        return "Beginner"
 
-# Calculate areas
-rect = rectangle_area(5, 3)
-circle = circle_area(4)
+def display_stats(name, score, multiplier):
+    """Display player statistics"""
+    final_score = calculate_score(score, multiplier)
+    level = check_level(final_score)
+    
+    print(f"=== {name}'s Stats ===")
+    print(f"Base points: {score}")
+    print(f"Multiplier: {multiplier}x")
+    print(f"Final score: {final_score}")
+    print(f"Level: {level}")
 
-print("Rectangle area:", rect)
-print("Circle area:", circle)
+# Use the functions
+display_stats("Player1", 150, 2)
 \`\`\`
 
-## Built-in Functions
+## Combining Functions
 
-Python has many built-in functions you can use:
+Functions can call other functions, building complex programs from simple pieces:
 
 \`\`\`python
-# len() - get length
+def get_area(length, width):
+    """Calculate rectangle area"""
+    return length * width
+
+def get_perimeter(length, width):
+    """Calculate rectangle perimeter"""
+    return 2 * (length + width)
+
+def describe_rectangle(length, width):
+    """Describe a rectangle with all its properties"""
+    area = get_area(length, width)
+    perimeter = get_perimeter(length, width)
+    
+    print(f"Rectangle: {length} x {width}")
+    print(f"Area: {area}")
+    print(f"Perimeter: {perimeter}")
+    
+    if length == width:
+        print("This is a square!")
+
+describe_rectangle(5, 5)
+describe_rectangle(4, 7)
+\`\`\`
+
+## Built-in Python Functions
+
+Python comes with many useful built-in functions:
+
+\`\`\`python
+# len() - get length of strings, lists, etc.
 name = "Python"
 print(len(name))  # Output: 6
 
-# max() - get maximum
-numbers = [5, 2, 8, 1]
-print(max(numbers))  # Output: 8
+# max() and min() - find maximum/minimum
+numbers = [5, 12, 3, 8, 15, 2]
+print("Maximum:", max(numbers))  # Output: 15
+print("Minimum:", min(numbers))  # Output: 2
 
-# min() - get minimum
-print(min(numbers))  # Output: 1
+# abs() - absolute value (distance from zero)
+print(abs(-10))  # Output: 10
+print(abs(10))   # Output: 10
 
-# abs() - absolute value
-print(abs(-5))  # Output: 5
+# round() - round to nearest whole number
+print(round(3.7))  # Output: 4
+print(round(3.2))  # Output: 3
+
+# str() - convert to string
+age = 8
+message = "I am " + str(age) + " years old"
+print(message)
 \`\`\`
 
-## Practice Examples
+## Function Best Practices
 
-### Example: Grade Calculator
+### 1. Descriptive Names
 
 \`\`\`python
-def calculate_grade(score):
-    if score >= 90:
-        return "A"
-    elif score >= 80:
-        return "B"
-    elif score >= 70:
-        return "C"
-    else:
-        return "F"
+# Good names:
+def calculate_total_price():
+def check_user_age():
+def get_student_grade():
 
-# Use the function
-grade1 = calculate_grade(95)
-grade2 = calculate_grade(75)
-
-print("Score 95 gets grade", grade1)
-print("Score 75 gets grade", grade2)
+# Bad names:
+def calc():  # Too vague
+def func1():  # Not descriptive
+def x():      # Meaningless
 \`\`\`
+
+### 2. Single Responsibility
+
+Each function should do ONE thing well:
+
+\`\`\`python
+# Good: One clear purpose
+def calculate_area(length, width):
+    return length * width
+
+def display_area(area):
+    print(f"The area is {area}")
+
+# Less ideal: Does multiple things
+def calculate_and_display_area(length, width):
+    area = length * width
+    print(f"The area is {area}")
+\`\`\`
+
+### 3. Use Return Values
+
+When a function calculates something, return it:
+
+\`\`\`python
+# Good: Returns a value
+def add(a, b):
+    return a + b
+
+result = add(5, 3)
+
+# Less useful: Just prints
+def add(a, b):
+    print(a + b)
+\`\`\`
+
+## Example Code to Guide You
+
+Here's some example code showing how to create and use functions:
+
+\`\`\`python
+# Example: A simple function that takes parameters
+def say_hello(name):
+    print("Hello,", name)
+    print("Nice to meet you!")
+
+# Using the function
+say_hello("Alice")
+say_hello("Bob")
+
+# Example: A function that returns a value
+def double(number):
+    result = number * 2
+    return result
+
+# Using the return value
+answer = double(5)
+print("Double of 5 is", answer)
+
+# Notice how:
+# - def defines the function
+# - Parameters go in parentheses
+# - return sends a value back
+# - You call functions by writing their name with ()
+\`\`\`
+
+**Now try your own version!** Create functions that do calculations or print messages.
 
 ## Try It Yourself
 
-1. Create a function that prints your name
-2. Make a function that adds two numbers
-3. Write a function that calculates the area of a square
-4. Create a function that greets someone by name
-5. Build a function that checks if a number is even
+Create these functions to practice:
+
+1. **Math Functions**
+   - \`multiply(a, b)\` - multiplies two numbers
+   - \`is_even(number)\` - returns True if number is even, False otherwise
+   - \`square(number)\` - returns number squared
+
+2. **Text Functions**
+   - \`create_greeting(name)\` - returns a personalized greeting
+   - \`repeat_text(text, times)\` - returns text repeated a certain number of times
+
+3. **Game Functions**
+   - \`calculate_bonus(base_score, level)\` - calculates score with level bonus
+   - \`check_win(score, target)\` - returns True if score >= target
+
+4. **Utility Functions**
+   - \`get_max(a, b, c)\` - returns the largest of three numbers
+   - \`format_currency(amount)\` - returns amount formatted as currency (e.g., "£10.50")
+
+<!-- EXERCISE_START -->
+{
+  "instruction": "Create a function called 'greet' that takes a name as a parameter and prints a greeting. Then create a function called 'add' that takes two numbers and returns their sum. Call both functions to test them!",
+  "codePattern": "def\\s+greet|def\\s+add",
+  "expectedContains": null
+}
+<!-- EXERCISE_END -->
 
 ## Important Notes
 
-- Use \`def\` to define a function
-- Function names should be descriptive
-- Use parameters to pass information to functions
-- Use \`return\` to give back a value
-- Call functions by writing their name with parentheses
-- Functions help organize and reuse code`,
+- Use \`def\` keyword to define a function
+- Function names should be clear and descriptive (use lowercase with underscores)
+- Parameters go inside the parentheses: \`def function_name(param1, param2):\`
+- Use \`return\` to send a value back from the function
+- Call functions by writing their name with parentheses: \`function_name()\`
+- Functions make code organized, reusable, and easier to understand
+- Break big problems into smaller functions - it's like building with LEGO blocks!
+- Practice creating functions for common tasks you do repeatedly`,
       quizId: quizId++,
       assessmentType: 'quiz',
       categoryId: 'python',
@@ -2988,19 +2643,17 @@ print("Score 75 gets grade", grade2)
       emoji: '🎨',
       content: `# Python Lesson 8: Graphics & Turtle 🎨
 
-## What is Turtle Graphics?
+## Creating Art with Code!
 
-Turtle graphics lets you draw pictures using Python! You control a "turtle" that moves around and draws lines.
+Turtle graphics lets you create drawings and art using Python! You control a virtual "turtle" that moves around the screen, drawing lines as it goes. It's like having a robot artist that follows your commands!
 
-## Getting Started
+**Why it's awesome:** You can create beautiful patterns, shapes, and even animations - all with code! This combines programming with creativity.
 
-First, you need to import the turtle module:
+## Getting Started with Turtle
 
-\`\`\`python
-import turtle
-\`\`\`
+### Import and Create
 
-## Creating a Turtle
+First, import the turtle module and create your turtle:
 
 \`\`\`python
 import turtle
@@ -3008,45 +2661,39 @@ import turtle
 t = turtle.Turtle()
 \`\`\`
 
-## Basic Drawing Commands
+**What happens:** You get a turtle (usually shown as a small arrow) that starts in the center of the screen, facing right.
 
-### Moving the Turtle
+## Basic Movement Commands
+
+### Moving Forward and Backward
 
 \`\`\`python
 import turtle
 
 t = turtle.Turtle()
 
-t.forward(100)  # Move forward 100 steps
-t.backward(50)  # Move backward 50 steps
+t.forward(100)   # Move forward 100 pixels
+t.backward(50)  # Move backward 50 pixels
 \`\`\`
 
-### Turning
+**Think of it like:** The turtle walks forward or backward, leaving a trail (line) behind it.
+
+### Turning Left and Right
 
 \`\`\`python
-t.left(90)   # Turn left 90 degrees
-t.right(45)  # Turn right 45 degrees
+t.left(90)   # Turn left 90 degrees (quarter turn)
+t.right(45)  # Turn right 45 degrees (eighth turn)
 \`\`\`
+
+**Understanding degrees:**
+- 90° = quarter turn (right angle)
+- 180° = half turn (turn around)
+- 360° = full circle
+- 45° = eighth turn
+
+## Drawing Your First Shapes
 
 ### Drawing a Square
-
-\`\`\`python
-import turtle
-
-t = turtle.Turtle()
-
-t.forward(100)
-t.left(90)
-t.forward(100)
-t.left(90)
-t.forward(100)
-t.left(90)
-t.forward(100)
-\`\`\`
-
-## Using Loops with Turtle
-
-Drawing a square with a loop:
 
 \`\`\`python
 import turtle
@@ -3058,7 +2705,37 @@ for i in range(4):
     t.left(90)
 \`\`\`
 
-## Changing Colors
+**How it works:** Move forward, turn 90°, repeat 4 times = square!
+
+### Drawing a Triangle
+
+\`\`\`python
+import turtle
+
+t = turtle.Turtle()
+
+for i in range(3):
+    t.forward(100)
+    t.left(120)  # 360 / 3 = 120 degrees
+\`\`\`
+
+### Drawing a Hexagon
+
+\`\`\`python
+import turtle
+
+t = turtle.Turtle()
+
+for i in range(6):
+    t.forward(80)
+    t.left(60)  # 360 / 6 = 60 degrees
+\`\`\`
+
+**Pattern:** For any shape, divide 360 by the number of sides to get the turn angle!
+
+## Adding Color and Style
+
+### Changing Colors
 
 \`\`\`python
 import turtle
@@ -3070,50 +2747,27 @@ t.forward(100)
 
 t.color("blue")
 t.forward(100)
-\`\`\`
 
-## Drawing Shapes
-
-### Circle
-
-\`\`\`python
-import turtle
-
-t = turtle.Turtle()
-t.circle(50)  # Draw circle with radius 50
-\`\`\`
-
-### Star
-
-\`\`\`python
-import turtle
-
-t = turtle.Turtle()
-
-for i in range(5):
-    t.forward(100)
-    t.right(144)  # 180 - (360/5) = 144
-\`\`\`
-
-## Pen Control
-
-### Lifting the Pen
-
-\`\`\`python
-t.penup()    # Stop drawing
-t.forward(50)
-t.pendown()  # Start drawing again
-t.forward(50)
-\`\`\`
-
-### Pen Size
-
-\`\`\`python
-t.pensize(5)  # Make line thicker
+t.color("green")
 t.forward(100)
 \`\`\`
 
-## Filling Shapes
+**Available colors:** "red", "blue", "green", "yellow", "purple", "orange", "pink", "black", "white", and many more!
+
+### Changing Pen Size
+
+\`\`\`python
+t.pensize(1)   # Thin line
+t.forward(50)
+
+t.pensize(5)   # Thick line
+t.forward(50)
+
+t.pensize(10)  # Very thick line
+t.forward(50)
+\`\`\`
+
+### Filling Shapes
 
 \`\`\`python
 import turtle
@@ -3123,6 +2777,7 @@ t = turtle.Turtle()
 t.begin_fill()
 t.color("red")
 
+# Draw a filled square
 for i in range(4):
     t.forward(100)
     t.left(90)
@@ -3130,70 +2785,231 @@ for i in range(4):
 t.end_fill()
 \`\`\`
 
-## Practice Examples
+## Advanced Drawing Techniques
 
-### Example 1: House
+### Drawing Circles
 
 \`\`\`python
 import turtle
 
 t = turtle.Turtle()
 
-# Draw square (house)
-for i in range(4):
+t.circle(50)   # Circle with radius 50
+t.circle(100)  # Larger circle with radius 100
+\`\`\`
+
+### Drawing Stars
+
+\`\`\`python
+import turtle
+
+t = turtle.Turtle()
+t.color("gold")
+
+# 5-pointed star
+for i in range(5):
     t.forward(100)
-    t.left(90)
-
-# Draw triangle (roof)
-t.left(45)
-t.forward(70)
-t.right(90)
-t.forward(70)
+    t.right(144)  # 180 - (360/5) = 144 degrees
 \`\`\`
 
-### Example 2: Flower
+### Creating Patterns
 
 \`\`\`python
 import turtle
 
 t = turtle.Turtle()
-t.color("red")
+t.speed(10)  # Faster drawing
 
-for i in range(8):
-    t.circle(30)
-    t.left(45)
-\`\`\`
-
-### Example 3: Spiral
-
-\`\`\`python
-import turtle
-
-t = turtle.Turtle()
-t.speed(10)  # Make it faster
-
+# Spiral pattern
 for i in range(50):
     t.forward(i * 2)
     t.left(90)
 \`\`\`
 
+## Creative Projects
+
+### Project 1: Colorful Square Pattern
+
+\`\`\`python
+import turtle
+
+t = turtle.Turtle()
+t.speed(10)
+
+colors = ["red", "blue", "green", "yellow", "purple"]
+
+for i in range(20):
+    t.color(colors[i % 5])  # Cycle through colors
+    for j in range(4):
+        t.forward(50 + i * 5)
+        t.left(90)
+    t.left(18)  # Turn slightly for spiral effect
+\`\`\`
+
+### Project 2: Flower Pattern
+
+\`\`\`python
+import turtle
+
+t = turtle.Turtle()
+t.speed(10)
+
+# Draw petals
+for i in range(8):
+    t.color("pink")
+    t.circle(30)
+    t.left(45)
+
+# Draw center
+t.penup()
+t.goto(0, -10)
+t.pendown()
+t.color("yellow")
+t.begin_fill()
+t.circle(10)
+t.end_fill()
+\`\`\`
+
+### Project 3: House with Details
+
+\`\`\`python
+import turtle
+
+t = turtle.Turtle()
+t.speed(5)
+
+# House base (square)
+t.color("brown")
+t.begin_fill()
+for i in range(4):
+    t.forward(100)
+    t.left(90)
+t.end_fill()
+
+# Roof (triangle)
+t.color("red")
+t.begin_fill()
+t.left(45)
+t.forward(70)
+t.right(90)
+t.forward(70)
+t.end_fill()
+
+# Door
+t.penup()
+t.goto(40, -100)
+t.pendown()
+t.color("dark brown")
+t.begin_fill()
+for i in range(2):
+    t.forward(20)
+    t.left(90)
+    t.forward(40)
+    t.left(90)
+t.end_fill()
+\`\`\`
+
+## Pen Control - Advanced Techniques
+
+### Moving Without Drawing
+
+\`\`\`python
+t.penup()    # Lift pen - move without drawing
+t.goto(0, 100)  # Move to position (0, 100)
+t.pendown()  # Put pen down - start drawing again
+t.forward(50)
+\`\`\`
+
+### Setting Position Directly
+
+\`\`\`python
+t.penup()
+t.goto(-50, 50)  # Move to x=-50, y=50
+t.pendown()
+t.circle(25)
+\`\`\`
+
+## Example Code to Guide You
+
+Here's some example code showing how to use turtle graphics:
+
+\`\`\`python
+import turtle
+
+# Create a turtle
+t = turtle.Turtle()
+
+# Example: Drawing a simple shape
+t.color("blue")
+for i in range(4):
+    t.forward(50)
+    t.left(90)
+
+# Example: Drawing multiple shapes
+t.penup()
+t.goto(100, 0)
+t.pendown()
+t.color("red")
+t.circle(30)
+
+# Notice how:
+# - import turtle is needed first
+# - t = turtle.Turtle() creates your turtle
+# - forward() moves forward, left() turns
+# - color() changes the pen color
+# - penup()/pendown() control drawing
+# - goto() moves to a specific position
+\`\`\`
+
+**Now try your own version!** Use turtle to draw shapes and patterns.
+
 ## Try It Yourself
 
-1. Draw a square
-2. Draw a triangle
-3. Draw a circle
-4. Create a colorful pattern
-5. Draw a simple house
-6. Make a spiral pattern
+Create these drawings:
+
+1. **Geometric Art**
+   - Draw a pattern of nested squares (square inside square)
+   - Create a colorful polygon pattern
+   - Make a spiral that changes color
+
+2. **Nature Drawings**
+   - Draw a flower with petals
+   - Create a tree (trunk + branches)
+   - Make a sun with rays
+
+3. **Creative Patterns**
+   - Design your own repeating pattern
+   - Create a mandala-like circular pattern
+   - Draw a rainbow using arcs
+
+4. **Combined Shapes**
+   - Draw a house with windows and door
+   - Create a car (rectangles and circles)
+   - Make a robot face
+
+<!-- EXERCISE_START -->
+{
+  "instruction": "Use turtle graphics to draw a square. Then draw a triangle next to it. Use different colors for each shape! Remember to import turtle first.",
+  "codePattern": "import\\s+turtle|turtle\\.Turtle|forward|left|right",
+  "expectedContains": null
+}
+<!-- EXERCISE_END -->
 
 ## Important Notes
 
-- Always \`import turtle\` first
-- Create a turtle with \`turtle.Turtle()\`
-- \`forward()\` moves forward
-- \`left()\` and \`right()\` turn the turtle
-- Use loops to repeat drawing commands
-- Experiment with colors and sizes!`,
+- Always start with \`import turtle\`
+- Create a turtle: \`t = turtle.Turtle()\`
+- \`forward(distance)\` - move forward
+- \`backward(distance)\` - move backward
+- \`left(degrees)\` - turn left
+- \`right(degrees)\` - turn right
+- \`circle(radius)\` - draw a circle
+- \`color("colorname")\` - change color
+- \`pensize(number)\` - change line thickness
+- \`penup()\` / \`pendown()\` - lift/lower pen
+- Use loops to create repeating patterns
+- Combine shapes to create complex drawings
+- Experiment and have fun - that's the best way to learn!`,
       quizId: quizId++,
       assessmentType: 'quiz',
       categoryId: 'python',
@@ -3208,38 +3024,73 @@ for i in range(50):
       emoji: '🎯',
       content: `# Python Lesson 9: Projects 🎯
 
-## Building Real Projects
+## Putting It All Together!
 
-Now that you've learned the basics, let's combine everything to build fun projects!
+Congratulations! You've learned the fundamentals of Python. Now it's time to combine everything you know to build **real, working programs**! Projects are where programming gets exciting - you create something that actually does something useful or fun.
 
-## Project 1: Number Guessing Game
+**Why projects matter:** Building projects teaches you to solve problems, think logically, and see how all the pieces fit together. Plus, it's incredibly satisfying to create something that works!
 
-**Note:** We use \`import random\` to get access to Python's random number functions. This lets us generate random numbers for our game!
+## Project Planning Tips
+
+Before coding, think about:
+1. **What should it do?** (The goal)
+2. **What information do I need?** (Inputs)
+3. **What should it show?** (Outputs)
+4. **What steps are needed?** (The plan)
+
+## Project 1: Interactive Number Guessing Game
+
+A complete game with hints, score tracking, and multiple rounds!
 
 \`\`\`python
 import random
 
-secret_number = random.randint(1, 100)
-guesses = 0
-
-print("I'm thinking of a number between 1 and 100!")
-
-while True:
-    guess = int(input("Guess the number: "))
-    guesses = guesses + 1
+def play_guessing_game():
+    secret = random.randint(1, 100)
+    guesses = 0
+    max_guesses = 7
     
-    if guess < secret_number:
-        print("Too low! Try again.")
-    elif guess > secret_number:
-        print("Too high! Try again.")
-    else:
-        print("Congratulations! You got it in", guesses, "guesses!")
-        break
+    print("=== Number Guessing Game ===")
+    print("I'm thinking of a number between 1 and 100!")
+    print(f"You have {max_guesses} guesses. Good luck!")
+    print()
+    
+    while guesses < max_guesses:
+        guess = int(input(f"Guess #{guesses + 1}: "))
+        guesses = guesses + 1
+        
+        if guess == secret:
+            print(f"🎉 Congratulations! You got it in {guesses} guesses!")
+            return True
+        elif guess < secret:
+            difference = secret - guess
+            if difference <= 5:
+                print("Close! A bit higher...")
+            else:
+                print("Too low! Try a higher number.")
+        else:
+            difference = guess - secret
+            if difference <= 5:
+                print("Close! A bit lower...")
+            else:
+                print("Too high! Try a lower number.")
+    
+    print(f"Game over! The number was {secret}")
+    return False
+
+# Play the game
+play_guessing_game()
 \`\`\`
 
-## Project 2: Simple Calculator
+**Features:** Random numbers, hints, guess limits, and clear feedback!
+
+## Project 2: Advanced Calculator with History
+
+A calculator that remembers your calculations:
 
 \`\`\`python
+history = []
+
 def add(a, b):
     return a + b
 
@@ -3250,319 +3101,413 @@ def multiply(a, b):
     return a * b
 
 def divide(a, b):
+    if b == 0:
+        return "Error: Can't divide by zero!"
     return a / b
 
-print("Simple Calculator")
-print("1. Add")
-print("2. Subtract")
-print("3. Multiply")
-print("4. Divide")
+def show_history():
+    if len(history) == 0:
+        print("No calculations yet!")
+    else:
+        print("\\n=== Calculation History ===")
+        for calc in history:
+            print(calc)
 
-choice = input("Choose an operation (1-4): ")
-num1 = float(input("Enter first number: "))
-num2 = float(input("Enter second number: "))
+print("=== Advanced Calculator ===")
+print("Operations: +, -, *, /")
+print("Type 'history' to see past calculations")
+print("Type 'quit' to exit")
+print()
 
-if choice == "1":
-    result = add(num1, num2)
-elif choice == "2":
-    result = subtract(num1, num2)
-elif choice == "3":
-    result = multiply(num1, num2)
-elif choice == "4":
-    result = divide(num1, num2)
-else:
-    result = "Invalid choice"
-
-print("Result:", result)
+while True:
+    operation = input("Operation (+, -, *, /, history, quit): ")
+    
+    if operation == "quit":
+        print("Thanks for using the calculator!")
+        break
+    elif operation == "history":
+        show_history()
+        continue
+    
+    if operation in ["+", "-", "*", "/"]:
+        num1 = float(input("First number: "))
+        num2 = float(input("Second number: "))
+        
+        if operation == "+":
+            result = add(num1, num2)
+        elif operation == "-":
+            result = subtract(num1, num2)
+        elif operation == "*":
+            result = multiply(num1, num2)
+        else:
+            result = divide(num1, num2)
+        
+        calc_string = f"{num1} {operation} {num2} = {result}"
+        history.append(calc_string)
+        print("Result:", result)
+        print()
+    else:
+        print("Invalid operation!")
 \`\`\`
 
-## Project 3: Quiz Game
+## Project 3: Interactive Quiz System
+
+A quiz that tracks scores and provides feedback:
 
 \`\`\`python
-score = 0
+def run_quiz():
+    questions = [
+        {
+            "question": "What is 15 + 27?",
+            "answer": "42",
+            "points": 10
+        },
+        {
+            "question": "What is the capital of England?",
+            "answer": "london",
+            "points": 15
+        },
+        {
+            "question": "How many sides does a triangle have?",
+            "answer": "3",
+            "points": 5
+        },
+        {
+            "question": "What is 8 × 7?",
+            "answer": "56",
+            "points": 10
+        }
+    ]
+    
+    score = 0
+    total_points = sum(q["points"] for q in questions)
+    
+    print("=== Python Knowledge Quiz ===")
+    print(f"Answer {len(questions)} questions. Good luck!\\n")
+    
+    for i, q in enumerate(questions, 1):
+        print(f"Question {i} (worth {q['points']} points):")
+        answer = input(f"{q['question']} ")
+        
+        if answer.lower().strip() == q["answer"].lower():
+            print("✅ Correct!")
+            score = score + q["points"]
+        else:
+            print(f"❌ Wrong! The answer is {q['answer']}")
+        print()
+    
+    percentage = (score / total_points) * 100
+    
+    print("=== Quiz Results ===")
+    print(f"Your score: {score} out of {total_points} points")
+    print(f"Percentage: {percentage:.1f}%")
+    
+    if percentage >= 90:
+        print("🏆 Outstanding! You're a Python master!")
+    elif percentage >= 70:
+        print("⭐ Great job! You know your stuff!")
+    elif percentage >= 50:
+        print("👍 Good effort! Keep practicing!")
+    else:
+        print("💪 Keep learning! You'll get better!")
 
-print("Welcome to the Python Quiz!")
-
-# Question 1
-answer1 = input("What is 5 + 3? ")
-if answer1 == "8":
-    print("Correct!")
-    score = score + 1
-else:
-    print("Wrong! The answer is 8")
-
-# Question 2
-answer2 = input("What is the capital of France? ")
-# .lower() converts the answer to lowercase so "Paris", "PARIS", and "paris" all work
-if answer2.lower() == "paris":
-    print("Correct!")
-    score = score + 1
-else:
-    print("Wrong! The answer is Paris")
-
-# Question 3
-answer3 = input("What is 10 * 2? ")
-if answer3 == "20":
-    print("Correct!")
-    score = score + 1
-else:
-    print("Wrong! The answer is 20")
-
-print("\\nYour score:", score, "out of 3")
+run_quiz()
 \`\`\`
 
-## Project 4: Drawing a Pattern
+## Project 4: Creative Turtle Art Generator
+
+Create beautiful patterns with code:
 
 \`\`\`python
 import turtle
+import random
 
-t = turtle.Turtle()
-t.speed(10)
+def draw_colorful_spiral():
+    t = turtle.Turtle()
+    t.speed(10)
+    
+    colors = ["red", "orange", "yellow", "green", "blue", "purple", "pink"]
+    
+    for i in range(100):
+        t.color(colors[i % len(colors)])
+        t.forward(i * 2)
+        t.left(91)  # Slightly more than 90 creates a spiral
 
-colors = ["red", "blue", "green", "yellow", "purple"]
+def draw_flower():
+    t = turtle.Turtle()
+    t.speed(8)
+    
+    # Draw petals
+    for i in range(12):
+        t.color("pink")
+        t.begin_fill()
+        t.circle(40)
+        t.end_fill()
+        t.left(30)
+    
+    # Draw center
+    t.penup()
+    t.goto(0, -15)
+    t.pendown()
+    t.color("yellow")
+    t.begin_fill()
+    t.circle(15)
+    t.end_fill()
 
-for i in range(36):
-    t.color(colors[i % 5])
-    for j in range(4):
-        t.forward(50)
-        t.left(90)
-    t.left(10)
+def draw_geometric_pattern():
+    t = turtle.Turtle()
+    t.speed(10)
+    
+    colors = ["red", "blue", "green", "yellow"]
+    
+    for i in range(20):
+        t.color(colors[i % 4])
+        size = 20 + (i * 5)
+        
+        for j in range(4):
+            t.forward(size)
+            t.left(90)
+        
+        t.left(18)
 
-turtle.done()  # Keeps the window open so you can see your drawing
+# Choose which pattern to draw
+print("Choose a pattern:")
+print("1. Colorful Spiral")
+print("2. Flower")
+print("3. Geometric Pattern")
+
+choice = input("Enter 1, 2, or 3: ")
+
+if choice == "1":
+    draw_colorful_spiral()
+elif choice == "2":
+    draw_flower()
+elif choice == "3":
+    draw_geometric_pattern()
+
+turtle.done()
 \`\`\`
 
-## Project 5: Story Generator
+## Project 5: Personal Information Manager
+
+A program that stores and displays information:
 
 \`\`\`python
-print("Let's create a story!")
+def create_profile():
+    print("=== Create Your Profile ===")
+    
+    name = input("Full name: ")
+    age = int(input("Age: "))
+    favorite_color = input("Favorite color: ")
+    favorite_subject = input("Favorite subject: ")
+    hobby = input("Hobby: ")
+    
+    profile = {
+        "name": name,
+        "age": age,
+        "favorite_color": favorite_color,
+        "favorite_subject": favorite_subject,
+        "hobby": hobby
+    }
+    
+    return profile
 
-name = input("Enter a name: ")
-place = input("Enter a place: ")
-animal = input("Enter an animal: ")
-verb = input("Enter an action (like 'run'): ")
+def display_profile(profile):
+    print("\\n=== Your Profile ===")
+    print(f"Name: {profile['name']}")
+    print(f"Age: {profile['age']}")
+    print(f"Favorite Color: {profile['favorite_color']}")
+    print(f"Favorite Subject: {profile['favorite_subject']}")
+    print(f"Hobby: {profile['hobby']}")
+    
+    # Calculate some fun facts
+    years_until_teen = 13 - profile['age']
+    if years_until_teen > 0:
+        print(f"\\nFun fact: You'll be a teenager in {years_until_teen} years!")
+    elif years_until_teen == 0:
+        print("\\nFun fact: You're a teenager now!")
+    else:
+        print("\\nFun fact: You're already a teenager!")
 
-print("\\nHere's your story:")
-print("Once upon a time,", name)
-print("went to", place)
-print("and saw a", animal)
-print("that liked to", verb)
-print("The end!")
+# Create and display profile
+my_profile = create_profile()
+display_profile(my_profile)
 \`\`\`
 
-## Project Ideas
+## Challenge Projects
 
-### Easy Projects
-- Name generator
-- Simple calculator
-- Mad libs story
-- Number guessing game
-- Drawing patterns with turtle
+### Challenge 1: Rock, Paper, Scissors Game
 
-### Medium Projects
-- Quiz game with multiple questions
-- Grade calculator
-- Password generator
-- Drawing a house with turtle
-- Temperature converter
+\`\`\`python
+import random
 
-### Advanced Projects
-- Rock, paper, scissors game
-- Hangman game
-- Tic-tac-toe game
-- Drawing app with turtle
-- Math practice program
+def play_rps():
+    choices = ["rock", "paper", "scissors"]
+    player_score = 0
+    computer_score = 0
+    
+    print("=== Rock, Paper, Scissors ===")
+    print("First to 3 wins!")
+    print()
+    
+    while player_score < 3 and computer_score < 3:
+        player = input("Choose: rock, paper, or scissors: ").lower()
+        computer = random.choice(choices)
+        
+        print(f"Computer chose: {computer}")
+        
+        if player == computer:
+            print("Tie!")
+        elif (player == "rock" and computer == "scissors") or \\
+             (player == "paper" and computer == "rock") or \\
+             (player == "scissors" and computer == "paper"):
+            print("You win this round!")
+            player_score = player_score + 1
+        else:
+            print("Computer wins this round!")
+            computer_score = computer_score + 1
+        
+        print(f"Score - You: {player_score}, Computer: {computer_score}\\n")
+    
+    if player_score == 3:
+        print("🎉 You won the game!")
+    else:
+        print("💻 Computer won the game!")
 
-## Tips for Building Projects
+play_rps()
+\`\`\`
 
-1. **Start Simple**: Begin with basic features
-2. **Test Often**: Run your code frequently
-3. **Fix Errors**: Don't give up when you see errors
-4. **Add Features**: Once it works, add more!
-5. **Have Fun**: Programming should be enjoyable!
+### Challenge 2: Math Practice Program
+
+\`\`\`python
+import random
+
+def math_practice():
+    correct = 0
+    total = 5
+    
+    print("=== Math Practice ===")
+    print("Answer 5 math problems. Let's go!\\n")
+    
+    for i in range(total):
+        num1 = random.randint(1, 20)
+        num2 = random.randint(1, 20)
+        operation = random.choice(["+", "-", "*"])
+        
+        if operation == "+":
+            answer = num1 + num2
+            symbol = "+"
+        elif operation == "-":
+            answer = num1 - num2
+            symbol = "-"
+        else:
+            answer = num1 * num2
+            symbol = "×"
+        
+        user_answer = int(input(f"Question {i+1}: {num1} {symbol} {num2} = "))
+        
+        if user_answer == answer:
+            print("✅ Correct!")
+            correct = correct + 1
+        else:
+            print(f"❌ Wrong! The answer is {answer}")
+        print()
+    
+    percentage = (correct / total) * 100
+    print(f"Results: {correct} out of {total} correct ({percentage}%)")
+    
+    if percentage == 100:
+        print("🏆 Perfect score! Amazing!")
+    elif percentage >= 80:
+        print("⭐ Great job!")
+    else:
+        print("💪 Keep practicing!")
+
+math_practice()
+\`\`\`
+
+## Project Development Workflow
+
+1. **Plan**: Write down what you want to build
+2. **Start Simple**: Get a basic version working first
+3. **Test**: Run it and see what happens
+4. **Fix**: Correct any errors
+5. **Enhance**: Add more features
+6. **Refine**: Make it better and more user-friendly
 
 ## Try It Yourself
 
-1. Build a number guessing game
-2. Create a simple quiz
-3. Make a calculator
-4. Draw something cool with turtle
-5. Combine ideas to make something new!
+Build your own projects! Here are ideas:
+
+1. **Personal Projects**
+   - Daily journal program
+   - Habit tracker
+   - Personal calculator for your needs
+
+2. **Game Projects**
+   - Number guessing game with difficulty levels
+   - Word scramble game
+   - Simple adventure text game
+
+3. **Utility Projects**
+   - Unit converter (meters to feet, etc.)
+   - Tip calculator
+   - Study timer with breaks
+
+4. **Art Projects**
+   - Draw your name with turtle
+   - Create a pattern generator
+   - Make animated drawings
+
+## Example Code to Guide You
+
+Here's some example code showing how to combine different concepts:
+
+\`\`\`python
+# Example: Combining variables, input, if statements, and loops
+# Note: In this simulator, we'll use direct values instead of input()
+
+user_name = "Alex"  # This simulates: input("What's your name? ")
+user_age = 9       # This simulates: int(input("How old are you? "))
+
+# Using if statements
+if user_age < 10:
+    message = "You're a young coder!"
+elif user_age < 15:
+    message = "You're a growing programmer!"
+else:
+    message = "You're an experienced learner!"
+
+# Using a loop to repeat
+print("Hello,", user_name)
+for i in range(3):
+    print(message)
+
+# Notice how:
+# - We combine variables, conditions, and loops
+# - Each part does something different
+# - Together they create a complete program
+\`\`\`
+
+**Now try your own version!** Combine what you've learned to build something creative!
+
+<!-- EXERCISE_START -->
+{
+  "instruction": "Create a simple project that combines what you've learned! Build a program that asks for the user's name and age, then uses if statements to give personalized advice based on their age, and uses a loop to print a fun message multiple times. Be creative!",
+  "codePattern": "input|if|for|while",
+  "expectedContains": null
+}
+<!-- EXERCISE_END -->
 
 ## Important Notes
 
-- Projects combine all the concepts you've learned
-- Start with simple projects and build up
-- Don't be afraid to experiment
-- Ask for help when you need it
-- Most importantly - have fun coding!`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
-      categoryId: 'python',
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year4',
-      subjectId: 'technology',
-      lessonNumber: 10,
-      title: "Python Lesson 10: Next Steps",
-      emoji: '🚀',
-      content: `# Python Lesson 10: Next Steps 🚀
-
-## Congratulations!
-
-You've learned the fundamentals of Python programming! You can now:
-- Print messages and work with text
-- Use variables to store information
-- Get input from users
-- Make decisions with if statements
-- Repeat code with loops
-- Create reusable functions
-- Draw graphics with turtle
-- Build complete projects
-
-## What You've Accomplished
-
-You've learned:
-- ✅ Basic Python syntax
-- ✅ Variables and data types
-- ✅ User input and interaction
-- ✅ Conditional statements
-- ✅ Loops (for and while)
-- ✅ Functions
-- ✅ Turtle graphics
-- ✅ Building projects
-
-## Continuing Your Journey
-
-### Practice Regularly
-
-The best way to get better is to practice:
-- Code every day, even if just for 10 minutes
-- Try to solve problems
-- Build small projects
-- Experiment and explore
-
-### Learn More Python Topics
-
-**Lists and Dictionaries:**
-\`\`\`python
-# Lists
-fruits = ["apple", "banana", "orange"]
-
-# Dictionaries
-person = {"name": "Alice", "age": 8}
-\`\`\`
-
-**File Handling:**
-\`\`\`python
-# Reading files
-file = open("data.txt", "r")
-content = file.read()
-file.close()
-\`\`\`
-
-**Classes and Objects:**
-\`\`\`python
-class Dog:
-    def __init__(self, name):
-        self.name = name
-    
-    def bark(self):
-        print("Woof!")
-\`\`\`
-
-## Resources for Learning
-
-### Online Resources
-- **Python.org**: Official Python documentation
-- **Codecademy**: Interactive Python courses
-- **Khan Academy**: Free programming courses
-- **Scratch**: Visual programming (great for beginners)
-
-### Books
-- "Python for Kids" by Jason Briggs
-- "Automate the Boring Stuff with Python"
-- "Python Crash Course"
-
-### Practice Websites
-- **CodingBat**: Practice problems
-- **Project Euler**: Math and programming challenges
-- **LeetCode**: Coding challenges
-
-## Project Ideas to Try
-
-### Beginner Projects
-1. **Calculator**: Build a full calculator
-2. **To-Do List**: Track tasks
-3. **Password Generator**: Create secure passwords
-4. **Number Guessing Game**: With hints
-5. **Rock Paper Scissors**: Full game
-
-### Intermediate Projects
-1. **Hangman Game**: Word guessing game
-2. **Tic-Tac-Toe**: Two-player game
-3. **Drawing App**: Using turtle graphics
-4. **Quiz Application**: Multiple choice quiz
-5. **Weather App**: Using APIs (advanced)
-
-### Advanced Projects
-1. **Web Scraper**: Extract data from websites
-2. **Game Development**: Using Pygame
-3. **Data Analysis**: Working with data
-4. **Web Application**: Using Flask or Django
-5. **Machine Learning**: Simple AI projects
-
-## Joining the Community
-
-### Coding Clubs
-- Join a local coding club
-- Find online communities
-- Participate in coding challenges
-- Share your projects
-
-### Competitions
-- Coding competitions for kids
-- Hackathons
-- Project showcases
-- Science fairs
-
-## Remember
-
-- **Mistakes are OK**: Everyone makes errors
-- **Ask Questions**: Don't be afraid to ask
-- **Keep Learning**: There's always more to learn
-- **Have Fun**: Programming should be enjoyable
-- **Be Patient**: Learning takes time
-
-## Your Future in Coding
-
-Programming opens many doors:
-- **Game Development**: Create your own games
-- **Web Development**: Build websites
-- **Data Science**: Analyze information
-- **Robotics**: Control robots
-- **AI and Machine Learning**: Build smart programs
-
-## Final Thoughts
-
-You've taken your first steps into the world of programming! Python is a powerful language used by professionals worldwide. Keep practicing, keep learning, and most importantly - keep coding!
-
-## Next Steps Checklist
-
-- [ ] Practice coding every day
-- [ ] Build at least one project per week
-- [ ] Try new Python features
-- [ ] Join a coding community
-- [ ] Help others learn
-- [ ] Explore different programming areas
-- [ ] Have fun!
-
-## Keep Going!
-
-Remember: Every expert was once a beginner. You're on an amazing journey. Keep coding, keep learning, and keep creating!
-
-**Happy Coding! 🐍✨**`,
+- Projects combine all concepts: variables, input, decisions, loops, and functions
+- Start simple, then add features gradually
+- Test your code frequently as you build
+- Don't be afraid to experiment and try new things
+- When stuck, break the problem into smaller pieces
+- Read error messages carefully - they tell you what's wrong
+- Most importantly: **Have fun and be creative!**`,
       quizId: quizId++,
       assessmentType: 'quiz',
       categoryId: 'python',

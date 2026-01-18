@@ -50,6 +50,7 @@ function TopNavigation() {
   const lesson = lessonId ? getLesson(lessonId) : null;
   
   const handleSkipLesson = async () => {
+    console.log('Skip button clicked!', { lessonId, lesson, pathname: location.pathname });
     // Wait a moment for lesson data to load if needed
     let currentLesson = lesson || (lessonId ? getLesson(lessonId) : null);
     
@@ -241,7 +242,7 @@ function TopNavigation() {
     <div style={{
       position: 'sticky',
       top: 0,
-      zIndex: 1000,
+      zIndex: 10000,
       backgroundColor: 'white',
       padding: '12px 20px',
       borderBottom: '2px solid #e0e0e0',
@@ -364,7 +365,12 @@ function TopNavigation() {
               🔒 Mark Completed
             </button>
             <button
-              onClick={handleSkipLesson}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Skip button onClick fired');
+                handleSkipLesson();
+              }}
               style={{
                 padding: '8px 20px',
                 backgroundColor: '#ffc107',
@@ -374,6 +380,8 @@ function TopNavigation() {
                 cursor: 'pointer',
                 fontSize: '14px',
                 fontWeight: 'bold',
+                position: 'relative',
+                zIndex: 10002,
               }}
             >
               Skip Lesson →
@@ -394,7 +402,7 @@ function TopNavigation() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          zIndex: 1000,
+          zIndex: 10001,
         }}>
           <div style={{
             backgroundColor: 'white',
@@ -487,7 +495,7 @@ function TopNavigation() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          zIndex: 1000,
+          zIndex: 10001,
         }}>
           <div style={{
             backgroundColor: 'white',

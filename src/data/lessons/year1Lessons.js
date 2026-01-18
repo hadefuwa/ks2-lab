@@ -706,7 +706,7 @@ They were rich|They did important things and helped others|They were tall|They w
 We remember famous people because they did important things, helped others, changed the world, and inspire us today!
 <!-- QUESTION_END -->`,
       quizId: 43,
-      assessmentType: 'history-game',
+      assessmentType: null, // Uses HTML game instead
       categoryId: null,
     }),
 
@@ -859,7 +859,7 @@ It's not important|It helps us understand our area and learn from the past|It's 
 Learning about local history helps us understand our area and learn from the past! History is everywhere and full of interesting stories!
 <!-- QUESTION_END -->`,
       quizId: 45,
-      assessmentType: 'history-game',
+      assessmentType: 'local-history-game',
       categoryId: null,
     }),
 

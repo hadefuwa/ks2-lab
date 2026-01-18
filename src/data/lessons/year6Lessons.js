@@ -17,44 +17,24 @@ export function getYear6Lessons(startLessonId, startQuizId) {
       emoji: '🔢',
       content: `# Algebra Introduction 🔢
 
-
-
 Let's learn about algebra!
-
-
 
 ## How to Play
 
-
-
 Tap the numbers to hear them! Then play the game! 🎮
-
-
 
 ## What is Algebra?
 
-
-
 Algebra uses letters (like x, y) to represent unknown numbers!
-
-
 
 ## Examples
 
-
-
 - x + 5 = 10 → x = 5
-
 - y - 3 = 7 → y = 10
-
-
 
 ## Fun Activities
 
-
-
 - Practice solving equations
-
 - Play the algebra game!`,
       quizId: quizId++,
       assessmentType: 'maths-game',
@@ -70,46 +50,25 @@ Algebra uses letters (like x, y) to represent unknown numbers!
       emoji: '📊',
       content: `# Statistics and Data 📊
 
-
-
 Let's learn about statistics!
-
-
 
 ## How to Play
 
-
-
 Tap the numbers to hear them! Then play the game! 🎮
-
-
 
 ## What is Statistics?
 
-
-
 Statistics is collecting, organizing, and analyzing data!
-
-
 
 ## Mean, Median, Mode
 
-
-
 - **Mean (Average)** - Add all numbers, divide by count
-
 - **Median** - Middle number when ordered
-
 - **Mode** - Most common number
-
-
 
 ## Fun Activities
 
-
-
 - Calculate mean, median, mode
-
 - Play the statistics game!`,
       quizId: quizId++,
       assessmentType: 'maths-game',
@@ -125,67 +84,197 @@ Statistics is collecting, organizing, and analyzing data!
       emoji: '🧩',
       content: `# Advanced Problem Solving 🧩
 
-
-
 Let's solve more complex problems!
-
-
 
 ## How to Play
 
-
-
 Tap the numbers to hear them! Then play the game! 🎮
-
-
 
 ## Multi-Step Problems
 
-
-
 Problems that need more than one step!
-
-
 
 ## Example
 
-
-
 "Sarah has £20. She buys 3 books at £4 each. How much money does she have left?"
 
-
-
 Steps:
-
 1. Find cost: 3 × £4 = £12
-
 2. Find remaining: £20 - £12 = £8
-
-
 
 ## Problem-Solving Strategies
 
-
-
 - Draw a diagram
-
 - Make a table
-
 - Work backwards
-
 - Try different approaches
-
-
 
 ## Fun Activities
 
-
-
 - Solve complex problems
-
 - Play the problem-solving game!`,
       quizId: quizId++,
       assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'maths',
+      lessonNumber: 4,
+      title: "Negative Numbers",
+      emoji: '🔢',
+      content: `# Negative Numbers 🔢
+
+Let's learn about negative numbers!
+
+## What are Negative Numbers?
+
+Numbers less than zero!
+
+## Examples
+
+- -5 is less than 0
+- -10 is less than -5
+- 0 is neither positive nor negative
+
+## Number Line
+
+... -3, -2, -1, 0, 1, 2, 3 ...
+
+## Comparing
+
+- -5 < -2 (negative 5 is less than negative 2)
+- -1 > -5 (negative 1 is greater than negative 5)
+
+## How to Play
+
+Drag on number line and type comparisons! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'number-line-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'maths',
+      lessonNumber: 5,
+      title: "BODMAS/BIDMAS",
+      emoji: '🔢',
+      content: `# BODMAS/BIDMAS 🔢
+
+Let's learn the order of operations!
+
+## How to Play
+
+Tap the numbers to hear them! Then play the game! 🎮
+
+## Order of Operations
+
+BODMAS/BIDMAS tells us the order:
+- **B**rackets
+- **O**rders (powers)
+- **D**ivision
+- **M**ultiplication
+- **A**ddition
+- **S**ubtraction
+
+## Example
+
+2 + 3 × 4 = 2 + 12 = 14
+(Not 5 × 4 = 20!)
+
+## Fun Activities
+
+- Practice BODMAS
+- Play the order of operations game!`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'history',
+      lessonNumber: 9,
+      title: "Making History - How We Study the Past",
+      emoji: '🔍',
+      content: `# Making History - How We Study the Past 🔍
+
+Historians are detectives with notebooks, microphones, and museum gloves. They question every clue, compare every story, and turn piles of evidence into explanations the rest of us can understand.
+
+## Field Notebook
+- **Primary Clues** – diaries, newspapers, maps, films, and objects created during the time period.
+- **Secondary Guides** – textbooks, documentaries, and podcasts that explain what happened later.
+- **Artifacts & Oral Histories** – tools, clothing, and living memories that carry the feelings of the past.
+
+## Investigation Skills
+- Ask “who created this, when, and why?” before trusting a source.
+- Cross-check memories with records so that one person’s voice is balanced by others.
+- Notice bias and perspective: an artist, soldier, or reporter may tell different stories about the same day.
+
+## Writing Like a Historian
+- Start with a **big question** the reader cares about.
+- Stack evidence (quotes, statistics, artifacts) that truly answer the question.
+- Reflect on meaning: What changed? Who benefited? Why does it matter now?
+
+## Game Instructions – Making History Lab
+1. **Source Sorting Lab** – Drag (well, tap!) each card into the right category. Decide if it is primary, secondary, an artifact, or an oral history.
+2. **Source Detective** – Read real investigation cards and choose the action that keeps your history fair and reliable.
+3. **History Brief Builder** – Assemble the question, evidence, and reflection pieces to craft a publish-ready summary.
+
+Earn up to 100 points by completing every phase. A perfect score means you investigated like a pro historian who can sort sources, evaluate reliability, and craft meaningful stories.
+
+## Learning Goals
+- Distinguish between different types of sources and why each matters.
+- Evaluate reliability by asking purposeful questions and comparing perspectives.
+- Organize findings into a clear question → evidence → insight structure.
+- Explain why history is more than memorizing dates—it is using evidence to understand people and change.
+
+Grab your notebook, historian. The archives are open and you’re on the research team!`,
+  quizId: null,
+      assessmentType: 'making-history-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'maths',
+      lessonNumber: 4,
+      title: "Negative Numbers",
+      emoji: '🔢',
+      content: `# Negative Numbers 🔢
+
+Let's learn about negative numbers!
+
+## What are Negative Numbers?
+
+Numbers less than zero!
+
+## Examples
+
+- -5 is less than 0
+- -10 is less than -5
+- 0 is neither positive nor negative
+
+## Number Line
+
+... -3, -2, -1, 0, 1, 2, 3 ...
+
+## Comparing
+
+- -5 < -2 (negative 5 is less than negative 2)
+- -1 > -5 (negative 1 is greater than negative 5)
+
+## How to Play
+
+Drag on number line and type comparisons! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'number-line-game',
       categoryId: null,
     }),
 
@@ -755,7 +844,7 @@ Only swords|Machine guns, tanks, poison gas, airplanes, and submarines|Only guns
 New weapons included machine guns, tanks (first used), poison gas, airplanes (for war), and submarines!
 <!-- QUESTION_END -->`,
       quizId: 82,
-      assessmentType: 'history-game',
+      assessmentType: 'world-war-i-game',
       categoryId: null,
     }),
 
@@ -768,171 +857,27 @@ New weapons included machine guns, tanks (first used), poison gas, airplanes (fo
       emoji: '📅',
       content: `# Between the Wars - 1920s and 1930s 📅
 
-
-
-Let's learn about the time between the world wars!
-
-
-
-## The 1920s - The Roaring Twenties
-
-
-
-- After World War I ended
-
-- People wanted to have fun
-
-- New music and dancing
-
-- Women got more rights
-
-- Economic boom in some places
-
-
-
-## The Great Depression
-
-
-
-- Started in 1929
-
-- Stock market crashed
-
-- Many people lost jobs
-
-- Very hard times
-
-- Poverty increased
-
-
-
-## Rise of Dictators
-
-
-
-- Some countries got dictators
-
-- They had all the power
-
-- People lost freedoms
-
-- This led to problems
-
-- It caused World War II
-
-
-
-## New Technologies
-
-
-
-- Cars became common
-
-- Radio became popular
-
-- Movies became big
-
-- Technology advanced
-
-- Life changed
-
-
-
-## Art and Culture
-
-
-
-- New art styles
-
-- Jazz music
-
-- Literature flourished
-
-- Culture changed
-
-- New ideas
-
-
-
-## Fun Activities
-
-
-
-- Learn about the 1920s
-
-- Study the Great Depression
-
-- Make a timeline
-
-- Write about this period
-
-
-
-## Remember
-
-
-
-- 1920s were exciting
-
-- Great Depression was hard
-
-- Dictators rose to power
-
-- It led to World War II!
-
-
-
-## Practice Questions
-
-
-
-<!-- QUESTION_START -->
-What was the 1920s called?
-<!-- OPTIONS -->
-The Sad Twenties|The Roaring Twenties|The Quiet Twenties|The Boring Twenties
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The 1920s were called "The Roaring Twenties"! After World War I, people wanted to have fun, there was new music and dancing, and women got more rights!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-When did the Great Depression start?
-<!-- OPTIONS -->
-1925|1929|1930|1935
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Great Depression started in 1929 when the stock market crashed! Many people lost jobs, and it was very hard times!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What happened because of the rise of dictators?
-<!-- OPTIONS -->
-Peace|People lost freedoms and it led to World War II|Nothing|Happiness
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-When dictators rose to power, people lost freedoms, and this led to problems that caused World War II!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What new technologies became popular in the 1920s-1930s?
-<!-- OPTIONS -->
-Nothing|Cars, radio, and movies|Only computers|Only phones
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Cars became common, radio became popular, movies became big, technology advanced, and life changed!
-<!-- QUESTION_END -->`,
-      quizId: 84,
-      assessmentType: 'history-game',
+The period between the end of the Great War (1918) and the start of World War II (1939) was a time of extreme contrast: from the celebration of the "Roaring Twenties" to the desperation of the "Great Depression."
+
+## The Roaring Twenties & Social Change
+After the trauma of the war, society underwent a transformation. 
+- **Suffrage**: In many countries, women campaigned for and won the right to vote.
+- **Consumerism**: New technologies like the radio, cinema, and mass-produced cars (like the Model T) changed how people spent their time and money.
+- **Flappers**: Young women challenged social norms with shorter hair, shorter dresses, and a new sense of independence.
+
+## The Economic Crisis: Hard Times
+The prosperity of the 1920s was fragile.
+- **Hyperinflation (1923)**: In Germany, the economy collapsed so badly that money became worthless. People needed wheelbarrows of cash just to buy a loaf of bread.
+- **The Wall Street Crash (1929)**: The US stock market collapsed, leading to the **Great Depression**. This wasn't just in America; it caused banks to close and unemployment to soar worldwide.
+
+## Rise of the Dictators
+Economic suffering led many people to lose faith in democracy.
+- **Totalitarianism**: In countries like Germany, Italy, and the Soviet Union, dictators (Hitler, Mussolini, and Stalin) took absolute control over every part of life.
+- **The League of Nations**: Created to keep peace, this international group struggled because it lacked its own army and the USA never joined.
+
+In the game, you will act as a historical analyst. Can you navigate these global crises and understand why the world was sliding toward another conflict?`,
+      quizId: null,
+      assessmentType: 'between-wars-game',
       categoryId: null,
     }),
 
@@ -945,191 +890,29 @@ Cars became common, radio became popular, movies became big, technology advanced
       emoji: '🌍',
       content: `# World War II - Global Conflict 🌍
 
-
-
-Let's learn about World War II!
-
-
-
-## When Did It Happen?
-
-
-
-World War II lasted from 1939 to 1945.
-
-
-
-## Why Did It Start?
-
-
-
-- Germany wanted more land
-
-- Adolf Hitler and the Nazis
-
-- Invasion of Poland
-
-- Many countries got involved
-
-- It became a world war
-
-
-
-## Who Fought?
-
-
-
-**Allied Powers:**
-
-- Britain
-
-- United States
-
-- Soviet Union
-
-- France
-
-- Many others
-
-
-
-**Axis Powers:**
-
-- Germany
-
-- Italy
-
-- Japan
-
-
-
-## The Holocaust
-
-
-
-- A terrible time
-
-- Millions of people were killed
-
-- It was a genocide
-
-- We must never forget
-
-- We must learn from it
-
-
-
-## The Blitz
-
-
-
-- German bombing of British cities
-
-- People hid in air raid shelters
-
-- Many buildings destroyed
-
-- People showed great courage
-
-- Britain stood strong
-
-
-
-## D-Day and Victory
-
-
-
-- June 6, 1944 - D-Day
-
-- Allied invasion of France
-
-- Very important battle
-
-- Helped end the war
-
-- War ended in 1945
-
-
-
-## Fun Activities
-
-
-
-- Research the war
-
-- Learn about the Blitz
-
-- Write about the Home Front
-
-- Make a timeline
-
-
-
-## Remember
-
-
-
-- War lasted 1939-1945
-
-- Affected everyone
-
-- People showed courage
-
-- Important to remember!
-
-
-
-## Practice Questions
-
-
-
-<!-- QUESTION_START -->
-When did World War II happen?
-<!-- OPTIONS -->
-1935-1939|1939-1945|1940-1946|1930-1940
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-World War II lasted from 1939 to 1945! It affected everyone, and people showed great courage!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What was the Holocaust?
-<!-- OPTIONS -->
-A celebration|A terrible time when millions of people were killed|A war|A party
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Holocaust was a terrible time when millions of people were killed. It was a genocide, and we must never forget and learn from it!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What was the Blitz?
-<!-- OPTIONS -->
-A celebration|German bombing of British cities|A dance|A song
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Blitz was German bombing of British cities! People hid in air raid shelters, many buildings were destroyed, but people showed great courage and Britain stood strong!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What was D-Day?
-<!-- OPTIONS -->
-June 6, 1944 - Allied invasion of France|A holiday|A celebration|A dance
-<!-- CORRECT -->
-0
-<!-- EXPLANATION -->
-D-Day was June 6, 1944 - the Allied invasion of France! It was a very important battle that helped end the war!
-<!-- QUESTION_END -->`,
-      quizId: 83,
-      assessmentType: 'history-game',
+World War II (1939–1945) was the most destructive conflict in human history, involving over 30 countries and resulting in the deaths of an estimated 70 to 85 million people.
+
+## The Axis vs. The Allies
+The war was fought between two main groups:
+- **The Axis Powers**: Led by Nazi Germany (Adolf Hitler), Fascist Italy (Benito Mussolini), and Imperial Japan (Emperor Hirohito).
+- **The Allied Powers**: Led by Great Britain (Winston Churchill), the Soviet Union (Joseph Stalin), the United States (Franklin D. Roosevelt), and Free France (Charles de Gaulle).
+
+## Key Turning Points
+To understand the war, we must look at the strategic moments where the tide shifted:
+1. **The Battle of Britain (1940)**: The RAF's defense of the UK against the Luftwaffe, preventing a German invasion.
+2. **Pearl Harbor & Pacific War (1941)**: Japan's surprise attack on the US Navy, bringing the industrial might of the USA into the war.
+3. **The Battle of Stalingrad (1942-1943)**: A catastrophic defeat for Germany in Russia, marking the end of their eastward expansion.
+4. **D-Day (June 6, 1944)**: Operation Overlord, the massive Allied invasion of Normandy, which began the liberation of Western Europe.
+
+## The Holocaust: A Global Tragedy
+During the war, Nazi Germany carried out the **Holocaust**—a systematic, state-sponsored genocide that murdered 6 million Jews and millions of others. It remains the most horrific example of hatred and intolerance in history.
+
+## The End of the War
+The war in Europe ended in May 1945 (V-E Day), and the war against Japan ended in August 1945 (V-J Day) after the use of atomic bombs on Hiroshima and Nagasaki. The war's end led to the creation of the **United Nations** to prevent future global conflicts.
+
+In the game, you will evaluate these critical turning points. Can you identify the strategies and events that led to the Allied victory?`,
+      quizId: null,
+      assessmentType: 'world-war-2-game',
       categoryId: null,
     }),
 
@@ -1138,201 +921,60 @@ D-Day was June 6, 1944 - the Allied invasion of France! It was a very important 
       yearId: 'year6',
       subjectId: 'history',
       lessonNumber: 4,
-      title: "The Cold War",
+      title: "The Cold War - Superpower Showdown",
       emoji: '❄️',
-      content: `# The Cold War ❄️
-
-
-
-Let's learn about the Cold War!
-
-
-
-## What Was the Cold War?
-
-
-
-- A conflict between the USA and Soviet Union
-
-- It lasted from 1945 to 1991
-
-- It was called "cold" because they didn't fight directly
-
-- But there was tension
-
-
-
-## The Two Sides
-
-
-
-**United States and Allies**
-
-- Believed in democracy
-
-- Believed in capitalism
-
-- Wanted freedom
-
-- Western countries
-
-
-
-**Soviet Union and Allies**
-
-- Believed in communism
-
-- Controlled by government
-
-- Eastern countries
-
-- Different system
-
-
-
-## The Iron Curtain
-
-
-
-- A division in Europe
-
-- East and West separated
-
-- Berlin Wall was built
-
-- People couldn't travel freely
-
-- It was a symbol of division
-
-
-
-## The Space Race
-
-
-
-- Both sides raced to space
-
-- First satellite (Sputnik)
-
-- First man in space
-
-- First moon landing
-
-- It was a competition
-
-
-
-## Nuclear Weapons
-
-
-
-- Both sides had nuclear weapons
-
-- Very dangerous
-
-- Could destroy the world
-
-- People were afraid
-
-- It was called "mutual destruction"
-
-
-
-## The End
-
-
-
-- The Cold War ended in 1991
-
-- Soviet Union broke apart
-
-- Berlin Wall came down
-
-- People were free
-
-- It was a time of change
-
-
-
-## Fun Activities
-
-
-
-- Learn about the Cold War
-
-- Study the Space Race
-
-- Make a timeline
-
-- Write about the effects
-
-
-
-## Remember
-
-
-
-- Cold War was 1945-1991
-
-- USA vs Soviet Union
-
-- It was tense
-
-- It ended peacefully!
-
-
-
-## Practice Questions
-
-
-
-<!-- QUESTION_START -->
-When did the Cold War happen?
-<!-- OPTIONS -->
-1940-1950|1945-1991|1950-2000|1939-1945
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Cold War lasted from 1945 to 1991! It was a conflict between the USA and Soviet Union!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-Why was it called the "Cold" War?
-<!-- OPTIONS -->
-It was cold outside|They didn't fight directly|It was in winter|It was about ice
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-It was called "cold" because the USA and Soviet Union didn't fight directly, but there was tension!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What was the Berlin Wall?
-<!-- OPTIONS -->
-A decoration|A symbol of division between East and West|A bridge|A road
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Berlin Wall was built as part of the Iron Curtain - a division in Europe where East and West were separated, and people couldn't travel freely!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What was the Space Race?
-<!-- OPTIONS -->
-A running race|Both sides racing to space|A swimming race|A car race
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Space Race was when both sides raced to space! There was the first satellite (Sputnik), first man in space, and first moon landing!
-<!-- QUESTION_END -->`,
-      quizId: 84,
-      assessmentType: 'history-game',
+      content: `# The Cold War - Superpower Showdown ❄️
+
+    The Cold War (1945–1991) was a global contest between two superpowers—the United States and its democratic allies versus the Soviet Union and its communist partners. Instead of fighting directly, they used alliances, propaganda, science, spies, and occasional proxy wars to compete for influence.
+
+    ## Quick Timeline
+    - **1945** – World War II ends, Europe is divided.
+    - **1948** – Berlin Blockade and Airlift prove the city will not be abandoned.
+    - **1955** – NATO and the Warsaw Pact face each other across the "Iron Curtain."
+    - **1962** – Cuban Missile Crisis brings the world to the brink of nuclear war.
+    - **1969** – Apollo 11 moon landing becomes a soft-power victory.
+    - **1989-1991** – The Berlin Wall falls and the Soviet Union dissolves.
+
+    ## Power Blocks
+    - **NATO / USA-led bloc** – Democracies that promoted elections, markets, and open media.
+    - **Soviet Bloc** – One-party socialist states where the communist party controlled politics and the economy.
+    - **Non-Aligned Nations** – Countries (India, Egypt, Yugoslavia, Ghana) that refused to be pulled into either camp.
+
+    ## Flashpoints to Know
+    - **Berlin** – A divided city that symbolized freedom vs. control.
+    - **Korea & Vietnam** – Proxy wars where superpowers backed different sides.
+    - **Cuba** – Soviet missiles on America’s doorstep triggered tense negotiations.
+    - **Afghanistan** – The Soviet Union’s 1979 invasion drained resources and global support.
+
+    ## Ideas, Science, and Space
+    - Satellites, rockets, and computers were created to prove that each system produced better knowledge and better lives.
+    - Cultural exchanges, Olympic games, and media broadcasts were used to win hearts and minds.
+    - Nuclear weapons could destroy the planet, so diplomacy (hotlines, treaties, United Nations meetings) became as important as armies.
+
+    ## How to Play – Cold War Strategy Lab
+    1. **Map the Alliances** – Sort real countries into NATO, Soviet Bloc, or Non-Aligned and read why each choice mattered.
+    2. **Crisis Room** – Recreate Berlin, Cuba, and Space Race decisions to see which responses prevented war.
+    3. **Innovation Lab** – Assemble the technology kits (rockets, diplomacy tools, civil-defense plans) that kept the Cold War “cold.”
+    4. Earn points in every phase. A perfect 100% means you balanced military power, science, and diplomacy.
+
+    ## Learning Goals
+    - Explain why the Cold War stayed “cold” even while nuclear weapons existed.
+    - Identify alliances, crisis responses, and inventions that shifted global power.
+    - Connect the Space Race, civil defense, and diplomacy to everyday life.
+
+    ## Vocabulary
+    - **Iron Curtain** – The dividing line in Europe between Soviet-controlled east and democratic west.
+    - **Mutually Assured Destruction (MAD)** – The idea that nuclear war would destroy everyone.
+    - **Proxy War** – When superpowers support different sides in another country’s conflict.
+    - **Deterrence** – Showing enough strength to discourage an attack.
+
+    ## Remember
+    - The Cold War was a contest of systems, stories, and science, not just weapons.
+    - Small countries and ordinary citizens played important roles in resisting pressure.
+    - Diplomacy, technology, and critical thinking can prevent crises from turning into wars.
+    - You are now the strategist—use what you learned in the game to explain how the Cold War shaped today’s world!`,
+      quizId: null,
+      assessmentType: 'cold-war-game',
       categoryId: null,
     }),
 
@@ -1341,191 +983,32 @@ The Space Race was when both sides raced to space! There was the first satellite
       yearId: 'year6',
       subjectId: 'history',
       lessonNumber: 5,
-      title: "Civil Rights Movement",
+      title: "The Civil Rights Movement",
       emoji: '✊',
-      content: `# Civil Rights Movement ✊
+      content: `# The Civil Rights Movement ✊
 
+The Civil Rights Movement was a social movement and campaign in the United States from 1954 to 1968 to abolish institutional racial discrimination, disenfranchisement, and racial segregation.
 
+## The Era of Segregation (Jim Crow Laws)
+Following the end of slavery, many states (mainly in the South) passed "Jim Crow" laws. These created a system where Black and White Americans were separated in almost every area of life: schools, buses, restaurants, and even water fountains. The law said these could be "separate but equal," but in reality, facilities for Black Americans were almost always inferior.
 
-Let's learn about the fight for civil rights!
+## Landmark Legal Battles
+The movement used the court system to challenge these unfair laws.
+- **Brown v. Board of Education (1954)**: The Supreme Court ruled that "separate educational facilities are inherently unequal." This was a massive victory that ordered the desegregation of schools.
 
+## The Power of Non-Violent Protest
+Led by figures like **Dr. Martin Luther King Jr.**, the movement prioritized non-violent resistance.
+- **Montgomery Bus Boycott (1955)**: After **Rosa Parks** was arrested for refusing to give up her bus seat, the Black community boycotted the bus system for 381 days until the law was changed.
+- **The March on Washington (1963)**: 250,000 people gathered for the "I Have a Dream" speech, demanding economic rights and an end to racism.
 
+## Legislative Victories
+The courage of marchers and protesters forced the government to act:
+- **Civil Rights Act of 1964**: Outlawed discrimination based on race, color, religion, sex, or national origin.
+- **Voting Rights Act of 1965**: Prohibited racial discrimination in voting, such as the literacy tests used to prevent Black Americans from casting their ballots.
 
-## What Were Civil Rights?
-
-
-
-- Rights for all people
-
-- Equal treatment
-
-- No discrimination
-
-- Fairness for everyone
-
-- Important freedoms
-
-
-
-## Segregation
-
-
-
-- People were separated by race
-
-- Different schools
-
-- Different places
-
-- It was unfair
-
-- It was wrong
-
-
-
-## Martin Luther King Jr.
-
-
-
-- A great leader
-
-- Fought for civil rights
-
-- Gave famous speeches
-
-- Led peaceful protests
-
-- He was assassinated
-
-
-
-## Rosa Parks
-
-
-
-- Refused to give up her seat
-
-- Started a bus boycott
-
-- She was brave
-
-- She inspired others
-
-- She made a difference
-
-
-
-## The Fight for Rights
-
-
-
-- People protested
-
-- They marched
-
-- They boycotted
-
-- They fought peacefully
-
-- They won rights
-
-
-
-## Changes
-
-
-
-- Laws changed
-
-- Segregation ended
-
-- People got equal rights
-
-- It was progress
-
-- But there's still work to do
-
-
-
-## Fun Activities
-
-
-
-- Learn about civil rights leaders
-
-- Study the movement
-
-- Make a timeline
-
-- Write about the impact
-
-
-
-## Remember
-
-
-
-- Civil rights are important
-
-- People fought for equality
-
-- They made progress
-
-- We must continue the fight!
-
-
-
-## Practice Questions
-
-
-
-<!-- QUESTION_START -->
-What were civil rights?
-<!-- OPTIONS -->
-Rights for some people|Rights for all people, equal treatment, no discrimination|Rights for only rich people|Rights for only men
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Civil rights were rights for all people - equal treatment, no discrimination, fairness for everyone, and important freedoms!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What was segregation?
-<!-- OPTIONS -->
-A celebration|People separated by race with different schools and places|A dance|A song
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Segregation was when people were separated by race - different schools, different places. It was unfair and wrong!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What did Rosa Parks do?
-<!-- OPTIONS -->
-Nothing|Refused to give up her seat and started a bus boycott|Only sat|Only stood
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Rosa Parks refused to give up her seat! She was brave, started a bus boycott, inspired others, and made a difference!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What did Martin Luther King Jr. do?
-<!-- OPTIONS -->
-Nothing|Fought for civil rights, gave famous speeches, and led peaceful protests|Only fought|Only wrote
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Martin Luther King Jr. was a great leader who fought for civil rights, gave famous speeches, and led peaceful protests!
-<!-- QUESTION_END -->`,
-      quizId: 84,
-      assessmentType: 'history-game',
+In the game, you will navigate these critical milestones. Can you understand the bravery required to change a nation's laws?`,
+      quizId: null,
+      assessmentType: 'civil-rights-game',
       categoryId: null,
     }),
 
@@ -1702,7 +1185,7 @@ Nothing|Technology advanced - computers started, became common, and Internet bec
 Technology advanced greatly! Computers started in the 1970s, became common in the 1980s, and the Internet became popular in the 1990s!
 <!-- QUESTION_END -->`,
       quizId: 84,
-      assessmentType: 'history-game',
+      assessmentType: 'modern-world-1960s-1990s-game',
       categoryId: null,
     }),
 
@@ -1895,7 +1378,7 @@ It's not important|Our actions matter, we can make a difference, and we're part 
 We're living in history! Our actions matter, we can make a difference, we're part of the story, and history continues!
 <!-- QUESTION_END -->`,
       quizId: 84,
-      assessmentType: 'history-game',
+      assessmentType: 'modern-world-2000s-today-game',
       categoryId: null,
     }),
 
@@ -2118,7 +1601,7 @@ It's not important|To understand if they're reliable, what perspective they show
 We evaluate sources to see if they're reliable, understand the perspective, see what's missing, compare to other sources, and check for biases!
 <!-- QUESTION_END -->`,
       quizId: 96,
-      assessmentType: 'history-game',
+      assessmentType: 'historical-sources-evidence-game',
       categoryId: null,
     }),
 
@@ -2310,189 +1793,29 @@ History matters because we can learn from the past, understand the present, prep
       emoji: '🔄',
       content: `# Understanding Historical Change 🔄
 
-
-
-Let's learn about how history changes!
-
-
-
-## How Things Change
-
-
-
-- History shows change
-
-- Things change over time
-
-- People change
-
-- Societies change
-
-- The world changes
-
-
-
-## Causes of Change
-
-
-
-- New ideas
-
-- New inventions
-
-- Wars and conflicts
-
-- People's actions
-
-- Natural events
-
-
-
-## Patterns in History
-
-
-
-- Some things repeat
-
-- We can see patterns
-
-- We can learn from them
-
-- History helps us understand
-
-- We can predict some things
-
-
-
-## Continuity and Change
-
-
-
-- Some things stay the same
-
-- Some things change
-
-- We see both
-
-- History shows both
-
-- It's interesting to study
-
-
-
-## Learning from History
-
-
-
-- We can learn from mistakes
-
-- We can learn from successes
-
-- We can understand people
-
-- We can make better choices
-
-- History teaches us
-
-
-
-## Your Place in History
-
-
-
-- You're part of history
-
-- Your actions matter
-
-- You can make a difference
-
-- You're making history now
-
-- The future is yours
-
-
-
-## Fun Activities
-
-
-
-- Study how things changed
-
-- Compare different times
-
-- Think about causes
-
-- Write about change
-
-- Consider the future
-
-
-
-## Remember
-
-
-
-- History shows change
-
-- We can learn from it
-
-- You're part of history
-
-- You can make a difference!
-
-
-
-## Practice Questions
-
-
-
-<!-- QUESTION_START -->
-What causes change in history?
-<!-- OPTIONS -->
-Nothing|New ideas, new inventions, wars and conflicts, people's actions, and natural events|Only wars|Only inventions
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Causes of change include new ideas, new inventions, wars and conflicts, people's actions, and natural events!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What can we learn from history?
-<!-- OPTIONS -->
-Nothing|Learn from mistakes, learn from successes, understand people, make better choices|Only mistakes|Only successes
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-We can learn from mistakes, learn from successes, understand people, make better choices, and history teaches us!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What is continuity and change?
-<!-- OPTIONS -->
-Everything changes|Some things stay the same and some things change|Nothing changes|Only change
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Continuity and change means some things stay the same and some things change! We see both in history, and it's interesting to study!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-Why is it important to know you're part of history?
-<!-- OPTIONS -->
-It's not important|Your actions matter, you can make a difference, you're making history now, and the future is yours|It doesn't matter|You can't do anything
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-You're part of history! Your actions matter, you can make a difference, you're making history now, and the future is yours!
-<!-- QUESTION_END -->`,
-      quizId: 96,
-      assessmentType: 'history-game',
+In Year 6, we move beyond just "what" happened to "how" and "why" things change over time. Understanding historical change is the core skill of a master historian.
+
+## Continuity vs. Change
+Not everything in history changes at the same rate.
+- **Continuity**: Aspects of life that remain the same over long periods. For example, humans have always needed food, shelter, and community.
+- **Change**: Aspects that transform. For example, how we communicate (from clay tablets to instant messaging) or how we travel (from walking to spaceflight).
+
+## Causality: Cause and Effect
+Every event has a reason (Cause) and a result (Effect).
+- **Short-term Causes**: Immediate sparks that start an event (e.g., the assassination of Archduke Franz Ferdinand).
+- **Long-term Causes**: Deep-rooted tensions that build up over years (e.g., the rise of nationalism and militarism before WWI).
+
+## Historical Significance
+Why do we remember some people and events but not others? Historians use the **5Rs** to judge significance:
+1. **Remarkable**: Was it noticed at the time?
+2. **Remembered**: Is it still part of our collective memory?
+3. **Resonant**: Does it still impact us today?
+4. **Resultful**: Did it lead to other major changes?
+5. **Revealing**: Does it reveal something important about that era?
+
+In the game, you will evaluate these concepts. Can you distinguish between long-lasting continuities and rapid historical changes?`,
+      quizId: null,
+      assessmentType: 'historical-change-game',
       categoryId: null,
     }),
 

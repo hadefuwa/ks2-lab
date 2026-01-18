@@ -3310,174 +3310,6 @@ Stone Age people were hunter-gatherers! They hunted animals, gathered fruits and
       categoryId: null,
     }),
 
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year2',
-      subjectId: 'history',
-      lessonNumber: 2,
-      title: "Biblical History - Abraham to Moses",
-      emoji: '📜',
-      content: `# Biblical History - Abraham to Moses 📜
-
-
-
-Let's learn about important people from the Bible!
-
-
-
-## Abraham's Journey
-
-
-
-- Abraham was a very important person
-
-- God told him to leave his home
-
-- He traveled to a new land
-
-- He trusted God
-
-
-
-## Joseph in Egypt
-
-
-
-- Joseph was sold by his brothers
-
-- He went to Egypt
-
-- He became important there
-
-- He helped save people from famine
-
-
-
-## Moses and the Exodus
-
-
-
-- Moses was born in Egypt
-
-- He grew up in the palace
-
-- God chose him to lead his people
-
-- He led them out of Egypt
-
-
-
-## The Ten Commandments
-
-
-
-- God gave Moses the Ten Commandments
-
-- They were rules to live by
-
-- Written on stone tablets
-
-- Important laws for people
-
-
-
-## Timeline of Biblical Events
-
-
-
-1. Abraham's journey
-
-2. Joseph in Egypt
-
-3. The Israelites in Egypt
-
-4. Moses leads them out
-
-5. The Ten Commandments
-
-
-
-## Fun Activities
-
-
-
-- Draw a timeline of events
-
-- Learn about each person
-
-- Act out the stories
-
-- Write about what you learned
-
-
-
-## Remember
-
-
-
-- These are important stories
-
-- They happened long ago
-
-- They teach us lessons
-
-- History includes these events!
-
-
-
-## Practice Questions
-
-
-
-<!-- QUESTION_START -->
-What did God tell Abraham to do?
-<!-- OPTIONS -->
-Stay home|Leave his home and travel to a new land|Build a temple|Write a book
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-God told Abraham to leave his home and travel to a new land! Abraham trusted God and did what he was told!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What happened to Joseph in Egypt?
-<!-- OPTIONS -->
-He became a farmer|He became important and helped save people from famine|He became a soldier|He became a king
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Joseph was sold by his brothers and went to Egypt, where he became important and helped save people from famine!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What did God give Moses?
-<!-- OPTIONS -->
-A sword|The Ten Commandments|A crown|A book
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-God gave Moses the Ten Commandments! They were rules to live by, written on stone tablets, and were important laws for people!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-Where did Moses grow up?
-<!-- OPTIONS -->
-In the desert|In the palace in Egypt|In a cave|In a village
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Moses was born in Egypt and grew up in the palace! God chose him to lead his people out of Egypt!
-<!-- QUESTION_END -->`,
-      quizId: 52,
-      assessmentType: 'history-game',
-      categoryId: null,
-    }),
 
     new Lesson({
       id: lessonId++,
@@ -4441,6 +4273,35 @@ Master your skills!
 You need at least **Bronze** (1 point) to progress!`,
       quizId: null,
       assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'history',
+      lessonNumber: 2,
+      title: "Abrahamic Religious Figures",
+      emoji: '📜',
+      content: `# Abrahamic Religious Figures 📜
+
+Follow the amazing journey of history across the ancient world!
+
+## Abraham's Faith
+Abraham was a very brave man who lived a long time ago in a city called Ur. He taught people to be good and honest. When he stood up for what was right, a miracle saved him from a great fire! He then traveled across the desert to the land of Canaan.
+
+## Joseph's Wisdom
+Joseph was the great-grandson of Abraham. He had a special dream about eleven stars and the sun and moon. Although his jealous brothers threw him into a well, he eventually went to Egypt and became a wise leader. He saved many people from hunger during a great famine.
+
+## Moses' Leadership
+Many years later, Moses was born in Egypt. He was a brave leader who helped his people find their freedom. At Mount Sinai, he received special laws from God that taught everyone how to live in peace and kindness.
+
+## Lessons from the Past
+- **Migration**: Moving to new lands to find peace.
+- **Resilience**: Staying strong even when things are difficult.
+- **Leadership**: Helping others and being a good example.`,
+      quizId: null,
+      assessmentType: 'prophet-journey-game',
       categoryId: null,
     }),
 
