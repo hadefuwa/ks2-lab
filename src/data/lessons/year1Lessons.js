@@ -167,7 +167,7 @@ Three plus one equals four!
       lessonNumber: 1,
       title: "Dinosaurs - When They Lived",
       emoji: '🦕',
-      assessmentType: null, // Uses HTML game instead
+      assessmentType: 'html-game',
       content: `# Dinosaurs - When They Lived 🦕
 
 
@@ -329,7 +329,7 @@ Nothing|Study them and put bones together|Throw them away|Hide them
 <!-- EXPLANATION -->
 Scientists study fossils, put bones together, and learn how dinosaurs lived. They teach us about the past!
 <!-- QUESTION_END -->`,
-      quizId: 43,
+      quizId: null,
       categoryId: null,
     }),
 
@@ -343,8 +343,8 @@ Scientists study fossils, put bones together, and learn how dinosaurs lived. The
       content: `# Ancient Egypt - Pyramids and Pharaohs 🏺
 
 Play the game to find the Pharaoh's treasures!`,
-      quizId: 53,
-      assessmentType: null, // Uses HTML game instead
+      quizId: null,
+      assessmentType: 'html-game',
       categoryId: null,
     }),
 
@@ -552,8 +552,8 @@ By letters only|By instant communication with phones and internet|By shouting|By
 <!-- EXPLANATION -->
 Now we have instant communication with smartphones, computers, and the internet! Long ago, people sent letters which took a long time!
 <!-- QUESTION_END -->`,
-      quizId: 44,
-      assessmentType: null, // Uses HTML game instead
+      quizId: null,
+      assessmentType: 'html-game',
       categoryId: null,
     }),
 
@@ -705,8 +705,8 @@ They were rich|They did important things and helped others|They were tall|They w
 <!-- EXPLANATION -->
 We remember famous people because they did important things, helped others, changed the world, and inspire us today!
 <!-- QUESTION_END -->`,
-      quizId: 43,
-      assessmentType: null, // Uses HTML game instead
+      quizId: null,
+      assessmentType: 'html-game',
       categoryId: null,
     }),
 

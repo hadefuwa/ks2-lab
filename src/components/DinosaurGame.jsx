@@ -46,7 +46,7 @@ function DinosaurGame({ lesson }) {
   const getNextProgressId = useDataStore(state => state.getNextProgressId);
   const getUserId = useDataStore(state => state.getUserId);
   const saveData = useDataStore(state => state.saveData);
-  
+
   const canvasRef = useRef(null);
   const [score, setScore] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -61,7 +61,7 @@ function DinosaurGame({ lesson }) {
   const [timeStarted, setTimeStarted] = useState(null);
   const [timeElapsed, setTimeElapsed] = useState(0);
   const [keys, setKeys] = useState({ left: false, right: false, space: false });
-  
+
   const animationFrameRef = useRef(null);
   const dinoRef = useRef({ x: 100, y: 0, width: 50, height: 50, velocityX: 0, velocityY: 0, onPlatform: false });
   const platformsRef = useRef([]);
@@ -72,6 +72,7 @@ function DinosaurGame({ lesson }) {
   const jumpPowerRef = useRef(-10);
   const moveSpeedRef = useRef(2.5);
   const scoreRef = useRef(0);
+  const foodRef = useRef(0); // To track food collected
   const timerRef = useRef(null);
   const highestYRef = useRef(0);
   const canvasContainerRef = useRef(null);
@@ -83,22 +84,22 @@ function DinosaurGame({ lesson }) {
       const container = canvasContainerRef.current;
       const canvas = canvasRef.current;
       if (!container || !canvas) return;
-      
+
       const containerWidth = container.clientWidth;
       const containerHeight = container.clientHeight;
       const canvasWidth = 800;
       const canvasHeight = 600;
-      
+
       const scaleX = containerWidth / canvasWidth;
       const scaleY = containerHeight / canvasHeight;
       const scale = Math.min(scaleX, scaleY, 1); // Don't scale up, only down
-      
+
       setCanvasScale(scale);
     };
-    
+
     updateCanvasScale();
     window.addEventListener('resize', updateCanvasScale);
-    
+
     // Use ResizeObserver for more accurate container size tracking
     const container = canvasContainerRef.current;
     if (container) {
@@ -109,7 +110,7 @@ function DinosaurGame({ lesson }) {
         resizeObserver.disconnect();
       };
     }
-    
+
     return () => {
       window.removeEventListener('resize', updateCanvasScale);
     };
@@ -119,10 +120,10 @@ function DinosaurGame({ lesson }) {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    
+
     const platforms = [];
     const startY = canvas.height - 100;
-    
+
     // Starting platform
     platforms.push({
       x: 50,
@@ -130,39 +131,39 @@ function DinosaurGame({ lesson }) {
       width: 250,
       height: 25,
     });
-    
+
     // Generate platforms going upward - spread horizontally to require movement
     let currentY = startY - 100;
     let lastX = 150; // Start from middle
-    
+
     for (let i = 0; i < 40; i++) {
       const width = 150 + Math.random() * 80;
       // Alternate sides and spread platforms horizontally
       const direction = i % 2 === 0 ? 1 : -1;
-      const horizontalSpread = 200 + Math.random() * 150;
+      const horizontalSpread = 100 + Math.random() * 100;
       let x = lastX + (direction * horizontalSpread);
-      
+
       // Keep within bounds but allow full canvas width
       x = Math.max(30, Math.min(x, canvas.width - width - 30));
-      
+
       platforms.push({
         x: x,
         y: currentY,
         width: width,
         height: 25,
       });
-      
+
       lastX = x + width / 2; // Update for next platform
       currentY -= 80 + Math.random() * 40; // Varied vertical spacing
     }
-    
+
     platformsRef.current = platforms;
   }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    
+
     const ctx = canvas.getContext('2d');
     canvas.width = 800;
     canvas.height = 600;
@@ -197,20 +198,20 @@ function DinosaurGame({ lesson }) {
     const drawPlatform = (platform) => {
       const screenX = platform.x - camera.x;
       const screenY = platform.y - camera.y;
-      
+
       if (screenX + platform.width < 0 || screenX > canvas.width ||
-          screenY + platform.height < 0 || screenY > canvas.height) {
+        screenY + platform.height < 0 || screenY > canvas.height) {
         return;
       }
 
       // Platform shadow
       ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
       ctx.fillRect(screenX + 3, screenY + 3, platform.width, platform.height);
-      
+
       // Platform top
       ctx.fillStyle = '#8B4513';
       ctx.fillRect(screenX, screenY, platform.width, platform.height);
-      
+
       // Platform edge
       ctx.fillStyle = '#654321';
       ctx.fillRect(screenX, screenY, platform.width, 6);
@@ -219,9 +220,9 @@ function DinosaurGame({ lesson }) {
     const drawDino = () => {
       const screenX = dino.x - camera.x;
       const screenY = dino.y - camera.y;
-      
+
       if (screenX + dino.width < 0 || screenX > canvas.width ||
-          screenY + dino.height < 0 || screenY > canvas.height) {
+        screenY + dino.height < 0 || screenY > canvas.height) {
         return;
       }
 
@@ -257,9 +258,9 @@ function DinosaurGame({ lesson }) {
     const drawFossil = (fossil) => {
       const screenX = fossil.x - camera.x;
       const screenY = fossil.y - camera.y;
-      
+
       if (screenX + fossil.radius < 0 || screenX - fossil.radius > canvas.width ||
-          screenY + fossil.radius < 0 || screenY - fossil.radius > canvas.height) {
+        screenY + fossil.radius < 0 || screenY - fossil.radius > canvas.height) {
         return;
       }
 
@@ -283,9 +284,9 @@ function DinosaurGame({ lesson }) {
     const drawDinosaurItem = (dinoItem) => {
       const screenX = dinoItem.x - camera.x;
       const screenY = dinoItem.y - camera.y;
-      
+
       if (screenX + 40 < 0 || screenX - 40 > canvas.width ||
-          screenY + 40 < 0 || screenY - 40 > canvas.height) {
+        screenY + 40 < 0 || screenY - 40 > canvas.height) {
         return;
       }
 
@@ -309,12 +310,12 @@ function DinosaurGame({ lesson }) {
 
     const checkPlatformCollision = () => {
       dino.onPlatform = false;
-      
+
       for (const platform of platforms) {
         if (dino.x + dino.width > platform.x &&
-            dino.x < platform.x + platform.width &&
-            dino.y + dino.height <= platform.y + 5 &&
-            dino.y + dino.height + dino.velocityY >= platform.y) {
+          dino.x < platform.x + platform.width &&
+          dino.y + dino.height <= platform.y + 5 &&
+          dino.y + dino.height + dino.velocityY >= platform.y) {
           dino.y = platform.y - dino.height;
           dino.velocityY = 0;
           dino.onPlatform = true;
@@ -325,6 +326,15 @@ function DinosaurGame({ lesson }) {
 
     const update = () => {
       if (!isPlaying || isPaused || isGameOver || showMatching) return;
+
+      // Prune off-screen items that are far below the player
+      const pruneY = dino.y + canvas.height * 2; // Items more than 2 screens below are removed
+      if(fossilsRef.current.length > 20) { // Only prune if arrays are getting large
+          fossilsRef.current = fossilsRef.current.filter(f => f.y < pruneY);
+      }
+      if(dinosaursRef.current.length > 15) {
+          dinosaursRef.current = dinosaursRef.current.filter(d => d.y < pruneY);
+      }
 
       // Handle movement
       if (keys.left) {
@@ -337,7 +347,7 @@ function DinosaurGame({ lesson }) {
 
       // Apply gravity
       dino.velocityY += gravityRef.current;
-      
+
       // Update position
       dino.x += dino.velocityX;
       dino.y += dino.velocityY;
@@ -355,21 +365,24 @@ function DinosaurGame({ lesson }) {
       // Check platform collisions
       checkPlatformCollision();
 
-      // Fall off bottom = reset to starting platform (don't end game)
-      if (dino.y > canvas.height + 200) {
+      // Fall off bottom = reset to starting platform
+      if (platforms.length > 0 && dino.y > (canvas.height + 200)) {
         const startPlatform = platforms[0];
         dino.x = startPlatform.x + 50;
         dino.y = startPlatform.y - dino.height;
         dino.velocityX = 0;
         dino.velocityY = 0;
+
+        // Reset camera and score peak tracking
         camera.x = dino.x - canvas.width / 2;
         camera.y = dino.y - canvas.height / 2;
+        highestYRef.current = dino.y;
       }
 
       // Update camera to follow dino
       camera.x = dino.x - canvas.width / 2;
       camera.y = dino.y - canvas.height / 2;
-      
+
       // Track highest point reached
       if (dino.y < highestYRef.current) {
         highestYRef.current = dino.y;
@@ -377,19 +390,14 @@ function DinosaurGame({ lesson }) {
         setScore(scoreRef.current);
       }
 
-      // Spawn fossils on platforms - improved spawning logic
-      const currentTime = Date.now();
-      if (fossils.length < 5) { // Increased from 3 to 5
+      // Spawn fossils on platforms
+      if (fossils.length < 10) { // Increased limit
         const availablePlatforms = platforms.filter(p => {
-          const hasItem = fossils.some(f => 
-            Math.abs(f.x - (p.x + p.width / 2)) < 80
-          ) || dinosaurs.some(d => 
-            Math.abs(d.x - (p.x + p.width / 2)) < 80
-          );
-          return !hasItem && p.y < dino.y + 200 && p.y > dino.y - 800;
+          const hasItem = fossils.some(f => Math.abs(f.x - (p.x + p.width / 2)) < 80 && Math.abs(f.y - p.y) < 150) ||
+                        dinosaurs.some(d => Math.abs(d.x - (p.x + p.width / 2)) < 80 && Math.abs(d.y - p.y) < 150);
+          return !hasItem && p.y > dino.y - 800 && p.y < dino.y; // Window strictly above player
         });
-        
-        // More reliable spawning - check every 100 frames instead of timing
+
         if (availablePlatforms.length > 0 && Math.random() < 0.02) {
           const platform = availablePlatforms[Math.floor(Math.random() * availablePlatforms.length)];
           fossils.push({
@@ -400,18 +408,14 @@ function DinosaurGame({ lesson }) {
         }
       }
 
-      // Spawn dinosaurs on platforms - improved spawning logic
-      if (dinosaurs.length < 3) { // Increased from 2 to 3
+      // Spawn dinosaurs on platforms
+      if (dinosaurs.length < 7) { // Increased limit
         const availablePlatforms = platforms.filter(p => {
-          const hasItem = fossils.some(f => 
-            Math.abs(f.x - (p.x + p.width / 2)) < 80
-          ) || dinosaurs.some(d => 
-            Math.abs(d.x - (p.x + p.width / 2)) < 80
-          );
-          return !hasItem && p.y < dino.y + 200 && p.y > dino.y - 800;
+            const hasItem = fossils.some(f => Math.abs(f.x - (p.x + p.width / 2)) < 80 && Math.abs(f.y - p.y) < 150) ||
+                          dinosaurs.some(d => Math.abs(d.x - (p.x + p.width / 2)) < 80 && Math.abs(d.y - p.y) < 150);
+            return !hasItem && p.y > dino.y - 800 && p.y < dino.y; // Window strictly above player
         });
         
-        // More reliable spawning
         if (availablePlatforms.length > 0 && Math.random() < 0.015) {
           const platform = availablePlatforms[Math.floor(Math.random() * availablePlatforms.length)];
           const dinoType = Math.random() < 0.5 ? 'TREX' : 'BRACHIOSAURUS';
@@ -421,6 +425,26 @@ function DinosaurGame({ lesson }) {
             type: dinoType,
             emoji: DINOSAUR_TYPES[dinoType].emoji,
           });
+        }
+      }
+
+      // Generate more platforms if needed
+      const highestPlatform = platforms[platforms.length - 1];
+      if (dino.y < highestPlatform.y + canvas.height * 1.5) {
+        let currentY = highestPlatform.y;
+        let lastX = highestPlatform.x + highestPlatform.width / 2;
+
+        for (let i = 0; i < 20; i++) { // Generate 20 new platforms
+          const width = 150 + Math.random() * 80;
+          const direction = Math.random() < 0.5 ? 1 : -1;
+          const horizontalSpread = 100 + Math.random() * 100;
+          let x = lastX + (direction * horizontalSpread);
+
+          x = Math.max(30, Math.min(x, canvas.width - width - 30));
+          currentY -= 80 + Math.random() * 40;
+
+          platforms.push({ x: x, y: currentY, width: width, height: 25 });
+          lastX = x + width / 2;
         }
       }
 
@@ -435,12 +459,17 @@ function DinosaurGame({ lesson }) {
           fossils.splice(i, 1);
           scoreRef.current += 10;
           setScore(scoreRef.current);
-          
-          // Speak a random dinosaur fact
+
+          // Increment food counter and check for win condition
+          foodRef.current += 1;
+          setCorrectMatches(foodRef.current);
+          if (foodRef.current >= TARGET_FOODS) {
+            completeGame();
+            return; // Exit update loop
+          }
+
           const randomFact = DINOSAUR_FACTS[Math.floor(Math.random() * DINOSAUR_FACTS.length)];
-          speak(randomFact, { volume: 1.0, rate: 0.8, pitch: 1.1 }).catch(() => {
-            // Ignore errors
-          });
+          speak(randomFact, { volume: 1.0, rate: 0.8, pitch: 1.1 }).catch(() => {});
         }
       }
 
@@ -452,17 +481,20 @@ function DinosaurGame({ lesson }) {
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance < dino.width / 2 + 30) {
-          dinosaurs.splice(i, 1);
+          // By filtering, we create a new array without the collected dinosaur
+          dinosaursRef.current = dinosaurs.filter((d) => d !== dinoItem);
+
           setCurrentDinosaur(dinoItem);
           setShowMatching(true);
           setIsPaused(true);
+          break; // Exit loop after handling one collection to prevent potential issues
         }
       }
     };
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
+
       drawBackground();
 
       if (!isPlaying || isGameOver) {
@@ -501,8 +533,8 @@ function DinosaurGame({ lesson }) {
       ctx.lineWidth = 3;
       ctx.strokeText(`Score: ${scoreRef.current}`, 10, 30);
       ctx.fillText(`Score: ${scoreRef.current}`, 10, 30);
-      ctx.strokeText(`Foods: ${correctMatches}/${TARGET_FOODS}`, 10, 60);
-      ctx.fillText(`Foods: ${correctMatches}/${TARGET_FOODS}`, 10, 60);
+      ctx.strokeText(`Foods: ${foodRef.current}/${TARGET_FOODS}`, 10, 60);
+      ctx.fillText(`Foods: ${foodRef.current}/${TARGET_FOODS}`, 10, 60);
     };
 
     const gameLoop = () => {
@@ -586,20 +618,24 @@ function DinosaurGame({ lesson }) {
 
   // Read question and options when matching screen appears
   useEffect(() => {
+    let isCancelled = false;
+
     if (showMatching && currentDinosaur && !showFeedback) {
       const dinoInfo = DINOSAUR_TYPES[currentDinosaur.type];
       const questionText = `What does ${dinoInfo.name} eat?`;
-      
+
       const readQuestionAndOptions = async () => {
         try {
+          if (isCancelled) return;
           // Read the question first
           await speak(questionText, { volume: 1.0, rate: 0.9, pitch: 1.0 });
-          
+
+          if (isCancelled) return;
           // Wait for speech to complete
           const waitForSpeech = () => {
             return new Promise((resolve) => {
               const checkInterval = setInterval(() => {
-                if (!isSpeaking()) {
+                if (isCancelled || !isSpeaking()) {
                   clearInterval(checkInterval);
                   resolve();
                 }
@@ -611,21 +647,29 @@ function DinosaurGame({ lesson }) {
               }, 5000);
             });
           };
-          
+
           await waitForSpeech();
-          
+          if (isCancelled) return;
+
           // Small pause between question and options
           await new Promise(resolve => setTimeout(resolve, 500));
-          
+
+          if (isCancelled) return;
           // Read the options together
           await speak("The choices are: Meat, or Leaves", { volume: 1.0, rate: 0.85, pitch: 1.0 });
         } catch (err) {
-          console.error('Error speaking question:', err);
+          if (!isCancelled) {
+            console.error('Error speaking question:', err);
+          }
         }
       };
-      
+
       readQuestionAndOptions();
     }
+
+    return () => {
+      isCancelled = true;
+    };
   }, [showMatching, currentDinosaur, showFeedback]);
 
   const handleCanvasClick = (e) => {
@@ -648,61 +692,61 @@ function DinosaurGame({ lesson }) {
   const startGame = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    
-    dinoRef.current = { 
-      x: 100, 
-      y: canvas.height - 150, 
-      width: 50, 
-      height: 50, 
-      velocityX: 0, 
-      velocityY: 0, 
-      onPlatform: false 
+
+    // Reset platforms
+    platformsRef.current = [];
+    const startY = canvas.height - 100;
+    platformsRef.current.push({ x: 50, y: startY, width: 250, height: 25 });
+    let currentY = startY - 100;
+    let lastX = 150;
+    for (let i = 0; i < 40; i++) {
+        const width = 150 + Math.random() * 80;
+        const direction = i % 2 === 0 ? 1 : -1;
+        const horizontalSpread = 100 + Math.random() * 100;
+        let x = lastX + (direction * horizontalSpread);
+        x = Math.max(30, Math.min(x, canvas.width - width - 30));
+        platformsRef.current.push({ x: x, y: currentY, width: width, height: 25 });
+        lastX = x + width / 2;
+        currentY -= 80 + Math.random() * 40;
+    }
+
+    dinoRef.current = {
+      x: 100,
+      y: canvas.height - 150,
+      width: 50,
+      height: 50,
+      velocityX: 0,
+      velocityY: 0,
+      onPlatform: false
     };
     cameraRef.current = { x: 0, y: 0 };
-    
-    // Generate initial fossils on platforms
+
+    // Generate initial fossils and dinosaurs
     const initialFossils = [];
-    const platforms = platformsRef.current;
-    const startY = canvas.height - 150;
-    
-    // Place fossils on some of the higher platforms
-    for (let i = 2; i < Math.min(10, platforms.length); i++) {
-      if (Math.random() < 0.4) { // 40% chance per platform
-        const platform = platforms[i];
-        initialFossils.push({
-          x: platform.x + platform.width / 2,
-          y: platform.y - 30,
-          radius: 18,
-        });
-      }
-    }
-    
-    // Generate initial dinosaurs
     const initialDinosaurs = [];
-    for (let i = 3; i < Math.min(12, platforms.length); i++) {
-      if (Math.random() < 0.25) { // 25% chance per platform
-        const platform = platforms[i];
-        const dinoType = Math.random() < 0.5 ? 'TREX' : 'BRACHIOSAURUS';
-        // Make sure no fossil is too close
-        const tooClose = initialFossils.some(f => 
-          Math.abs(f.x - (platform.x + platform.width / 2)) < 80
-        );
-        if (!tooClose) {
-          initialDinosaurs.push({
-            x: platform.x + platform.width / 2,
-            y: platform.y - 35,
-            type: dinoType,
-            emoji: DINOSAUR_TYPES[dinoType].emoji,
-          });
+    const platforms = platformsRef.current;
+    for (let i = 2; i < Math.min(15, platforms.length); i++) {
+        if (Math.random() < 0.4) {
+            const p = platforms[i];
+            initialFossils.push({ x: p.x + p.width / 2, y: p.y - 30, radius: 18 });
         }
-      }
+        if (Math.random() < 0.25) {
+            const p = platforms[i];
+            const dinoType = Math.random() < 0.5 ? 'TREX' : 'BRACHIOSAURUS';
+            const tooClose = initialFossils.some(f => Math.abs(f.x - (p.x + p.width / 2)) < 80);
+            if (!tooClose) {
+                initialDinosaurs.push({ x: p.x + p.width / 2, y: p.y - 35, type: dinoType, emoji: DINOSAUR_TYPES[dinoType].emoji });
+            }
+        }
     }
-    
+
     fossilsRef.current = initialFossils;
     dinosaursRef.current = initialDinosaurs;
     scoreRef.current = 0;
+    foodRef.current = 0;
     highestYRef.current = canvas.height - 150;
     setScore(0);
+    setCorrectMatches(0);
     setIsPlaying(true);
     setIsGameOver(false);
     setIsCompleted(false);
@@ -711,13 +755,13 @@ function DinosaurGame({ lesson }) {
     setCurrentDinosaur(null);
     setShowFeedback(false);
     setSelectedAnswer(null);
-    setCorrectMatches(0);
-    setIsCompleted(false);
     setTimeStarted(Date.now());
     setTimeElapsed(0);
   };
 
   const completeGame = () => {
+    scoreRef.current = 500; // Set a high score to guarantee gold
+    setScore(500);
     setIsPlaying(false);
     setIsCompleted(true);
     if (animationFrameRef.current) {
@@ -729,7 +773,7 @@ function DinosaurGame({ lesson }) {
         const userId = getUserId();
         const progressId = getNextProgressId();
         const percentage = 100; // Always 100% if they collected 10 foods
-        
+
         const progress = new Progress({
           id: progressId,
           studentId: userId,
@@ -761,42 +805,33 @@ function DinosaurGame({ lesson }) {
 
   const handleFoodSelect = (selectedFood) => {
     if (showFeedback) return;
-    
+
+    stop(); // Stop any ongoing speech
+
     const correctFood = currentDinosaur.type === 'TREX' ? 'meat' : 'leaves';
     const isCorrect = selectedFood === correctFood;
-    
-    // Store the selected answer and whether it was correct
+
     setSelectedAnswer({ food: selectedFood, isCorrect });
     setShowFeedback(true);
-    
+
     if (isCorrect) {
-      const newMatches = correctMatches + 1;
-      setCorrectMatches(newMatches);
+      foodRef.current += 1;
+      setCorrectMatches(foodRef.current);
       scoreRef.current += 30;
       setScore(scoreRef.current);
-      // Speak success
-      const dinoName = currentDinosaur.type === 'TREX' ? 'T-Rex' : 'Brachiosaurus';
-      speak(`Great! ${dinoName} eats ${correctFood}! You've fed ${newMatches} dinosaur${newMatches > 1 ? 's' : ''}!`, { volume: 1.0, rate: 0.8, pitch: 1.1 }).catch(() => {});
-      
-      // Check if game is complete (collected TARGET_FOODS)
-      if (newMatches >= TARGET_FOODS) {
-        setTimeout(() => {
-          completeGame();
-        }, 2000); // Show feedback for 2 seconds then complete
+
+      const dinoName = DINOSAUR_TYPES[currentDinosaur.type].name;
+      speak(`Great! ${dinoName} eats ${correctFood}! You've fed ${foodRef.current} dinosaur${foodRef.current > 1 ? 's' : ''}!`, { volume: 1.0, rate: 0.8, pitch: 1.1 }).catch(() => {});
+
+      if (foodRef.current >= TARGET_FOODS) {
+        setTimeout(completeGame, 2000);
       } else {
-        // Continue playing after a short delay
-        setTimeout(() => {
-          handleMatchingNext();
-        }, 2000); // Show feedback for 2 seconds then continue
+        setTimeout(handleMatchingNext, 2000);
       }
     } else {
-      // Stop any ongoing speech before speaking correction
-      stop();
-      // Wait a brief moment to ensure the stop completes before speaking
       setTimeout(() => {
-        // Speak correction
-        const dinoName = currentDinosaur.type === 'TREX' ? 'T-Rex' : 'Brachiosaurus';
-        const correctFoodName = currentDinosaur.type === 'TREX' ? 'meat' : 'leaves';
+        const dinoName = DINOSAUR_TYPES[currentDinosaur.type].name;
+        const correctFoodName = DINOSAUR_TYPES[currentDinosaur.type].food;
         speak(`${dinoName} eats ${correctFoodName}. Try again!`, { volume: 1.0, rate: 0.8, pitch: 1.1 }).catch(() => {});
       }, 100);
     }
@@ -812,7 +847,7 @@ function DinosaurGame({ lesson }) {
 
   const getGrade = () => {
     const percentage = Math.min(100, Math.round((scoreRef.current / 50) * 100));
-    
+
     if (percentage >= SCORE_TIERS.GOLD.minScore) return SCORE_TIERS.GOLD;
     if (percentage >= SCORE_TIERS.SILVER.minScore) return SCORE_TIERS.SILVER;
     if (percentage >= SCORE_TIERS.BRONZE.minScore) return SCORE_TIERS.BRONZE;
@@ -827,7 +862,7 @@ function DinosaurGame({ lesson }) {
     const dinoInfo = DINOSAUR_TYPES[currentDinosaur.type];
     const correctFood = currentDinosaur.type === 'TREX' ? 'meat' : 'leaves';
     const isAnswerCorrect = selectedAnswer ? selectedAnswer.isCorrect : false;
-    
+
     return (
       <div style={{
         position: 'absolute',
@@ -869,7 +904,7 @@ function DinosaurGame({ lesson }) {
                 const questionText = `What does ${dinoInfo.name} eat?`;
                 try {
                   await speak(questionText, { volume: 1.0, rate: 0.9, pitch: 1.0 });
-                  
+
                   const waitForSpeech = () => {
                     return new Promise((resolve) => {
                       const checkInterval = setInterval(() => {
@@ -880,14 +915,14 @@ function DinosaurGame({ lesson }) {
                       }, 100);
                     });
                   };
-                  
+
                   await waitForSpeech();
                   await new Promise(resolve => setTimeout(resolve, 300));
-                  
+
                   await speak("Option A: Meat", { volume: 1.0, rate: 0.9, pitch: 1.0 });
                   await waitForSpeech();
                   await new Promise(resolve => setTimeout(resolve, 200));
-                  
+
                   await speak("Option B: Leaves", { volume: 1.0, rate: 0.9, pitch: 1.0 });
                 } catch (err) {
                   console.error('Error speaking question:', err);
@@ -915,7 +950,7 @@ function DinosaurGame({ lesson }) {
               🔊
             </button>
           </div>
-          
+
           <div style={{
             fontSize: '120px',
             marginBottom: '40px',
@@ -939,15 +974,15 @@ function DinosaurGame({ lesson }) {
                 border: showFeedback && selectedAnswer && selectedAnswer.food === 'meat'
                   ? (selectedAnswer.isCorrect ? '6px solid #28a745' : '6px solid #dc3545')
                   : showFeedback && correctFood === 'meat'
-                  ? '6px solid #28a745'
-                  : '6px solid #ddd',
+                    ? '6px solid #28a745'
+                    : '6px solid #ddd',
                 borderRadius: '16px',
                 cursor: showFeedback ? 'default' : 'pointer',
                 backgroundColor: showFeedback && selectedAnswer && selectedAnswer.food === 'meat'
                   ? (selectedAnswer.isCorrect ? '#d4edda' : '#f8d7da')
                   : showFeedback && correctFood === 'meat'
-                  ? '#d4edda'
-                  : '#fff',
+                    ? '#d4edda'
+                    : '#fff',
                 transition: 'all 0.3s ease',
                 minWidth: '200px',
                 boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
@@ -967,7 +1002,7 @@ function DinosaurGame({ lesson }) {
             >
               🥩
             </button>
-            
+
             <button
               onClick={() => handleFoodSelect('leaves')}
               disabled={showFeedback}
@@ -977,15 +1012,15 @@ function DinosaurGame({ lesson }) {
                 border: showFeedback && selectedAnswer && selectedAnswer.food === 'leaves'
                   ? (selectedAnswer.isCorrect ? '6px solid #28a745' : '6px solid #dc3545')
                   : showFeedback && correctFood === 'leaves'
-                  ? '6px solid #28a745'
-                  : '6px solid #ddd',
+                    ? '6px solid #28a745'
+                    : '6px solid #ddd',
                 borderRadius: '16px',
                 cursor: showFeedback ? 'default' : 'pointer',
                 backgroundColor: showFeedback && selectedAnswer && selectedAnswer.food === 'leaves'
                   ? (selectedAnswer.isCorrect ? '#d4edda' : '#f8d7da')
                   : showFeedback && correctFood === 'leaves'
-                  ? '#d4edda'
-                  : '#fff',
+                    ? '#d4edda'
+                    : '#fff',
                 transition: 'all 0.3s ease',
                 minWidth: '200px',
                 boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
@@ -1077,12 +1112,12 @@ function DinosaurGame({ lesson }) {
           <div style={{
             margin: '20px 0',
             padding: '20px',
-            backgroundColor: SCORE_TIERS.GOLD.color,
+            backgroundColor: '#FFD700', // Gold
             borderRadius: '8px',
             color: '#333',
           }}>
             <div style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '5px' }}>
-              {SCORE_TIERS.GOLD.name} Medal
+              Gold Medal
             </div>
             <div style={{ fontSize: '18px', marginBottom: '5px' }}>
               You collected {TARGET_FOODS} foods! 🦖🦕
@@ -1268,7 +1303,7 @@ function DinosaurGame({ lesson }) {
           Arrow Keys / A/D: Move • SPACE: Jump • Collect dinosaurs 🦖🦕 and match them with food!
         </div>
       </div>
-      <div 
+      <div
         ref={canvasContainerRef}
         style={{
           flex: 1,

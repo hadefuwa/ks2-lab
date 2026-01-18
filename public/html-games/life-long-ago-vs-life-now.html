@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -34,11 +35,21 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             z-index: 10;
         }
-        h1 { margin: 0; font-size: 1.5rem; color: #444; }
-        .score-box { font-weight: bold; color: #2E7D32; font-size: 1.2rem; }
+
+        h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #444;
+        }
+
+        .score-box {
+            font-weight: bold;
+            color: #2E7D32;
+            font-size: 1.2rem;
+        }
 
         /* --- GAME BOARD --- */
         #game-board {
@@ -58,7 +69,7 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            border: 4px dashed rgba(0,0,0,0.2);
+            border: 4px dashed rgba(0, 0, 0, 0.2);
             transition: all 0.3s;
             overflow: hidden;
         }
@@ -71,6 +82,7 @@
             background-image: radial-gradient(#e6dab8 1px, transparent 1px);
             background-size: 20px 20px;
         }
+
         #zone-past .zone-label {
             background: var(--past-border);
             color: #FFF8DC;
@@ -82,9 +94,10 @@
             border-color: var(--present-border);
             /* Tech grid pattern */
             background-image: linear-gradient(rgba(21, 101, 192, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(21, 101, 192, 0.1) 1px, transparent 1px);
+                linear-gradient(90deg, rgba(21, 101, 192, 0.1) 1px, transparent 1px);
             background-size: 20px 20px;
         }
+
         #zone-present .zone-label {
             background: var(--present-border);
             color: white;
@@ -106,14 +119,15 @@
             justify-content: center;
             align-items: center;
             opacity: 0.5;
-            font-size: 5rem; /* Background Icon size */
+            font-size: 5rem;
+            /* Background Icon size */
             z-index: 1;
         }
 
         .zone.highlight {
             transform: scale(1.02);
             border-style: solid;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
 
         /* --- PLAY PIECE --- */
@@ -134,11 +148,15 @@
             width: 120px;
             height: 120px;
             cursor: grab;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
             transition: transform 0.2s;
         }
-        #current-item:active { cursor: grabbing; transform: scale(1.1); }
-        
+
+        #current-item:active {
+            cursor: grabbing;
+            transform: scale(1.1);
+        }
+
         /* The clone that moves */
         .flying-item {
             position: fixed;
@@ -149,14 +167,25 @@
 
         /* --- FACT MODAL --- */
         #fact-modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            display: flex; justify-content: center; align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
             z-index: 2000;
-            opacity: 0; pointer-events: none;
+            opacity: 0;
+            pointer-events: none;
             transition: opacity 0.3s;
         }
-        #fact-modal.show { opacity: 1; pointer-events: auto; }
+
+        #fact-modal.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
 
         .fact-card {
             background: white;
@@ -165,22 +194,40 @@
             padding: 30px;
             border-radius: 20px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             border-top: 10px solid #FFD700;
         }
 
-        .fact-title { font-size: 1.5rem; color: #333; margin-bottom: 10px; }
-        .fact-text { font-size: 1.1rem; color: #555; line-height: 1.5; margin-bottom: 20px; }
-        
-        button.next-btn {
-            background: #1565C0; color: white; border: none;
-            padding: 12px 30px; font-size: 1.1rem; border-radius: 50px;
-            cursor: pointer; transition: background 0.2s;
+        .fact-title {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
         }
-        button.next-btn:hover { background: #0D47A1; }
 
+        .fact-text {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        button.next-btn {
+            background: #1565C0;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button.next-btn:hover {
+            background: #0D47A1;
+        }
     </style>
 </head>
+
 <body>
 
     <div id="header-bar">
@@ -305,10 +352,18 @@
             if (queue.length === 0) {
                 document.getElementById('fact-header').innerText = "Game Over!";
                 document.getElementById('fact-body').innerText = "You sorted all the items perfectly! You are a Time Expert.";
-                document.getElementById('fact-icon').innerHTML = "🏆"; 
+                document.getElementById('fact-icon').innerHTML = "🏆";
                 document.querySelector('.next-btn').innerText = "Play Again";
                 document.querySelector('.next-btn').onclick = () => location.reload();
                 document.getElementById('fact-modal').classList.add('show');
+
+                // Notify parent window that game is complete
+                if (window.parent && window.parent !== window) {
+                    window.parent.postMessage({
+                        type: 'html-game-complete',
+                        game: 'life-long-ago-vs-life-now'
+                    }, '*');
+                }
                 return;
             }
 
@@ -316,7 +371,7 @@
             const el = document.getElementById('current-item');
             el.innerHTML = currentItem.svg;
             el.style.opacity = 1;
-            
+
             // Speak item name
             speak(currentItem.name);
 
@@ -329,10 +384,20 @@
         }
 
         function speak(text) {
-            if(synth.speaking) synth.cancel();
-            const u = new SpeechSynthesisUtterance(text);
-            u.rate = 1.1; 
-            synth.speak(u);
+            // Try to use parent window TTS if available
+            if (window.parent && window.parent !== window) {
+                window.parent.postMessage({
+                    type: 'html-game-tts',
+                    text: text,
+                    rate: 0.9,
+                    pitch: 1.1
+                }, '*');
+            } else {
+                if (synth.speaking) synth.cancel();
+                const u = new SpeechSynthesisUtterance(text);
+                u.rate = 1.1;
+                synth.speak(u);
+            }
         }
 
         // --- DRAG AND DROP LOGIC ---
@@ -340,12 +405,12 @@
         let startX, startY;
 
         itemEl.addEventListener('mousedown', startDrag);
-        itemEl.addEventListener('touchstart', startDrag, {passive: false});
+        itemEl.addEventListener('touchstart', startDrag, { passive: false });
 
         function startDrag(e) {
             e.preventDefault();
             isDragging = true;
-            
+
             const clientX = e.touches ? e.touches[0].clientX : e.clientX;
             const clientY = e.touches ? e.touches[0].clientY : e.clientY;
             startX = clientX;
@@ -353,17 +418,17 @@
 
             document.addEventListener('mousemove', onDrag);
             document.addEventListener('mouseup', endDrag);
-            document.addEventListener('touchmove', onDrag, {passive: false});
+            document.addEventListener('touchmove', onDrag, { passive: false });
             document.addEventListener('touchend', endDrag);
         }
 
         function onDrag(e) {
             if (!isDragging) return;
             e.preventDefault(); // Stop scrolling on touch
-            
+
             const clientX = e.touches ? e.touches[0].clientX : e.clientX;
             const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-            
+
             const dx = clientX - startX;
             const dy = clientY - startY;
 
@@ -379,7 +444,7 @@
 
             // Hit Detection
             const rect = itemEl.getBoundingClientRect();
-            const center = { x: rect.left + rect.width/2, y: rect.top + rect.height/2 };
+            const center = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
 
             const pastZone = document.getElementById('zone-past').getBoundingClientRect();
             const presentZone = document.getElementById('zone-present').getBoundingClientRect();
@@ -423,9 +488,9 @@
 
             // 3. Move clone to center of target zone
             const target = document.getElementById(zoneId === 'past' ? 'zone-past' : 'zone-present').getBoundingClientRect();
-            const destX = target.left + target.width/2 - 60; // 60 is half width
-            const destY = target.top + target.height/2 - 60;
-            
+            const destX = target.left + target.width / 2 - 60; // 60 is half width
+            const destY = target.top + target.height / 2 - 60;
+
             setTimeout(() => {
                 clone.style.transform = `translate(${destX - rect.left}px, ${destY - rect.top}px) scale(0)`;
                 clone.style.opacity = 0;
@@ -452,10 +517,10 @@
             document.getElementById('fact-header').innerText = "That's Right!";
             document.getElementById('fact-body').innerText = currentItem.fact;
             document.getElementById('fact-icon').innerHTML = currentItem.svg;
-            
+
             // Speak the fact
             speak(currentItem.fact);
-            
+
             modal.classList.add('show');
         }
 
@@ -469,4 +534,5 @@
 
     </script>
 </body>
+
 </html>

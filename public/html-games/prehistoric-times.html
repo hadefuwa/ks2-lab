@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -50,7 +51,7 @@
             padding: 40px;
             max-width: 700px;
             text-align: center;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
             color: white;
         }
 
@@ -100,7 +101,7 @@
         /* --- HEADER --- */
         h1 {
             color: #4E342E;
-            text-shadow: 2px 2px 0 rgba(255,255,255,0.3);
+            text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.3);
             margin: 10px 0;
             font-size: clamp(1.5rem, 5vw, 2.5rem);
             text-align: center;
@@ -113,7 +114,7 @@
             font-size: clamp(0.9rem, 2.5vw, 1.2rem);
             font-weight: bold;
             margin-bottom: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         /* --- SCOREBOARD --- */
@@ -126,14 +127,19 @@
             font-size: clamp(1rem, 3vw, 1.4rem);
             font-weight: bold;
             margin-bottom: 15px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
             display: flex;
             gap: 20px;
             align-items: center;
         }
 
-        #score { color: #FFD700; }
-        #lives { color: #FF6B6B; }
+        #score {
+            color: #FFD700;
+        }
+
+        #lives {
+            color: #FF6B6B;
+        }
 
         /* --- INSTRUCTION BANNER --- */
         #instruction {
@@ -145,7 +151,7 @@
             text-align: center;
             max-width: 90%;
             margin-bottom: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             min-height: 50px;
             display: flex;
             align-items: center;
@@ -174,7 +180,7 @@
             gap: 15px;
             padding: 20px;
             position: relative;
-            box-shadow: inset 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: inset 0 10px 30px rgba(0, 0, 0, 0.5);
             flex-wrap: wrap;
         }
 
@@ -195,26 +201,26 @@
         .cave-slot {
             width: 80px;
             height: 80px;
-            border: 3px dashed rgba(255,255,255,0.3);
+            border: 3px dashed rgba(255, 255, 255, 0.3);
             border-radius: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 3rem;
             transition: all 0.3s;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .cave-slot.highlight {
             border-color: #FFD700;
-            background: rgba(255,215,0,0.2);
+            background: rgba(255, 215, 0, 0.2);
             transform: scale(1.1);
         }
 
         .cave-slot.filled {
             border-style: solid;
             border-color: #4CAF50;
-            background: rgba(76,175,80,0.2);
+            background: rgba(76, 175, 80, 0.2);
         }
 
         /* --- ITEM POOL (Draggables) --- */
@@ -242,7 +248,7 @@
             align-items: center;
             font-size: 3.5rem;
             cursor: grab;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             transition: transform 0.1s;
             position: relative;
         }
@@ -262,9 +268,19 @@
         }
 
         @keyframes shake {
-            0%, 100% { transform: translateX(0) rotate(0deg); }
-            25% { transform: translateX(-10px) rotate(-5deg); }
-            75% { transform: translateX(10px) rotate(5deg); }
+
+            0%,
+            100% {
+                transform: translateX(0) rotate(0deg);
+            }
+
+            25% {
+                transform: translateX(-10px) rotate(-5deg);
+            }
+
+            75% {
+                transform: translateX(10px) rotate(5deg);
+            }
         }
 
         .item-card.correct-answer {
@@ -272,9 +288,17 @@
         }
 
         @keyframes celebrate {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2) rotate(10deg); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2) rotate(10deg);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
 
         /* --- FACT MODAL --- */
@@ -306,7 +330,7 @@
             padding: 30px;
             max-width: 600px;
             width: 90%;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
             position: relative;
         }
 
@@ -381,7 +405,7 @@
             max-width: 500px;
             width: 90%;
             text-align: center;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
             color: white;
         }
 
@@ -415,9 +439,9 @@
             transform: translateY(4px);
             box-shadow: 0 0 0 #ddd;
         }
-
     </style>
 </head>
+
 <body>
 
     <!-- INTRO SCREEN -->
@@ -426,8 +450,10 @@
             <h1>🦴 Cave Life Adventure 🔥</h1>
             <div class="cave-art">🏔️ 🦣 🗿 ⚒️ 🔥</div>
             <p>Welcome to <span class="highlight">Prehistoric Times</span>!</p>
-            <p>This was <span class="highlight">BEFORE writing existed</span>. People lived in caves, hunted mammoths, made stone tools, and painted on cave walls!</p>
-            <p>🎯 <strong>Your Mission:</strong> Help the cave people gather what they need to survive! Drag the correct items into the cave.</p>
+            <p>This was <span class="highlight">BEFORE writing existed</span>. People lived in caves, hunted mammoths,
+                made stone tools, and painted on cave walls!</p>
+            <p>🎯 <strong>Your Mission:</strong> Help the cave people gather what they need to survive! Drag the correct
+                items into the cave.</p>
             <p>⚠️ Be careful - only take what cave people actually had!</p>
             <button id="start-game-btn">Start Adventure!</button>
         </div>
@@ -653,7 +679,7 @@
         function setupRound() {
             itemPool.innerHTML = '';
             correctCount = 0;
-            
+
             // Clear cave slots
             caveSlots.forEach(slot => {
                 slot.innerHTML = '';
@@ -663,13 +689,13 @@
             // Select items for this round (2-3 correct, 3-4 wrong)
             const correctItems = prehistoricItems.filter(item => item.isPrehistoric);
             const wrongItems = prehistoricItems.filter(item => !item.isPrehistoric);
-            
+
             const numCorrect = Math.random() > 0.5 ? 3 : 2;
             const numWrong = 6 - numCorrect;
 
             const selectedCorrect = shuffleArray(correctItems).slice(0, numCorrect);
             const selectedWrong = shuffleArray(wrongItems).slice(0, numWrong);
-            
+
             currentRoundItems = shuffleArray([...selectedCorrect, ...selectedWrong]);
 
             // Create item cards
@@ -684,9 +710,9 @@
                 card.dataset.emoji = item.emoji;
 
                 // Touch events
-                card.addEventListener('touchstart', handleTouchStart, {passive: false});
-                card.addEventListener('touchmove', handleTouchMove, {passive: false});
-                card.addEventListener('touchend', handleTouchEnd, {passive: false});
+                card.addEventListener('touchstart', handleTouchStart, { passive: false });
+                card.addEventListener('touchmove', handleTouchMove, { passive: false });
+                card.addEventListener('touchend', handleTouchEnd, { passive: false });
 
                 // Mouse events
                 card.addEventListener('dragstart', handleDragStart);
@@ -719,10 +745,10 @@
             const touch = e.touches[0];
             touchStartX = touch.clientX;
             touchStartY = touch.clientY;
-            
+
             draggedElement = e.target;
             draggedElement.style.opacity = '0.5';
-            
+
             // Create clone for dragging
             touchClone = draggedElement.cloneNode(true);
             touchClone.style.position = 'fixed';
@@ -738,7 +764,7 @@
         function handleTouchMove(e) {
             e.preventDefault();
             if (!draggedElement) return;
-            
+
             const touch = e.touches[0];
             if (touchClone) {
                 touchClone.style.left = (touch.clientX - draggedElement.offsetWidth / 2) + 'px';
@@ -821,7 +847,7 @@
                 slot.innerHTML = card.dataset.emoji;
                 slot.classList.add('filled');
                 card.classList.add('correct-answer');
-                
+
                 setTimeout(() => {
                     card.remove();
                 }, 500);
@@ -841,7 +867,7 @@
                 playSound('wrong');
                 card.classList.add('wrong-answer');
                 lives--;
-                
+
                 if (lives <= 0) {
                     setTimeout(gameOver, 1000);
                 } else {
@@ -865,7 +891,7 @@
         function nextRound() {
             factModal.classList.remove('visible');
             round++;
-            
+
             if (round > maxRounds) {
                 gameOver(true);
             } else {
@@ -877,11 +903,19 @@
             if (completed) {
                 gameOverTitle.textContent = '🎉 Amazing Job! 🎉';
                 gameOverMessage.textContent = 'You\'re a prehistoric expert!';
+
+                // Notify parent window that game is complete
+                if (window.parent && window.parent !== window) {
+                    window.parent.postMessage({
+                        type: 'html-game-complete',
+                        game: 'prehistoric-times'
+                    }, '*');
+                }
             } else {
                 gameOverTitle.textContent = '⛔ Game Over ⛔';
                 gameOverMessage.textContent = 'Keep learning about prehistoric times!';
             }
-            
+
             finalScoreDisplay.textContent = score;
             gameOverScreen.classList.add('visible');
         }
@@ -949,4 +983,5 @@
 
     </script>
 </body>
+
 </html>

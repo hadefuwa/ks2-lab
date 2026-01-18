@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -50,7 +51,7 @@
             padding: 40px;
             max-width: 700px;
             text-align: center;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
             color: white;
         }
 
@@ -124,7 +125,7 @@
             font-size: clamp(0.9rem, 2.5vw, 1.2rem);
             font-weight: bold;
             margin-bottom: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             border: 3px solid #DC143C;
         }
 
@@ -138,7 +139,7 @@
             font-size: clamp(1rem, 3vw, 1.4rem);
             font-weight: bold;
             margin-bottom: 15px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
             display: flex;
             gap: 20px;
             align-items: center;
@@ -146,9 +147,17 @@
             justify-content: center;
         }
 
-        #score { color: #FFD700; }
-        #lives { color: #FF6B6B; }
-        #timer { color: #FFA500; }
+        #score {
+            color: #FFD700;
+        }
+
+        #lives {
+            color: #FF6B6B;
+        }
+
+        #timer {
+            color: #FFA500;
+        }
 
         /* --- INSTRUCTION BANNER --- */
         #instruction {
@@ -160,7 +169,7 @@
             text-align: center;
             max-width: 90%;
             margin-bottom: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             min-height: 50px;
             display: flex;
             align-items: center;
@@ -189,7 +198,7 @@
             gap: 8px;
             padding: 15px;
             position: relative;
-            box-shadow: inset 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: inset 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         #wall-zone::before {
@@ -208,8 +217,8 @@
         }
 
         .wall-slot {
-            background: rgba(0,0,0,0.2);
-            border: 3px dashed rgba(255,215,0,0.4);
+            background: rgba(0, 0, 0, 0.2);
+            border: 3px dashed rgba(255, 215, 0, 0.4);
             border-radius: 10px;
             display: flex;
             justify-content: center;
@@ -222,14 +231,14 @@
 
         .wall-slot.highlight {
             border-color: #FFD700;
-            background: rgba(255,215,0,0.3);
+            background: rgba(255, 215, 0, 0.3);
             transform: scale(1.05);
         }
 
         .wall-slot.filled {
             border-style: solid;
             border-color: #4CAF50;
-            background: rgba(76,175,80,0.2);
+            background: rgba(76, 175, 80, 0.2);
         }
 
         .wall-slot.locked {
@@ -244,7 +253,7 @@
             top: 2px;
             left: 5px;
             font-size: 0.8rem;
-            color: rgba(255,215,0,0.6);
+            color: rgba(255, 215, 0, 0.6);
             font-weight: bold;
         }
 
@@ -284,12 +293,12 @@
             transition: all 0.2s;
             font-family: inherit;
             color: #5D4037;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .option-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
 
         .option-btn.correct {
@@ -311,9 +320,19 @@
         }
 
         @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-10px);
+            }
+
+            75% {
+                transform: translateX(10px);
+            }
         }
 
         /* --- FACT MODAL --- */
@@ -345,7 +364,7 @@
             padding: 30px;
             max-width: 600px;
             width: 90%;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
             position: relative;
         }
 
@@ -421,14 +440,14 @@
             max-width: 500px;
             width: 90%;
             text-align: center;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
             color: #5D4037;
         }
 
         .game-over-box h2 {
             font-size: clamp(2rem, 6vw, 3rem);
             margin: 0 0 20px 0;
-            text-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+            text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
         }
 
         .final-score {
@@ -456,9 +475,9 @@
             transform: translateY(4px);
             box-shadow: 0 0 0 #8B0000;
         }
-
     </style>
 </head>
+
 <body>
 
     <!-- INTRO SCREEN -->
@@ -468,7 +487,8 @@
             <div class="china-symbols">🐉 🏯 📜 👑 🧱</div>
             <div class="difficulty-badge">⚡ CHALLENGE MODE ⚡</div>
             <p>Welcome to <span class="highlight">Ancient China</span>!</p>
-            <p>The Great Wall protected China from invaders. It's <span class="highlight">over 13,000 miles long</span>!</p>
+            <p>The Great Wall protected China from invaders. It's <span class="highlight">over 13,000 miles long</span>!
+            </p>
             <p>🎯 <strong>Your Mission:</strong> Answer questions correctly to build the wall piece by piece!</p>
             <p>⚠️ This is HARDER - answer 10 challenging questions about Ancient China!</p>
             <p>⏱️ Watch your time and lives carefully!</p>
@@ -529,9 +549,10 @@
         function speak(text, options = {}) {
             if (window.parent && window.parent !== window) {
                 window.parent.postMessage({
-                    type: 'tts-speak',
+                    type: 'html-game-tts',
                     text: text,
-                    options: options
+                    rate: options.rate || 0.95,
+                    pitch: options.pitch || 1.1
                 }, '*');
             } else {
                 const synth = window.speechSynthesis;
@@ -662,7 +683,7 @@
         function initializeGame() {
             // Shuffle questions
             questionsOrder = shuffleArray([...Array(questions.length).keys()]);
-            
+
             // Create wall slots
             wallZone.innerHTML = '';
             for (let i = 0; i < 10; i++) {
@@ -675,7 +696,7 @@
 
             // Start timer
             startTimer();
-            
+
             // Show first question
             showQuestion();
         }
@@ -684,7 +705,7 @@
             timerInterval = setInterval(() => {
                 timeLeft--;
                 timerDisplay.textContent = timeLeft;
-                
+
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
                     gameOver(false, 'Time ran out!');
@@ -705,7 +726,7 @@
             }
 
             const q = questions[questionsOrder[currentQuestion]];
-            
+
             // Unlock current wall slot
             const slots = document.querySelectorAll('.wall-slot');
             if (slots[currentQuestion]) {
@@ -737,10 +758,10 @@
                 buttons[selectedIndex].classList.add('correct');
                 playSound('correct');
                 speak('Correct!');
-                
+
                 score += 20;
                 progress++;
-                
+
                 // Fill wall slot
                 const slots = document.querySelectorAll('.wall-slot');
                 if (slots[currentQuestion]) {
@@ -751,16 +772,16 @@
                 setTimeout(() => {
                     showFactModal(question.emoji, 'Great Job!', question.fact);
                 }, 1000);
-                
+
             } else {
                 // Wrong!
                 buttons[selectedIndex].classList.add('wrong');
                 buttons[question.correct].classList.add('correct');
                 playSound('wrong');
                 speak('Incorrect. Try to remember this for next time!');
-                
+
                 lives--;
-                
+
                 if (lives <= 0) {
                     clearInterval(timerInterval);
                     setTimeout(() => gameOver(false, 'No lives remaining!'), 1500);
@@ -780,7 +801,7 @@
             factContent.textContent = fact;
             factModal.classList.add('visible');
             playSound('complete');
-            
+
             setTimeout(() => {
                 speak(fact);
             }, 500);
@@ -797,12 +818,20 @@
                 gameOverTitle.textContent = '🎉 Victory! 🎉';
                 gameOverMessage.textContent = 'You successfully built the Great Wall of China!';
                 speak(`Amazing! You scored ${score} points and built the entire Great Wall! You are a true master of Ancient China!`);
+
+                // Notify parent window that game is complete
+                if (window.parent && window.parent !== window) {
+                    window.parent.postMessage({
+                        type: 'html-game-complete',
+                        game: 'ancient-china-great-wall'
+                    }, '*');
+                }
             } else {
                 gameOverTitle.textContent = '⛔ Challenge Failed ⛔';
                 gameOverMessage.textContent = message || 'Keep learning about Ancient China!';
                 speak(`Game over. ${message} You scored ${score} points. Keep practicing to master Ancient China!`);
             }
-            
+
             finalScoreDisplay.textContent = score;
             gameOverScreen.classList.add('visible');
         }
@@ -813,11 +842,11 @@
             progress = 0;
             timeLeft = 180;
             currentQuestion = 0;
-            
+
             if (timerInterval) {
                 clearInterval(timerInterval);
             }
-            
+
             gameOverScreen.classList.remove('visible');
             initializeGame();
         }
@@ -876,4 +905,5 @@
 
     </script>
 </body>
+
 </html>

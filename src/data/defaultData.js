@@ -102,7 +102,7 @@ function getDefaultRewards() {
       id: 1,
       name: '🎮 Play for 30 mins',
       description: 'Enjoy 30 minutes of free play time!',
-      cost: 100,
+      cost: 300,
       imageUrl: null,
       isActive: true,
       createdAt: new Date().toISOString(),

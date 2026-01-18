@@ -30,6 +30,7 @@ let currentUtterance = null;
 let isSpeechInProgress = false;
 let speechQueue = [];
 let stopRequested = false;
+let currentRequestId = 0;
 
 // Load Web Speech API voices (fallback only)
 const loadVoices = () => {
@@ -99,13 +100,11 @@ const speak = async (text, options = {}) => {
     return Promise.reject(new Error('Invalid text provided'));
   }
 
-  // Stop any current speech immediately and wait for it to fully stop
-  stop();
+  // Increment request ID to invalidate any previous pending requests
+  const requestId = ++currentRequestId;
 
-  // If another speech is in progress, wait a bit for it to stop
-  if (isSpeechInProgress) {
-    await new Promise(resolve => setTimeout(resolve, 150));
-  }
+  // Stop any current speech immediately
+  stop();
 
   // Mark that speech is starting
   isSpeechInProgress = true;
@@ -120,14 +119,18 @@ const speak = async (text, options = {}) => {
       const voice = options.voice || prefs.voice || 'en-US-EmmaMultilingualNeural';
       
       // Call Electron main process to synthesize speech
-      // Note: edge-tts doesn't support rate/pitch directly, but volume is handled via audio element
       const result = await window.electronAPI.ttsSpeak(text, {
         voice,
       });
 
+      // Check if this request is still the latest one
+      if (requestId !== currentRequestId || stopRequested) {
+        isSpeechInProgress = false;
+        return Promise.reject(new Error('Speech was stopped or invalidated by a newer request'));
+      }
+
       if (result.success && result.audioData) {
         // Convert base64 to blob URL for playback
-        // This avoids file:// URL security restrictions in Electron
         const base64Data = result.audioData;
         const mimeType = result.mimeType || 'audio/mpeg';
         
@@ -152,11 +155,12 @@ const speak = async (text, options = {}) => {
         // Play and return promise
         return new Promise((resolve, reject) => {
           audio.oncanplaythrough = () => {
-            if (stopRequested) {
+            // Check again before playing
+            if (requestId !== currentRequestId || stopRequested) {
               currentAudioPlayer = null;
               isSpeechInProgress = false;
               URL.revokeObjectURL(blobUrl);
-              reject(new Error('Speech was stopped'));
+              reject(new Error('Speech was stopped or invalidated'));
               return;
             }
             audio.play().then(() => {
@@ -168,25 +172,29 @@ const speak = async (text, options = {}) => {
           };
 
           audio.onerror = (e) => {
-            currentAudioPlayer = null;
-            isSpeechInProgress = false;
-            URL.revokeObjectURL(blobUrl); // Clean up blob URL
+            if (currentAudioPlayer === audio) {
+              currentAudioPlayer = null;
+              isSpeechInProgress = false;
+            }
+            URL.revokeObjectURL(blobUrl);
             reject(new Error('Failed to play audio'));
           };
 
           audio.onended = () => {
-            currentAudioPlayer = null;
-            isSpeechInProgress = false;
-            URL.revokeObjectURL(blobUrl); // Clean up blob URL
+            if (currentAudioPlayer === audio) {
+              currentAudioPlayer = null;
+              isSpeechInProgress = false;
+            }
+            URL.revokeObjectURL(blobUrl);
           };
 
           // If already loaded, play immediately
           if (audio.readyState >= 2) {
-            if (stopRequested) {
+            if (requestId !== currentRequestId || stopRequested) {
               currentAudioPlayer = null;
               isSpeechInProgress = false;
               URL.revokeObjectURL(blobUrl);
-              reject(new Error('Speech was stopped'));
+              reject(new Error('Speech was stopped or invalidated'));
               return;
             }
             audio.play().then(() => {
@@ -216,7 +224,6 @@ const speak = async (text, options = {}) => {
         // Set voice
         if (options.voice || prefs.voice) {
           const voiceName = options.voice || prefs.voice;
-          // In Web Speech API path, getVoices() returns synchronously (array)
           const availableVoices = getVoices();
           const selectedVoice = availableVoices.find(v => 
             v.name === voiceName || v.voiceURI === voiceName
@@ -235,6 +242,16 @@ const speak = async (text, options = {}) => {
         
         // Event handlers
         utterance.onstart = () => {
+          // Check if this request is still valid when it actually starts
+          if (requestId !== currentRequestId || stopRequested) {
+            window.speechSynthesis.cancel();
+            if (!hasResolved) {
+              hasResolved = true;
+              reject(new Error('Speech was stopped or invalidated'));
+            }
+            return;
+          }
+          
           currentUtterance = utterance;
           if (!hasResolved) {
             hasResolved = true;
@@ -245,19 +262,23 @@ const speak = async (text, options = {}) => {
         utterance.onend = () => {
           if (currentUtterance === utterance) {
             currentUtterance = null;
-            isSpeechInProgress = false;
+            if (requestId === currentRequestId) {
+              isSpeechInProgress = false;
+            }
           }
         };
 
         utterance.onerror = (event) => {
           if (currentUtterance === utterance) {
             currentUtterance = null;
-            isSpeechInProgress = false;
+            if (requestId === currentRequestId) {
+              isSpeechInProgress = false;
+            }
           }
-          if (event.error === 'interrupted') {
+          if (event.error === 'interrupted' || event.error === 'canceled') {
             if (!hasResolved) {
               hasResolved = true;
-              resolve();
+              resolve(); // Canceled is often intentional
             }
           } else {
             if (!hasResolved) {

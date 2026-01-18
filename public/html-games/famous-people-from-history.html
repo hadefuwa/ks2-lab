@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +14,8 @@
         }
 
         body {
-            font-family: 'Georgia', serif; /* More academic feel */
+            font-family: 'Georgia', serif;
+            /* More academic feel */
             background-color: var(--bg);
             color: var(--primary);
             display: flex;
@@ -29,33 +31,52 @@
             text-align: center;
             margin-bottom: 20px;
         }
-        h1 { margin: 0; font-size: 2.2rem; border-bottom: 4px solid var(--accent); display: inline-block; padding-bottom: 5px; }
-        p { font-style: italic; color: #7f8c8d; }
+
+        h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            border-bottom: 4px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        p {
+            font-style: italic;
+            color: #7f8c8d;
+        }
 
         /* --- CLUE COMPUTER --- */
         #clue-terminal {
             background: #34495e;
-            color: #2ecc71; /* Retro terminal green */
+            color: #2ecc71;
+            /* Retro terminal green */
             font-family: 'Courier New', monospace;
             padding: 20px;
             width: 100%;
             max-width: 700px;
             border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             margin-bottom: 30px;
             position: relative;
             border: 4px solid #2c3e50;
         }
+
         #clue-terminal::before {
             content: "ARCHIVE_TERMINAL_V.9.0";
             position: absolute;
-            top: -12px; left: 20px;
+            top: -12px;
+            left: 20px;
             background: #34495e;
             padding: 0 10px;
             font-size: 0.8rem;
             color: #bdc3c7;
         }
-        #clue-text { font-size: 1.2rem; line-height: 1.5; font-weight: bold; }
+
+        #clue-text {
+            font-size: 1.2rem;
+            line-height: 1.5;
+            font-weight: bold;
+        }
 
         /* --- PORTRAIT GRID --- */
         #gallery {
@@ -72,7 +93,7 @@
             padding: 15px;
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
             border: 3px solid transparent;
             position: relative;
@@ -80,7 +101,7 @@
 
         .hero-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
             border-color: #bdc3c7;
         }
 
@@ -94,7 +115,7 @@
         .hero-svg {
             width: 100px;
             height: 100px;
-            filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1));
+            filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.1));
             transition: filter 0.3s;
         }
 
@@ -103,69 +124,124 @@
             border-color: #27ae60;
             background-color: #eafaf1;
         }
+
         .hero-card.wrong {
             border-color: #c0392b;
             animation: shake 0.4s;
         }
+
         .hero-card.dimmed {
             opacity: 0.5;
             pointer-events: none;
         }
 
         @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
         }
 
         /* --- MODAL FOR FACTS --- */
         #fact-modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            display: flex; justify-content: center; align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
             z-index: 1000;
-            opacity: 0; pointer-events: none; transition: opacity 0.3s;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
         }
-        #fact-modal.visible { opacity: 1; pointer-events: auto; }
+
+        #fact-modal.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
 
         .file-folder {
-            background: #f1c40f; /* Manila folder color */
-            width: 90%; max-width: 500px;
+            background: #f1c40f;
+            /* Manila folder color */
+            width: 90%;
+            max-width: 500px;
             padding: 30px;
             border-radius: 5px 20px 5px 5px;
             position: relative;
-            box-shadow: 10px 10px 0 rgba(0,0,0,0.2);
+            box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.2);
             color: #333;
         }
+
         .file-folder::before {
             content: "CONFIDENTIAL";
-            position: absolute; top: 10px; right: 20px;
-            color: #c0392b; border: 2px solid #c0392b;
-            padding: 2px 8px; font-weight: bold; transform: rotate(-10deg);
-            font-family: 'Courier New', monospace; opacity: 0.6;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: #c0392b;
+            border: 2px solid #c0392b;
+            padding: 2px 8px;
+            font-weight: bold;
+            transform: rotate(-10deg);
+            font-family: 'Courier New', monospace;
+            opacity: 0.6;
         }
-        
-        .fact-title { font-size: 1.8rem; border-bottom: 2px solid #d35400; margin-bottom: 10px; }
-        .fact-content { font-size: 1.1rem; line-height: 1.6; }
-        
+
+        .fact-title {
+            font-size: 1.8rem;
+            border-bottom: 2px solid #d35400;
+            margin-bottom: 10px;
+        }
+
+        .fact-content {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
         button.next-btn {
-            background: #2980b9; color: white; border: none;
-            padding: 10px 25px; font-size: 1.1rem; margin-top: 20px;
-            cursor: pointer; border-radius: 5px; float: right;
+            background: #2980b9;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            float: right;
             font-family: inherit;
         }
-        button.next-btn:hover { background: #3498db; }
+
+        button.next-btn:hover {
+            background: #3498db;
+        }
 
         /* Score Badge */
         #score-badge {
-            position: fixed; top: 20px; right: 20px;
-            background: var(--primary); color: white;
-            padding: 10px 20px; border-radius: 50px;
-            font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
-
     </style>
 </head>
+
 <body>
 
     <div id="score-badge">Files Solved: <span id="score">0</span>/6</div>
@@ -180,7 +256,7 @@
     </div>
 
     <div id="gallery">
-        </div>
+    </div>
 
     <div id="fact-modal">
         <div class="file-folder">
@@ -287,28 +363,28 @@
         let gameActive = true;
         let shuffledHeroes = [];
         let targetHero = null;
-        
+
         const synth = window.speechSynthesis;
 
         function initGame() {
             score = 0;
             currentRound = 0;
             document.getElementById('score').innerText = 0;
-            
+
             // Create the card grid
             const gallery = document.getElementById('gallery');
             gallery.innerHTML = '';
-            
+
             // We show all heroes, but shuffle the target order
             shuffledHeroes = [...heroes].sort(() => Math.random() - 0.5);
-            
+
             // Render all heroes to the grid (alphabetical or standard order for display)
             heroes.forEach(hero => {
                 const card = document.createElement('div');
                 card.className = 'hero-card';
                 card.id = `card-${hero.id}`;
                 card.onclick = () => checkAnswer(hero.id);
-                
+
                 card.innerHTML = `
                     ${hero.svg}
                     <div class="hero-name">${hero.name}</div>
@@ -333,7 +409,7 @@
             terminal.innerText = '';
             let i = 0;
             const text = targetHero.clue;
-            
+
             function typeWriter() {
                 if (i < text.length) {
                     terminal.innerHTML += text.charAt(i);
@@ -350,7 +426,7 @@
             if (!gameActive) return;
 
             const selectedCard = document.getElementById(`card-${selectedId}`);
-            
+
             if (selectedId === targetHero.id) {
                 // Correct
                 gameActive = false;
@@ -358,7 +434,7 @@
                 score++;
                 document.getElementById('score').innerText = score;
                 speak("Access Granted. Opening File.");
-                
+
                 setTimeout(() => {
                     showFact(targetHero);
                 }, 1000);
@@ -379,10 +455,10 @@
 
         function nextRound() {
             document.getElementById('fact-modal').classList.remove('visible');
-            
+
             // Mark the finished card as dimmed so they don't pick it again
             document.getElementById(`card-${targetHero.id}`).classList.add('dimmed');
-            
+
             currentRound++;
             startRound();
         }
@@ -390,19 +466,37 @@
         function endGame() {
             document.getElementById('clue-text').innerText = "MISSION COMPLETE. ALL FILES UNLOCKED.";
             speak("Mission Complete. You are a history expert.");
-            // Optional: Show a reset button or confetti
+
+            // Notify parent window that game is complete
+            if (window.parent && window.parent !== window) {
+                window.parent.postMessage({
+                    type: 'html-game-complete',
+                    game: 'famous-people-from-history'
+                }, '*');
+            }
         }
 
         function speak(text) {
-            if (synth.speaking) synth.cancel();
-            const u = new SpeechSynthesisUtterance(text);
-            u.rate = 1.0;
-            u.pitch = 1;
-            synth.speak(u);
+            // Try to use parent window TTS if available
+            if (window.parent && window.parent !== window) {
+                window.parent.postMessage({
+                    type: 'html-game-tts',
+                    text: text,
+                    rate: 0.9,
+                    pitch: 1.0
+                }, '*');
+            } else {
+                if (synth.speaking) synth.cancel();
+                const u = new SpeechSynthesisUtterance(text);
+                u.rate = 1.0;
+                u.pitch = 1;
+                synth.speak(u);
+            }
         }
 
         window.onload = initGame;
 
     </script>
 </body>
+
 </html>

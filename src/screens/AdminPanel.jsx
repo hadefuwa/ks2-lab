@@ -11,6 +11,7 @@ function AdminPanel() {
   const deleteReward = useDataStore(state => state.deleteReward);
   const saveData = useDataStore(state => state.saveData);
   const resetAllProgress = useDataStore(state => state.resetAllProgress);
+  const migrateMissingMedals = useDataStore(state => state.migrateMissingMedals);
 
   // Authentication is handled by TopNavigation component
   // No need for duplicate password check here
@@ -28,6 +29,8 @@ function AdminPanel() {
   });
   const [error, setError] = useState(null);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
+  const [migrationStatus, setMigrationStatus] = useState(null);
+  const [isMigrating, setIsMigrating] = useState(false);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -100,6 +103,23 @@ function AdminPanel() {
       setError(err.message || 'Failed to reset progress');
       setTimeout(() => setError(null), 5000);
       setShowResetConfirm(false);
+    }
+  };
+
+  const handleMigrateMedals = async () => {
+    setIsMigrating(true);
+    setMigrationStatus('Running migration...');
+    try {
+      const result = await migrateMissingMedals();
+      setMigrationStatus(`Migration complete! Fixed ${result.fixed} lessons, ${result.errors} errors. Reloading...`);
+      // Reload after 2 seconds to show updated medals
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    } catch (err) {
+      setMigrationStatus(`Migration failed: ${err.message}`);
+      setTimeout(() => setMigrationStatus(null), 10000);
+      setIsMigrating(false);
     }
   };
 
@@ -194,6 +214,22 @@ function AdminPanel() {
             🎨 Grade Art
           </button>
           <button
+            onClick={handleMigrateMedals}
+            disabled={isMigrating}
+            style={{
+              padding: '10px 20px',
+              backgroundColor: isMigrating ? '#6c757d' : '#ffc107',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: isMigrating ? 'not-allowed' : 'pointer',
+              fontSize: '14px',
+              fontWeight: 'bold',
+            }}
+          >
+            🏅 Fix Medals
+          </button>
+          <button
             onClick={() => setShowResetConfirm(true)}
             style={{
               padding: '10px 20px',
@@ -249,6 +285,19 @@ function AdminPanel() {
           border: '1px solid #f5c6cb',
         }}>
           {error}
+        </div>
+      )}
+
+      {migrationStatus && (
+        <div style={{
+          backgroundColor: isMigrating ? '#d1ecf1' : '#d4edda',
+          color: isMigrating ? '#0c5460' : '#155724',
+          padding: '12px',
+          borderRadius: '4px',
+          marginBottom: '20px',
+          border: isMigrating ? '1px solid #bee5eb' : '1px solid #c3e6cb',
+        }}>
+          {migrationStatus}
         </div>
       )}
 

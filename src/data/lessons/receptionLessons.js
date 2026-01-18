@@ -171,7 +171,7 @@ Try reading these words:
       lessonNumber: 1,
       title: "Dinosaurs - Big and Small",
       emoji: '🦖',
-      assessmentType: null, // Uses HTML game instead
+      assessmentType: 'html-game',
       content: `# Dinosaurs - Big and Small 🦖
 
 ## Learning About Size
@@ -187,7 +187,7 @@ In the game below, help each dinosaur find its home by dragging it to the right 
 👉 **SMALL** dinosaurs go to the **NEST** 🪺
 
 Look at the label on each dinosaur to know its size!`,
-      quizId: 37,
+      quizId: null,
       categoryId: null,
     }),
 
@@ -353,7 +353,8 @@ Just pretty|A promise that it wouldn't flood again|Nothing|Just colors
 <!-- EXPLANATION -->
 After the rain stopped, a beautiful rainbow appeared! It was a promise - a promise that it wouldn't flood again!
 <!-- QUESTION_END -->`,
-      quizId: 37,
+      quizId: null,
+      assessmentType: 'html-game',
       categoryId: null,
     }),
 
@@ -364,7 +365,7 @@ After the rain stopped, a beautiful rainbow appeared! It was a promise - a promi
       lessonNumber: 4,
       title: "Ancient Stories - The First Cities",
       emoji: '🏛️',
-      assessmentType: null, // Uses HTML game instead
+      assessmentType: 'html-game',
       content: `# Ancient Stories - The First Cities 🏛️
 
 
@@ -506,7 +507,7 @@ Steel|Mud and stone|Plastic|Glass
 <!-- EXPLANATION -->
 The first buildings were simple, made of mud and stone! They were different from today, but they were homes!
 <!-- QUESTION_END -->`,
-      quizId: 37,
+      quizId: null,
       categoryId: null,
     }),
 
@@ -658,7 +659,8 @@ It's not|We can learn about the past and see how things changed|It's boring|It's
 <!-- EXPLANATION -->
 We can learn about the past and see how things changed! Life was different long ago, and we can learn from it!
 <!-- QUESTION_END -->`,
-      quizId: 44,
+      quizId: null,
+      assessmentType: 'html-game',
       categoryId: null,
     }),
 

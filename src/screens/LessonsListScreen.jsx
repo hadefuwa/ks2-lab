@@ -25,6 +25,7 @@ function LessonsListScreen() {
   );
   
   const hasCompletedLesson = useDataStore(state => state.hasCompletedLesson);
+  const getMedalForLesson = useDataStore(state => state.getMedalForLesson);
   const getUserId = useDataStore(state => state.getUserId);
   const userId = getUserId();
   
@@ -247,16 +248,30 @@ function LessonsListScreen() {
                       e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
                     }}
                   >
-                    {isCompleted && (
-                      <div style={{
-                        position: 'absolute',
-                        top: '10px',
-                        right: '10px',
-                        fontSize: '20px',
-                      }}>
-                        ✅
-                      </div>
-                    )}
+                    {isCompleted && (() => {
+                      const medal = getMedalForLesson(lesson.id);
+                      const medalConfig = {
+                        'Platinum': { emoji: '🏆', color: '#E5E4E2', label: 'Platinum' },
+                        'Gold': { emoji: '🥇', color: '#FFD700', label: 'Gold' },
+                        'Silver': { emoji: '🥈', color: '#C0C0C0', label: 'Silver' },
+                        'Bronze': { emoji: '🥉', color: '#CD7F32', label: 'Bronze' }
+                      };
+                      const config = medalConfig[medal] || medalConfig['Bronze'];
+
+                      return (
+                        <div style={{
+                          position: 'absolute',
+                          top: '10px',
+                          right: '10px',
+                          fontSize: '24px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '4px',
+                        }}>
+                          <span title={`${config.label} Medal`}>{config.emoji}</span>
+                        </div>
+                      );
+                    })()}
                     {isNextLesson && (
                       <div style={{
                         position: 'absolute',

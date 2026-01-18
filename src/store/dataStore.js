@@ -251,26 +251,55 @@ const useDataStore = create((set, get) => ({
       }
     } else {
       // Check if default rewards exist, if not add them
-      const defaultRewardIds = new Set(defaultData.rewards.map(r => r.id));
+      // ALSO: Update existing default rewards (ID 1 and 2) if their costs changed
+      const defaultRewardsById = defaultData.rewards.reduce((acc, r) => {
+        acc[r.id] = r;
+        return acc;
+      }, {});
       const existingRewardIds = new Set(appData.rewards.map(r => r.id));
       
-      let hasNewRewards = false;
+      let hasChanges = false;
+
+      // 1. Update existing default rewards (ID 1 and 2) if their costs or names changed
+      // This ensures the user's requested 300 point change is applied to existing data
+      for (let i = 0; i < appData.rewards.length; i++) {
+        const existingReward = appData.rewards[i];
+        const defaultReward = defaultRewardsById[existingReward.id];
+        
+        if (defaultReward && (existingReward.id === 1 || existingReward.id === 2)) {
+          let updated = false;
+          if (existingReward.cost !== defaultReward.cost) {
+            console.log(`[DataStore] Updating cost for reward ${existingReward.id}: ${existingReward.cost} -> ${defaultReward.cost}`);
+            appData.rewards[i].cost = defaultReward.cost;
+            updated = true;
+          }
+          if (existingReward.name !== defaultReward.name) {
+            console.log(`[DataStore] Updating name for reward ${existingReward.id}: ${existingReward.name} -> ${defaultReward.name}`);
+            appData.rewards[i].name = defaultReward.name;
+            updated = true;
+          }
+          if (updated) hasChanges = true;
+        }
+      }
+
+      // 2. Add missing default rewards
       for (const defaultReward of defaultData.rewards) {
         if (!existingRewardIds.has(defaultReward.id)) {
+          console.log(`[DataStore] Adding missing default reward: ${defaultReward.name}`);
           appData.rewards.push(defaultReward);
-          hasNewRewards = true;
+          hasChanges = true;
         }
       }
       
-      if (hasNewRewards) {
-        console.log('[DataStore] Adding missing default rewards');
+      if (hasChanges) {
+        console.log('[DataStore] Rewards updated, saving changes...');
         if (window.electronAPI) {
           try {
             const jsonData = appData.toJSON();
             await window.electronAPI.saveData(jsonData);
-            console.log('[DataStore] Default rewards added successfully');
+            console.log('[DataStore] Rewards saved successfully');
           } catch (error) {
-            console.error('Error saving default rewards:', error);
+            console.error('Error saving rewards:', error);
           }
         }
       }
@@ -766,142 +795,68 @@ const useDataStore = create((set, get) => ({
         bronze: 0,
       };
     }
-    
+
     const userId = studentId || state.getUserId();
-    const allProgress = state.data.progress.filter(p => 
-      p.studentId === userId && 
-      p.isCompleted && 
-      p.activityType === 'Lesson' &&
-      p.score !== null
-    );
-    
+
+    // Count medals from pointsActivities (the source of truth)
+    const pointsActivities = state.data.pointsActivities?.filter(pa =>
+      pa.studentId === userId &&
+      pa.activityType === 'lesson' &&
+      pa.medal
+    ) || [];
+
     let platinum = 0;
     let gold = 0;
     let silver = 0;
     let bronze = 0;
-    
-    allProgress.forEach(progress => {
-      const lesson = state.data.lessons.find(l => l.id === progress.activityId);
-      if (!lesson) return;
-      
-      const score = progress.score || 0;
-      let medal = 'Bronze';
-      
-      // Determine medal based on lesson type
-      if (lesson.title === 'Clicking Game') {
-        const isHardMode = lesson.yearId === 'reception' && lesson.lessonNumber === 2 && lesson.subjectId === 'technology';
-        if (isHardMode) {
-          if (score >= 350) medal = 'Platinum';
-          else if (score >= 250) medal = 'Gold';
-          else if (score >= 150) medal = 'Silver';
-        } else {
-          if (score >= 300) medal = 'Platinum';
-          else if (score >= 200) medal = 'Gold';
-          else if (score >= 100) medal = 'Silver';
-        }
-      } else if (lesson.title === 'Keyboard Game' || lesson.title === 'WASD Game' || 
-                 lesson.title === 'A-Z Game' || lesson.title === 'Numbers Game' || 
-                 lesson.title === 'Symbols Game') {
-        const isWASDMode = lesson.yearId === 'nursery' && lesson.lessonNumber === 3 && lesson.subjectId === 'technology';
-        const isAZMode = lesson.yearId === 'nursery' && lesson.lessonNumber === 4 && lesson.subjectId === 'technology';
-        const isNumbersMode = lesson.yearId === 'nursery' && lesson.lessonNumber === 5 && lesson.subjectId === 'technology';
-        const isSymbolsMode = lesson.yearId === 'nursery' && lesson.lessonNumber === 6 && lesson.subjectId === 'technology';
-        
-        // We need accuracy to determine medal for keyboard games, but we don't store it
-        // So we'll use score-based thresholds that approximate the medal logic
-        if (isAZMode) {
-          if (score >= 250) medal = 'Platinum';
-          else if (score >= 200) medal = 'Gold';
-          else if (score >= 150) medal = 'Gold';
-          else if (score >= 100) medal = 'Silver';
-        } else if (isNumbersMode) {
-          if (score >= 90) medal = 'Platinum';
-          else if (score >= 80) medal = 'Gold';
-          else if (score >= 70) medal = 'Gold';
-          else if (score >= 60) medal = 'Silver';
-        } else if (isSymbolsMode) {
-          if (score >= 90) medal = 'Platinum';
-          else if (score >= 80) medal = 'Gold';
-          else if (score >= 70) medal = 'Gold';
-          else if (score >= 60) medal = 'Silver';
-        } else {
-          // Arrow/WASD game
-          if (score >= 140) medal = 'Platinum';
-          else if (score >= 120) medal = 'Gold';
-          else if (score >= 100) medal = 'Gold';
-          else if (score >= 80) medal = 'Silver';
-        }
-      } else if (lesson.title === 'Flappy Bird Game') {
-        if (score >= 15) medal = 'Platinum';
-        else if (score >= 10) medal = 'Gold';
-        else if (score >= 5) medal = 'Silver';
-      } else if (lesson.title === 'Bubble Pop Game') {
-        if (score >= 200) medal = 'Platinum';
-        else if (score >= 150) medal = 'Gold';
-        else if (score >= 100) medal = 'Silver';
-      } else if (lesson.title === 'Snake Game') {
-        if (score >= 100) medal = 'Platinum';
-        else if (score >= 70) medal = 'Gold';
-        else if (score >= 40) medal = 'Silver';
-      } else if (lesson.title === 'Target Practice Game') {
-        if (score >= 150) medal = 'Platinum';
-        else if (score >= 100) medal = 'Gold';
-        else if (score >= 50) medal = 'Silver';
-      } else if (lesson.title?.includes('TapTapTap')) {
-        // TapTapTap scoring based on level
-        // Check for explicit level numbers FIRST (most specific), then check for keywords
-        // This ensures "Beginner Level 2" matches Level 2, not Beginner
-        // And "Advanced Level 2" matches Level 2, not Advanced
-        let level = 1; // default
-        if (lesson.title.includes('Level 6')) level = 6;
-        else if (lesson.title.includes('Level 5')) level = 5;
-        else if (lesson.title.includes('Level 4')) level = 4;
-        else if (lesson.title.includes('Level 3')) level = 3;
-        else if (lesson.title.includes('Level 2')) level = 2;
-        else if (lesson.title.includes('Level 1')) level = 1;
-        else if (lesson.title.includes('Champion')) level = 6;
-        else if (lesson.title.includes('Master')) level = 5;
-        else if (lesson.title.includes('Expert')) level = 4;
-        else if (lesson.title.includes('Advanced')) level = 3;
-        else if (lesson.title.includes('Intermediate')) level = 2;
-        else if (lesson.title.includes('Beginner')) level = 1;
-        else if (lesson.yearId === 'year6') level = 6;
-        else if (lesson.yearId === 'year5') level = 5;
-        else if (lesson.yearId === 'year4') level = 4;
-        else if (lesson.yearId === 'year3') level = 3;
-        else if (lesson.yearId === 'year2') level = 2;
-        else if (lesson.yearId === 'year1') level = 1;
-        
-        const thresholds = {
-          1: { platinum: 20, gold: 15, silver: 10 },
-          2: { platinum: 40, gold: 30, silver: 20 },
-          3: { platinum: 60, gold: 45, silver: 30 },
-          4: { platinum: 80, gold: 60, silver: 40 },
-          5: { platinum: 100, gold: 75, silver: 50 },
-          6: { platinum: 120, gold: 90, silver: 60 },
-        };
-        
-        const threshold = thresholds[level] || thresholds[1];
-        if (score >= threshold.platinum) medal = 'Platinum';
-        else if (score >= threshold.gold) medal = 'Gold';
-        else if (score >= threshold.silver) medal = 'Silver';
-      } else if (lesson.subjectId === 'art') {
-        // Art lessons use percentage scores (0-100)
-        // Match the grading tiers from ArtGradingScreen
-        if (score >= 100) medal = 'Platinum';      // 100% = Platinum
-        else if (score >= 90) medal = 'Gold';     // 90% = Gold
-        else if (score >= 75) medal = 'Silver';   // 75% = Silver
-        else if (score >= 60) medal = 'Bronze';   // 60% = Bronze
-      }
 
-      // Count medals
+    pointsActivities.forEach(pa => {
+      const medal = pa.medal;
       if (medal === 'Platinum') platinum++;
       else if (medal === 'Gold') gold++;
       else if (medal === 'Silver') silver++;
-      else bronze++;
+      else if (medal === 'Bronze') bronze++;
     });
-    
+
     return { platinum, gold, silver, bronze };
+  },
+
+  // Get the medal earned for a specific lesson
+  getMedalForLesson: (lessonId, studentId = null) => {
+    const state = get();
+    if (!state.data || !lessonId) return null;
+
+    const userId = studentId || state.getUserId();
+
+    // First, try to find the medal in pointsActivities (most reliable)
+    const pointsActivity = state.data.pointsActivities?.find(pa =>
+      pa.studentId === userId &&
+      pa.activityId === lessonId &&
+      pa.activityType === 'lesson' &&
+      pa.medal
+    );
+
+    if (pointsActivity && pointsActivity.medal) {
+      return pointsActivity.medal;
+    }
+
+    // Fallback: check if lesson is completed and calculate medal
+    const progress = state.data.progress.find(p =>
+      p.studentId === userId &&
+      p.activityId === lessonId &&
+      p.isCompleted &&
+      p.activityType === 'Lesson'
+    );
+
+    if (!progress) return null;
+
+    // If progress exists but no score, return Bronze as default
+    if (progress.score === null || progress.score === undefined) {
+      return 'Bronze';
+    }
+
+    // Calculate medal from progress
+    return state._getMedalForProgress(progress);
   },
 
   // Check if student has gold or platinum for a specific lesson
@@ -1645,6 +1600,119 @@ const useDataStore = create((set, get) => ({
     set({ data: resetData });
     await state.saveData();
     console.log('[DataStore] All progress reset successfully');
+  },
+
+  // Migration function to fix missing medals in old data
+  migrateMissingMedals: async () => {
+    const state = get();
+    if (!state.data) {
+      console.log('[DataStore] No data to migrate');
+      return { fixed: 0, errors: 0 };
+    }
+
+    console.log('[DataStore] Starting medal migration...');
+    let fixedCount = 0;
+    let errorCount = 0;
+
+    // Get all completed lessons from progress
+    const completedLessons = state.data.progress.filter(p =>
+      p.activityType === 'Lesson' &&
+      p.isCompleted &&
+      p.score !== null &&
+      p.score !== undefined
+    );
+
+    console.log(`[DataStore] Found ${completedLessons.length} completed lessons`);
+
+    // Check which ones are missing pointsActivities
+    const updatedPointsActivities = [...(state.data.pointsActivities || [])];
+    const existingActivitiesMap = new Map();
+
+    // Build a map for quick lookup
+    updatedPointsActivities.forEach(pa => {
+      const key = `${pa.studentId}-${pa.activityId}-${pa.activityType}`;
+      existingActivitiesMap.set(key, pa);
+    });
+
+    for (const progress of completedLessons) {
+      const key = `${progress.studentId}-${progress.activityId}-lesson`;
+
+      if (!existingActivitiesMap.has(key)) {
+        try {
+          // Calculate medal for this progress
+          const medalType = state._getMedalForProgress(progress);
+
+          // Get lesson details
+          const lesson = state.data.lessons.find(l => l.id === progress.activityId);
+          const lessonTitle = lesson ? lesson.title : 'Unknown Lesson';
+
+          // Calculate points
+          const pointsMap = {
+            'Bronze': 10,
+            'Silver': 20,
+            'Gold': 50,
+            'Platinum': 100,
+          };
+          const basePoints = pointsMap[medalType] || 10;
+          const yearMultiplier = state._getYearMultiplier(progress.yearId);
+          const pointsToAward = Math.round(basePoints * yearMultiplier);
+
+          // Create points activity record
+          const pointsActivityId = state.getNextPointsActivityId();
+          const pointsActivity = new PointsActivity({
+            id: pointsActivityId,
+            studentId: progress.studentId,
+            activityType: 'lesson',
+            activityId: progress.activityId,
+            pointsEarned: pointsToAward,
+            earnedAt: progress.completedAt || new Date(),
+            lessonTitle: lessonTitle,
+            yearId: progress.yearId,
+            medal: medalType,
+          });
+
+          updatedPointsActivities.push(pointsActivity);
+          existingActivitiesMap.set(key, pointsActivity);
+          fixedCount++;
+
+          console.log(`[DataStore] Added missing medal for lesson ${progress.activityId}: ${medalType} (${pointsToAward} points)`);
+        } catch (error) {
+          console.error(`[DataStore] Error processing lesson ${progress.activityId}:`, error);
+          errorCount++;
+        }
+      }
+    }
+
+    if (fixedCount > 0) {
+      // Calculate new points balance
+      const totalPoints = updatedPointsActivities.reduce((sum, pa) => sum + (pa.pointsEarned || 0), 0);
+      const totalSpent = (state.data.purchases || []).reduce((sum, p) => sum + p.pointsSpent, 0);
+      const newBalance = totalPoints - totalSpent;
+
+      // Update data
+      const updatedData = new AppData({
+        students: state.data.students,
+        lessons: state.data.lessons,
+        quizzes: state.data.quizzes,
+        progress: state.data.progress,
+        videoResources: state.data.videoResources,
+        rewards: state.data.rewards || [],
+        purchases: state.data.purchases || [],
+        pointsActivities: updatedPointsActivities,
+        pointsBalance: newBalance,
+        pointsSystemVersion: state.data.pointsSystemVersion || 0,
+      });
+
+      set({ data: updatedData });
+      await state.saveData();
+
+      console.log(`[DataStore] Medal migration complete: ${fixedCount} medals added, ${errorCount} errors`);
+      console.log(`[DataStore] New points balance: ${newBalance}`);
+    } else {
+      console.log('[DataStore] No missing medals found');
+    }
+
+    return { fixed: fixedCount, errors: errorCount };
   },
 }));
 
