@@ -328,8 +328,8 @@ Let's learn to measure length!
 
 ## Units of Length
 
-- Centimeters (cm) - small measurements
-- Meters (m) - larger measurements
+- Centimetres (cm) - small measurements
+- Metres (m) - larger measurements
 
 ## How to Measure
 
@@ -392,7 +392,7 @@ Let's learn about money!
 
 ## UK Coins
 
-- 1p, 2p, 5p, 10p, 20p, 50p
+- 1p, 2p, 5p, 10p, 20p, 50p, £1
 - £1 = 100p
 
 ## Making Amounts
@@ -439,6 +439,285 @@ A pictogram uses pictures to show data!
 ## How to Play
 
 Click to create graphs and drag items! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'graph-builder-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'maths',
+      lessonNumber: 12,
+      title: "Doubling and Halving",
+      emoji: '✖️',
+      content: `# Doubling and Halving ✖️
+
+Let's learn to double and halve numbers!
+
+## Doubling
+
+Doubling means adding the same number again.
+
+- Double 4 = 8
+- Double 7 = 14
+- Double 10 = 20
+
+## Halving
+
+Halving means splitting into two equal groups.
+
+- Half of 8 = 4
+- Half of 14 = 7
+- Half of 20 = 10
+
+## How to Play
+
+Drag counters to make doubles and halves! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'maths',
+      lessonNumber: 13,
+      title: "Odd and Even Numbers",
+      emoji: '🔢',
+      content: `# Odd and Even Numbers 🔢
+
+Let's sort numbers into odd and even!
+
+## Even Numbers
+
+Even numbers can be split into two equal groups.
+
+Examples: 2, 4, 6, 8, 10, 12
+
+## Odd Numbers
+
+Odd numbers have one left over when split into two groups.
+
+Examples: 1, 3, 5, 7, 9, 11
+
+## How to Play
+
+Type the missing number to complete odd and even patterns! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'typing-math-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'maths',
+      lessonNumber: 14,
+      title: "2, 5, and 10 Times Tables",
+      emoji: '✖️',
+      content: `# 2, 5, and 10 Times Tables ✖️
+
+Let's count in 2s, 5s, and 10s!
+
+## Count in 2s
+
+2, 4, 6, 8, 10, 12, 14, 16, 18, 20
+
+## Count in 5s
+
+5, 10, 15, 20, 25, 30, 35, 40, 45, 50
+
+## Count in 10s
+
+10, 20, 30, 40, 50, 60, 70, 80, 90, 100
+
+## How to Play
+
+Tap the correct multiple to build the times tables! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'maths',
+      lessonNumber: 15,
+      title: "Division as Sharing",
+      emoji: '➗',
+      content: `# Division as Sharing ➗
+
+Division means sharing equally.
+
+## Examples
+
+- 12 shared between 3 = 4 each
+- 15 shared between 5 = 3 each
+- 20 shared between 4 = 5 each
+
+## How to Play
+
+Drag items to share them equally between groups! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'maths',
+      lessonNumber: 16,
+      title: "Fractions: Halves and Quarters",
+      emoji: '🍰',
+      content: `# Fractions: Halves and Quarters 🍰
+
+Fractions show parts of a whole.
+
+## Halves
+
+A half is one of two equal parts.
+
+## Quarters
+
+A quarter is one of four equal parts.
+
+## Examples
+
+- Half of a pizza = 1/2
+- One quarter of a cake = 1/4
+
+## How to Play
+
+Match shaded shapes to halves and quarters! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'shape-matching-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'maths',
+      lessonNumber: 17,
+      title: "3D Shapes",
+      emoji: '🧊',
+      content: `# 3D Shapes 🧊
+
+Let's learn about 3D shapes!
+
+## Common 3D Shapes
+
+- Cube: 6 square faces
+- Cuboid: 6 rectangle faces
+- Sphere: no faces or edges
+- Cylinder: 2 circular faces
+- Cone: 1 circular face, 1 vertex
+- Pyramid: 1 square base and 4 triangle faces
+
+## How to Play
+
+Match the 3D shapes to their names and properties! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'shape-matching-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'maths',
+      lessonNumber: 18,
+      title: "Time: Quarter Past and Quarter To",
+      emoji: '🕒',
+      content: `# Time: Quarter Past and Quarter To 🕒
+
+Let's tell the time to the quarter hour!
+
+## Quarter Past
+
+Quarter past means 15 minutes after the hour.
+
+Example: 3:15 is quarter past three.
+
+## Quarter To
+
+Quarter to means 15 minutes before the next hour.
+
+Example: 3:45 is quarter to four.
+
+## How to Play
+
+Drag the clock hands to show quarter past and quarter to times! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'clock-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'maths',
+      lessonNumber: 19,
+      title: "Mass and Capacity",
+      emoji: '⚖️',
+      content: `# Mass and Capacity ⚖️
+
+Let's compare how heavy and how full things are!
+
+## Mass
+
+We measure mass in grams (g) and kilograms (kg).
+
+Examples:
+- An apple is about 100 g
+- A bag of flour is about 1 kg
+
+## Capacity
+
+We measure capacity in millilitres (ml) and litres (l).
+
+Examples:
+- A small drink is about 250 ml
+- A bottle of water is about 1 l
+
+## How to Play
+
+Drag items to the scales and containers, then choose the correct unit! 🎮`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'maths',
+      lessonNumber: 20,
+      title: "Data: Tally Charts",
+      emoji: '📋',
+      content: `# Data: Tally Charts 📋
+
+Let's collect data using tally marks!
+
+## Tally Marks
+
+Four lines then a slash for five:
+
+- |||| = 4
+- ||||/ = 5
+
+## How to Read Tallies
+
+- Count each group of five first
+- Add the extra lines
+
+## How to Play
+
+Click to add tallies and build a chart! 🎮`,
       quizId: quizId++,
       assessmentType: 'graph-builder-game',
       categoryId: null,

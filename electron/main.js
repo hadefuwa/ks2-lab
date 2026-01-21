@@ -5,7 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 import { loadData, saveData, writeActivityLog, readActivityLog } from './persistence.js';
-import { EdgeTTS, VoicesManager } from 'edge-tts-universal';
+import say from 'say';
 
 // Load GitHub token for private repo updates
 let GITHUB_TOKEN = null;
@@ -435,59 +435,35 @@ ipcMain.handle('open-external', async (event, url) => {
   }
 });
 
-// TTS state management
-let currentAudioPlayer = null;
-let voicesManager = null;
+// TTS state management using say.js (native OS TTS)
+let currentTTSProcess = null;
 
-// Initialize voices manager
-async function initVoicesManager() {
-  if (!voicesManager) {
-    try {
-      voicesManager = await VoicesManager.create();
-    } catch (error) {
-      console.error('Error initializing voices manager:', error);
-    }
-  }
-  return voicesManager;
-}
-
-// IPC handlers for TTS
-ipcMain.handle('tts-speak', async (event, { text, voice }) => {
+// IPC handlers for TTS using say.js
+ipcMain.handle('tts-speak', async (event, { text }) => {
   try {
-    // Stop any current audio
-    if (currentAudioPlayer) {
-      currentAudioPlayer.pause();
-      currentAudioPlayer = null;
+    // Stop any current speech
+    if (currentTTSProcess) {
+      say.stop();
+      currentTTSProcess = null;
     }
 
     if (!text || typeof text !== 'string') {
       return { success: false, error: 'Invalid text provided' };
     }
 
-    // Default to a high-quality English voice if not specified
-    // Using a clear, child-friendly voice
-    const selectedVoice = voice || 'en-US-EmmaMultilingualNeural';
-    
-    // Create TTS instance
-    const tts = new EdgeTTS(text, selectedVoice);
-    
-    // Synthesize audio
-    const result = await tts.synthesize();
-    
-    // Convert audio to buffer
-    const audioBuffer = Buffer.from(await result.audio.arrayBuffer());
-    
-    // Convert to base64 for transmission to renderer
-    // This avoids file:// URL security restrictions
-    const base64Audio = audioBuffer.toString('base64');
-    const mimeType = 'audio/mpeg'; // MP3 format
-    
-    // Return base64 data URL - renderer will create blob URL from it
-    return { 
-      success: true, 
-      audioData: base64Audio,
-      mimeType: mimeType
-    };
+    // Use native OS TTS (Windows SAPI, macOS say, etc.)
+    return new Promise((resolve) => {
+      say.speak(text, null, 1.0, (err) => {
+        currentTTSProcess = null;
+        if (err) {
+          console.error('TTS error:', err);
+          resolve({ success: false, error: err.message });
+        } else {
+          resolve({ success: true });
+        }
+      });
+      currentTTSProcess = true;
+    });
   } catch (error) {
     console.error('Error in TTS speak:', error);
     return { success: false, error: error.message };
@@ -496,10 +472,8 @@ ipcMain.handle('tts-speak', async (event, { text, voice }) => {
 
 ipcMain.handle('tts-stop', async () => {
   try {
-    if (currentAudioPlayer) {
-      currentAudioPlayer.pause();
-      currentAudioPlayer = null;
-    }
+    say.stop();
+    currentTTSProcess = null;
     return { success: true };
   } catch (error) {
     console.error('Error stopping TTS:', error);
@@ -509,24 +483,9 @@ ipcMain.handle('tts-stop', async () => {
 
 ipcMain.handle('tts-get-voices', async () => {
   try {
-    const manager = await initVoicesManager();
-    if (!manager) {
-      return { success: false, error: 'Voices manager not available', voices: [] };
-    }
-    
-    // Get all English voices (US and UK)
-    const englishVoices = manager.find({ Language: 'en' });
-    
-    // Format voices for the renderer
-    const formattedVoices = englishVoices.map(v => ({
-      name: v.ShortName,
-      displayName: v.FriendlyName || v.ShortName,
-      locale: v.Locale,
-      gender: v.Gender,
-      language: v.Language
-    }));
-    
-    return { success: true, voices: formattedVoices };
+    // Get available voices from the OS
+    const voices = say.getInstalledVoices();
+    return { success: true, voices: voices || [] };
   } catch (error) {
     console.error('Error getting voices:', error);
     return { success: false, error: error.message, voices: [] };

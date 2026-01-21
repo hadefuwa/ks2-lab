@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import useDataStore from './store/dataStore';
+import SimpleTTSBar from './components/SimpleTTSBar';
 import TopNavigation from './components/TopNavigation';
 import SubjectSelectionScreen from './screens/SubjectSelectionScreen';
 import LessonsListScreen from './screens/LessonsListScreen';
@@ -82,25 +83,29 @@ function App() {
         overflow: 'hidden' 
       }}>
         <TopNavigation />
-        <div style={{ 
-          flex: 1, 
-          overflow: 'hidden', 
-          display: 'flex', 
-          flexDirection: 'column' 
-        }}>
-          <Routes>
-            <Route path="/" element={<SubjectSelectionScreen />} />
-            <Route path="/character" element={<CharacterCustomizationScreen />} />
-            <Route path="/lessons" element={<LessonsListScreen />} />
-            <Route path="/lesson/:lessonId" element={<LessonViewScreen />} />
-            <Route path="/quiz/:quizId" element={<QuizScreen />} />
-            <Route path="/shop" element={<ShopScreen />} />
-            <Route path="/admin" element={<AdminPanel />} />
-            <Route path="/art-grading" element={<ArtGradingScreen />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
+        
+        {/* TTS Bar - under navigation */}
+        <SimpleTTSBar />
+          
+          <div style={{ 
+            flex: 1, 
+            overflow: 'hidden', 
+            display: 'flex', 
+            flexDirection: 'column' 
+          }}>
+            <Routes>
+              <Route path="/" element={<SubjectSelectionScreen />} />
+              <Route path="/character" element={<CharacterCustomizationScreen />} />
+              <Route path="/lessons" element={<LessonsListScreen />} />
+              <Route path="/lesson/:lessonId" element={<LessonViewScreen />} />
+              <Route path="/quiz/:quizId" element={<QuizScreen />} />
+              <Route path="/shop" element={<ShopScreen />} />
+              <Route path="/admin" element={<AdminPanel />} />
+              <Route path="/art-grading" element={<ArtGradingScreen />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </div>
         </div>
-      </div>
     </HashRouter>
   );
 }
