@@ -160,11 +160,11 @@ export const speakWordSlowlyThenBlended = async (word, options = {}) => {
   // First speak each letter sound slowly
   for (let i = 0; i < word.length; i++) {
     await speakPhoneme(word[i], { rate: 0.6, ...options });
-    await new Promise(resolve => setTimeout(resolve, 300)); // Pause between sounds
+    await new Promise(resolve => setTimeout(resolve, 150)); // Shorter pause between sounds
   }
   
   // Then speak the word blended
-  await new Promise(resolve => setTimeout(resolve, 500));
+  await new Promise(resolve => setTimeout(resolve, 300)); // Shorter pause before blended word
   await speakBlend(word, { rate: 0.8, ...options });
 };
 

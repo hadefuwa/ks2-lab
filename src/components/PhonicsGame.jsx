@@ -259,8 +259,9 @@ function PhonicsGame({ lesson }) {
             }
         } else if (config.type === 'recognize-letter') {
             answer = config.letter;
-            const otherLetters = ['s', 't', 'p', 'n', 'm'].filter(l => l !== answer);
-            options = [answer, ...otherLetters.slice(0, 2)].sort(() => Math.random() - 0.5);
+            const allLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+            const otherLetters = allLetters.filter(l => l !== answer);
+            options = [answer, ...otherLetters.sort(() => Math.random() - 0.5).slice(0, 2)].sort(() => Math.random() - 0.5);
             qText = `Find the letter ${answer.toUpperCase()}!`;
             isWord = false;
         } else if (config.type === 'letter-matching') {
