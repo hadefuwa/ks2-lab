@@ -410,6 +410,54 @@ Drag items into the chart and compare totals.`,
     new Lesson({
       id: lessonId++,
       yearId: 'year1',
+      subjectId: 'maths',
+      lessonNumber: 14,
+      title: "Large Multiplication (3-4 Digit Numbers)",
+      emoji: 'x',
+      content: `# Large Multiplication (3-4 Digit Numbers)
+
+Try some bigger multiplication questions.
+
+## How to Play
+
+Choose the correct answer.
+
+## Examples
+
+- 312 x 47
+- 4,208 x 306`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year1',
+      subjectId: 'maths',
+      lessonNumber: 15,
+      title: "Large Division (3-4 Digit Numbers)",
+      emoji: '/',
+      content: `# Large Division (3-4 Digit Numbers)
+
+Try some bigger division questions.
+
+## How to Play
+
+Choose the correct answer.
+
+## Examples
+
+- 1,248 ÷ 24
+- 9,504 ÷ 72`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year1',
       subjectId: 'english',
       lessonNumber: 1,
       title: "Sentence Scramble",

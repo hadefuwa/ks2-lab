@@ -18,6 +18,9 @@ function TopNavigation() {
 
   // Use stable selectors to prevent unnecessary re-renders
   const getNextLessonAfter = useDataStore(useCallback(state => state.getNextLessonAfter, []));
+  const initialize = useDataStore(useCallback(state => state.initialize, []));
+  const initialized = useDataStore(useCallback(state => state.initialized, []));
+  const loading = useDataStore(useCallback(state => state.loading, []));
   const addProgress = useDataStore(useCallback(state => state.addProgress, []));
   const getNextProgressId = useDataStore(useCallback(state => state.getNextProgressId, []));
   const getUserId = useDataStore(useCallback(state => state.getUserId, []));
@@ -106,6 +109,18 @@ function TopNavigation() {
   
   const handleSkipLesson = async () => {
     console.log('Skip button clicked!', { lessonId, lesson, pathname: location.pathname });
+    // Ensure data is initialized before attempting to skip
+    if (!initialized && !loading) {
+      await initialize();
+    }
+    if (loading) {
+      for (let i = 0; i < 10; i += 1) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+        const state = useDataStore.getState();
+        if (state.initialized && state.data?.lessons?.length) break;
+      }
+    }
+    const latestLessons = useDataStore.getState().data?.lessons || lessons || [];
     // Wait a moment for lesson data to load if needed
     let currentLesson = lesson || (lessonId ? getLesson(lessonId) : null);
     
@@ -119,11 +134,10 @@ function TopNavigation() {
       console.error('No lesson found to skip. LessonId:', lessonId);
       console.error('Pathname:', location.pathname);
       console.error('Params:', params);
-      console.error('Available lessons:', lessons?.length || 0);
+      console.error('Available lessons:', latestLessons?.length || 0);
 
       // Try to find the lesson by ID from all lessons
-      const allLessons = lessons || [];
-      let foundLesson = lessonId ? allLessons.find(l => l.id === lessonId) : null;
+      let foundLesson = lessonId ? latestLessons.find(l => l.id === lessonId) : null;
       
       // If still not found, try to get lesson from location state
       if (!foundLesson && location.state && location.state.lesson) {
@@ -133,7 +147,7 @@ function TopNavigation() {
       // If still not found and we're on a lesson page, try to find clicking game lesson
       if (!foundLesson && isLessonPage) {
         // Try to find any clicking game lesson in technology subject
-        foundLesson = allLessons.find(l => 
+        foundLesson = latestLessons.find(l => 
           l.title === 'Clicking Game' && l.subjectId === 'technology'
         );
       }
@@ -673,4 +687,3 @@ function TopNavigation() {
 }
 
 export default TopNavigation;
-

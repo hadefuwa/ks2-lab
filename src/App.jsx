@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import useDataStore from './store/dataStore';
 import GoogleTTSBar from './components/GoogleTTSBar';
 import TopNavigation from './components/TopNavigation';
@@ -11,11 +11,44 @@ import ShopScreen from './screens/ShopScreen';
 import AdminPanel from './screens/AdminPanel';
 import ArtGradingScreen from './screens/ArtGradingScreen';
 import CharacterCustomizationScreen from './screens/CharacterCustomizationScreen';
+import { useGoogleTTS } from './hooks/useGoogleTTS';
+
+const TTSHomeMute = () => {
+  const location = useLocation();
+  const { enabled, setEnabled, stop } = useGoogleTTS();
+  const forcedMuteRef = React.useRef(false);
+  const prevEnabledRef = React.useRef(enabled);
+
+  useEffect(() => {
+    if (location.pathname === '/') {
+      if (!forcedMuteRef.current) {
+        prevEnabledRef.current = enabled;
+        forcedMuteRef.current = true;
+      }
+      if (enabled) {
+        setEnabled(false);
+      }
+      stop();
+      return;
+    }
+
+    if (forcedMuteRef.current) {
+      forcedMuteRef.current = false;
+      if (prevEnabledRef.current && !enabled) {
+        setEnabled(true);
+      }
+    }
+  }, [location.pathname, enabled, setEnabled, stop]);
+
+  return null;
+};
 
 function App() {
   const initialize = useDataStore(state => state.initialize);
+  const ensureDefaultLessons = useDataStore(state => state.ensureDefaultLessons);
   const initialized = useDataStore(state => state.initialized);
   const loading = useDataStore(state => state.loading);
+  const lessonCount = useDataStore(state => state.data?.lessons?.length || 0);
   const [error, setError] = React.useState(null);
 
   useEffect(() => {
@@ -32,6 +65,12 @@ function App() {
   useEffect(() => {
     console.log('[App] State:', { initialized, loading, hasError: !!error });
   }, [initialized, loading, error]);
+
+  useEffect(() => {
+    if (initialized && !loading && lessonCount === 0) {
+      ensureDefaultLessons();
+    }
+  }, [initialized, loading, lessonCount, ensureDefaultLessons]);
 
   if (error) {
     return (
@@ -83,6 +122,7 @@ function App() {
         overflow: 'hidden' 
       }}>
         <TopNavigation />
+        <TTSHomeMute />
         
         {/* TTS Bar - under navigation */}
         <GoogleTTSBar />
@@ -111,4 +151,3 @@ function App() {
 }
 
 export default App;
-

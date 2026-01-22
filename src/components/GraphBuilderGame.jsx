@@ -3,6 +3,48 @@ import { useNavigate } from 'react-router-dom';
 import useDataStore from '../store/dataStore';
 import { Progress } from '../models/Progress';
 
+const SIMPLE_LEVELS = [
+  {
+    title: 'Sort the Fruit and Animals',
+    categories: [
+      { id: 'fruit', name: 'Fruit', emoji: '🍎' },
+      { id: 'animal', name: 'Animals', emoji: '🐶' },
+    ],
+    items: [
+      { id: 'apple', emoji: '🍎', label: 'Apple', category: 'fruit' },
+      { id: 'banana', emoji: '🍌', label: 'Banana', category: 'fruit' },
+      { id: 'dog', emoji: '🐶', label: 'Dog', category: 'animal' },
+      { id: 'cat', emoji: '🐱', label: 'Cat', category: 'animal' },
+    ],
+  },
+  {
+    title: 'Sort the Shapes and Colors',
+    categories: [
+      { id: 'shape', name: 'Shapes', emoji: '🔺' },
+      { id: 'color', name: 'Colors', emoji: '🎨' },
+    ],
+    items: [
+      { id: 'circle', emoji: '🔵', label: 'Circle', category: 'shape' },
+      { id: 'triangle', emoji: '🔺', label: 'Triangle', category: 'shape' },
+      { id: 'red', emoji: '🔴', label: 'Red', category: 'color' },
+      { id: 'yellow', emoji: '🟡', label: 'Yellow', category: 'color' },
+    ],
+  },
+  {
+    title: 'Sort the Weather',
+    categories: [
+      { id: 'sunny', name: 'Sunny', emoji: '☀️' },
+      { id: 'rainy', name: 'Rainy', emoji: '🌧️' },
+    ],
+    items: [
+      { id: 'sun', emoji: '☀️', label: 'Sun', category: 'sunny' },
+      { id: 'sunglasses', emoji: '🕶️', label: 'Sunglasses', category: 'sunny' },
+      { id: 'umbrella', emoji: '☂️', label: 'Umbrella', category: 'rainy' },
+      { id: 'rain', emoji: '🌧️', label: 'Rain', category: 'rainy' },
+    ],
+  },
+];
+
 function GraphBuilderGame({ lesson }) {
   const navigate = useNavigate();
   const addProgress = useDataStore(state => state.addProgress);
@@ -19,6 +61,13 @@ function GraphBuilderGame({ lesson }) {
 
   // Check if this is a pie chart lesson
   const isPieChartLesson = lesson?.title?.includes('Pie Charts') || lesson?.title?.includes('Pie Chart');
+  const isSimpleLesson = lesson?.yearId === 'reception' && lesson?.title?.includes('Data: Sorting and Pictograms');
+
+  const [simpleLevel, setSimpleLevel] = useState(1);
+  const [simpleItems, setSimpleItems] = useState([]);
+  const [simpleCounts, setSimpleCounts] = useState({});
+  const [simpleFeedback, setSimpleFeedback] = useState('');
+  const [simpleShowSuccess, setSimpleShowSuccess] = useState(false);
 
   // Generate problems based on lesson type
   const generateProblems = () => {
@@ -46,11 +95,32 @@ function GraphBuilderGame({ lesson }) {
   const problems = generateProblems();
 
   useEffect(() => {
+    if (isSimpleLesson) return;
     const problem = problems[level - 1] || problems[0];
     setTargetData(problem);
     setGraphData([]);
     setShowSuccess(false);
   }, [level]);
+
+  useEffect(() => {
+    if (!isSimpleLesson) return;
+    const current = SIMPLE_LEVELS[simpleLevel - 1] || SIMPLE_LEVELS[0];
+    setSimpleItems(current.items);
+    setSimpleCounts(
+      current.categories.reduce((acc, cat) => {
+        acc[cat.id] = 0;
+        return acc;
+      }, {})
+    );
+    setSimpleFeedback('');
+    setSimpleShowSuccess(false);
+  }, [simpleLevel, isSimpleLesson]);
+
+  useEffect(() => {
+    if (!isSimpleLesson) return;
+    setSimpleLevel(1);
+    setScore(0);
+  }, [lesson?.id, isSimpleLesson]);
 
   const handleBarClick = (label, isDecrease = false) => {
     setGraphData(prev => {
@@ -125,6 +195,151 @@ function GraphBuilderGame({ lesson }) {
       saveData();
     }
   };
+
+  const handleSimplePick = (item, categoryId) => {
+    if (simpleShowSuccess) return;
+    if (item.category !== categoryId) {
+      setSimpleFeedback('Try again!');
+      setTimeout(() => setSimpleFeedback(''), 800);
+      return;
+    }
+
+    setSimpleItems(prev => prev.filter(i => i.id !== item.id));
+    setSimpleCounts(prev => ({
+      ...prev,
+      [categoryId]: (prev[categoryId] || 0) + 1,
+    }));
+    setSimpleFeedback('Great job!');
+
+    if (simpleItems.length === 1) {
+      setSimpleShowSuccess(true);
+      setScore(prev => prev + 10);
+      setTimeout(() => {
+        if (simpleLevel < SIMPLE_LEVELS.length) {
+          setSimpleLevel(prev => prev + 1);
+        } else {
+          completeLesson();
+        }
+      }, 1200);
+    } else {
+      setTimeout(() => setSimpleFeedback(''), 600);
+    }
+  };
+
+  const renderSimpleGame = () => {
+    const current = SIMPLE_LEVELS[simpleLevel - 1] || SIMPLE_LEVELS[0];
+    return (
+      <div style={{ padding: '20px', height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ marginBottom: '20px', textAlign: 'center' }}>
+          <h2 style={{ fontSize: '28px', marginBottom: '8px' }}>Sorting and Pictograms</h2>
+          <div style={{ fontSize: '18px', marginBottom: '6px' }}>
+            Level: {simpleLevel} / {SIMPLE_LEVELS.length} | Score: {score}
+          </div>
+          <div style={{ fontSize: '20px', fontWeight: 'bold', color: '#2196F3' }}>
+            {current.title}
+          </div>
+        </div>
+
+        <div style={{
+          flex: 1,
+          minHeight: 0,
+          border: '3px solid #2196F3',
+          borderRadius: '15px',
+          backgroundColor: '#f0f8ff',
+          padding: '20px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '20px',
+        }}>
+          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
+            {simpleItems.map(item => (
+              <div key={item.id} style={{
+                backgroundColor: 'white',
+                borderRadius: '14px',
+                padding: '14px',
+                minWidth: '160px',
+                boxShadow: '0 4px 8px rgba(0,0,0,0.15)',
+                textAlign: 'center',
+              }}>
+                <div style={{ fontSize: '44px', marginBottom: '6px' }}>{item.emoji}</div>
+                <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '10px' }}>{item.label}</div>
+                <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
+                  {current.categories.map(cat => (
+                    <button
+                      key={cat.id}
+                      onClick={() => handleSimplePick(item, cat.id)}
+                      style={{
+                        padding: '8px 10px',
+                        backgroundColor: '#2196F3',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '10px',
+                        fontSize: '12px',
+                        fontWeight: '700',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      {cat.emoji} {cat.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            {current.categories.map(cat => {
+              const count = simpleCounts[cat.id] || 0;
+              return (
+                <div key={cat.id} style={{
+                  backgroundColor: 'white',
+                  borderRadius: '14px',
+                  padding: '12px 18px',
+                  minWidth: '160px',
+                  border: '2px dashed #2196F3',
+                  textAlign: 'center',
+                }}>
+                  <div style={{ fontSize: '16px', fontWeight: '800', marginBottom: '6px' }}>
+                    {cat.emoji} {cat.name}
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'center', gap: '6px', flexWrap: 'wrap' }}>
+                    {Array.from({ length: count }).map((_, idx) => (
+                      <span key={idx} style={{ fontSize: '18px' }}>⬤</span>
+                    ))}
+                    {count === 0 && <span style={{ fontSize: '12px', color: '#888' }}>No items yet</span>}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {simpleFeedback && (
+            <div style={{
+              textAlign: 'center',
+              fontSize: '20px',
+              fontWeight: 'bold',
+              color: simpleFeedback === 'Great job!' ? '#28a745' : '#dc3545',
+            }}>
+              {simpleFeedback}
+            </div>
+          )}
+
+          {simpleShowSuccess && (
+            <div style={{
+              textAlign: 'center',
+              fontSize: '28px',
+              fontWeight: 'bold',
+              color: '#28a745',
+            }}>
+              Perfect sorting!
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  if (isSimpleLesson) return renderSimpleGame();
 
   const renderPieChart = () => {
     const labels = Object.keys(targetData.data);

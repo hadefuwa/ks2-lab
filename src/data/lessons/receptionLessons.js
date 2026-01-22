@@ -251,11 +251,11 @@ Red, blue, red, blue, ...`,
       emoji: '🧭',
       content: `# Position and Direction 🧭
 
-Learn words like left, right, and behind.
+Learn where things are!
 
 ## How to Play
 
-Move the character to follow the directions.
+Listen to the question, then tap the right word.
 
 ## Words to Know
 
@@ -287,7 +287,7 @@ Drag objects into order from shortest to tallest.
 - Shorter / Taller
 - Longer / Shorter`,
       quizId: quizId++,
-      assessmentType: 'measurement-compare-game',
+      assessmentType: 'html-game',
       categoryId: null,
     }),
 
@@ -753,6 +753,28 @@ Drag each item into a category to build the chart.`,
       quizId: null,
       assessmentType: 'phonics-game',
       categoryId: 'cvc-u',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 32,
+      title: "Sight Word Search",
+      emoji: '🔍',
+      assessmentType: 'sight-word-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 33,
+      title: "Spelling Fun",
+      emoji: '🐝',
+      assessmentType: 'spelling-game',
+      categoryId: null,
     }),
 
 

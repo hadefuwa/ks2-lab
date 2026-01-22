@@ -114,6 +114,8 @@ const LESSON_CONFIGS = {
   66: { type: 'add-sub-3digit', title: 'Add and Subtract 3-Digit Numbers' },
   67: { type: 'multiplication', tables: [3, 4, 8], maxProduct: 96, title: 'Times Tables 3, 4, 8' },
   68: { type: 'multiplication', tables: [6, 7, 9, 11, 12], maxProduct: 144, title: 'Times Tables 6, 7, 9, 11, 12' },
+  69: { type: 'large-multiplication', title: 'Large Multiplication (3-4 Digit Numbers)' },
+  70: { type: 'large-division', title: 'Large Division (3-4 Digit Numbers)' },
 };
 
 // Scoring tiers
@@ -201,6 +203,7 @@ function MathGame({ lesson }) {
   const [validationOptions, setValidationOptions] = useState([]);
   const [validationObjects, setValidationObjects] = useState([]);
   const [activityObjectCount, setActivityObjectCount] = useState(null);
+  const [highlightedOptionIndex, setHighlightedOptionIndex] = useState(-1);
   const [isInitialized, setIsInitialized] = useState(false);
   const [questionText, setQuestionText] = useState('');
   const initializedLessonIdRef = useRef(null); // Track which lesson we've initialized
@@ -349,6 +352,8 @@ function MathGame({ lesson }) {
     if (title.includes('add and subtract 3-digit')) return 66;
     if (title.includes('3, 4, and 8 times tables')) return 67;
     if (title.includes('6, 7, 9, 11, and 12 times tables')) return 68;
+    if (title.includes('large multiplication') || title.includes('3-4 digit multiplication')) return 69;
+    if (title.includes('large division') || title.includes('3-4 digit division')) return 70;
 
     // If no match found, log warning and use a safe default
     console.warn(`MathGame: No config found for lesson "${lesson.title}" (Year: ${yearId}, Lesson #: ${lesson.lessonNumber}). Using default config.`);
@@ -391,6 +396,7 @@ function MathGame({ lesson }) {
     }
     // Reset question text ref and increment generation ID to invalidate any pending TTS
     currentQuestionTextRef.current = '';
+    setHighlightedOptionIndex(-1);
     questionGenerationIdRef.current += 1;
 
     // Mark component as mounted
@@ -719,6 +725,38 @@ function MathGame({ lesson }) {
         if (!options.includes(random)) options.push(random);
       }
       options = options.slice(0, 4);
+    } else if (config.type === 'large-multiplication') {
+      // Larger multiplication with 3-4 digit numbers
+      const pickFactor = () => {
+        const isFourDigit = Math.random() < 0.5;
+        const min = isFourDigit ? 1000 : 100;
+        const max = isFourDigit ? 9999 : 999;
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      };
+      const num1 = pickFactor();
+      const num2 = pickFactor();
+      answer = num1 * num2;
+      questionText = `What is ${num1} Į- ${num2}?`;
+      const optionsSet = new Set([answer]);
+      const jitter = () => Math.floor(Math.random() * 9000) + 100;
+      while (optionsSet.size < 4) {
+        const candidate = answer + (Math.random() < 0.5 ? -1 : 1) * jitter();
+        if (candidate > 0) optionsSet.add(candidate);
+      }
+      options = Array.from(optionsSet).sort(() => Math.random() - 0.5);
+    } else if (config.type === 'large-division') {
+      // Larger division with 3-4 digit dividends
+      const divisor = Math.floor(Math.random() * 90) + 10; // 10-99
+      const quotient = Math.floor(Math.random() * 90) + 10; // 10-99
+      const dividend = divisor * quotient; // 100-9801
+      answer = quotient;
+      questionText = `What is ${dividend} Įْ ${divisor}?`;
+      const optionsSet = new Set([answer, answer + 1, answer - 1]);
+      while (optionsSet.size < 4) {
+        const candidate = Math.floor(Math.random() * 90) + 10;
+        if (candidate > 0) optionsSet.add(candidate);
+      }
+      options = Array.from(optionsSet).filter(n => n > 0).sort(() => Math.random() - 0.5);
     } else if (config.type === 'fractions-decimals') {
       // Year 4: Fractions and decimals
       const questionType = Math.floor(Math.random() * 2);
@@ -1620,10 +1658,10 @@ function MathGame({ lesson }) {
       options = [a, b, answer + 1, answer - 1].filter(n => n > 0);
     } else if (config.type === 'position-direction') {
       const prompts = [
-        { question: 'Which word means up?', answer: 'above', options: ['above', 'below', 'left', 'right'] },
-        { question: 'Which word means down?', answer: 'below', options: ['above', 'below', 'left', 'right'] },
-        { question: 'Which word means behind?', answer: 'behind', options: ['in front', 'behind', 'left', 'right'] },
-        { question: 'Which word means in front?', answer: 'in front', options: ['in front', 'behind', 'left', 'right'] },
+        { question: 'Which word means up?', answer: 'above ⬆️', options: ['above ⬆️', 'below ⬇️', 'left ⬅️', 'right ➡️'] },
+        { question: 'Which word means down?', answer: 'below ⬇️', options: ['above ⬆️', 'below ⬇️', 'left ⬅️', 'right ➡️'] },
+        { question: 'Which word means behind?', answer: 'behind 📦', options: ['in front 🎁', 'behind 📦', 'left ⬅️', 'right ➡️'] },
+        { question: 'Which word means in front?', answer: 'in front 🎁', options: ['in front 🎁', 'behind 📦', 'left ⬅️', 'right ➡️'] },
       ];
       const prompt = prompts[Math.floor(Math.random() * prompts.length)];
       answer = prompt.answer;
@@ -1631,9 +1669,9 @@ function MathGame({ lesson }) {
       options = prompt.options;
     } else if (config.type === 'time-sequence') {
       const prompts = [
-        { question: 'What comes after morning?', answer: 'afternoon', options: ['morning', 'afternoon', 'night', 'evening'] },
-        { question: 'What comes after afternoon?', answer: 'evening', options: ['morning', 'afternoon', 'evening', 'night'] },
-        { question: 'What comes after evening?', answer: 'night', options: ['morning', 'evening', 'night', 'afternoon'] },
+        { question: 'What comes after morning?', answer: 'afternoon ☀️', options: ['morning 🌅', 'afternoon ☀️', 'night 🌙', 'evening 🌇'] },
+        { question: 'What comes after afternoon?', answer: 'evening 🌇', options: ['morning 🌅', 'afternoon ☀️', 'evening 🌇', 'night 🌙'] },
+        { question: 'What comes after evening?', answer: 'night 🌙', options: ['morning 🌅', 'evening 🌇', 'night 🌙', 'afternoon ☀️'] },
       ];
       const prompt = prompts[Math.floor(Math.random() * prompts.length)];
       answer = prompt.answer;
@@ -1840,7 +1878,44 @@ function MathGame({ lesson }) {
       }
 
       try {
+        // Speak the question first
         await speak(textToSpeak, { volume: 1.0, rate: 0.6, pitch: 1.2 });
+
+        // After reading question, read options if it's a younger child's lesson (Nursery/Reception/Year 1)
+        if (lesson.yearId === 'reception' || lesson.yearId === 'nursery' || lesson.yearId === 'year1') {
+          // Add a small pause after the question
+          await new Promise(resolve => setTimeout(resolve, 600));
+
+          for (let i = 0; i < options.length; i++) {
+            // Check if still on the same generation to prevent overlapping speech
+            if (questionGenerationIdRef.current !== thisGenerationId || !isMountedRef.current) break;
+
+            setHighlightedOptionIndex(i);
+            const option = options[i];
+
+            // Determine how to speak the option
+            let speechLabel = option.toString();
+            // Strip emojis for cleaner TTS
+            speechLabel = speechLabel.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '').trim();
+
+            if (config.type === 'percentages') {
+              speechLabel = `${option} percent`;
+            } else if (typeof option === 'string' && option.includes('/')) {
+              const [num, den] = option.split('/');
+              speechLabel = `${num} over ${den}`;
+            } else if (NUMBER_NAMES[option]) {
+              speechLabel = NUMBER_NAMES[option];
+            }
+
+            await speak(speechLabel, { volume: 1.0, rate: 0.6, pitch: 1.2 });
+            // Add a small pause between options
+            await new Promise(resolve => setTimeout(resolve, 300));
+          }
+
+          if (isMountedRef.current) {
+            setHighlightedOptionIndex(-1);
+          }
+        }
       } catch (err) {
         console.error('Error speaking question:', err);
       }
@@ -1860,6 +1935,7 @@ function MathGame({ lesson }) {
       (typeof option === 'number' && typeof correctAnswer === 'number' && option === correctAnswer);
     const newAttempts = validationAttempts + 1;
     setValidationAttempts(newAttempts);
+    setHighlightedOptionIndex(-1); // Stop highlighting if user interacts
 
     if (isCorrect) {
       const score = getScore(newAttempts);
@@ -2243,43 +2319,8 @@ function MathGame({ lesson }) {
       );
     }
 
-    // Use stored questionText for complex types (multiplication, division, etc.), otherwise reconstruct
-    if (!questionText || questionText === 'Select the correct answer!') {
-      if (config.type === 'recognize-1' || config.type === 'recognize-2' || config.type === 'recognize-3') {
-        displayQuestionText = `Find the number ${NUMBER_NAMES[config.number]}!`;
-      } else if (config.type === 'count-1-3' || config.type === 'match-1' || config.type === 'match-2' || config.type === 'match-3' || config.type === 'count-1-5') {
-        displayQuestionText = 'How many objects do you see?';
-      } else if (config.type === 'order-1-3') {
-        displayQuestionText = `What number comes after ${NUMBER_NAMES[correctAnswer - 1]}?`;
-      } else if (config.type === 'recognize-1-5') {
-        displayQuestionText = `Find the number ${NUMBER_NAMES[correctAnswer]}!`;
-      } else if (config.type === 'recognize-1-10') {
-        displayQuestionText = `Find the number ${NUMBER_NAMES[correctAnswer]}!`;
-      } else if (config.type === 'counting-to-10') {
-        if (correctAnswer === 5) {
-          displayQuestionText = 'How many fingers do you have on one hand?';
-        } else if (correctAnswer === 10) {
-          displayQuestionText = 'What is the biggest number we learned?';
-        } else {
-          displayQuestionText = `What number comes after ${NUMBER_NAMES[correctAnswer - 1]}?`;
-        }
-      } else if (config.type === 'counting-to-20' || config.type === 'counting-to-20-advanced') {
-        if (correctAnswer === 20) {
-          if (validationOptions.includes(20) && validationOptions.includes(15)) {
-            displayQuestionText = 'How many fingers and toes do you have all together?';
-          } else {
-            displayQuestionText = 'What is the biggest number we learned?';
-          }
-        } else {
-          displayQuestionText = `What number comes after ${NUMBER_NAMES[correctAnswer - 1]}?`;
-        }
-      } else {
-        // For multiplication, division, and other complex types, use stored questionText
-        displayQuestionText = questionText || 'Select the correct answer!';
-      }
-    } else {
-      displayQuestionText = questionText;
-    }
+    // Use the stored questionText state - this ensures sync with TTS
+    displayQuestionText = questionText || 'Select the correct answer!';
 
     return (
       <div style={{ textAlign: 'center', padding: '40px' }}>
@@ -2366,13 +2407,18 @@ function MathGame({ lesson }) {
                   borderRadius: '25px',
                   cursor: 'pointer',
                   transition: 'all 0.2s',
-                  boxShadow: '0 6px 12px rgba(0,0,0,0.2)',
+                  boxShadow: index === highlightedOptionIndex
+                    ? '0 0 30px rgba(33, 150, 243, 0.8), 0 10px 20px rgba(0,0,0,0.3)'
+                    : '0 6px 12px rgba(0,0,0,0.2)',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
                   letterSpacing: letterSpacing,
                   padding: showPieChart ? '10px' : '0',
+                  transform: index === highlightedOptionIndex ? 'scale(1.1)' : 'scale(1)',
+                  backgroundColor: index === highlightedOptionIndex ? '#e3f2fd' : '#fff',
+                  borderColor: index === highlightedOptionIndex ? '#1976D2' : '#2196F3',
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'scale(1.15)';

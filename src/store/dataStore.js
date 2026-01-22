@@ -128,6 +128,37 @@ const useDataStore = create((set, get) => ({
     }
   },
 
+  // Ensure lessons/quizzes exist even if stored data is empty or corrupted
+  ensureDefaultLessons: async () => {
+    const state = get();
+    if (!state.data) return;
+    if (state.data.lessons && state.data.lessons.length > 0) return;
+
+    console.warn('[DataStore] Lessons missing - restoring defaults');
+    const defaultData = AppData.fromJSON(getDefaultData());
+    const repairedData = new AppData({
+      students: state.data.students,
+      lessons: defaultData.lessons,
+      quizzes: defaultData.quizzes,
+      progress: state.data.progress,
+      videoResources: state.data.videoResources || [],
+      rewards: defaultData.rewards,
+      purchases: state.data.purchases || [],
+      pointsActivities: state.data.pointsActivities || [],
+      pointsBalance: state.data.pointsBalance || 0,
+      pointsSystemVersion: state.data.pointsSystemVersion || 0,
+    });
+
+    set({ data: repairedData });
+    if (window.electronAPI) {
+      try {
+        await window.electronAPI.saveData(repairedData.toJSON());
+      } catch (error) {
+        console.error('Error saving repaired data:', error);
+      }
+    }
+  },
+
   // Merge default lessons into existing data
   // Always replaces lessons and quizzes with default data to ensure updates are applied
   // Preserves user data: students and progress
@@ -1117,16 +1148,16 @@ const useDataStore = create((set, get) => ({
       if (score >= 140) medal = 'Platinum';
       else if (score >= 120) medal = 'Gold';
       else if (score >= 80) medal = 'Silver';
-    } else if (lesson.assessmentType === 'coloring-game') {
+    } else if (lesson.assessmentType === 'coloring-game' || lesson.subjectId === 'art') {
       if (score >= 100) medal = 'Platinum';
       else if (score >= 90) medal = 'Gold';
       else if (score >= 75) medal = 'Silver';
       else if (score >= 50) medal = 'Bronze';
-    } else if (lesson.subjectId === 'art') {
-      if (score >= 100) medal = 'Platinum';
-      else if (score >= 90) medal = 'Gold';
-      else if (score >= 75) medal = 'Silver';
-      else if (score >= 60) medal = 'Bronze';
+    } else if (['spelling-game', 'prefix-game', 'suffix-game', 'parts-of-speech-game', 'sight-word-game', 'synonyms-antonyms-game', 'contraction-game'].includes(lesson.assessmentType)) {
+      if (score >= 95) medal = 'Platinum';
+      else if (score >= 85) medal = 'Gold';
+      else if (score >= 70) medal = 'Silver';
+      else medal = 'Bronze';
     } else {
       // Default score-based thresholds for all other lessons (including English/Phonics/Math/History)
       if (score >= 98 || score === 100) medal = 'Platinum';

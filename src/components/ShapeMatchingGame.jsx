@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useDataStore from '../store/dataStore';
 import { Progress } from '../models/Progress';
+import { speak, stop } from '../utils/textToSpeech';
 
 function ShapeMatchingGame({ lesson }) {
   const navigate = useNavigate();
@@ -9,6 +10,7 @@ function ShapeMatchingGame({ lesson }) {
   const getNextProgressId = useDataStore(state => state.getNextProgressId);
   const getUserId = useDataStore(state => state.getUserId);
   const saveData = useDataStore(state => state.saveData);
+  const getNextLessonUrl = useDataStore(state => state.getNextLessonUrl);
 
   const [targetShape, setTargetShape] = useState(null);
   const [availableShapes, setAvailableShapes] = useState([]);
@@ -18,6 +20,8 @@ function ShapeMatchingGame({ lesson }) {
   const [score, setScore] = useState(0);
   const [level, setLevel] = useState(1);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [isGameOver, setIsGameOver] = useState(false);
+  const [finalScore, setFinalScore] = useState(null);
   const dragStartPos = useRef({ x: 0, y: 0 });
   const targetAreaRef = useRef(null);
   const gameAreaRef = useRef(null);
@@ -87,7 +91,17 @@ function ShapeMatchingGame({ lesson }) {
     setAvailableShapes(shapes);
     setMatchedShapes([]);
     setShowSuccess(false);
-  }, [level]);
+  }, [level, is3DShapes]);
+
+  useEffect(() => {
+    if (!targetShape?.name || isGameOver) return;
+    speak(`Match the ${targetShape.name}.`, { rate: 0.9 });
+    return () => stop();
+  }, [targetShape?.name, isGameOver]);
+
+  useEffect(() => {
+    return () => stop();
+  }, []);
 
   const handleMouseDown = (e, shape) => {
     e.preventDefault();
@@ -151,6 +165,7 @@ function ShapeMatchingGame({ lesson }) {
           setAvailableShapes(prev => prev.filter(s => s.id !== dragShape.id));
           setShowSuccess(true);
           setScore(prev => prev + 10);
+          speak('Great job!', { rate: 1.0 });
           setTimeout(() => {
             if (level < problems.length) {
               setLevel(prev => prev + 1);
@@ -172,6 +187,7 @@ function ShapeMatchingGame({ lesson }) {
     if (lesson) {
       const userId = getUserId();
       const progressId = getNextProgressId();
+      const totalScore = score + 50;
       const progress = new Progress({
         id: progressId,
         studentId: userId,
@@ -182,14 +198,82 @@ function ShapeMatchingGame({ lesson }) {
         lessonNumber: lesson.lessonNumber,
         isCompleted: true,
         completedAt: new Date(),
-        score: score + 50,
+        score: totalScore,
       });
       await addProgress(progress);
       saveData();
+      setFinalScore(totalScore);
+      setIsGameOver(true);
     }
   };
 
   const problem = problems[level - 1] || problems[0];
+  const getMedal = () => {
+    if (finalScore >= 98 || finalScore === 100) return { type: 'Platinum', color: '#E5E4E2', emoji: 'ÐY?Å' };
+    if (finalScore >= 85) return { type: 'Gold', color: '#FFD700', emoji: 'ÐY¾Î' };
+    if (finalScore >= 70) return { type: 'Silver', color: '#C0C0C0', emoji: 'ÐY¾^' };
+    return { type: 'Bronze', color: '#CD7F32', emoji: 'ÐY¾%' };
+  };
+
+  if (isGameOver) {
+    const medal = getMedal();
+    return (
+      <div style={{ padding: '20px', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{
+          backgroundColor: 'white',
+          padding: '50px',
+          borderRadius: '20px',
+          textAlign: 'center',
+          boxShadow: '0 8px 20px rgba(0,0,0,0.2)',
+          maxWidth: '500px',
+          width: '100%',
+        }}>
+          <div style={{ fontSize: '120px', marginBottom: '20px' }}>{medal.emoji}</div>
+          <h2 style={{ fontSize: '42px', margin: '10px 0', fontWeight: '900', color: medal.color }}>
+            {medal.type} Medal!
+          </h2>
+          <div style={{ fontSize: '24px', color: '#666', marginBottom: '30px' }}>
+            Well done! Score: {finalScore}
+          </div>
+          <div style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
+            <button
+              onClick={() => navigate(`/lessons?subjectId=${lesson.subjectId}`)}
+              style={{
+                padding: '12px 22px',
+                backgroundColor: '#f8f9fa',
+                color: '#333',
+                border: '2px solid #ddd',
+                borderRadius: '10px',
+                cursor: 'pointer',
+                fontSize: '16px',
+                fontWeight: '700',
+              }}
+            >
+              Back to Lessons
+            </button>
+            <button
+              onClick={() => {
+                const { url } = getNextLessonUrl(lesson);
+                navigate(url);
+              }}
+              style={{
+                padding: '12px 22px',
+                backgroundColor: '#007bff',
+                color: 'white',
+                border: 'none',
+                borderRadius: '10px',
+                cursor: 'pointer',
+                fontSize: '16px',
+                fontWeight: '700',
+              }}
+            >
+              Next Lesson ƒÅ'
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div style={{ padding: '20px', height: '100%', display: 'flex', flexDirection: 'column' }}>
