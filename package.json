@@ -1,7 +1,7 @@
 {
-  "name": "homeschool-hub",
+  "name": "stem-hub",
   "version": "1.7.0",
-  "description": "A cross-platform homeschool learning management application",
+  "description": "A cross-platform STEM learning management application",
   "main": "electron/main.js",
   "type": "module",
   "scripts": {
@@ -14,7 +14,7 @@
     "dist": "npm run build && electron-builder"
   },
   "keywords": [
-    "homeschool",
+    "stem",
     "education",
     "learning",
     "electron"
@@ -51,8 +51,8 @@
     "wait-on": "^7.2.0"
   },
   "build": {
-    "appId": "com.homeschoolhub.app",
-    "productName": "Homeschool Hub",
+    "appId": "com.stemhub.app",
+    "productName": "STEM Hub",
     "directories": {
       "output": "dist"
     },
@@ -73,7 +73,7 @@
         "nsis"
       ],
       "icon": "build/web/icons/Icon-512.png",
-      "publisherName": "Homeschool Hub"
+      "publisherName": "STEM Hub"
     },
     "mac": {
       "target": [
@@ -97,7 +97,7 @@
       {
         "provider": "github",
         "owner": "hadefuwa",
-        "repo": "homeschool-hub",
+        "repo": "STEM-Hub",
         "private": false
       }
     ]

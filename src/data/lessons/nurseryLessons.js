@@ -517,5 +517,5 @@ Days of the week are important because they help us know what to do! Each day ha
       quizId: 33,
       categoryId: null,
     }),
-
-    
+  ];
+}

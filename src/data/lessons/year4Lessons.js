@@ -6667,7 +6667,5 @@ Can you improve your score? Aim for Platinum!`,
       assessmentType: null,
       categoryId: null,
     }),
-
-
-
-    
+  ];
+}

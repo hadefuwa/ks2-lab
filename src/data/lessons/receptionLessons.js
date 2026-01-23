@@ -660,5 +660,5 @@ You need at least **Bronze** (1 point) to progress to the next lesson!`,
       assessmentType: 'target-practice-game',
       categoryId: null,
     }),
-
-    
+  ];
+}

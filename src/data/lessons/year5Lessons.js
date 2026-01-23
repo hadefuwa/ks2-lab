@@ -78,5 +78,5 @@ Can you reach Platinum? You're almost at the top level!`,
       assessmentType: null,
       categoryId: null,
     }),
-
-    
+  ];
+}

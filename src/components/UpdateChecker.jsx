@@ -31,7 +31,7 @@ function UpdateChecker() {
 
     try {
       // Open GitHub releases page directly
-      const result = await window.electronAPI.openExternal('https://github.com/hadefuwa/homeschool-hub/releases');
+      const result = await window.electronAPI.openExternal('https://github.com/hadefuwa/STEM-Hub/releases');
       
       if (result.success) {
         setUpdateStatus('Opening GitHub releases...');

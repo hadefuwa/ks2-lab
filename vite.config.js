@@ -7,9 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default defineConfig({
-  plugins: [react({
-    exclude: [/.*\/data\/.*/, /.*\/models\/.*/]
-  })],
+  plugins: [react()],
   base: './', // Use relative paths for Electron file:// protocol
   root: '.',
   build: {

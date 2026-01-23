@@ -23,7 +23,7 @@ function YouTubeEmbed({ videoId, width = '100%', height = '400px', options = {} 
     params.append('rel', '0'); // Don't show related videos from other channels
 
     // Use a consistent mock public origin for YouTube to bypass localhost blocks
-    const publicOrigin = 'https://homeschool-hub.io';
+    const publicOrigin = 'https://stem-hub.io';
     params.append('origin', publicOrigin);
     params.append('enablejsapi', '1');
     params.append('widget_referrer', publicOrigin);

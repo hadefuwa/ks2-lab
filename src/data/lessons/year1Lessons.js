@@ -949,4 +949,5 @@ You may see console messages about "play() request was interrupted" or "createRa
       assessmentType: 'flappy-bird-game',
       categoryId: null,
     }),
-    
+  ];
+}

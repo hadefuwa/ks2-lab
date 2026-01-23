@@ -1,11 +1,11 @@
 {
-    "name": "homeschool_hub",
-    "short_name": "homeschool_hub",
+    "name": "stem_hub",
+    "short_name": "stem_hub",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Homeschool Hub - Electron Desktop Application",
+    "description": "STEM Hub - Electron Desktop Application",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

@@ -103,7 +103,7 @@ autoUpdater.on('update-available', (info) => {
       }).then((result) => {
         if (result.response === 0) {
           // Open GitHub releases for download
-          shell.openExternal(`https://github.com/hadefuwa/homeschool-hub/releases/tag/v${info.version}`);
+          shell.openExternal(`https://github.com/hadefuwa/STEM-Hub/releases/tag/v${info.version}`);
         }
       });
     } else {
@@ -155,7 +155,7 @@ autoUpdater.on('error', (err) => {
       }).then((result) => {
         if (result.response === 0) {
           // Open GitHub releases page
-          shell.openExternal('https://github.com/hadefuwa/homeschool-hub/releases');
+          shell.openExternal('https://github.com/hadefuwa/STEM-Hub/releases');
         }
       });
     }
@@ -227,7 +227,7 @@ autoUpdater.on('update-downloaded', (info) => {
             // Temp directory
             path.join(app.getPath('temp'), 'electron-updater'),
             // Direct LOCALAPPDATA path
-            path.join(process.env.LOCALAPPDATA || process.env.APPDATA || '', 'homeschool-hub', 'pending'),
+            path.join(process.env.LOCALAPPDATA || process.env.APPDATA || '', 'stem-hub', 'pending'),
           ];
           
           // Search for the installer .exe file
@@ -238,7 +238,7 @@ autoUpdater.on('update-downloaded', (info) => {
                 // Look for the installer .exe (usually contains "Setup" and version number)
                 const exeFile = files.find(f => 
                   f.endsWith('.exe') && 
-                  (f.includes('Setup') || f.includes('Homeschool') || f.includes(info.version))
+                  (f.includes('Setup') || f.includes('STEM') || f.includes(info.version))
                 );
                 if (exeFile) {
                   installerPath = path.join(searchPath, exeFile);
@@ -268,7 +268,7 @@ autoUpdater.on('update-downloaded', (info) => {
           } else {
             // Last resort: Open GitHub releases for manual download
             console.warn('Could not find downloaded installer, opening GitHub releases');
-            shell.openExternal(`https://github.com/hadefuwa/homeschool-hub/releases/tag/v${info.version}`);
+            shell.openExternal(`https://github.com/hadefuwa/STEM-Hub/releases/tag/v${info.version}`);
             dialog.showMessageBox(targetWindow, {
               type: 'warning',
               title: 'Installer Not Found',
@@ -295,7 +295,7 @@ function createWindow() {
     height: 800,
     minWidth: 800,
     minHeight: 600,
-    title: 'Homeschool Hub',
+    title: 'STEM Hub',
     autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: false,
@@ -528,10 +528,10 @@ ipcMain.handle('tts-get-voices', async () => {
 // IPC handler for saving drawings
 ipcMain.handle('save-drawing', async (event, { imageData, lessonId, lessonTitle, studentId }) => {
   try {
-    // Create drawings directory in the same location as data.json (Desktop/HomeschoolHub/drawings)
+    // Create drawings directory in the same location as data.json (Desktop/STEMHub/drawings)
     const userHome = app.getPath('home');
     const desktopPath = path.join(userHome, 'Desktop');
-    const appDir = path.join(desktopPath, 'HomeschoolHub');
+    const appDir = path.join(desktopPath, 'STEMHub');
     const drawingsDir = path.join(appDir, 'drawings');
     
     if (!fs.existsSync(drawingsDir)) {
@@ -717,7 +717,7 @@ function setupHeadersAndCSP() {
       if (isYouTube) {
         // Use a "public" looking domain only for the initial iframe load (subFrame)
         // to bypass the domain restriction (Error 152-4)
-        const publicDomain = 'https://homeschool-hub.io';
+        const publicDomain = 'https://stem-hub.io';
         
         if (resourceType === 'subFrame') {
           requestHeaders['Referer'] = publicDomain;

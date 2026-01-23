@@ -1,10 +1,10 @@
-# Homeschool Hub
+# STEM Hub
 
-A cross-platform homeschool learning management application built with React, Electron, and Vite.
+A cross-platform STEM learning management application built with React, Electron, and Vite.
 
 ## Overview
 
-Homeschool Hub is an educational platform designed to support homeschooling families with interactive lessons, quizzes, progress tracking, and gamified learning experiences. The application provides a comprehensive solution for managing educational content, student progress, and engagement through a fun, game-like interface.
+STEM Hub is an educational platform designed to support families with interactive lessons, quizzes, progress tracking, and gamified learning experiences. The application provides a comprehensive solution for managing educational content, student progress, and engagement through a fun, game-like interface.
 
 ## Features
 
@@ -115,7 +115,7 @@ The packaged application will be available in the `dist` folder.
 ## Project Structure
 
 ```
-homeschool-hub/
+stem-hub/
 ├── electron/                 # Electron main process files
 │   ├── main.js              # Main Electron process
 │   ├── preload.js           # Preload script for security

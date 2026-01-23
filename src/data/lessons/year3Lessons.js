@@ -758,6 +758,5 @@ Can you beat your previous score? Aim for a higher medal!`,
       assessmentType: null,
       categoryId: null,
     }),
-
-    // English Lessons
-    
+  ];
+}

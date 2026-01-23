@@ -1113,7 +1113,5 @@ You've made it to the champion level! Can you achieve Platinum? You're a true ta
       assessmentType: null,
       categoryId: null,
     }),
-
-
-
-     
+  ];
+}

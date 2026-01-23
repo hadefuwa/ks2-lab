@@ -7,12 +7,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 /**
- * Get the data file path (Desktop/HomeschoolHub/data.json)
+ * Get the data file path (Desktop/STEMHub/data.json)
  */
 export const getDataPath = () => {
   const userHome = app.getPath('home');
   const desktopPath = path.join(userHome, 'Desktop');
-  const appDir = path.join(desktopPath, 'HomeschoolHub');
+  const appDir = path.join(desktopPath, 'STEMHub');
   return path.join(appDir, 'data.json');
 };
 
@@ -92,12 +92,12 @@ export const saveData = async (data) => {
 };
 
 /**
- * Get the activity log file path (Desktop/HomeschoolHub/activity.log)
+ * Get the activity log file path (Desktop/STEMHub/activity.log)
  */
 export const getActivityLogPath = () => {
   const userHome = app.getPath('home');
   const desktopPath = path.join(userHome, 'Desktop');
-  const appDir = path.join(desktopPath, 'HomeschoolHub');
+  const appDir = path.join(desktopPath, 'STEMHub');
   return path.join(appDir, 'activity.log');
 };
 

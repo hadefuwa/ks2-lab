@@ -3635,7 +3635,5 @@ Many years later, Moses was born in Egypt. He was a brave leader who helped his 
       assessmentType: 'prophet-journey-game',
       categoryId: null,
     }),
-
-
-
-    
+  ];
+}
