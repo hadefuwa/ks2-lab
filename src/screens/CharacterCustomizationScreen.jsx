@@ -16,7 +16,7 @@ function CharacterCustomizationScreen() {
   const hasCompletedLesson = useDataStore(state => state.hasCompletedLesson);
 
   // Calculate overall progress
-  const allSubjects = ['english', 'maths', 'science', 'history', 'geography', 'art', 'music', 'technology'];
+  const allSubjects = ['history', 'technology'];
   let totalLessons = 0;
   let totalCompleted = 0;
   allSubjects.forEach(subjectId => {
