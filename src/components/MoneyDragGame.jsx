@@ -3,6 +3,18 @@ import { useNavigate } from 'react-router-dom';
 import useDataStore from '../store/dataStore';
 import { Progress } from '../models/Progress';
 
+// Define UK coin characteristics for realism
+const UK_COINS = {
+  1: { display: '1p', value: 1, shape: 'circle', color: '#BC8A4E', size: 40, borderColor: '#A3723E', textColor: '#FFFFFF', fontSize: 16 }, // Copper
+  2: { display: '2p', value: 2, shape: 'circle', color: '#BC8A4E', size: 50, borderColor: '#A3723E', textColor: '#FFFFFF', fontSize: 20 }, // Copper
+  5: { display: '5p', value: 5, shape: 'circle', color: '#E0E0E0', size: 45, borderColor: '#C0C0C0', textColor: '#333333', fontSize: 18 }, // Silver
+  10: { display: '10p', value: 10, shape: 'circle', color: '#E0E0E0', size: 55, borderColor: '#C0C0C0', textColor: '#333333', fontSize: 22 }, // Silver
+  20: { display: '20p', value: 20, shape: 'heptagon', color: '#E0E0E0', size: 60, borderColor: '#C0C0C0', textColor: '#333333', fontSize: 24 }, // Silver, heptagonal
+  50: { display: '50p', value: 50, shape: 'heptagon', color: '#E0E0E0', size: 70, borderColor: '#C0C0C0', textColor: '#333333', fontSize: 28 }, // Silver, heptagonal
+  100: { display: '£1', value: 100, shape: 'circle', color: '#D4AF37', innerColor: '#E0E0E0', size: 65, borderColor: '#C0C0C0', textColor: '#333333', fontSize: 26 }, // Bi-metallic
+  200: { display: '£2', value: 200, shape: 'circle', color: '#E0E0E0', innerColor: '#D4AF37', size: 75, borderColor: '#C0C0C0', textColor: '#333333', fontSize: 30 }, // Bi-metallic
+};
+
 function MoneyDragGame({ lesson }) {
   const navigate = useNavigate();
   const addProgress = useDataStore(state => state.addProgress);
@@ -25,11 +37,15 @@ function MoneyDragGame({ lesson }) {
   const gameAreaRef = useRef(null);
 
   const problems = [
-    { target: 20, coins: [{ value: 10, emoji: '⚪', count: 5 }, { value: 5, emoji: '⚪', count: 5 }] },
-    { target: 30, coins: [{ value: 10, emoji: '⚪', count: 5 }, { value: 5, emoji: '⚪', count: 5 }, { value: 20, emoji: '⚪', count: 3 }] },
-    { target: 40, coins: [{ value: 20, emoji: '⚪', count: 5 }, { value: 10, emoji: '⚪', count: 5 }] },
-    { target: 50, coins: [{ value: 20, emoji: '⚪', count: 5 }, { value: 10, emoji: '⚪', count: 5 }, { value: 5, emoji: '⚪', count: 5 }] },
-    { target: 60, coins: [{ value: 20, emoji: '⚪', count: 5 }, { value: 10, emoji: '⚪', count: 5 }] },
+    { target: 20, availableCoinValues: [{ value: 10, count: 2 }, { value: 5, count: 3 }, { value: 2, count: 5 }, { value: 1, count: 5 }] },
+    { target: 30, availableCoinValues: [{ value: 20, count: 1 }, { value: 10, count: 2 }, { value: 5, count: 2 }, { value: 2, count: 3 }, { value: 1, count: 5 }] },
+    { target: 40, availableCoinValues: [{ value: 20, count: 2 }, { value: 10, count: 1 }, { value: 5, count: 2 }, { value: 2, count: 5 }, { value: 1, count: 5 }] },
+    { target: 50, availableCoinValues: [{ value: 50, count: 1 }, { value: 20, count: 1 }, { value: 10, count: 2 }, { value: 5, count: 2 }, { value: 2, count: 3 }, { value: 1, count: 5 }] },
+    { target: 75, availableCoinValues: [{ value: 50, count: 1 }, { value: 20, count: 2 }, { value: 10, count: 1 }, { value: 5, count: 2 }, { value: 2, count: 5 }, { value: 1, count: 5 }] },
+    { target: 120, availableCoinValues: [{ value: 100, count: 1 }, { value: 50, count: 1 }, { value: 20, count: 2 }, { value: 10, count: 2 }, { value: 5, count: 2 }, { value: 2, count: 5 }, { value: 1, count: 5 }] },
+    { target: 150, availableCoinValues: [{ value: 100, count: 1 }, { value: 50, count: 1 }, { value: 20, count: 2 }, { value: 10, count: 2 }, { value: 5, count: 2 }, { value: 2, count: 5 }, { value: 1, count: 5 }] },
+    { target: 200, availableCoinValues: [{ value: 200, count: 1 }, { value: 100, count: 1 }, { value: 50, count: 1 }, { value: 20, count: 2 }, { value: 10, count: 2 }, { value: 5, count: 2 }, { value: 2, count: 5 }, { value: 1, count: 5 }] },
+    { target: 300, availableCoinValues: [{ value: 200, count: 1 }, { value: 100, count: 2 }, { value: 50, count: 2 }, { value: 20, count: 3 }, { value: 10, count: 5 }, { value: 5, count: 5 }, { value: 2, count: 5 }, { value: 1, count: 5 }] },
   ];
 
   // Update game area size on resize
@@ -54,25 +70,36 @@ function MoneyDragGame({ lesson }) {
     setTargetAmount(problem.target);
     
     // Calculate safe area - keep coins in upper 60% of screen to avoid target area at bottom
-    const coinSize = 60;
+    // Max coin size is for £2 (75px)
+    const maxCoinSize = 75; 
     const safeAreaTop = 20;
-    const safeAreaBottom = gameAreaSize.height * 0.6; // Use only upper 60% of screen
+    const safeAreaBottom = gameAreaSize.height * 0.6 - maxCoinSize; 
     const safeAreaLeft = 20;
-    const safeAreaRight = gameAreaSize.width - coinSize - 20;
+    const safeAreaRight = gameAreaSize.width - maxCoinSize - 20;
     
     const coins = [];
-    problem.coins.forEach(coinType => {
+    let coinId = 0;
+    problem.availableCoinValues.forEach(coinType => {
+      const ukCoin = UK_COINS[coinType.value];
+      if (!ukCoin) return; // Skip if coin value not defined
+
       for (let i = 0; i < coinType.count; i++) {
-        // Position coins randomly in the safe upper area
-        const x = safeAreaLeft + Math.random() * Math.max(100, safeAreaRight - safeAreaLeft);
-        const y = safeAreaTop + Math.random() * Math.max(100, safeAreaBottom - safeAreaTop - coinSize);
+        const x = safeAreaLeft + Math.random() * Math.max(10, safeAreaRight - safeAreaLeft);
+        const y = safeAreaTop + Math.random() * Math.max(10, safeAreaBottom - safeAreaTop);
         
         coins.push({
-          id: `${coinType.value}-${i}`,
-          value: coinType.value,
-          emoji: coinType.emoji,
+          id: `${ukCoin.value}-${coinId++}`,
+          value: ukCoin.value,
+          display: ukCoin.display,
+          shape: ukCoin.shape,
+          color: ukCoin.color,
+          innerColor: ukCoin.innerColor, // For bi-metallic
+          size: ukCoin.size,
+          borderColor: ukCoin.borderColor,
+          textColor: ukCoin.textColor,
+          fontSize: ukCoin.fontSize,
           x: Math.max(safeAreaLeft, Math.min(x, safeAreaRight)),
-          y: Math.max(safeAreaTop, Math.min(y, safeAreaBottom - coinSize)),
+          y: Math.max(safeAreaTop, Math.min(y, safeAreaBottom)),
         });
       }
     });
@@ -229,13 +256,13 @@ function MoneyDragGame({ lesson }) {
               position: 'absolute',
               left: `${coin.x}px`,
               top: `${coin.y}px`,
-              width: '60px',
-              height: '60px',
+              width: `${coin.size}px`,
+              height: `${coin.size}px`,
               cursor: 'grab',
               userSelect: 'none',
-              backgroundColor: '#fff',
-              borderRadius: '50%',
-              border: '3px solid #2196F3',
+              backgroundColor: coin.color,
+              borderRadius: coin.shape === 'circle' ? '50%' : '5px',
+              border: `2px solid ${coin.borderColor}`,
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
@@ -243,13 +270,28 @@ function MoneyDragGame({ lesson }) {
               transition: isDragging && dragCoin?.id === coin.id ? 'none' : 'all 0.2s',
               transform: isDragging && dragCoin?.id === coin.id ? 'scale(1.2)' : 'scale(1)',
               zIndex: isDragging && dragCoin?.id === coin.id ? 1000 : 1,
+              boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+              // Heptagonal shape for 20p/50p
+              clipPath: coin.shape === 'heptagon' ? 'polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%)' : 'none',
+              WebkitClipPath: coin.shape === 'heptagon' ? 'polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%)' : 'none',
             }}
           >
-            <div style={{ fontSize: '40px', lineHeight: '1' }}>
-              {coin.emoji}
-            </div>
-            <div style={{ fontSize: '12px', fontWeight: 'bold', lineHeight: '1', marginTop: '2px' }}>
-              {coin.value}p
+            {/* Inner circle for bi-metallic coins */}
+            {coin.innerColor && (
+              <div
+                style={{
+                  width: `${coin.size * 0.6}px`,
+                  height: `${coin.size * 0.6}px`,
+                  backgroundColor: coin.innerColor,
+                  borderRadius: '50%',
+                  position: 'absolute',
+                  zIndex: 2,
+                  border: `1px solid ${coin.borderColor}`,
+                }}
+              />
+            )}
+            <div style={{ fontSize: `${coin.fontSize}px`, lineHeight: '1', fontWeight: 'bold', color: coin.textColor, zIndex: 3 }}>
+              {coin.display}
             </div>
           </div>
         ))}
@@ -272,6 +314,7 @@ function MoneyDragGame({ lesson }) {
             flexWrap: 'wrap',
             gap: '10px',
             alignItems: 'flex-start',
+            justifyContent: 'center', // Center coins in target area
             overflowY: 'auto',
           }}
         >
@@ -279,23 +322,36 @@ function MoneyDragGame({ lesson }) {
             <div
               key={index}
               style={{
-                width: '50px',
-                height: '50px',
-                backgroundColor: '#fff',
-                borderRadius: '50%',
-                border: '2px solid #2196F3',
+                width: `${coin.size * 0.7}px`, // Smaller in target
+                height: `${coin.size * 0.7}px`,
+                backgroundColor: coin.color,
+                borderRadius: coin.shape === 'circle' ? '50%' : '5px',
+                border: `1px solid ${coin.borderColor}`,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
                 position: 'relative',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                clipPath: coin.shape === 'heptagon' ? 'polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%)' : 'none',
+                WebkitClipPath: coin.shape === 'heptagon' ? 'polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%)' : 'none',
               }}
             >
-              <div style={{ fontSize: '35px', lineHeight: '1' }}>
-                {coin.emoji}
-              </div>
-              <div style={{ fontSize: '10px', fontWeight: 'bold', lineHeight: '1', marginTop: '2px' }}>
-                {coin.value}p
+              {coin.innerColor && (
+                <div
+                  style={{
+                    width: `${coin.size * 0.6 * 0.7}px`, // Smaller inner circle
+                    height: `${coin.size * 0.6 * 0.7}px`,
+                    backgroundColor: coin.innerColor,
+                    borderRadius: '50%',
+                    position: 'absolute',
+                    zIndex: 2,
+                    border: `1px solid ${coin.borderColor}`,
+                  }}
+                />
+              )}
+              <div style={{ fontSize: `${coin.fontSize * 0.7}px`, lineHeight: '1', fontWeight: 'bold', color: coin.textColor, zIndex: 3 }}>
+                {coin.display}
               </div>
             </div>
           ))}
