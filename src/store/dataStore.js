@@ -49,10 +49,10 @@ const useDataStore = create((set, get) => ({
       const appData = AppData.fromJSON(loadedData);
 
       // Check if this is a truly fresh install:
-      // - No lessons OR no students OR no progress = fresh install
-      const isFreshInstall = !appData.lessons || appData.lessons.length === 0 ||
-                             !appData.students || appData.students.length === 0 ||
-                             !appData.progress || appData.progress.length === 0;
+      // Only fresh if ALL critical data is missing (not OR, but AND)
+      const isFreshInstall = (!appData.lessons || appData.lessons.length === 0) &&
+                             (!appData.students || appData.students.length === 0) &&
+                             (!appData.progress || appData.progress.length === 0);
 
       if (isFreshInstall) {
         console.log('[DataStore] Fresh install detected - initializing with default data');
@@ -81,11 +81,15 @@ const useDataStore = create((set, get) => ({
 
       // Points system version - increment this when points calculation changes
       // Version 2: Added year-based multipliers (nursery 0.2x to year6 3x)
-      const POINTS_SYSTEM_VERSION = 2;
+      // Version 3: Halved point values (Bronze=5, Silver=10, Gold=25, Platinum=50)
+      // Version 4: Restored original values (Bronze=10, Silver=20, Gold=50, Platinum=100)
+      // Version 5: Back to halved values, fixed student ID filtering
+      // Version 6: Halved again for testing (Bronze=3, Silver=5, Gold=13, Platinum=25)
+      // Version 7: Fixed _getMedalForProgress to accept lessons parameter for recalculation
+      // Version 8: Rebuild pointsActivities array with correct values during recalculation
+      const POINTS_SYSTEM_VERSION = 8;
 
-      // Recalculate points if:
-      // 1. pointsBalance hasn't been set yet (fresh install)
-      // 2. Points system version has changed (multipliers updated)
+      // Recalculate points if version has changed
       const hasUserProgress = appData.progress && appData.progress.length > 0;
       const needsPointsRecalc = hasUserProgress &&
                                 (appData.pointsSystemVersion !== POINTS_SYSTEM_VERSION);
@@ -672,10 +676,10 @@ const useDataStore = create((set, get) => ({
     if ((isNewCompletion || isNewGrading) && progress.activityType === 'Lesson' && progress.isCompleted && progress.score !== null && progress.score > 0 && !hasAlreadyAwardedPoints) {
       const medalType = state._getMedalForProgress(progress);
       const pointsMap = {
-        'Bronze': 10,
-        'Silver': 20,
-        'Gold': 50,
-        'Platinum': 100,
+        'Bronze': 3,
+        'Silver': 5,
+        'Gold': 13,
+        'Platinum': 25,
       };
       const basePoints = pointsMap[medalType] || 0;
       // Apply year-based multiplier (higher years = more points)
@@ -1003,26 +1007,30 @@ const useDataStore = create((set, get) => ({
   // Helper function to get year-based points multiplier
   _getYearMultiplier: (yearId) => {
     const multipliers = {
-      'nursery': 0.2,
-      'reception': 0.5,
+      'nursery': 0.5,
+      'reception': 0.7,
       'year1': 1,
-      'year2': 1.5,
-      'year3': 2,
-      'year4': 2.5,
-      'year5': 3,
-      'year6': 3,
+      'year2': 1.3,
+      'year3': 1.7,
+      'year4': 2.2,
+      'year5': 2.7,
+      'year6': 3.3,
     };
     return multipliers[yearId] || 1;
   },
 
   // Helper function to determine medal type from progress
-  _getMedalForProgress: (progress) => {
+  _getMedalForProgress: (progress, lessons = null) => {
     const state = get();
-    if (!state.data || !progress || !progress.isCompleted || progress.score === null) {
+    
+    // Use provided lessons or fall back to state.data.lessons
+    const lessonsList = lessons || (state.data ? state.data.lessons : null);
+    
+    if (!lessonsList || !progress || !progress.isCompleted || progress.score === null) {
       return 'Bronze';
     }
 
-    const lesson = state.data.lessons.find(l => l.id === progress.activityId);
+    const lesson = lessonsList.find(l => l.id === progress.activityId);
     if (!lesson) return 'Bronze';
 
     const score = progress.score || 0;
@@ -1182,10 +1190,10 @@ const useDataStore = create((set, get) => ({
     if (!state.data) return;
 
     const pointsMap = {
-      'Bronze': 10,
-      'Silver': 20,
-      'Gold': 50,
-      'Platinum': 100,
+      'Bronze': 3,
+      'Silver': 5,
+      'Gold': 13,
+      'Platinum': 25,
     };
 
     const pointsToAward = pointsMap[medalType] || 0;
@@ -1243,12 +1251,8 @@ const useDataStore = create((set, get) => ({
     console.log('[DataStore] Calculating retroactive points...');
     let totalPoints = 0;
 
-    // Get all completed lesson progress
-    const userId = appData.students[0].id;
-
-    // Debug: log all progress
+    // Get all completed lesson progress (no student filtering - single PC setup)
     const allCompletedLessons = appData.progress.filter(p =>
-      p.studentId === userId &&
       p.isCompleted &&
       p.activityType === 'Lesson'
     );
@@ -1260,50 +1264,53 @@ const useDataStore = create((set, get) => ({
       activityType: p.activityType
     })));
 
-    // Award points for ALL completed lessons, even those without scores
-    // For lessons without scores, we'll award a default Bronze medal
-    const completedProgress = appData.progress.filter(p =>
-      p.studentId === userId &&
-      p.isCompleted &&
-      p.activityType === 'Lesson'
-    );
-
-    console.log(`[DataStore] Found ${completedProgress.length} completed lessons (including those without scores)`);
-
+    // Clear old pointsActivities and rebuild with new values
+    const newPointsActivities = [];
+    
     // Calculate points for each completed lesson
-    completedProgress.forEach(progress => {
+    const state = get();
+    allCompletedLessons.forEach(progress => {
       const lesson = appData.lessons.find(l => l.id === progress.activityId);
-      if (!lesson) return;
+      if (!lesson) {
+        console.log(`[DataStore] Lesson not found for activityId ${progress.activityId}`);
+        return;
+      }
 
-      // Determine medal using the centralized helper
-      const medal = state._getMedalForProgress(progress);
+      // Determine medal using the centralized helper - pass appData.lessons
+      const medal = state._getMedalForProgress(progress, appData.lessons);
+      console.log(`[DataStore] Lesson ${lesson.title} (ID ${lesson.id}): score=${progress.score}, medal=${medal}`);
 
       // Award points based on medal with year multiplier
       const pointsMap = {
-        'Bronze': 10,
-        'Silver': 20,
-        'Gold': 50,
-        'Platinum': 100,
+        'Bronze': 3,
+        'Silver': 5,
+        'Gold': 13,
+        'Platinum': 25,
       };
-      const basePoints = pointsMap[medal] || 10;
-      // Apply year-based multiplier (higher years = more points)
-      const multipliers = {
-        'nursery': 0.2,
-        'reception': 0.5,
-        'year1': 1,
-        'year2': 1.5,
-        'year3': 2,
-        'year4': 2.5,
-        'year5': 3,
-        'year6': 3,
-      };
-      const yearMultiplier = multipliers[lesson.yearId] || 1;
-      totalPoints += Math.round(basePoints * yearMultiplier);
+      const basePoints = pointsMap[medal] || 3;
+      // Apply year-based multiplier using centralized helper
+      const yearMultiplier = state._getYearMultiplier(lesson.yearId);
+      const pointsEarned = Math.round(basePoints * yearMultiplier);
+      totalPoints += pointsEarned;
+
+      // Rebuild the pointsActivity record with correct values
+      newPointsActivities.push({
+        id: progress.id,
+        studentId: progress.studentId,
+        activityType: 'lesson',
+        activityId: progress.activityId,
+        pointsEarned: pointsEarned,
+        earnedAt: progress.completedAt,
+        lessonTitle: lesson.title,
+        yearId: lesson.yearId,
+        medal: medal
+      });
     });
 
-    // Update points balance
+    // Update both points balance and activities array
     appData.pointsBalance = totalPoints;
-    console.log(`[DataStore] Awarded ${totalPoints} retroactive points`);
+    appData.pointsActivities = newPointsActivities;
+    console.log(`[DataStore] Awarded ${totalPoints} retroactive points and rebuilt ${newPointsActivities.length} activity records`);
   },
 
   // Purchase reward
@@ -1705,12 +1712,12 @@ const useDataStore = create((set, get) => ({
 
           // Calculate points
           const pointsMap = {
-            'Bronze': 10,
-            'Silver': 20,
-            'Gold': 50,
-            'Platinum': 100,
+            'Bronze': 3,
+            'Silver': 5,
+            'Gold': 13,
+            'Platinum': 25,
           };
-          const basePoints = pointsMap[medalType] || 10;
+          const basePoints = pointsMap[medalType] || 3;
           const yearMultiplier = state._getYearMultiplier(progress.yearId);
           const pointsToAward = Math.round(basePoints * yearMultiplier);
 

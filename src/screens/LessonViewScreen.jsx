@@ -1194,21 +1194,6 @@ function LessonViewScreen() {
               <CapacityFillGame lesson={lesson} />
             </ErrorBoundary>
           </div>
-        ) : lesson.title === 'Length and Height' ? (
-          <div style={{
-            flex: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            minHeight: 0,
-            backgroundColor: 'white',
-            padding: '20px',
-            borderRadius: '8px',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-          }}>
-            <ErrorBoundary>
-              <HTMLGameEmbed url="/html-games/length-height-measurement.html" height="100%" lesson={lesson} />
-            </ErrorBoundary>
-          </div>
         ) : lesson.assessmentType === 'coordinate-game' || lesson.assessmentType === 'coordinate-plot-game' ? (
           <div style={{
             flex: 1,

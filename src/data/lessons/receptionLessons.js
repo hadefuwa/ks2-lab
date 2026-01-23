@@ -287,7 +287,31 @@ Drag objects into order from shortest to tallest.
 - Shorter / Taller
 - Longer / Shorter`,
       quizId: quizId++,
-      assessmentType: 'html-game',
+      assessmentType: 'measurement-compare-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'maths',
+      lessonNumber: 15,
+      title: "Mass and Weight",
+      emoji: '⚖️',
+      content: `# Mass and Weight ⚖️
+
+Compare objects by mass (weight).
+
+## How to Play
+
+Tap the heavier or lighter object.
+
+## Words to Know
+
+- Heavy / Light
+- Heavier / Lighter`,
+      quizId: quizId++,
+      assessmentType: 'measurement-compare-game',
       categoryId: null,
     }),
 

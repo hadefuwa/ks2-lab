@@ -600,15 +600,23 @@ function MathGame({ lesson }) {
 
       if (questionType === 0) {
         // "What number comes after X?"
-        const baseNumber = Math.floor(Math.random() * 19) + 1; // 1-19
+        const prefersHigherNumbers = lesson?.yearId === 'nursery';
+        const minAfter = prefersHigherNumbers ? 10 : 1;
+        const maxAfter = 19;
+        const baseNumber = Math.floor(Math.random() * (maxAfter - minAfter + 1)) + minAfter;
         answer = baseNumber + 1;
-        questionText = `What number comes after ${NUMBER_NAMES[baseNumber]}?`;
+        const baseLabel = prefersHigherNumbers ? baseNumber.toString() : NUMBER_NAMES[baseNumber];
+        questionText = `What number comes after ${baseLabel}?`;
         options = [answer, baseNumber, baseNumber + 2, baseNumber - 1].filter(n => n > 0 && n <= 20);
       } else if (questionType === 1) {
         // "What number comes before X?"
-        const baseNumber = Math.floor(Math.random() * 19) + 2; // 2-20
+        const prefersHigherNumbers = lesson?.yearId === 'nursery';
+        const minBefore = prefersHigherNumbers ? 11 : 2;
+        const maxBefore = 20;
+        const baseNumber = Math.floor(Math.random() * (maxBefore - minBefore + 1)) + minBefore;
         answer = baseNumber - 1;
-        questionText = `What number comes before ${NUMBER_NAMES[baseNumber]}?`;
+        const baseLabel = prefersHigherNumbers ? baseNumber.toString() : NUMBER_NAMES[baseNumber];
+        questionText = `What number comes before ${baseLabel}?`;
         options = [answer, baseNumber, baseNumber + 1, baseNumber - 2].filter(n => n > 0 && n <= 20);
       } else if (questionType === 2) {
         // "Which number is smaller?"
@@ -687,7 +695,7 @@ function MathGame({ lesson }) {
       } else if (questionType === 1) {
         // "What is X - Y?"
         const num1 = Math.floor(Math.random() * 10) + 11; // 11-20
-        const num2 = Math.floor(Math.random() * (num1-1)) + 1;
+        const num2 = Math.floor(Math.random() * (num1 - 1)) + 1;
         answer = num1 - num2;
         questionText = `What is ${num1} - ${num2}?`;
         options = [answer, answer + 1, answer - 1, answer + 2].filter(n => n > 0 && n <= 20);
@@ -1707,7 +1715,16 @@ function MathGame({ lesson }) {
       const a = Math.floor(Math.random() * config.maxNumber) + 1;
       const b = Math.floor(Math.random() * config.maxNumber) + 1;
       answer = Math.max(a, b);
-      const unit = Math.random() > 0.5 ? 'cm' : 'g';
+
+      // Separate units based on lesson title if possible
+      let possibleUnits = ['cm', 'g'];
+      if (lesson.title?.toLowerCase().includes('length') || lesson.title?.toLowerCase().includes('height')) {
+        possibleUnits = ['cm', 'm'];
+      } else if (lesson.title?.toLowerCase().includes('mass') || lesson.title?.toLowerCase().includes('weight')) {
+        possibleUnits = ['g', 'kg'];
+      }
+
+      const unit = possibleUnits[Math.floor(Math.random() * possibleUnits.length)];
       questionText = `Which is greater: ${a}${unit} or ${b}${unit}?`;
       options = [a, b, answer + 1, answer - 1].filter(n => n > 0);
     } else if (config.type === 'position-direction') {
@@ -1903,7 +1920,17 @@ function MathGame({ lesson }) {
       }
 
       // Get the current question text from ref to ensure we have the latest value
-      const textToSpeak = currentQuestionTextRef.current;
+      let textToSpeak = currentQuestionTextRef.current;
+
+      // Clean up text for TTS if needed
+      if (config.type === 'skip-counting') {
+        // "What comes next in counting by 2: 2, 4, 6, ...?" -> "What comes next in counting by 2? 2, 4, 6..."
+        textToSpeak = textToSpeak
+          .replace(':', '?')
+          .replace(/\.\.\.\?$/, '')
+          .replace(/,/g, '. ')
+          .replace(/\.\.\./g, '');
+      }
 
       // Double-check that speech is stopped before starting new speech
       stop();
@@ -1935,39 +1962,54 @@ function MathGame({ lesson }) {
         // Speak the question first
         await speak(textToSpeak, { volume: 1.0, rate: 0.6, pitch: 1.2 });
 
-        // After reading question, read options if it's a younger child's lesson (Nursery/Reception/Year 1)
-        if (lesson.yearId === 'reception' || lesson.yearId === 'nursery' || lesson.yearId === 'year1') {
+        // Loop audio for reception/nursery, Position and Direction, OR Time Sequence
+        const isLoopingLesson =
+          lesson.yearId === 'reception' ||
+          lesson.yearId === 'nursery' ||
+          lesson.yearId === 'year1' ||
+          lesson.title?.includes('Position and Direction') ||
+          lesson.assessmentType === 'time-sequence-game';
+
+        if (isLoopingLesson) {
           // Add a small pause after the question
           await new Promise(resolve => setTimeout(resolve, 600));
 
-          for (let i = 0; i < options.length; i++) {
-            // Check if still on the same generation to prevent overlapping speech
-            if (questionGenerationIdRef.current !== thisGenerationId || !isMountedRef.current) break;
+          // Infinite loop for reading options until question changes or component unmounts
+          while (isMountedRef.current && questionGenerationIdRef.current === thisGenerationId) {
 
-            setHighlightedOptionIndex(i);
-            const option = options[i];
+            for (let i = 0; i < options.length; i++) {
+              // Check if still on the same generation to prevent overlapping speech
+              if (questionGenerationIdRef.current !== thisGenerationId || !isMountedRef.current) break;
 
-            // Determine how to speak the option
-            let speechLabel = option.toString();
-            // Strip emojis for cleaner TTS
-            speechLabel = speechLabel.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '').trim();
+              setHighlightedOptionIndex(i);
+              const option = options[i];
 
-            if (config.type === 'percentages') {
-              speechLabel = `${option} percent`;
-            } else if (typeof option === 'string' && option.includes('/')) {
-              const [num, den] = option.split('/');
-              speechLabel = `${num} over ${den}`;
-            } else if (NUMBER_NAMES[option]) {
-              speechLabel = NUMBER_NAMES[option];
+              // Determine how to speak the option
+              let speechLabel = option.toString();
+              // Strip emojis for cleaner TTS
+              speechLabel = speechLabel.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE00}-\u{FE0F}]/gu, '').trim();
+
+              if (config.type === 'percentages') {
+                speechLabel = `${option} percent`;
+              } else if (typeof option === 'string' && option.includes('/')) {
+                const [num, den] = option.split('/');
+                speechLabel = `${num} over ${den}`;
+              } else if (NUMBER_NAMES[option]) {
+                speechLabel = NUMBER_NAMES[option];
+              }
+
+              // Speak option
+              await speak(speechLabel, { volume: 1.0, rate: 0.6, pitch: 1.2 });
+
+              // Add pause
+              await new Promise(resolve => setTimeout(resolve, 800));
             }
 
-            await speak(speechLabel, { volume: 1.0, rate: 0.6, pitch: 1.2 });
-            // Add a small pause between options
-            await new Promise(resolve => setTimeout(resolve, 300));
-          }
-
-          if (isMountedRef.current) {
-            setHighlightedOptionIndex(-1);
+            // Pause between loops
+            if (isMountedRef.current && questionGenerationIdRef.current === thisGenerationId) {
+              setHighlightedOptionIndex(-1); // Clear highlight during pause
+              await new Promise(resolve => setTimeout(resolve, 1500));
+            }
           }
         }
       } catch (err) {

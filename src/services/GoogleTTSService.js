@@ -6,7 +6,7 @@
 class TTSService {
   constructor() {
     this.enabled = true;
-    this.autoRead = true;
+    this.autoRead = false;
     this.rate = 1.0;
     this.pitch = 1.0;
     this.lang = 'en-US';
@@ -20,7 +20,6 @@ class TTSService {
     // Load voices for Web Speech API fallback
     if (typeof window !== 'undefined') {
       this.loadVoices();
-      this.setupAutoRead();
     }
     
     console.log('TTS Service initialized');

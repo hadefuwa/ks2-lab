@@ -17,8 +17,7 @@ const GoogleTTSBar = () => {
     stop, 
     replay, 
     setRate, 
-    setEnabled,
-    setAutoRead
+    setEnabled
   } = useGoogleTTS();
   
   const [showSettings, setShowSettings] = React.useState(false);
@@ -82,14 +81,15 @@ const GoogleTTSBar = () => {
           </div>
 
           <div className="simple-tts-setting">
-            <label>
+            <label style={{ color: '#777' }}>
               <input 
                 type="checkbox" 
-                checked={autoRead} 
-                onChange={(e) => setAutoRead(e.target.checked)}
+                checked={autoRead}
+                disabled
+                readOnly
                 style={{ marginRight: '8px' }}
               />
-              Auto-read lessons
+              Auto-read lessons (disabled)
             </label>
           </div>
 

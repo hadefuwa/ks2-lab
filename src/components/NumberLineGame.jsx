@@ -18,6 +18,7 @@ function NumberLineGame({ lesson }) {
   const [level, setLevel] = useState(1);
   const [showSuccess, setShowSuccess] = useState(false);
   const [availableValues, setAvailableValues] = useState([]);
+  const [dropSlots, setDropSlots] = useState([]);
   const dragStartPos = useRef({ x: 0, y: 0 });
   const numberLineRef = useRef(null);
   const gameAreaRef = useRef(null);
@@ -44,6 +45,7 @@ function NumberLineGame({ lesson }) {
     }
     return parseFloat(fraction);
   };
+  const normalizeValue = (value) => Math.round(fractionToDecimal(value) * 1000) / 1000;
 
   // Generate problems based on lesson type
   const generateProblems = () => {
@@ -72,7 +74,16 @@ function NumberLineGame({ lesson }) {
     setTargetValue(problem.target);
     setNumberLine({ min: problem.min, max: problem.max, step: problem.step });
 
-    const values = problem.values.map((val, idx) => ({
+    const uniqueValues = Array.from(new Set([problem.target, ...(problem.values || [])]));
+    const slotCount = Math.min(problem.type === 'whole' ? 3 : 4, uniqueValues.length);
+    const distractors = uniqueValues.filter(val => val !== problem.target)
+      .sort(() => Math.random() - 0.5)
+      .slice(0, Math.max(slotCount - 1, 0));
+    const slots = [problem.target, ...distractors]
+      .sort((a, b) => normalizeValue(a) - normalizeValue(b));
+    setDropSlots(slots);
+
+    const values = slots.map((val, idx) => ({
       id: `val-${idx}`,
       value: val,
       leftPercent: 18 + (idx % 4) * 20,
@@ -126,10 +137,23 @@ function NumberLineGame({ lesson }) {
       const position = numberLine.min + ratio * (numberLine.max - numberLine.min);
 
       const tolerance = (numberLine.max - numberLine.min) * 0.05;
-      const targetDecimal = fractionToDecimal(targetValue);
-      const draggedDecimal = fractionToDecimal(draggedValue.value);
-      const isCorrect = Math.abs(position - targetDecimal) < tolerance &&
-        Math.abs(draggedDecimal - targetDecimal) < 0.01;
+      const targetDecimal = normalizeValue(targetValue);
+      const draggedDecimal = normalizeValue(draggedValue.value);
+      const closestSlot = dropSlots.reduce((closest, slotValue) => {
+        const slotDecimal = normalizeValue(slotValue);
+        const slotRatio = (slotDecimal - numberLine.min) / (numberLine.max - numberLine.min);
+        const slotX = 20 + slotRatio * lineWidth;
+        const distance = Math.abs(slotX - (relativeX + 20));
+        if (!closest || distance < closest.distance) {
+          return { value: slotValue, distance };
+        }
+        return closest;
+      }, null);
+      const isOnSlot = closestSlot && closestSlot.distance <= 28;
+      const isCorrect = isOnSlot &&
+        Math.abs(position - targetDecimal) < tolerance &&
+        Math.abs(draggedDecimal - targetDecimal) < 0.01 &&
+        Math.abs(normalizeValue(closestSlot.value) - targetDecimal) < 0.001;
 
       if (isCorrect) {
         setShowSuccess(true);
@@ -174,8 +198,10 @@ function NumberLineGame({ lesson }) {
   const renderNumberLine = () => {
     const width = 640;
     const height = 120;
+    const slotSet = new Set(dropSlots.map(val => normalizeValue(val)));
+    const isZeroToOne = numberLine.min === 0 && numberLine.max === 1;
 
-    if (isFractionsLesson && numberLine.min === 0 && numberLine.max === 1) {
+    if (isFractionsLesson && isZeroToOne) {
       const fractions = [
         { value: 0, label: '0' },
         { value: 0.25, label: '1/4' },
@@ -201,8 +227,11 @@ function NumberLineGame({ lesson }) {
             strokeWidth="6"
             strokeLinecap="round"
           />
+          <circle cx={20} cy={height / 2} r="6" fill="#1f7af0" />
+          <circle cx={width - 20} cy={height / 2} r="6" fill="#5aa9ff" />
           {fractions.map((frac, i) => {
             const x = 20 + (frac.value / (numberLine.max - numberLine.min)) * (width - 40);
+            const isSlot = slotSet.has(normalizeValue(frac.value));
             return (
               <g key={i}>
                 <line
@@ -213,16 +242,99 @@ function NumberLineGame({ lesson }) {
                   stroke="#2a2a2a"
                   strokeWidth="3"
                 />
-                <text
-                  x={x}
-                  y={height / 2 + 36}
-                  textAnchor="middle"
-                  fontSize="18"
-                  fontWeight="700"
-                  fill="#2a2a2a"
-                >
-                  {frac.label}
-                </text>
+                {isSlot ? (
+                  <rect
+                    x={x - 16}
+                    y={height / 2 + 20}
+                    width={32}
+                    height={26}
+                    rx={8}
+                    fill="#ffffff"
+                    stroke="#1f7af0"
+                    strokeWidth="2"
+                  />
+                ) : (
+                  <text
+                    x={x}
+                    y={height / 2 + 36}
+                    textAnchor="middle"
+                    fontSize="18"
+                    fontWeight="700"
+                    fill="#2a2a2a"
+                  >
+                    {frac.label}
+                  </text>
+                )}
+              </g>
+            );
+          })}
+        </svg>
+      );
+    }
+
+    if (!isFractionsLesson && isZeroToOne) {
+      const decimals = [
+        { value: 0, label: '0' },
+        { value: 0.25, label: '0.25' },
+        { value: 0.5, label: '0.5' },
+        { value: 0.75, label: '0.75' },
+        { value: 1, label: '1' },
+      ];
+      return (
+        <svg width="100%" height={height} viewBox={`0 0 ${width} ${height}`} style={{ display: 'block' }}>
+          <defs>
+            <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#1f7af0" />
+              <stop offset="100%" stopColor="#5aa9ff" />
+            </linearGradient>
+          </defs>
+          <line
+            x1={20}
+            y1={height / 2}
+            x2={width - 20}
+            y2={height / 2}
+            stroke="url(#lineGradient)"
+            strokeWidth="6"
+            strokeLinecap="round"
+          />
+          <circle cx={20} cy={height / 2} r="6" fill="#1f7af0" />
+          <circle cx={width - 20} cy={height / 2} r="6" fill="#5aa9ff" />
+          {decimals.map((dec, i) => {
+            const x = 20 + (dec.value / (numberLine.max - numberLine.min)) * (width - 40);
+            const isSlot = slotSet.has(normalizeValue(dec.value));
+            return (
+              <g key={i}>
+                <line
+                  x1={x}
+                  y1={height / 2 - 10}
+                  x2={x}
+                  y2={height / 2 + 10}
+                  stroke="#2a2a2a"
+                  strokeWidth="3"
+                />
+                {isSlot ? (
+                  <rect
+                    x={x - 16}
+                    y={height / 2 + 20}
+                    width={32}
+                    height={26}
+                    rx={8}
+                    fill="#ffffff"
+                    stroke="#1f7af0"
+                    strokeWidth="2"
+                  />
+                ) : (
+                  <text
+                    x={x}
+                    y={height / 2 + 36}
+                    textAnchor="middle"
+                    fontSize="18"
+                    fontWeight="700"
+                    fill="#2a2a2a"
+                  >
+                    {dec.label}
+                  </text>
+                )}
               </g>
             );
           })}
@@ -248,9 +360,12 @@ function NumberLineGame({ lesson }) {
           strokeWidth="6"
           strokeLinecap="round"
         />
+        <circle cx={20} cy={height / 2} r="6" fill="#1f7af0" />
+        <circle cx={width - 20} cy={height / 2} r="6" fill="#5aa9ff" />
         {Array.from({ length: tickCount }, (_, i) => {
           const value = numberLine.min + i;
           const x = 20 + (i / (tickCount - 1)) * (width - 40);
+          const isSlot = slotSet.has(normalizeValue(value));
           return (
             <g key={i}>
               <line
@@ -261,16 +376,29 @@ function NumberLineGame({ lesson }) {
                 stroke="#2a2a2a"
                 strokeWidth="3"
               />
-              <text
-                x={x}
-                y={height / 2 + 38}
-                textAnchor="middle"
-                fontSize="18"
-                fontWeight="700"
-                fill="#2a2a2a"
-              >
-                {value}
-              </text>
+              {isSlot ? (
+                <rect
+                  x={x - 16}
+                  y={height / 2 + 20}
+                  width={32}
+                  height={26}
+                  rx={8}
+                  fill="#ffffff"
+                  stroke="#1f7af0"
+                  strokeWidth="2"
+                />
+              ) : (
+                <text
+                  x={x}
+                  y={height / 2 + 38}
+                  textAnchor="middle"
+                  fontSize="18"
+                  fontWeight="700"
+                  fill="#2a2a2a"
+                >
+                  {value}
+                </text>
+              )}
             </g>
           );
         })}
@@ -335,7 +463,7 @@ function NumberLineGame({ lesson }) {
             {targetValue}
           </div>
           <div style={{ fontSize: '14px', color: '#5b5b5b' }}>
-            Drag the matching card to the line
+            Drag the matching card to an empty box
           </div>
         </div>
       </div>
@@ -366,7 +494,7 @@ function NumberLineGame({ lesson }) {
           boxShadow: '0 8px 20px rgba(0,0,0,0.08)',
         }}>
           <div style={{ fontSize: '16px', fontWeight: '700', marginBottom: '12px' }}>
-            Place {targetValue} here
+            Place {targetValue} in the correct empty spot
           </div>
           <div ref={numberLineRef}>
             {renderNumberLine()}
