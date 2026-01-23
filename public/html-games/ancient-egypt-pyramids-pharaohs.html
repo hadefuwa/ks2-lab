@@ -248,6 +248,11 @@
             stopConfetti();
             treasuresFound = 0;
 
+            // Speak instructions when game starts
+            setTimeout(() => {
+                speak("Welcome to the Pharaoh's tomb! Tap on the containers to find 3 hidden treasures. Be careful, some containers have other surprises!", { rate: 0.9 });
+            }, 500);
+
             // setup the 12 items for this round (3 treasures, 9 dust)
             itemsInGame = [];
             // Get only treasure types first

@@ -1672,7 +1672,7 @@ function MathGame({ lesson }) {
       const total = Math.floor(Math.random() * (config.maxSum - 2)) + 3;
       const addend = Math.floor(Math.random() * (total - 1)) + 1;
       answer = total - addend;
-      questionText = `What plus ${addend} equals ${total}?`;
+      questionText = `What number added to ${addend} equals ${total}?`;
       options = [answer, answer + 1, answer - 1, total].filter(n => n > 0 && n <= config.maxSum + 2);
     } else if (config.type === 'compare-quantities') {
       const a = Math.floor(Math.random() * config.maxNumber) + 1;

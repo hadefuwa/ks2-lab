@@ -701,7 +701,19 @@ Scientists study fossils, put bones together, and learn how dinosaurs lived. The
       emoji: '🏺',
       content: `# Ancient Egypt - Pyramids and Pharaohs 🏺
 
-Play the game to find the Pharaoh's treasures!`,
+## Welcome to the Pharaoh's Tomb! 🐪
+
+Long ago in Ancient Egypt, powerful kings called **Pharaohs** ruled the land. When they died, they were buried in magnificent **pyramids** with all their treasures!
+
+### Your Mission:
+🔍 Explore the tomb and find **3 hidden treasures**
+👑 Tap on different containers to see what's inside
+💎 Look for jewels, crowns, and golden artifacts
+⚠️ Be careful - not everything in the tomb is treasure!
+
+Listen carefully as each item is revealed. Can you find all the Pharaoh's treasures?
+
+**Tap the containers below to start your adventure!**`,
       quizId: null,
       assessmentType: 'html-game',
       categoryId: null,
