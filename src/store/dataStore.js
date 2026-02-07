@@ -12,9 +12,18 @@ import { getDefaultData } from '../data/defaultData.js';
 
 const STORAGE_KEY = 'stem-hub-data';
 
+const getStorage = () => {
+  try {
+    return window.localStorage;
+  } catch (error) {
+    return null;
+  }
+};
+
 const loadFromStorage = () => {
   try {
-    const raw = window.localStorage?.getItem(STORAGE_KEY);
+    const storage = getStorage();
+    const raw = storage ? storage.getItem(STORAGE_KEY) : null;
     if (!raw) return null;
     return JSON.parse(raw);
   } catch (error) {
@@ -25,7 +34,9 @@ const loadFromStorage = () => {
 
 const saveToStorage = (data) => {
   try {
-    window.localStorage?.setItem(STORAGE_KEY, JSON.stringify(data));
+    const storage = getStorage();
+    if (!storage) return false;
+    storage.setItem(STORAGE_KEY, JSON.stringify(data));
     return true;
   } catch (error) {
     console.warn('[DataStore] Failed to save localStorage data:', error);
