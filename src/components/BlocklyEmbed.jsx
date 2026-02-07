@@ -24,6 +24,9 @@ function BlocklyEmbed({ url = 'https://blockly.games/?lang=en', width = '100%', 
         return `blockly://${url.substring(1)}`;
       }
     }
+    if (isLocalFile && url.startsWith('/')) {
+      return `${import.meta.env.BASE_URL}${url.substring(1)}`;
+    }
     return url;
   };
   
