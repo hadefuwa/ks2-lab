@@ -10,6 +10,37 @@ import { Purchase } from '../models/Purchase.js';
 import { PointsActivity } from '../models/PointsActivity.js';
 import { getDefaultData } from '../data/defaultData.js';
 
+const STORAGE_KEY = 'stem-hub-data';
+
+const loadFromStorage = () => {
+  try {
+    const raw = window.localStorage?.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch (error) {
+    console.warn('[DataStore] Failed to read localStorage data:', error);
+    return null;
+  }
+};
+
+const saveToStorage = (data) => {
+  try {
+    window.localStorage?.setItem(STORAGE_KEY, JSON.stringify(data));
+    return true;
+  } catch (error) {
+    console.warn('[DataStore] Failed to save localStorage data:', error);
+    return false;
+  }
+};
+
+const persistData = async (jsonData) => {
+  if (window.electronAPI) {
+    await persistData(jsonData);
+  } else {
+    saveToStorage(jsonData);
+  }
+};
+
 const useDataStore = create((set, get) => ({
   // State
   data: null,
@@ -40,9 +71,15 @@ const useDataStore = create((set, get) => ({
           quizzes: loadedData?.quizzes?.length || 0 
         });
       } else {
-        // Fallback for web mode (development)
-        console.warn('[DataStore] Electron API not available, using default data');
-        loadedData = getDefaultData();
+        // Web fallback: try localStorage, then default data
+        const storedData = loadFromStorage();
+        if (storedData) {
+          console.log('[DataStore] Loaded data from localStorage');
+          loadedData = storedData;
+        } else {
+          console.warn('[DataStore] Electron API not available, using default data');
+          loadedData = getDefaultData();
+        }
       }
 
       // Convert to AppData instance
@@ -63,12 +100,15 @@ const useDataStore = create((set, get) => ({
           loading: false 
         });
         // Save the default data
-        if (window.electronAPI) {
-          try {
-            await window.electronAPI.saveData(defaultData.toJSON());
-          } catch (error) {
-            console.error('Error saving default data:', error);
+        try {
+          const jsonData = defaultData.toJSON();
+          if (window.electronAPI) {
+            await persistData(jsonData);
+          } else {
+            saveToStorage(jsonData);
           }
+        } catch (error) {
+          console.error('Error saving default data:', error);
         }
         return;
       }
@@ -101,14 +141,16 @@ const useDataStore = create((set, get) => ({
         appData.pointsSystemVersion = POINTS_SYSTEM_VERSION;
 
         // Save the updated data with new points
-        if (window.electronAPI) {
-          try {
-            const jsonData = appData.toJSON();
-            await window.electronAPI.saveData(jsonData);
-            console.log('[DataStore] Points recalculation saved successfully');
-          } catch (error) {
-            console.error('Error saving recalculated points:', error);
+        try {
+          const jsonData = appData.toJSON();
+          if (window.electronAPI) {
+            await persistData(jsonData);
+          } else {
+            saveToStorage(jsonData);
           }
+          console.log('[DataStore] Points recalculation saved successfully');
+        } catch (error) {
+          console.error('Error saving recalculated points:', error);
         }
       }
 
@@ -155,12 +197,15 @@ const useDataStore = create((set, get) => ({
     });
 
     set({ data: repairedData });
-    if (window.electronAPI) {
-      try {
-        await window.electronAPI.saveData(repairedData.toJSON());
-      } catch (error) {
-        console.error('Error saving repaired data:', error);
+    try {
+      const jsonData = repairedData.toJSON();
+      if (window.electronAPI) {
+        await persistData(jsonData);
+      } else {
+        saveToStorage(jsonData);
       }
+    } catch (error) {
+      console.error('Error saving repaired data:', error);
     }
   },
 
@@ -258,14 +303,16 @@ const useDataStore = create((set, get) => ({
       // Progress references lesson IDs, so it will still work with updated lessons
       
       // Save the updated data
-      if (window.electronAPI) {
-        try {
-          const jsonData = appData.toJSON();
-          await window.electronAPI.saveData(jsonData);
-          console.log('[DataStore] Data.json updated successfully with latest lessons and quizzes');
-        } catch (error) {
-          console.error('Error saving updated data:', error);
+      try {
+        const jsonData = appData.toJSON();
+        if (window.electronAPI) {
+          await persistData(jsonData);
+        } else {
+          saveToStorage(jsonData);
         }
+        console.log('[DataStore] Data.json updated successfully with latest lessons and quizzes');
+      } catch (error) {
+        console.error('Error saving updated data:', error);
       }
     } else {
       console.log('[DataStore] No changes detected in default lessons/quizzes');
@@ -282,14 +329,16 @@ const useDataStore = create((set, get) => ({
       appData.rewards = [...defaultData.rewards];
       
       // Save the updated data
-      if (window.electronAPI) {
-        try {
-          const jsonData = appData.toJSON();
-          await window.electronAPI.saveData(jsonData);
-          console.log('[DataStore] Default rewards added successfully');
-        } catch (error) {
-          console.error('Error saving default rewards:', error);
+      try {
+        const jsonData = appData.toJSON();
+        if (window.electronAPI) {
+          await persistData(jsonData);
+        } else {
+          saveToStorage(jsonData);
         }
+        console.log('[DataStore] Default rewards added successfully');
+      } catch (error) {
+        console.error('Error saving default rewards:', error);
       }
     } else {
       // Check if default rewards exist, if not add them
@@ -335,14 +384,16 @@ const useDataStore = create((set, get) => ({
       
       if (hasChanges) {
         console.log('[DataStore] Rewards updated, saving changes...');
-        if (window.electronAPI) {
-          try {
-            const jsonData = appData.toJSON();
-            await window.electronAPI.saveData(jsonData);
-            console.log('[DataStore] Rewards saved successfully');
-          } catch (error) {
-            console.error('Error saving rewards:', error);
+        try {
+          const jsonData = appData.toJSON();
+          if (window.electronAPI) {
+            await persistData(jsonData);
+          } else {
+            saveToStorage(jsonData);
           }
+          console.log('[DataStore] Rewards saved successfully');
+        } catch (error) {
+          console.error('Error saving rewards:', error);
         }
       }
     }
@@ -366,9 +417,9 @@ const useDataStore = create((set, get) => ({
       const jsonData = appData.toJSON();
       
       if (window.electronAPI) {
-        await window.electronAPI.saveData(jsonData);
+        await persistData(jsonData);
       } else {
-        console.warn('Electron API not available, cannot save data');
+        saveToStorage(jsonData);
       }
     } catch (error) {
       console.error('Error saving data:', error);
