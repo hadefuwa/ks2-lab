@@ -6,9 +6,14 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const isGithubPages = process.env.GITHUB_PAGES === 'true';
+const repoName = process.env.GITHUB_REPOSITORY?.split('/')?.[1];
+const ghBase = repoName ? `/${repoName}/` : '/STEM-Hub/';
+
 export default defineConfig({
   plugins: [react()],
-  base: './', // Use relative paths for Electron file:// protocol
+  // Use relative paths for Electron file:// protocol, but a repo base for GH Pages.
+  base: isGithubPages ? ghBase : './',
   root: '.',
   build: {
     outDir: 'dist',
