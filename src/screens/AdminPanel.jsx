@@ -12,6 +12,7 @@ function AdminPanel() {
   const saveData = useDataStore(state => state.saveData);
   const resetAllProgress = useDataStore(state => state.resetAllProgress);
   const migrateMissingMedals = useDataStore(state => state.migrateMissingMedals);
+  const importData = useDataStore(state => state.importData);
 
   // Authentication is handled by TopNavigation component
   // No need for duplicate password check here
@@ -31,6 +32,9 @@ function AdminPanel() {
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [migrationStatus, setMigrationStatus] = useState(null);
   const [isMigrating, setIsMigrating] = useState(false);
+  const [importStatus, setImportStatus] = useState(null);
+  const [isImporting, setIsImporting] = useState(false);
+  const [importFileName, setImportFileName] = useState('');
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -120,6 +124,24 @@ function AdminPanel() {
       setMigrationStatus(`Migration failed: ${err.message}`);
       setTimeout(() => setMigrationStatus(null), 10000);
       setIsMigrating(false);
+    }
+  };
+
+  const handleImportFile = async (event) => {
+    const file = event.target.files && event.target.files[0];
+    if (!file) return;
+    setImportFileName(file.name);
+    setImportStatus(null);
+    setIsImporting(true);
+
+    try {
+      const text = await file.text();
+      await importData(text);
+      setImportStatus('Import successful. Reloading...');
+      setTimeout(() => window.location.reload(), 1500);
+    } catch (err) {
+      setImportStatus(`Import failed: ${err.message}`);
+      setIsImporting(false);
     }
   };
 
@@ -300,6 +322,43 @@ function AdminPanel() {
           {migrationStatus}
         </div>
       )}
+
+      <div style={{
+        backgroundColor: '#e9f7ff',
+        border: '1px solid #bee3f8',
+        borderRadius: '8px',
+        padding: '15px',
+        marginBottom: '20px',
+      }}>
+        <h2 style={{ margin: '0 0 10px 0', color: '#1c4e80', fontSize: '18px' }}>Import Data</h2>
+        <p style={{ margin: '0 0 12px 0', color: '#1c4e80', fontSize: '14px' }}>
+          Import a JSON data file from the Electron app. This will replace the current web data.
+        </p>
+        <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+          <input
+            type="file"
+            accept=".json,application/json"
+            onChange={handleImportFile}
+            disabled={isImporting}
+          />
+          {importFileName && (
+            <span style={{ color: '#1c4e80', fontSize: '13px' }}>{importFileName}</span>
+          )}
+        </div>
+        {importStatus && (
+          <div style={{
+            marginTop: '12px',
+            backgroundColor: importStatus.startsWith('Import successful') ? '#d4edda' : '#f8d7da',
+            color: importStatus.startsWith('Import successful') ? '#155724' : '#721c24',
+            padding: '10px',
+            borderRadius: '4px',
+            border: importStatus.startsWith('Import successful') ? '1px solid #c3e6cb' : '1px solid #f5c6cb',
+            fontSize: '14px',
+          }}>
+            {importStatus}
+          </div>
+        )}
+      </div>
 
       {/* Rewards List */}
       {rewards.length === 0 ? (

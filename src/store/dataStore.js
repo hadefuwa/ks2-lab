@@ -427,6 +427,26 @@ const useDataStore = create((set, get) => ({
     }
   },
 
+  // Import data from JSON (Electron export)
+  importData: async (rawData) => {
+    if (!rawData) {
+      throw new Error('No data provided');
+    }
+
+    let parsed = rawData;
+    if (typeof rawData === 'string') {
+      parsed = JSON.parse(rawData);
+    }
+
+    const appData = AppData.fromJSON(parsed);
+    if (!appData || !Array.isArray(appData.lessons) || !Array.isArray(appData.students)) {
+      throw new Error('Invalid data format');
+    }
+
+    set({ data: appData });
+    await get().saveData();
+  },
+
   // Student operations
   getUserId: () => {
     const state = get();
