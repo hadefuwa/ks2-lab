@@ -35,7 +35,10 @@ function HTMLGameEmbed({ url = '/html-games/days.html', width = '100%', height =
         return `htmlgame://${url.substring(1)}`;
       }
     }
-    // For web or if no electronAPI, use the path as-is (Vite will serve from public)
+    // For web or if no electronAPI, prefix with Vite base if needed
+    if (url.startsWith('/')) {
+      return `${import.meta.env.BASE_URL}${url.substring(1)}`;
+    }
     return url;
   };
   
