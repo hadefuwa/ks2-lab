@@ -69,7 +69,7 @@ function CharacterCustomizationScreen() {
     if (selectedAccessories.length > 0) {
       const categoryMap = {};
       const cleanedSelection = [];
-      
+
       selectedAccessories.forEach(accId => {
         const acc = allAccessories.find(a => a.id === accId);
         if (acc) {
@@ -80,20 +80,20 @@ function CharacterCustomizationScreen() {
           }
         }
       });
-      
+
       // Update if we removed duplicates
       if (cleanedSelection.length !== selectedAccessories.length) {
         setStudentAccessories(userId, cleanedSelection);
       }
     }
   }, []); // Only run once on mount
-  
+
   // Keyboard shortcuts
   useEffect(() => {
     const handleKeyPress = (e) => {
       // Only trigger if not typing in an input field
       if (e.target.tagName === 'INPUT') return;
-      
+
       if (e.key === 'r' && !e.ctrlKey && !e.metaKey) {
         randomizeAvatar();
       } else if (e.key === 's' && (e.ctrlKey || e.metaKey)) {
@@ -104,11 +104,11 @@ function CharacterCustomizationScreen() {
         downloadAvatar();
       }
     };
-    
+
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [avatarDraft, userId, levelIndex]);
-  
+
   const AVATAR_STYLES = [
     { id: 'adventurer', name: 'Adventurer', collection: adventurer, level: 0 },
     { id: 'avataaars', name: 'Avataaars', collection: avataaars, level: 1 },
@@ -117,7 +117,7 @@ function CharacterCustomizationScreen() {
     { id: 'pixelArt', name: 'Pixel Art', collection: pixelArt, level: 4 },
     { id: 'thumbs', name: 'Thumbs', collection: thumbs, level: 4 },
   ];
-  
+
   const AVATAR_PRESETS = [
     { name: 'Classic', accessories: ['skin-light', 'hair-auburn', 'eyes-open', 'bg-blue'], level: 0 },
     { name: 'Cool Kid', accessories: ['skin-medium', 'hair-blue', 'eyes-variant06', 'glasses-round', 'bg-purple'], level: 2 },
@@ -126,11 +126,11 @@ function CharacterCustomizationScreen() {
     { name: 'Emerald Master', accessories: ['skin-green', 'hair-black', 'eyes-variant26', 'glasses-square', 'mouth-smirk', 'bg-emerald'], level: 4 },
     { name: 'Purple Legend', accessories: ['skin-purple', 'hair-blue', 'eyes-variant26', 'glasses-round', 'mouth-laughing', 'bg-royal'], level: 5 },
   ];
-  
+
   const randomizeAvatar = () => {
     const unlockedAccessories = getUnlockedAccessories(levelIndex);
     const categoryGroups = {};
-    
+
     // Group accessories by category
     unlockedAccessories.forEach(acc => {
       if (!categoryGroups[acc.category]) {
@@ -138,14 +138,14 @@ function CharacterCustomizationScreen() {
       }
       categoryGroups[acc.category].push(acc);
     });
-    
+
     // Pick one random item from each category
     const randomSelection = [];
     Object.values(categoryGroups).forEach(group => {
       const randomItem = group[Math.floor(Math.random() * group.length)];
       randomSelection.push(randomItem.id);
     });
-    
+
     // Random background color from unlocked ones
     const bgColors = [
       { color: 'b6e3f4', name: 'Sky Blue', level: 0 },
@@ -160,28 +160,28 @@ function CharacterCustomizationScreen() {
       { color: 'bae1ff', name: 'Azure', level: 4 },
     ].filter(bg => levelIndex >= bg.level);
     const randomBg = bgColors[Math.floor(Math.random() * bgColors.length)];
-    
+
     // Random seed for variety
     const randomSeed = Math.random().toString(36).substring(7);
-    
+
     setStudentAccessories(userId, randomSelection);
     setAvatarDraft({ ...avatarDraft, seed: randomSeed, backgroundColor: randomBg.color });
   };
-  
+
   const resetAvatar = () => {
     setStudentAccessories(userId, []);
     setAvatarDraft({ style: 'adventurer', seed: 'default', backgroundColor: 'b6e3f4' });
   };
-  
+
   const applyPreset = (preset) => {
     if (levelIndex >= preset.level) {
-      const validAccessories = preset.accessories.filter(accId => 
+      const validAccessories = preset.accessories.filter(accId =>
         allAccessories.some(a => a.id === accId)
       );
       setStudentAccessories(userId, validAccessories);
     }
   };
-  
+
   const downloadAvatar = () => {
     const currentStyle = AVATAR_STYLES.find(s => s.id === avatarDraft.style) || AVATAR_STYLES[0];
     const options = buildAvatarOptions(selectedAccessories, avatarDraft.backgroundColor);
@@ -189,7 +189,7 @@ function CharacterCustomizationScreen() {
       seed: avatarDraft.seed,
       ...options,
     });
-    
+
     const svg = avatar.toString();
     const blob = new Blob([svg], { type: 'image/svg+xml' });
     const url = URL.createObjectURL(blob);
@@ -199,7 +199,7 @@ function CharacterCustomizationScreen() {
     link.click();
     URL.revokeObjectURL(url);
   };
-  
+
   const copyAvatarCode = () => {
     const code = JSON.stringify({
       style: avatarDraft.style,
@@ -211,7 +211,7 @@ function CharacterCustomizationScreen() {
       alert('Avatar code copied to clipboard! Share it with friends!');
     });
   };
-  
+
   const importAvatarCode = () => {
     const code = prompt('Paste avatar code here:');
     if (code) {
@@ -219,22 +219,22 @@ function CharacterCustomizationScreen() {
         const parsed = JSON.parse(code);
         if (parsed.style && parsed.seed && parsed.backgroundColor && Array.isArray(parsed.accessories)) {
           // Verify all accessories are unlocked
-          const allUnlocked = parsed.accessories.every(accId => 
+          const allUnlocked = parsed.accessories.every(accId =>
             unlockedAccessories.some(acc => acc.id === accId)
           );
-          
+
           if (!allUnlocked) {
             alert('Some accessories in this code are not yet unlocked! Keep leveling up!');
             return;
           }
-          
+
           // Verify style is unlocked
           const styleObj = AVATAR_STYLES.find(s => s.id === parsed.style);
           if (styleObj && levelIndex < styleObj.level) {
             alert(`This avatar style requires Level ${styleObj.level + 1}! Keep learning!`);
             return;
           }
-          
+
           // Apply the code
           setAvatarDraft({
             style: parsed.style,
@@ -349,7 +349,7 @@ function CharacterCustomizationScreen() {
             justifyContent: 'center',
             alignItems: 'center',
             padding: '50px',
-            background: levelIndex >= 4 
+            background: levelIndex >= 4
               ? `radial-gradient(circle, ${levelColor}22 0%, transparent 70%)`
               : `linear-gradient(135deg, ${levelColor}33, #ffffff, ${levelColor}11)`,
             borderRadius: '20px',
@@ -381,7 +381,7 @@ function CharacterCustomizationScreen() {
                 }} />
               </>
             )}
-            
+
             {/* Level 4+ Floating Particles */}
             {levelIndex >= 3 && Array.from({ length: levelIndex >= 4 ? 8 : 4 }).map((_, i) => (
               <div
@@ -400,7 +400,7 @@ function CharacterCustomizationScreen() {
                 }}
               />
             ))}
-            
+
             {/* Level 3+ Energy Waves */}
             {levelIndex >= 2 && (
               <>
@@ -425,7 +425,7 @@ function CharacterCustomizationScreen() {
                 )}
               </>
             )}
-            
+
             <div style={{
               position: 'absolute',
               top: '20px',
@@ -440,11 +440,11 @@ function CharacterCustomizationScreen() {
                 display: 'flex',
                 justifyContent: 'center',
                 transform: `scale(${avatarScale * 1.2})`,
-                filter: levelIndex >= 4 
+                filter: levelIndex >= 4
                   ? `drop-shadow(0 0 20px ${levelColor}) drop-shadow(0 5px 15px rgba(0,0,0,0.2))`
                   : levelIndex >= 2
-                  ? `drop-shadow(0 0 10px ${levelColor}88) drop-shadow(0 5px 15px rgba(0,0,0,0.2))`
-                  : 'drop-shadow(0 5px 15px rgba(0,0,0,0.2))',
+                    ? `drop-shadow(0 0 10px ${levelColor}88) drop-shadow(0 5px 15px rgba(0,0,0,0.2))`
+                    : 'drop-shadow(0 5px 15px rgba(0,0,0,0.2))',
                 position: 'relative',
                 zIndex: 10,
               }}
@@ -460,9 +460,9 @@ function CharacterCustomizationScreen() {
               <div style={{ fontSize: '22px', fontWeight: 700, color: '#333' }}>
                 {student?.name || 'Student'}
               </div>
-              <div style={{ 
-                fontSize: '16px', 
-                color: '#666', 
+              <div style={{
+                fontSize: '16px',
+                color: '#666',
                 marginTop: '4px',
                 padding: '6px 16px',
                 backgroundColor: `${levelColor}22`,
@@ -512,7 +512,7 @@ function CharacterCustomizationScreen() {
                 {currentLevel.name}
               </div>
             </div>
-            
+
             <div style={{
               backgroundColor: '#e3f2fd',
               borderRadius: '12px',
@@ -530,7 +530,7 @@ function CharacterCustomizationScreen() {
                 {totalCompleted} / {totalLessons} lessons
               </div>
             </div>
-            
+
             <div style={{
               backgroundColor: '#f3e5f5',
               borderRadius: '12px',
@@ -548,7 +548,7 @@ function CharacterCustomizationScreen() {
                 {allAccessories.length - unlockedAccessories.length} still locked
               </div>
             </div>
-            
+
             <div style={{
               backgroundColor: '#fff3e0',
               borderRadius: '12px',
@@ -598,28 +598,28 @@ function CharacterCustomizationScreen() {
                 seed: avatarDraft.seed || 'Student',
                 backgroundColor: avatarDraft.backgroundColor ? [avatarDraft.backgroundColor] : undefined,
               }).toString();
-              
+
               return (
                 <div
                   key={idx}
                   style={{
-                    background: isCurrentLevel 
+                    background: isCurrentLevel
                       ? `linear-gradient(135deg, ${levelColors[idx]}33, #ffffff)`
                       : isFutureLevel
-                      ? 'linear-gradient(135deg, #f0f0f0, #ffffff)'
-                      : `linear-gradient(135deg, ${levelColors[idx]}11, #ffffff)`,
+                        ? 'linear-gradient(135deg, #f0f0f0, #ffffff)'
+                        : `linear-gradient(135deg, ${levelColors[idx]}11, #ffffff)`,
                     borderRadius: '16px',
                     padding: '20px',
                     textAlign: 'center',
-                    border: isCurrentLevel 
-                      ? `3px solid ${levelColors[idx]}` 
+                    border: isCurrentLevel
+                      ? `3px solid ${levelColors[idx]}`
                       : isFutureLevel
-                      ? '2px dashed #d0d0d0'
-                      : `2px solid ${levelColors[idx]}44`,
+                        ? '2px dashed #d0d0d0'
+                        : `2px solid ${levelColors[idx]}44`,
                     position: 'relative',
                     opacity: isFutureLevel ? 0.6 : 1,
                     transition: 'all 0.3s ease',
-                    boxShadow: isCurrentLevel 
+                    boxShadow: isCurrentLevel
                       ? `0 8px 20px ${levelColors[idx]}44`
                       : '0 2px 8px rgba(0,0,0,0.08)',
                   }}
@@ -643,24 +643,24 @@ function CharacterCustomizationScreen() {
                     }}
                     dangerouslySetInnerHTML={{ __html: levelAvatarSvg }}
                   />
-                  <div style={{ 
-                    fontSize: '16px', 
-                    fontWeight: 700, 
+                  <div style={{
+                    fontSize: '16px',
+                    fontWeight: 700,
                     color: isCurrentLevel ? levelColors[idx] : '#333',
                     marginBottom: '4px',
                   }}>
                     Level {idx + 1}
                   </div>
-                  <div style={{ 
-                    fontSize: '13px', 
+                  <div style={{
+                    fontSize: '13px',
                     color: '#666',
                     fontWeight: 600,
                     marginBottom: '8px',
                   }}>
                     {level.name}
                   </div>
-                  <div style={{ 
-                    fontSize: '12px', 
+                  <div style={{
+                    fontSize: '12px',
                     color: '#999',
                     padding: '4px 8px',
                     backgroundColor: isCurrentLevel ? `${levelColors[idx]}22` : '#f8f9fa',
@@ -699,15 +699,15 @@ function CharacterCustomizationScreen() {
           <p style={{ margin: '0 0 30px 0', color: '#666', fontSize: '15px' }}>
             Unlock more customization options as you level up!
           </p>
-          
+
           {/* Character Name/Seed */}
           <div style={{ marginBottom: '30px' }}>
             <label style={{ display: 'flex', flexDirection: 'column', gap: '8px', color: '#333' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span style={{ fontWeight: 600, fontSize: '16px' }}>Character Name</span>
-                <span style={{ 
-                  fontSize: '11px', 
-                  padding: '3px 8px', 
+                <span style={{
+                  fontSize: '11px',
+                  padding: '3px 8px',
                   backgroundColor: '#28a745',
                   color: 'white',
                   borderRadius: '12px',
@@ -736,9 +736,9 @@ function CharacterCustomizationScreen() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
               <span style={{ fontWeight: 600, fontSize: '16px', color: '#333' }}>Quick Randomize</span>
               {levelIndex >= 1 ? (
-                <span style={{ 
-                  fontSize: '11px', 
-                  padding: '3px 8px', 
+                <span style={{
+                  fontSize: '11px',
+                  padding: '3px 8px',
                   backgroundColor: '#28a745',
                   color: 'white',
                   borderRadius: '12px',
@@ -747,9 +747,9 @@ function CharacterCustomizationScreen() {
                   UNLOCKED AT LEVEL 2
                 </span>
               ) : (
-                <span style={{ 
-                  fontSize: '11px', 
-                  padding: '3px 8px', 
+                <span style={{
+                  fontSize: '11px',
+                  padding: '3px 8px',
                   backgroundColor: '#999',
                   color: 'white',
                   borderRadius: '12px',
@@ -777,7 +777,7 @@ function CharacterCustomizationScreen() {
               🎲 Randomize Character
             </button>
           </div>
-          
+
           {/* Background Colors - Progressive Unlock */}
           <div style={{ marginBottom: '30px' }}>
             <div style={{ marginBottom: '16px', color: '#333', fontWeight: 600, fontSize: '16px' }}>
@@ -837,16 +837,16 @@ function CharacterCustomizationScreen() {
                       border: '2px solid white',
                       boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
                     }} />
-                    <div style={{ 
-                      fontSize: '11px', 
-                      fontWeight: 600, 
+                    <div style={{
+                      fontSize: '11px',
+                      fontWeight: 600,
                       color: '#333',
                       textAlign: 'center',
                     }}>
                       {name}
                     </div>
-                    <div style={{ 
-                      fontSize: '9px', 
+                    <div style={{
+                      fontSize: '9px',
                       color: isUnlocked ? '#28a745' : '#999',
                       fontWeight: 700,
                     }}>
@@ -890,10 +890,10 @@ function CharacterCustomizationScreen() {
           <h2 style={{ margin: '0 0 10px 0', fontSize: '24px', color: '#333', textAlign: 'center' }}>
             ⚡ Quick Actions
           </h2>
-          <p style={{ 
-            margin: '0 0 20px 0', 
-            fontSize: '13px', 
-            color: '#666', 
+          <p style={{
+            margin: '0 0 20px 0',
+            fontSize: '13px',
+            color: '#666',
             textAlign: 'center',
             backgroundColor: '#f5f5f5',
             padding: '8px 16px',
@@ -930,7 +930,7 @@ function CharacterCustomizationScreen() {
             >
               🎲 Surprise Me!
             </button>
-            
+
             <button
               onClick={resetAvatar}
               style={{
@@ -956,7 +956,7 @@ function CharacterCustomizationScreen() {
             >
               🔄 Reset
             </button>
-            
+
             <button
               onClick={downloadAvatar}
               style={{
@@ -982,7 +982,7 @@ function CharacterCustomizationScreen() {
             >
               💾 Download
             </button>
-            
+
             <button
               onClick={copyAvatarCode}
               style={{
@@ -1008,7 +1008,7 @@ function CharacterCustomizationScreen() {
             >
               📋 Share Code
             </button>
-            
+
             <button
               onClick={importAvatarCode}
               style={{
@@ -1116,7 +1116,7 @@ function CharacterCustomizationScreen() {
                 seed: avatarDraft.seed,
                 ...options,
               }).toString();
-              
+
               return (
                 <div
                   key={style}
@@ -1172,13 +1172,13 @@ function CharacterCustomizationScreen() {
           <p style={{ margin: '0 0 30px 0', color: '#666', fontSize: '15px', textAlign: 'center' }}>
             Level up to unlock amazing accessories! Currently showing {unlockedAccessories.length} / {allAccessories.length} items
           </p>
-          
+
           {/* Unlocked Accessories by Category */}
           {Object.entries(accessoriesByCategory).map(([category, items]) => (
             <div key={category} style={{ marginBottom: '40px' }}>
-              <h3 style={{ 
-                margin: '0 0 16px 0', 
-                fontSize: '18px', 
+              <h3 style={{
+                margin: '0 0 16px 0',
+                fontSize: '18px',
                 color: '#28a745',
                 textTransform: 'capitalize',
                 display: 'flex',
@@ -1187,9 +1187,9 @@ function CharacterCustomizationScreen() {
               }}>
                 <span>{getCategoryIcon(category)}</span>
                 <span>{category}</span>
-                <span style={{ 
-                  fontSize: '12px', 
-                  padding: '3px 10px', 
+                <span style={{
+                  fontSize: '12px',
+                  padding: '3px 10px',
                   backgroundColor: '#d4edda',
                   borderRadius: '12px',
                   fontWeight: 600,
@@ -1212,7 +1212,7 @@ function CharacterCustomizationScreen() {
                     ...currentOptions,
                     ...previewOptions, // Override with this specific customization
                   }).toString();
-                  
+
                   return (
                     <button
                       key={custom.id}
@@ -1222,11 +1222,11 @@ function CharacterCustomizationScreen() {
                         const otherItemsInCategory = allAccessories
                           .filter(a => a.category === custom.category && a.id !== custom.id)
                           .map(a => a.id);
-                        
+
                         const newSelection = isSelected
                           ? selectedAccessories.filter(id => id !== custom.id)
                           : [...selectedAccessories.filter(id => !otherItemsInCategory.includes(id)), custom.id];
-                        
+
                         setStudentAccessories(userId, newSelection);
                       }}
                       style={{
@@ -1252,10 +1252,10 @@ function CharacterCustomizationScreen() {
                         }
                       }}
                     >
-                      <div 
-                        style={{ 
-                          width: '80px', 
-                          height: '80px', 
+                      <div
+                        style={{
+                          width: '80px',
+                          height: '80px',
                           margin: '0 auto 8px',
                         }}
                         dangerouslySetInnerHTML={{ __html: previewSvg }}
@@ -1264,9 +1264,9 @@ function CharacterCustomizationScreen() {
                         {custom.name}
                       </div>
                       {isSelected && (
-                        <div style={{ 
-                          fontSize: '10px', 
-                          color: levelColor, 
+                        <div style={{
+                          fontSize: '10px',
+                          color: levelColor,
                           marginTop: '4px',
                           fontWeight: 700,
                         }}>
@@ -1279,16 +1279,16 @@ function CharacterCustomizationScreen() {
               </div>
             </div>
           ))}
-          
+
           {/* Locked Accessories */}
-          <div style={{ 
-            marginTop: '50px', 
-            paddingTop: '30px', 
+          <div style={{
+            marginTop: '50px',
+            paddingTop: '30px',
             borderTop: '2px solid #f0f0f0',
           }}>
-            <h3 style={{ 
-              margin: '0 0 20px 0', 
-              fontSize: '18px', 
+            <h3 style={{
+              margin: '0 0 20px 0',
+              fontSize: '18px',
               color: '#999',
               textAlign: 'center',
             }}>
@@ -1299,7 +1299,7 @@ function CharacterCustomizationScreen() {
               gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))',
               gap: '14px',
             }}>
-              {allAccessories.filter(custom => 
+              {allAccessories.filter(custom =>
                 !unlockedAccessories.find(u => u.id === custom.id)
               ).map(custom => {
                 // Generate preview SVG for locked item showing what it looks like
@@ -1308,7 +1308,7 @@ function CharacterCustomizationScreen() {
                   seed: avatarDraft.seed || 'preview',
                   ...previewOptions,
                 }).toString();
-                
+
                 return (
                   <div
                     key={custom.id}
@@ -1331,10 +1331,10 @@ function CharacterCustomizationScreen() {
                     }}>
                       🔒
                     </div>
-                    <div 
-                      style={{ 
-                        width: '80px', 
-                        height: '80px', 
+                    <div
+                      style={{
+                        width: '80px',
+                        height: '80px',
                         margin: '0 auto 8px',
                       }}
                       dangerouslySetInnerHTML={{ __html: previewSvg }}
@@ -1342,9 +1342,9 @@ function CharacterCustomizationScreen() {
                     <div style={{ fontSize: '12px', fontWeight: 600, color: '#666', lineHeight: '1.2' }}>
                       {custom.name}
                     </div>
-                    <div style={{ 
-                      fontSize: '9px', 
-                      color: '#999', 
+                    <div style={{
+                      fontSize: '9px',
+                      color: '#999',
                       marginTop: '4px',
                       fontWeight: 600,
                     }}>

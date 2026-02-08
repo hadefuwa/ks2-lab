@@ -530,7 +530,7 @@ const useDataStore = create((set, get) => ({
     const studentIndex = state.data.students.findIndex(s => s.id === studentId);
     if (studentIndex === -1) return;
 
-    const updatedStudent = state.data.students[studentIndex].copyWith({ avatarConfig });
+    const updatedStudent = state.data.students[studentIndex].copyWith({ avatarConfig, name: avatarConfig.seed });
     const updatedStudents = [...state.data.students];
     updatedStudents[studentIndex] = updatedStudent;
 
