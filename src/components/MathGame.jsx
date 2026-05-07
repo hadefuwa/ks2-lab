@@ -302,11 +302,12 @@ function MathGame({ lesson }) {
     if (title.includes('addition to 20') && yearId === 'year2') return 33;
     if (title.includes('subtraction to 20') && yearId === 'year2') return 34;
 
-    // Year 3+ lessons - check by year and title
+    // Year 3+ lessons - specific matches before generic catch-alls
+    if (title.includes('long multiplication')) return 20;
     if (title.includes('multiplication tables') || title.includes('multiplication')) return 17;
+    if (title.includes('large division')) return 70;
     if (title.includes('division basics') || title.includes('division')) return 18;
     if (title.includes('fractions introduction') || (title.includes('fractions') && yearId === 'year3')) return 19;
-    if (title.includes('long multiplication')) return 20;
     if (title.includes('fractions and decimals') || (title.includes('fractions') && yearId === 'year4')) return 21;
     if (title.includes('length measurement') && yearId === 'year2') return 42;
     if (title.includes('measurement and units') || (title.includes('measurement') && yearId === 'year4')) return 22;

@@ -1043,8 +1043,512 @@ In the game, you will evaluate these concepts. Can you distinguish between long-
       categoryId: null,
     }),
 
-    
+    // ── English ──────────────────────────────────────────────────────────────
 
-    
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'english',
+      lessonNumber: 1,
+      title: "Sentence Building",
+      emoji: '🏗️',
+      content: `# Sentence Building 🏗️
+
+By Year 6 you should be able to write complex, varied sentences that keep a reader engaged.
+
+## Clause types
+- **Main clause** — can stand alone: *The dog barked.*
+- **Subordinate clause** — adds detail, depends on main clause: *because it heard a noise.*
+
+Full sentence: "The dog barked **because it heard a noise**."
+
+## Sentence types
+| Type | Purpose | Example |
+|---|---|---|
+| Simple | One main clause | She ran. |
+| Compound | Two main clauses joined by and/but/or | She ran **and** he followed. |
+| Complex | Main + subordinate clause | She ran **although** she was tired. |
+
+## Varying sentence length
+Mix short punchy sentences with longer ones for rhythm and effect. Short sentences create tension.
+
+## In the game
+Build sentences from word tiles, choosing the right structure for each purpose.`,
+      quizId: null,
+      assessmentType: 'sentence-building-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'english',
+      lessonNumber: 2,
+      title: "Creative Writing",
+      emoji: '✍️',
+      content: `# Creative Writing ✍️
+
+Great stories pull readers in from the first line and leave them thinking long after the last.
+
+## Story structure
+1. **Opening** — introduce character, setting, atmosphere
+2. **Build-up** — develop character, hint at conflict
+3. **Dilemma/Climax** — the main problem or crisis
+4. **Resolution** — how the problem is solved
+5. **Ending** — reflection or new beginning
+
+## Show, don't tell
+Instead of: *She was scared.*
+Write: *Her hands trembled. She pressed herself against the cold wall, barely daring to breathe.*
+
+## Powerful word choices
+- Strong verbs: *crept, thundered, whispered* (not "went" or "said")
+- Precise nouns: *mansion, hovel, cottage* (not just "house")
+- Purposeful adjectives — one well-chosen adjective beats three weak ones
+
+## In the game
+Make story choices and build a narrative. Think carefully — every decision shapes what comes next!`,
+      quizId: null,
+      assessmentType: 'creative-writing-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'english',
+      lessonNumber: 3,
+      title: "Advanced Spelling Patterns",
+      emoji: '🔤',
+      content: `# Advanced Spelling Patterns 🔤
+
+Year 6 spelling involves tricky patterns, homophones, and words borrowed from other languages.
+
+## Tricky suffixes
+- **-ible vs -able**: sensible / comfortable
+- **-tion vs -sion**: action / decision
+
+## Common homophones
+| Word | Meaning |
+|---|---|
+| affect | verb: to influence |
+| effect | noun: the result |
+| practise | verb (UK) |
+| practice | noun (UK) |
+| stationary | not moving |
+| stationery | paper and pens |
+
+## Words with silent letters
+knight, gnaw, pneumonia, psychology, wreck
+
+## In the game
+Spell each word correctly, choosing between commonly confused spellings.`,
+      quizId: null,
+      assessmentType: 'spelling-game',
+      categoryId: null,
+    }),
+
+    // ── Maths ────────────────────────────────────────────────────────────────
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'maths',
+      lessonNumber: 1,
+      title: "Algebra Introduction",
+      emoji: '🔣',
+      content: `# Algebra Introduction 🔣
+
+Algebra uses letters to represent unknown numbers. It lets us write rules that work for any number.
+
+## Key vocabulary
+- **Variable** — a letter standing for an unknown: x, n, a…
+- **Expression** — numbers and variables combined: 3x + 2
+- **Equation** — expression with an equals sign: 3x + 2 = 11
+
+## Solving simple equations
+3x + 2 = 11
+→ Subtract 2 from both sides: 3x = 9
+→ Divide both sides by 3: **x = 3**
+
+Check: 3(3) + 2 = 9 + 2 = 11 ✓
+
+## Function machines
+Input → ×3 → +2 → Output. If input = 4: answer = **14**.
+
+## In the game
+Balance equations and find the value of the unknown.`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'maths',
+      lessonNumber: 2,
+      title: "Statistics and Data",
+      emoji: '📊',
+      content: `# Statistics and Data 📊
+
+Statistics is about collecting, organising, and interpreting data to spot patterns.
+
+## Types of chart
+| Chart | Best for |
+|---|---|
+| Bar chart | Comparing categories |
+| Pie chart | Showing proportions |
+| Line graph | Change over time |
+
+## Averages
+- **Mean** = sum ÷ count
+- **Median** = middle value when ordered
+- **Mode** = most frequent value
+- **Range** = highest − lowest
+
+## In the game
+Read and interpret different types of graph. Answer questions about the data.`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'maths',
+      lessonNumber: 3,
+      title: "Negative Numbers",
+      emoji: '❄️',
+      content: `# Negative Numbers ❄️
+
+Negative numbers are less than zero. We use them for temperatures, depths, bank balances.
+
+## The number line
+← −5, −4, −3, −2, −1, 0, 1, 2, 3, 4, 5 →
+
+Numbers increase from left to right. −1 is greater than −5.
+
+## Calculating with negatives
+- Adding a negative = subtracting: 6 + (−2) = 4
+- Subtracting a negative = adding: 6 − (−2) = 8
+- Two negatives multiplied = positive: (−3) × (−4) = 12
+
+## Temperature problems
+Moscow: −8°C, London: 3°C. Difference = 3 − (−8) = **11°C**
+
+## In the game
+Add, subtract, and compare negative numbers.`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'maths',
+      lessonNumber: 4,
+      title: "Ratio and Proportion",
+      emoji: '⚖️',
+      content: `# Ratio and Proportion ⚖️
+
+## Ratio
+A **ratio** compares two quantities. For every 2 red beads there are 3 blue → ratio **2:3**.
+
+## Simplifying ratios
+Divide both parts by their HCF. 6:9 ÷ 3 = **2:3**
+
+## Proportion
+Proportion describes a part as a fraction of the whole.
+In ratio 2:3, total parts = 5. Red beads = 2/5 of total.
+
+## Unitary method (scaling recipes)
+Recipe for 4 people: 200 g flour.
+For 6 people: 200 ÷ 4 × 6 = **300 g**
+
+## In the game
+Simplify ratios, find proportions, and scale quantities up and down.`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'maths',
+      lessonNumber: 5,
+      title: "Converting Fractions/Decimals/Percentages",
+      emoji: '🔄',
+      content: `# Converting Fractions, Decimals, and Percentages 🔄
+
+## Conversion table
+| Fraction | Decimal | Percentage |
+|---|---|---|
+| 1/2 | 0.5 | 50% |
+| 1/4 | 0.25 | 25% |
+| 3/4 | 0.75 | 75% |
+| 1/5 | 0.2 | 20% |
+| 1/10 | 0.1 | 10% |
+
+## Converting methods
+- Fraction → Decimal: divide top by bottom (3 ÷ 4 = 0.75)
+- Decimal → Percentage: × 100 (0.75 → 75%)
+- Percentage → Fraction: write over 100 and simplify (75/100 = 3/4)
+
+## In the game
+Convert between all three forms and put values in order of size.`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'maths',
+      lessonNumber: 6,
+      title: "Advanced Problem Solving",
+      emoji: '🧠',
+      content: `# Advanced Problem Solving 🧠
+
+Problem solving brings together all areas of maths.
+
+## Strategy for word problems
+1. Read carefully — more than once.
+2. Identify what you must find.
+3. Choose operations: +, −, ×, ÷, or a combination.
+4. Estimate the answer before calculating.
+5. Calculate and show working clearly.
+6. Check the answer makes sense in context.
+
+## Multi-step example
+"A cinema sells 325 tickets at £8 and 178 at £5. Total income?"
+- 325 × 8 = 2600
+- 178 × 5 = 890
+- 2600 + 890 = **£3490**
+
+## In the game
+Work through multi-step word problems. Show each step!`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'maths',
+      lessonNumber: 7,
+      title: "Prime and Square Numbers",
+      emoji: '🔢',
+      content: `# Prime and Square Numbers 🔢
+
+## Prime numbers
+Exactly two factors: 1 and itself.
+First 10 primes: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29
+- 1 is **not** a prime. 2 is the only **even** prime.
+
+## Square numbers
+n × n: 1, 4, 9, 16, 25, 36, 49, 64, 81, 100…
+6² = 36
+
+## Cube numbers
+n × n × n: 2³ = 8, 3³ = 27, 4³ = 64
+
+## Prime factorisation
+Every whole number > 1 = product of primes.
+12 = 2² × 3
+
+## In the game
+Identify primes, square numbers, and cube numbers. Sort and classify!`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'maths',
+      lessonNumber: 8,
+      title: "Percentage Change",
+      emoji: '📈',
+      content: `# Percentage Change 📈
+
+## Finding percentage change
+Percentage change = (change ÷ original) × 100
+
+Jumper: £40 → £30. Change = £10.
+(10 ÷ 40) × 100 = **25% decrease**
+
+## Percentage increase
+£80 + 15%: 15% of 80 = 12 → 80 + 12 = **£92**
+
+## Percentage decrease
+£80 − 15%: 15% of 80 = 12 → 80 − 12 = **£68**
+
+## Multiplier method
+Increase 15%: × 1.15 | Decrease 15%: × 0.85
+
+## In the game
+Calculate percentage increases and decreases in real-world contexts.`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'maths',
+      lessonNumber: 9,
+      title: "3, 4, and 8 Times Tables",
+      emoji: '✖️',
+      content: `# 3, 4, and 8 Times Tables ✖️
+
+By Year 6 you should know all tables up to 12 × 12 instantly.
+
+## 3× table
+3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36
+Digit sum of any multiple of 3 is always a multiple of 3.
+
+## 4× table
+4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48
+Always even. Double the 2× table.
+
+## 8× table
+8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96
+Double the 4× table.
+
+## Inverse relationships
+8 × 7 = 56 → 56 ÷ 8 = 7 and 56 ÷ 7 = 8
+
+## In the game
+Rapid-fire questions. Speed and accuracy!`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'maths',
+      lessonNumber: 10,
+      title: "6, 7, 9, 11, and 12 Times Tables",
+      emoji: '✖️',
+      content: `# 6, 7, 9, 11, and 12 Times Tables ✖️
+
+## 6× table
+6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72 — always even.
+
+## 7× table
+7, 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84 — the trickiest! Use 7 × 8 = 56.
+
+## 9× table
+9, 18, 27, 36, 45, 54, 63, 72, 81, 90, 99, 108
+Digit sum always = 9.
+
+## 11× table
+Up to 9: write the digit twice (11 × 7 = 77). 11 × 11 = 121.
+
+## 12× table
+12, 24, 36, 48, 60, 72, 84, 96, 108, 120, 132, 144
+
+## In the game
+Rapid-fire questions from all five tables.`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'maths',
+      lessonNumber: 11,
+      title: "Large Multiplication",
+      emoji: '🔢',
+      content: `# Large Multiplication 🔢
+
+## Column multiplication
+347 × 24:
+- 347 × 4 = 1388
+- 347 × 20 = 6940
+- Total = **8328**
+
+Always estimate first: 350 × 24 ≈ 8400. Close — good sign!
+
+## In the game
+Work through large multiplication problems step by step.`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'maths',
+      lessonNumber: 12,
+      title: "Large Division",
+      emoji: '➗',
+      content: `# Large Division ➗
+
+## Short division (bus stop)
+846 ÷ 6 = **141**
+
+## Long division (two-digit divisor)
+875 ÷ 25:
+- 25 into 87 = 3 r 12
+- Bring down 5 → 125 ÷ 25 = 5
+- Result: **35**
+
+## Remainders
+747 ÷ 4 = 186 r 3 = 186¾ or 186.75
+
+## In the game
+Practise short and long division. Show each step clearly.`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'maths',
+      lessonNumber: 13,
+      title: "Bar Charts and Data",
+      emoji: '📊',
+      content: `# Bar Charts and Data 📊
+
+## Reading bar charts
+1. Check the title — what is being measured?
+2. Check the y-axis scale — what does each division represent?
+3. Read bar heights precisely.
+4. Calculate differences by subtracting.
+
+## Drawing bar charts
+1. Choose a sensible scale (2s, 5s, 10s, 100s).
+2. Label both axes clearly.
+3. Bars same width, equal gaps.
+4. Give the chart a title.
+
+## Questions to ask about data
+- Which category is most/least common?
+- What is the difference between highest and lowest?
+- What is the total of all bars added together?
+
+## In the game
+Read and build bar charts from data sets.`,
+      quizId: null,
+      assessmentType: 'graph-builder-game',
+      categoryId: null,
+    }),
+
   ];
 }

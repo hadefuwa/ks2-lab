@@ -3735,9 +3735,437 @@ Dimensions make sizes accurate.
       categoryId: '3d-modeling',
     }),
 
-    
+    // ── English ──────────────────────────────────────────────────────────────
 
-    
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'english',
+      lessonNumber: 1,
+      title: "Compound Words",
+      emoji: '🔗',
+      content: `# Compound Words 🔗
+
+A **compound word** is made by joining two smaller words together to create a brand new word with its own meaning.
+
+## Examples
+| Word 1 | Word 2 | Compound |
+|---|---|---|
+| sun | flower | sunflower |
+| rain | bow | rainbow |
+| foot | ball | football |
+| book | shelf | bookshelf |
+
+## Open, closed, and hyphenated
+- **Closed**: toothbrush, bedroom
+- **Hyphenated**: well-known, self-control
+- **Open**: ice cream, post office
+
+## In the game
+Match pairs of words to form correct compound words. Think about what meaning the new word would have!`,
+      quizId: null,
+      assessmentType: 'compound-word-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'english',
+      lessonNumber: 2,
+      title: "Synonyms and Antonyms",
+      emoji: '↔️',
+      content: `# Synonyms and Antonyms ↔️
+
+## Synonyms — words with similar meanings
+Using synonyms makes your writing more varied and interesting.
+
+| Word | Synonyms |
+|---|---|
+| happy | joyful, cheerful, delighted |
+| big | large, enormous, huge |
+| said | whispered, shouted, replied |
+
+## Antonyms — words with opposite meanings
+| Word | Antonym |
+|---|---|
+| hot | cold |
+| fast | slow |
+| brave | cowardly |
+
+## Why it matters
+Good writers avoid repeating the same word. Knowing synonyms and antonyms lets you choose exactly the right word for each situation.
+
+## In the game
+Match each word with its synonym or antonym as directed. Think carefully — near-synonyms can be tricky!`,
+      quizId: null,
+      assessmentType: 'synonyms-antonyms-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'english',
+      lessonNumber: 3,
+      title: "Contractions",
+      emoji: '✂️',
+      content: `# Contractions ✂️
+
+A **contraction** joins two words into one by replacing missing letters with an apostrophe.
+
+## Common contractions
+| Full form | Contraction |
+|---|---|
+| I am | I'm |
+| do not | don't |
+| cannot | can't |
+| they are | they're |
+| it is | it's |
+| would not | wouldn't |
+
+## Apostrophe rule
+The apostrophe goes exactly where the missing letter(s) were removed. "Don't" = "do not" → the 'o' from "not" is removed.
+
+## Watch out!
+- **it's** (it is) vs **its** (belonging to it)
+- **they're** (they are) vs **their** (belonging to them) vs **there** (place)
+
+## In the game
+Choose the correct contraction or expand contractions back to their full form.`,
+      quizId: null,
+      assessmentType: 'contraction-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'english',
+      lessonNumber: 4,
+      title: "Prefixes and Suffixes",
+      emoji: '🧩',
+      content: `# Prefixes and Suffixes 🧩
+
+Prefixes and suffixes are word parts added to a root word to change its meaning.
+
+## Prefixes (added to the front)
+| Prefix | Meaning | Example |
+|---|---|---|
+| un- | not / reverse | unhappy, untie |
+| re- | again | rewrite, replay |
+| mis- | wrongly | misread, mistake |
+| pre- | before | preview, prepare |
+
+## Suffixes (added to the end)
+| Suffix | Meaning | Example |
+|---|---|---|
+| -ful | full of | hopeful, careful |
+| -less | without | careless, hopeless |
+| -ness | state of being | kindness, sadness |
+| -er | person who | teacher, baker |
+
+## In the game
+Add the correct prefix or suffix to complete each word. Think about what meaning you want to create!`,
+      quizId: null,
+      assessmentType: 'prefix-game',
+      categoryId: null,
+    }),
+
+    // ── Maths ────────────────────────────────────────────────────────────────
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'maths',
+      lessonNumber: 1,
+      title: "Long Multiplication",
+      emoji: '✖️',
+      content: `# Long Multiplication ✖️
+
+Long multiplication lets you multiply larger numbers by breaking the problem into smaller steps.
+
+## Method: grid / column
+To calculate 34 × 6:
+1. Multiply 4 × 6 = 24 (write 4, carry 2)
+2. Multiply 3 × 6 = 18, add carried 2 = 20
+
+34 × 6 = **204**
+
+## Two-digit × two-digit
+27 × 13:
+- 27 × 3 = 81
+- 27 × 10 = 270
+- 81 + 270 = **351**
+
+## In the game
+Work through multiplication problems step by step. Show your working!`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'maths',
+      lessonNumber: 2,
+      title: "Fractions and Decimals",
+      emoji: '½',
+      content: `# Fractions and Decimals ½
+
+Fractions and decimals are two different ways to write the same part of a whole.
+
+## Converting fractions to decimals
+| Fraction | Decimal |
+|---|---|
+| ½ | 0.5 |
+| ¼ | 0.25 |
+| ¾ | 0.75 |
+| 1/10 | 0.1 |
+
+## The decimal point
+- Digits to the **left** of the point: whole numbers
+- Digits to the **right** of the point: parts of a whole (tenths, hundredths…)
+
+## Ordering decimals
+Compare digit by digit from left to right: 0.7 > 0.35 because 7 tenths > 3 tenths.
+
+## In the game
+Match fractions to their decimal equivalents and put them in order on a number line.`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'maths',
+      lessonNumber: 3,
+      title: "Measurement and Units",
+      emoji: '📏',
+      content: `# Measurement and Units 📏
+
+## Length
+- 10 mm = 1 cm
+- 100 cm = 1 m
+- 1000 m = 1 km
+
+## Mass
+- 1000 g = 1 kg
+
+## Capacity
+- 1000 ml = 1 l
+
+## Converting units
+To convert from a larger unit to a smaller, **multiply**:
+3 km = 3 × 1000 = 3000 m
+
+To convert from a smaller unit to a larger, **divide**:
+500 cm = 500 ÷ 100 = 5 m
+
+## In the game
+Convert between units and choose the most sensible unit for each measurement.`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'maths',
+      lessonNumber: 4,
+      title: "Place Value to 10,000",
+      emoji: '🏛️',
+      content: `# Place Value to 10,000 🏛️
+
+In Year 4 we extend our number system to ten thousands.
+
+## Thousands, Hundreds, Tens, Ones
+| Number | Th | H | T | O |
+|---|---|---|---|---|
+| 4,382 | 4 | 3 | 8 | 2 |
+| 7,050 | 7 | 0 | 5 | 0 |
+
+4,382 = 4000 + 300 + 80 + 2
+
+## Partitioning and recombining
+Breaking numbers into their place value parts and putting them back together is a key mental maths skill.
+
+## In the game
+Identify digit values and build numbers from their parts.`,
+      quizId: null,
+      assessmentType: 'place-value-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'maths',
+      lessonNumber: 5,
+      title: "Area by Counting Squares",
+      emoji: '⬛',
+      content: `# Area by Counting Squares ⬛
+
+**Area** is the amount of space inside a 2D shape, measured in square units (cm², m²).
+
+## Counting squares method
+Draw the shape on squared paper and count all the squares inside. For partial squares, count two halves as one whole.
+
+## Rectangle formula
+Area = length × width
+
+A rectangle 6 cm × 4 cm has area = 6 × 4 = **24 cm²**
+
+## Compare area and perimeter
+- Two shapes can have the same **perimeter** but different **area**.
+- Two shapes can have the same **area** but different **perimeter**.
+
+## In the game
+Count squares and use the formula to find area. Then compare shapes!`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'maths',
+      lessonNumber: 6,
+      title: "Roman Numerals",
+      emoji: '🏛️',
+      content: `# Roman Numerals 🏛️
+
+The Romans used letters to represent numbers. You still see Roman numerals on clock faces, film release years, and chapter headings.
+
+## Key symbols
+| Roman | Value |
+|---|---|
+| I | 1 |
+| V | 5 |
+| X | 10 |
+| L | 50 |
+| C | 100 |
+
+## Rules
+- **Add** when a smaller symbol follows a larger: VI = 6
+- **Subtract** when a smaller symbol precedes a larger: IV = 4, IX = 9
+
+## Examples
+- XIV = 10 + 4 = **14**
+- XL = 50 − 10 = **40**
+- XXVII = 10 + 10 + 5 + 1 + 1 = **27**
+
+## In the game
+Convert between Roman numerals and standard numbers.`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'maths',
+      lessonNumber: 7,
+      title: "Factors and Multiples",
+      emoji: '🔢',
+      content: `# Factors and Multiples 🔢
+
+## Factors
+A **factor** of a number divides into it exactly with no remainder.
+
+Factors of 12: 1, 2, 3, 4, 6, 12
+
+## Multiples
+A **multiple** is what you get when you multiply a number by a whole number.
+
+Multiples of 4: 4, 8, 12, 16, 20…
+
+## Common factors and multiples
+- **Common factor** of 12 and 8: 1, 2, 4
+- **Lowest Common Multiple (LCM)** of 3 and 4: 12
+
+## Prime numbers
+A prime number has exactly **two** factors: 1 and itself.
+Primes: 2, 3, 5, 7, 11, 13…
+
+## In the game
+Sort numbers into factors and multiples. Spot the primes!`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'maths',
+      lessonNumber: 8,
+      title: "Number Lines",
+      emoji: '📊',
+      content: `# Number Lines 📊
+
+A number line is a powerful visual tool for understanding the relationship between numbers, including decimals and fractions.
+
+## Reading a number line
+1. Find the start and end values.
+2. Count the intervals between marked points.
+3. Work out the value of each step.
+
+## Uses
+- **Ordering** numbers from smallest to largest
+- **Rounding** — which marked value is the number closest to?
+- **Addition and subtraction** — counting on and back
+- **Placing decimals** — where does 0.6 sit between 0 and 1?
+
+## In the game
+Place numbers accurately on number lines and read values at marked points.`,
+      quizId: null,
+      assessmentType: 'number-line-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'maths',
+      lessonNumber: 9,
+      title: "Angles",
+      emoji: '📐',
+      content: `# Angles 📐
+
+An **angle** measures the amount of turn between two lines that meet at a point.
+
+## Types of angle
+| Type | Size |
+|---|---|
+| Acute | Less than 90° |
+| Right angle | Exactly 90° |
+| Obtuse | Between 90° and 180° |
+| Straight | Exactly 180° |
+| Reflex | More than 180° |
+
+## Measuring angles
+Use a **protractor**:
+1. Place the centre on the vertex (corner).
+2. Align the baseline with one arm of the angle.
+3. Read the scale where the other arm crosses.
+
+## Angles on a straight line add up to 180°
+## Angles around a point add up to 360°
+
+## In the game
+Identify and measure angles. Can you spot the acute from the obtuse?`,
+      quizId: null,
+      assessmentType: 'angle-game',
+      categoryId: null,
+    }),
+
   ];
 }
 

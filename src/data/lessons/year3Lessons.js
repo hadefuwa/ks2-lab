@@ -692,6 +692,353 @@ In the game, you will handle the difficult challenges of the late empire. Can yo
 
 
 
+    // ── English ──────────────────────────────────────────────────────────────
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'english',
+      lessonNumber: 1,
+      title: "Phonics & Spelling",
+      emoji: '🔤',
+      content: `# Phonics & Spelling 🔤
+
+In Year 3 we move beyond single letter sounds to spelling patterns that appear again and again in English words.
+
+## Common spelling patterns
+- **tion** — nation, station, action
+- **ight** — light, night, fight
+- **ough** — though, through, enough
+
+## Rules to remember
+1. **i before e** except after c: believe, receive
+2. **Double the consonant** before -ing/-ed for short vowel words: running, stopped
+3. **Drop the e** before a vowel suffix: make → making
+
+## In the game
+Unscramble the letters to spell each word correctly. Listen carefully to the sound clues!`,
+      quizId: null,
+      assessmentType: 'spelling-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'english',
+      lessonNumber: 2,
+      title: "Missing Vowels",
+      emoji: '🔍',
+      content: `# Missing Vowels 🔍
+
+Vowels are the letters **a, e, i, o, u**. Every syllable in English needs at least one vowel.
+
+## Why vowels matter
+- Without vowels, words are impossible to read: "c_t" could be cat, cot, or cut!
+- Vowels change the meaning of words completely.
+
+## Short vs long vowels
+| Short | Long |
+|---|---|
+| cap | cape |
+| pin | pine |
+| hop | hope |
+
+## In the game
+Fill in the missing vowels to complete each word. Think about the sounds you hear!`,
+      quizId: null,
+      assessmentType: 'missing-vowel-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'english',
+      lessonNumber: 3,
+      title: "Sentence Scramble",
+      emoji: '🔀',
+      content: `# Sentence Scramble 🔀
+
+A sentence must make sense. Every sentence needs a **subject** (who/what) and a **verb** (action or state).
+
+## Sentence structure
+**Subject → Verb → Object**
+
+- *The dog* **chased** *the ball.*
+- *Sara* **reads** *books every evening.*
+
+## Capital letters and full stops
+- Every sentence **starts** with a capital letter.
+- Every sentence **ends** with a full stop, question mark, or exclamation mark.
+
+## In the game
+Drag the words into the correct order to build a proper sentence. Watch out for capital letters — they show you where the sentence begins!`,
+      quizId: null,
+      assessmentType: 'sentence-scramble-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'english',
+      lessonNumber: 4,
+      title: "Vowel Sounds",
+      emoji: '🗣️',
+      content: `# Vowel Sounds 🗣️
+
+The same sound can be spelled in different ways. Learning the patterns helps you spell unfamiliar words.
+
+## The long 'a' sound
+| Spelling | Example words |
+|---|---|
+| **ai** | rain, train, snail |
+| **ay** | play, stay, today |
+
+## Tips to choose the right spelling
+- **ai** usually comes in the **middle** of a word: *wait, main*
+- **ay** usually comes at the **end** of a word: *day, way*
+
+## In the game
+Sort each word into the correct sound group — ai or ay. Listen to how the vowel sounds in each word!`,
+      quizId: null,
+      assessmentType: 'vowel-sound-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'english',
+      lessonNumber: 5,
+      title: "Sight Words",
+      emoji: '👁️',
+      content: `# Sight Words 👁️
+
+Sight words are very common words that appear in almost every piece of writing. Learning to recognise them instantly makes reading much faster.
+
+## Why sight words?
+Some words don't follow phonics rules and must simply be memorised: *said, come, some, were, there*.
+
+## Year 3 sight word targets
+because, different, important, between, something, children, through, example, thought, another
+
+## Reading tip
+When you see a sight word you don't recognise, look at the whole word shape — the height and length of letters form a unique silhouette.
+
+## In the game
+Identify the correct sight word as quickly as you can. Speed and accuracy both count!`,
+      quizId: null,
+      assessmentType: 'sight-word-game',
+      categoryId: null,
+    }),
+
+    // ── Maths ────────────────────────────────────────────────────────────────
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'maths',
+      lessonNumber: 1,
+      title: "Multiplication Tables",
+      emoji: '✖️',
+      content: `# Multiplication Tables ✖️
+
+Knowing your times tables off by heart is the single biggest boost you can give your maths. Every other topic — fractions, area, division — depends on it.
+
+## Year 3 focus: 2, 5, and 10 times tables
+
+| × | 2 | 5 | 10 |
+|---|---|---|---|
+| 3 | 6 | 15 | 30 |
+| 4 | 8 | 20 | 40 |
+| 7 | 14 | 35 | 70 |
+
+## Patterns to spot
+- **×2** — always even
+- **×5** — always ends in 0 or 5
+- **×10** — just add a zero
+
+## In the game
+Answer as many multiplication questions as you can. Quick recall is the goal!`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'maths',
+      lessonNumber: 2,
+      title: "Division Basics",
+      emoji: '➗',
+      content: `# Division Basics ➗
+
+Division is sharing equally. It is the **inverse** (opposite) of multiplication, so knowing your times tables makes division easy.
+
+## Division vocabulary
+- **Dividend** — the number being divided (12)
+- **Divisor** — the number you divide by (3)
+- **Quotient** — the answer (4)
+
+12 ÷ 3 = 4
+
+## Using multiplication to check
+If 3 × 4 = 12, then 12 ÷ 3 = 4 and 12 ÷ 4 = 3.
+
+## In the game
+Solve the division questions by thinking about your times tables in reverse.`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'maths',
+      lessonNumber: 3,
+      title: "Fractions Introduction",
+      emoji: '🍕',
+      content: `# Fractions Introduction 🍕
+
+A fraction shows part of a whole. The **denominator** (bottom number) tells you how many equal parts the whole is split into. The **numerator** (top number) tells you how many parts you have.
+
+## Common fractions
+- **½** — one half (2 equal parts, take 1)
+- **¼** — one quarter (4 equal parts, take 1)
+- **¾** — three quarters (4 equal parts, take 3)
+
+## Equivalent fractions
+½ = 2/4 = 4/8 — these all show the same amount!
+
+## In the game
+Match fractions to their pictures and find equivalent pairs.`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'maths',
+      lessonNumber: 4,
+      title: "Place Value to 1000",
+      emoji: '🏛️',
+      content: `# Place Value to 1000 🏛️
+
+Every digit in a number has a **place value** — its value depends on where it sits.
+
+## Hundreds, Tens, Ones
+| Number | Hundreds | Tens | Ones |
+|---|---|---|---|
+| 342 | 3 | 4 | 2 |
+| 509 | 5 | 0 | 9 |
+| 780 | 7 | 8 | 0 |
+
+342 = 300 + 40 + 2
+
+## Comparing numbers
+Line the digits up in columns and compare from left to right. The digit furthest left matters most.
+
+## In the game
+Build numbers using hundreds, tens, and ones blocks. Identify the value of each digit.`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'maths',
+      lessonNumber: 5,
+      title: "Perimeter",
+      emoji: '📐',
+      content: `# Perimeter 📐
+
+The **perimeter** is the total distance around the outside of a shape. Add up all the side lengths.
+
+## Rectangle perimeter
+Perimeter = length + width + length + width
+= 2 × (length + width)
+
+A rectangle 5 cm × 3 cm has perimeter = 2 × (5 + 3) = 16 cm.
+
+## Regular shapes
+A regular shape has all sides equal. Square with side 4 cm: perimeter = 4 × 4 = 16 cm.
+
+## In the game
+Calculate the perimeter of different shapes. Don't forget to add every side!`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'maths',
+      lessonNumber: 6,
+      title: "Mass and Capacity",
+      emoji: '⚖️',
+      content: `# Mass and Capacity ⚖️
+
+## Mass
+Mass tells us how heavy something is.
+- Measured in **grams (g)** and **kilograms (kg)**
+- 1 kg = 1000 g
+- A bag of sugar ≈ 1 kg; a pencil ≈ 5 g
+
+## Capacity
+Capacity is how much liquid a container holds.
+- Measured in **millilitres (ml)** and **litres (l)**
+- 1 litre = 1000 ml
+- A mug holds about 250 ml; a bathtub holds about 150 litres
+
+## Reading scales
+Find the start and end values, count the divisions, then work out what each line is worth.
+
+## In the game
+Read scales and choose the correct mass or capacity. Take your time with the scale divisions!`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'maths',
+      lessonNumber: 7,
+      title: "Rounding",
+      emoji: '🎯',
+      content: `# Rounding 🎯
+
+Rounding makes numbers easier to work with when an exact answer isn't needed.
+
+## Rules for rounding
+1. Decide which place value you are rounding to (nearest 10, 100...).
+2. Look at the digit **immediately to the right**.
+3. If it is **5 or more**, round **up**. If it is **4 or less**, round **down**.
+
+## Examples
+- 47 rounded to the nearest 10 → **50** (7 ≥ 5, round up)
+- 43 rounded to the nearest 10 → **40** (3 < 5, round down)
+- 350 rounded to the nearest 100 → **400** (5 ≥ 5, round up)
+
+## In the game
+Round numbers to the nearest 10 and 100. Use the number line to help picture where numbers land.`,
+      quizId: null,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    // ── Technology ───────────────────────────────────────────────────────────
+
     new Lesson({
       id: lessonId++,
       yearId: 'year3',

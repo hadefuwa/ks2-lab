@@ -9,6 +9,8 @@ export class Subject {
   static allSubjects = [
     new Subject({ id: 'history', name: 'History', emoji: '📜', order: 0 }),
     new Subject({ id: 'technology', name: 'Technology', emoji: '💻', order: 1 }),
+    new Subject({ id: 'english', name: 'English', emoji: '📖', order: 2 }),
+    new Subject({ id: 'maths', name: 'Maths', emoji: '🔢', order: 3 }),
   ];
 
   static getById(id) {
